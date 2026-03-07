@@ -91,7 +91,9 @@ async function loadExhibition(id) {
 
     images = (exhibition.images || [])
       .map(name => imgBase + name);
+
     captions = exhibition.captions || [];
+
     slideSeconds = exhibition.slideSeconds || 10;
 
     /* ⭐ 첫 이미지 preload */
@@ -182,7 +184,6 @@ function showImage(index) {
   img.onload = () => {
     setTimeout(() => {
       img.classList.add("visible");
-      preloadNext(currentIndex);
     }, 150);
   };
 
