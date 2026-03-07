@@ -536,10 +536,19 @@ body.exhibition-detail .exhibition-text span {
 -------------------------------- */
 
 #exhibition-caption {
+
+  position: absolute;
+  bottom: 28px;
+  left: 0;
+  width: 100%;
+
   text-align: center;
-  margin-top: 12px;
-  font-size: 13px;
-  color: #bbb;
-  letter-spacing: 0.3px;
-  min-height: 18px;
+  font-size: 14px;
+  color: #e0e0e0;
+
+  letter-spacing: 0.4px;
+
+  z-index: 10;     /* ⭐ 중요 */
+  pointer-events: none;
+
 }
