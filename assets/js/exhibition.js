@@ -3,6 +3,7 @@
 ===================================================== */
 
 let images = [];
+let captions = [];
 let currentIndex = 0;
 let timer = null;
 let slideSeconds = 10;
@@ -90,7 +91,7 @@ async function loadExhibition(id) {
 
     images = (exhibition.images || [])
       .map(name => imgBase + name);
-
+    captions = exhibition.captions || [];
     slideSeconds = exhibition.slideSeconds || 10;
 
     /* ⭐ 첫 이미지 preload */
@@ -138,7 +139,10 @@ function stopAuto() {
 ----------------------------------------------------- */
 
 function showImage(index) {
+
   const img = document.getElementById("exhibition-image");
+  const caption = document.getElementById("exhibition-caption");
+
   if (!img || images.length === 0) return;
 
   const isLoopReset =
@@ -147,12 +151,12 @@ function showImage(index) {
   currentIndex = (index + images.length) % images.length;
 
   /* 작품 조회 기록 */
-    gtag('event', 'view_artwork', {
-      exhibition_id: new URLSearchParams(location.search).get("id"),
-      artwork_index: currentIndex + 1,
-      artwork_file: images[currentIndex],
-      device_type: getDeviceType()
-    });
+  gtag('event', 'view_artwork', {
+    exhibition_id: new URLSearchParams(location.search).get("id"),
+    artwork_index: currentIndex + 1,
+    artwork_file: images[currentIndex],
+    device_type: getDeviceType()
+  });
 
   /* ⭐ 전시 완주 체크 */
   if (currentIndex === images.length - 1) {
@@ -178,9 +182,19 @@ function showImage(index) {
   img.onload = () => {
     setTimeout(() => {
       img.classList.add("visible");
-      preloadNext(currentIndex); // ⭐ 추가
+      preloadNext(currentIndex);
     }, 150);
   };
+
+  /* caption update */
+  if (caption) {
+    if (captions && captions[currentIndex]) {
+      caption.innerText = captions[currentIndex];
+    } else {
+      caption.innerText = "";
+    }
+  }
+
 }
 
 function preloadInitialImages() {
