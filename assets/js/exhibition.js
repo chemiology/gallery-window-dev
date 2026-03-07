@@ -52,8 +52,6 @@ if (exhibitionId) {
 
   loadExhibition(exhibitionId);
   setupControls();
-  document.title =
-    `Gallery Window — ${exhibition.title}`;
 
 });
 
@@ -74,6 +72,10 @@ async function loadExhibition(id) {
       data.currentExhibitions.find(e => e.id === id);
 
     if (!exhibition) return;
+
+    /* 페이지 제목 설정 */
+    document.title =
+      `Gallery Window — ${exhibition.title}`;
 
     const basePath =
       `/assets/exhibitions/${exhibition.id}/`;
