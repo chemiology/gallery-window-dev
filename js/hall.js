@@ -102,8 +102,18 @@ async function loadHallEntry(exhibitionId, hallId) {
       return;
     }
 
+    /* 방명록 exhibition id 전달 */
+
+    const guestbookInput =
+    document.querySelector('input[name="exhibition_id"]');
+
+    if (guestbookInput) {
+      guestbookInput.value = exhibition.id;
+    }
+
     const basePath =
       `/assets/exhibitions/${exhibition.id}/`;
+
 
     /* ---------- COMING 상태 ---------- */
 
