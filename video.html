@@ -34,19 +34,13 @@ max-width:1100px;
 aspect-ratio:16/9;
 margin-top:20px;
 box-shadow:0 0 60px rgba(0,0,0,0.8);
+position:relative;
 }
 
 iframe{
 width:100%;
 height:100%;
 border:none;
-}
-
-.info{
-margin-top:20px;
-font-size:14px;
-color:#aaa;
-text-align:center;
 }
 
 .controls{
@@ -57,21 +51,6 @@ transition:opacity .4s ease;
 
 .controls.show{
 opacity:1;
-}
-
-.back-link{
-margin-top:25px;
-font-size:13px;
-opacity:.7;
-}
-
-.back-link a{
-color:#ccc;
-text-decoration:none;
-}
-
-.back-link a:hover{
-color:#fff;
 }
 
 button{
@@ -103,7 +82,6 @@ font-size:13px;
 
 }
 
-/* 여기부터는 전체 공통 CSS */
 .video-caption{
 margin-top:18px;
 opacity:0.8;
@@ -126,26 +104,12 @@ cursor:pointer;
 padding:6px 10px;
 border-radius:4px;
 transition:all .25s ease;
+display:inline-block;
 }
 
 .nav-back a:hover{
 color:#fff;
 background:rgba(255,255,255,0.08);
-}
-
-.immersive .video-title,
-.immersive .video-caption,
-.immersive .controls,
-.immersive .nav-back{
-opacity:0;
-transition:opacity .6s ease;
-}
-
-body:not(.immersive) .video-title,
-body:not(.immersive) .video-caption,
-body:not(.immersive) .controls,
-body:not(.immersive) .nav-back{
-opacity:1;
 }
 
 .fullscreen-tip{
@@ -154,23 +118,6 @@ font-size:11px;
 opacity:.45;
 letter-spacing:0.5px;
 text-align:center;
-}
-
-body::after{
-content:"";
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-pointer-events:none;
-background:
-radial-gradient(
-circle at center,
-rgba(0,0,0,0) 60%,
-rgba(0,0,0,0.35) 100%
-);
-z-index:-1;
 }
 
 .video-loading{
@@ -182,10 +129,6 @@ font-size:14px;
 opacity:0.7;
 letter-spacing:1px;
 pointer-events:none;
-}
-
-.video-container{
-position:relative;
 }
 
 #video-frame{
@@ -223,11 +166,6 @@ opacity:0;
 
 <div class="video-loading">Loading...</div>
 
-<iframe id="video-frame"
-loading="lazy"
-allow="autoplay; encrypted-media"
-allowfullscreen></iframe>
-
 </div>
 
 <div class="fullscreen-tip">
@@ -237,34 +175,27 @@ F : Fullscreen · ESC : Exit
 <div class="controls">
 
 <button onclick="prevVideo()">Prev</button>
-
 <button onclick="nextVideo()">Next</button>
 
 </div>
 
 <div class="nav-back">
-  <a id="backToHall">← Hall</a>
+<a id="backToHall">← Hall</a>
 </div>
 
 <script>
 
-/* ======================================
-   URL 파라미터
-====================================== */
+/* URL 파라미터 */
 
 const params = new URLSearchParams(location.search);
 const exhibitionId = params.get("id");
 
-/* ======================================
-   상태 변수
-====================================== */
+/* 상태 */
 
 let videos = [];
 let currentIndex = 0;
 
-/* ======================================
-   전시 제목 로드
-====================================== */
+/* 전시 제목 */
 
 fetch("/assets/config/gallery.json")
 .then(r => r.json())
@@ -281,9 +212,7 @@ document.getElementById("videoTitle").innerText = ex.title;
 
 });
 
-/* ======================================
-   영상 목록 로드
-====================================== */
+/* 영상 목록 */
 
 fetch("/assets/config/videos.json")
 .then(r => r.json())
@@ -291,39 +220,34 @@ fetch("/assets/config/videos.json")
 
 videos = data[exhibitionId] || [];
 
-if(videos.length === 0){
-document.getElementById("video-info").innerText =
-"영상 작품이 등록되지 않았습니다.";
-return;
-}
+if(!videos.length) return;
 
 loadVideo();
 
 });
 
-/* ======================================
-   영상 로드
-====================================== */
+/* 영상 로드 */
 
 function loadVideo(){
 
-const video = videos[currentIndex];
+if(!videos.length) return;
 
-const container = document.querySelector(".video-container");
+const video = videos[currentIndex];
 
 const container = document.querySelector(".video-container");
 const loading = document.querySelector(".video-loading");
 
 loading.style.display = "block";
 
-// 기존 iframe 제거
-const oldFrame = document.getElementById("video-frame");
-if(oldFrame){
-oldFrame.remove();
-}
+/* 기존 iframe 제거 */
 
-// 새 iframe 생성
+const oldFrame = document.getElementById("video-frame");
+if(oldFrame) oldFrame.remove();
+
+/* 새 iframe 생성 */
+
 const frame = document.createElement("iframe");
+
 frame.id = "video-frame";
 frame.loading = "lazy";
 frame.allow = "autoplay; encrypted-media";
@@ -334,74 +258,49 @@ frame.src =
 video.youtube +
 "?autoplay=1&mute=1&enablejsapi=1&rel=0&playsinline=1&t=" + Date.now();
 
-frame.onload = () => {
-loading.style.display = "none";
-frame.classList.add("show");
-};
-
-// 컨테이너에 추가
 container.appendChild(frame);
 
-const captionElement =
-document.getElementById("video-caption");
+/* 로딩 제거 */
 
-if(captionElement){
-captionElement.innerText = video.caption || "";
+setTimeout(()=>{
+loading.style.display = "none";
+frame.classList.add("show");
+},1200);
+
+/* 캡션 */
+
+const captionElement = document.getElementById("video-caption");
+if(captionElement) captionElement.innerText = video.caption || "";
+
 }
 
-}
-
-/* ======================================
-   다음 영상
-====================================== */
+/* 다음 영상 */
 
 function nextVideo(){
 
 currentIndex++;
 
-if(currentIndex >= videos.length){
+if(currentIndex >= videos.length)
 currentIndex = 0;
-}
 
 loadVideo();
 
 }
 
-/* ======================================
-   이전 영상
-====================================== */
+/* 이전 영상 */
 
 function prevVideo(){
 
 currentIndex--;
 
-if(currentIndex < 0){
+if(currentIndex < 0)
 currentIndex = videos.length - 1;
-}
 
 loadVideo();
 
 }
 
-/* ======================================
-   영상 종료 → 자동 다음 작품
-====================================== */
-
-window.addEventListener("message", function(event){
-
-if(event.data && event.data.event === "onStateChange"){
-
-if(event.data.info === 0){
-nextVideo();
-}
-
-}
-
-});
-
-/* ======================================
-   키보드 이동
-====================================== */
+/* 키보드 이동 */
 
 document.addEventListener("keydown", function(e){
 
@@ -410,9 +309,7 @@ if(e.key === "ArrowLeft") prevVideo();
 
 });
 
-/* ======================================
-   컨트롤 자동 숨김
-====================================== */
+/* 컨트롤 표시 */
 
 const controls = document.querySelector(".controls");
 
@@ -435,19 +332,17 @@ document.addEventListener("touchstart", showControls);
 
 showControls();
 
-/* ======================================
-   전체 화면
-====================================== */
+/* 전체 화면 */
 
 function toggleFullscreen(){
 
 const elem = document.querySelector(".video-container");
 
-if (!document.fullscreenElement) {
+if(!document.fullscreenElement){
 
 elem.requestFullscreen().catch(err => console.log(err));
 
-} else {
+}else{
 
 document.exitFullscreen();
 
@@ -461,60 +356,28 @@ document
 
 document.addEventListener("keydown", function(e){
 
-if(e.key === "f" || e.key === "F"){
+if(e.key === "f" || e.key === "F")
 toggleFullscreen();
-}
 
 });
 
-/* ======================================
-   Hall 돌아가기
-====================================== */
+/* Hall 이동 */
 
 const backBtn = document.getElementById("backToHall");
 
 if(backBtn){
 
-backBtn.onclick = () => {
+backBtn.addEventListener("click", () => {
 
 const hall = params.get("hall") || "hall50";
 
 window.location.href = `/hall.html?hall=${hall}`;
 
-};
+});
 
 }
 
-let immersiveTimer;
-
-function activateImmersive(){
-
-clearTimeout(immersiveTimer);
-
-document.body.classList.remove("immersive");
-
-immersiveTimer = setTimeout(()=>{
-document.body.classList.add("immersive");
-},3000);
-
-}
-
-document.addEventListener("mousemove", activateImmersive);
-document.addEventListener("touchstart", activateImmersive);
-
-activateImmersive();
-
-let pressTimer;
-
-const videoArea = document.querySelector(".video-container");
-
-videoArea.addEventListener("touchstart", () => {
-pressTimer = setTimeout(toggleFullscreen, 600);
-});
-
-videoArea.addEventListener("touchend", () => {
-clearTimeout(pressTimer);
-});
+/* meta 자동 숨김 */
 
 const meta = document.querySelector(".meta");
 
