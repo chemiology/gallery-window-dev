@@ -59,12 +59,49 @@
   </div>
 
   <div class="artist-note-area">
+
     <div id="artistNote" class="artist-note"></div>
+
+    <!-- 방명록 -->
+    <div class="guestbook-section">
+
+      <h3 class="guestbook-title">방명록</h3>
+
+      <form 
+      action="https://script.google.com/macros/s/AKfycbxosBRSAcNGTRHQXIm6EIVQKEnFhFlK4jMGpIDFnccUfwXcLdRZO2vKn3GsmQvMjo8raQ/exec"
+      method="GET"
+      target="hidden_iframe"
+      onsubmit="return guestbookSubmit(this)"
+      class="guestbook-form">
+
+        <input type="hidden" name="exhibition_id">
+        <input type="hidden" name="page" value="viewer">
+
+        <input
+        type="text"
+        name="message"
+        placeholder="이 전시에 대한 한 줄 감상"
+        maxlength="80"
+        required>
+
+        <button type="submit">남기기</button>
+
+      </form>
+
+      <iframe name="hidden_iframe" style="display:none;"></iframe>
+
+      <div class="guestbook-list">
+        <h4>최근 방명록</h4>
+        <div id="guestbook-area"></div>
+      </div>
+
+    </div>
 
     <div class="entry-buttons">
       <a href="/index.html" class="back-main">← 대표화면</a>
       <a id="enterExhibition" class="enter-exhibition">작품 보기 →</a>
     </div>
+
   </div>
 
 </div>
@@ -76,6 +113,51 @@
 <div class="page-fade" id="pageFade"></div>
 
 <script src="/js/hall.js"></script>
+
+<script>
+
+function guestbookSubmit(form){
+
+alert("감사합니다. 소중한 감상이 기록되었습니다.");
+
+form.message.value="";
+
+return true;
+
+}
+
+</script>
+
+<script>
+
+async function loadRecentGuestbook(){
+
+const url="https://script.google.com/macros/s/AKfycbxosBRSAcNGTRHQXIm6EIVQKEnFhFlK4jMGpIDFnccUfwXcLdRZO2vKn3GsmQvMjo8raQ/exec?mode=list";
+
+const res=await fetch(url);
+const data=await res.json();
+
+const container=document.getElementById("guestbook-area");
+
+if(!container) return;
+
+container.innerHTML="";
+
+data.slice(0,5).forEach(item=>{
+
+const div=document.createElement("div");
+
+div.textContent="• "+item.message;
+
+container.appendChild(div);
+
+});
+
+}
+
+loadRecentGuestbook();
+
+</script>
 
 </body>
 
