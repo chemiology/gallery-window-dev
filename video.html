@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Video Exhibition | Gallery Window</title>
+
+<style>
+
+body{
+margin:0;
+background:#000;
+color:#ddd;
+font-family:system-ui, sans-serif;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+min-height:100vh;
+}
+
+.video-title{
+margin-top:30px;
+font-size:18px;
+letter-spacing:1px;
+}
+
+.video-container{
+width:90%;
+max-width:1100px;
+aspect-ratio:16/9;
+margin-top:20px;
+box-shadow:0 0 60px rgba(0,0,0,0.8);
+}
+
+iframe{
+width:100%;
+height:100%;
+border:none;
+}
+
+.info{
+margin-top:20px;
+font-size:14px;
+color:#aaa;
+text-align:center;
+}
+
+.controls{
+margin-top:25px;
+opacity:0;
+transition:opacity .4s ease;
+}
+
+.controls.show{
+opacity:1;
+}
+
+button{
+background:rgba(255,255,255,0.08);
+color:#ddd;
+border:none;
+padding:10px 22px;
+margin:6px;
+font-size:13px;
+cursor:pointer;
+transition:all .25s ease;
+}
+
+button:hover{
+background:rgba(255,255,255,0.18);
+color:#fff;
+}
+
+@media (max-width:700px){
+
+.video-container{
+width:100%;
+}
+
+button{
+padding:8px 16px;
+font-size:12px;
+}
+
+}
+
+.video-caption{
+margin-top:12px;
+font-size:13px;
+color:#bbb;
+text-align:center;
+letter-spacing:0.3px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="video-title" id="videoTitle"></div>
+
+<div class="video-container">
+
+<iframe id="video-frame"
+allow="autoplay; encrypted-media"
+allowfullscreen></iframe>
+
+</div>
+
+<div class="video-caption" id="video-caption"></div>
+
+<div class="controls">
+
+<button onclick="prevVideo()">Prev</button>
+
+<button onclick="nextVideo()">Next</button>
+
+</div>
+
+<script>
+
+/* ======================================
+   URL 파라미터
+====================================== */
+
+const params = new URLSearchParams(location.search);
+const exhibitionId = params.get("id");
+
+/* ======================================
+   상태 변수
+====================================== */
+
+let videos = [];
+let currentIndex = 0;
+
+/* ======================================
+   전시 제목 로드
+====================================== */
+
+fetch("/assets/config/gallery.json")
+.then(r => r.json())
+.then(data => {
+
+const exhibitions =
+data.currentExhibitions || data.exhibitions || [];
+
+const ex = exhibitions.find(e => e.id === exhibitionId);
+
+if(ex){
+document.getElementById("videoTitle").innerText = ex.title;
+}
+
+});
+
+/* ======================================
+   영상 목록 로드
+====================================== */
+
+fetch("/assets/config/videos.json")
+.then(r => r.json())
+.then(data => {
+
+videos = data[exhibitionId] || [];
+
+if(videos.length === 0){
+document.getElementById("video-info").innerText =
+"영상 작품이 등록되지 않았습니다.";
+return;
+}
+
+loadVideo();
+
+});
+
+/* ======================================
+   영상 로드
+====================================== */
+
+function loadVideo(){
+
+const video = videos[currentIndex];
+
+const frame = document.getElementById("video-frame");
+
+frame.src =
+"https://www.youtube.com/embed/" +
+video.youtube +
+"?autoplay=1&mute=1&enablejsapi=1&rel=0";
+
+const captionElement =
+document.getElementById("video-caption");
+
+if(captionElement){
+captionElement.innerText =
+video.caption || "";
+}
+
+}
+
+/* ======================================
+   다음 영상
+====================================== */
+
+function nextVideo(){
+
+currentIndex++;
+
+if(currentIndex >= videos.length){
+currentIndex = 0;
+}
+
+loadVideo();
+
+}
+
+/* ======================================
+   이전 영상
+====================================== */
+
+function prevVideo(){
+
+currentIndex--;
+
+if(currentIndex < 0){
+currentIndex = videos.length - 1;
+}
+
+loadVideo();
+
+}
+
+/* ======================================
+   영상 종료 → 자동 다음 작품
+====================================== */
+
+window.addEventListener("message", function(event){
+
+if(event.data && event.data.event === "onStateChange"){
+
+if(event.data.info === 0){
+nextVideo();
+}
+
+}
+
+});
+
+document.addEventListener("keydown", function(e){
+
+if(e.key === "ArrowRight"){
+nextVideo();
+}
+
+if(e.key === "ArrowLeft"){
+prevVideo();
+}
+
+});
+
+const controls = document.querySelector(".controls");
+
+let hideTimer;
+
+function showControls(){
+
+controls.classList.add("show");
+
+clearTimeout(hideTimer);
+
+hideTimer = setTimeout(()=>{
+controls.classList.remove("show");
+},2000);
+
+}
+
+document.addEventListener("mousemove", showControls);
+document.addEventListener("touchstart", showControls);
+
+showControls();
+
+function toggleFullscreen(){
+
+const elem = document.querySelector(".video-container");
+
+if (!document.fullscreenElement) {
+
+elem.requestFullscreen().catch(err => {
+console.log(err);
+});
+
+} else {
+
+document.exitFullscreen();
+
+}
+
+}
+
+document
+.querySelector(".video-container")
+.addEventListener("dblclick", toggleFullscreen);
+
+document.addEventListener("keydown", function(e){
+
+if(e.key === "f" || e.key === "F"){
+toggleFullscreen();
+}
+
+});
+
+</script>
+
+</body>
+</html>
