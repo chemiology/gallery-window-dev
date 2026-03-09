@@ -101,8 +101,8 @@ width:100%;
 }
 
 button{
-padding:8px 16px;
-font-size:12px;
+padding:10px 18px;
+font-size:13px;
 }
 
 .video-caption{
@@ -167,7 +167,22 @@ circle at center,
 rgba(0,0,0,0) 60%,
 rgba(0,0,0,0.35) 100%
 );
-z-index:1;
+z-index:-1;
+}
+
+.video-loading{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:14px;
+opacity:0.7;
+letter-spacing:1px;
+pointer-events:none;
+}
+
+.video-container{
+position:relative;
 }
 
 </style>
@@ -179,6 +194,8 @@ z-index:1;
 <div class="video-title" id="videoTitle"></div>
 
 <div class="video-container">
+
+<div class="video-loading">Loading...</div>
 
 <iframe id="video-frame"
 loading="lazy"
@@ -269,13 +286,20 @@ function loadVideo(){
 const video = videos[currentIndex];
 
 const frame = document.getElementById("video-frame");
+const loading = document.querySelector(".video-loading");
+
+loading.style.display = "block";
 
 frame.src = "";
 
 frame.src =
 "https://www.youtube.com/embed/" +
 video.youtube +
-"?autoplay=1&mute=1&enablejsapi=1&rel=0&playsinline=1";
+"?autoplay=1&mute=1&enablejsapi=1&rel=0&playsinline=1&t=" + Date.now();
+
+frame.onload = () => {
+loading.style.display = "none";
+};
 
 const captionElement =
 document.getElementById("video-caption");
@@ -438,6 +462,18 @@ document.addEventListener("mousemove", activateImmersive);
 document.addEventListener("touchstart", activateImmersive);
 
 activateImmersive();
+
+let pressTimer;
+
+const videoArea = document.querySelector(".video-container");
+
+videoArea.addEventListener("touchstart", () => {
+pressTimer = setTimeout(toggleFullscreen, 600);
+});
+
+videoArea.addEventListener("touchend", () => {
+clearTimeout(pressTimer);
+});
 
 </script>
 
