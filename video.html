@@ -130,6 +130,46 @@ cursor:pointer;
 color:#fff;
 }
 
+.immersive .video-title,
+.immersive .video-caption,
+.immersive .controls,
+.immersive .nav-back{
+opacity:0;
+transition:opacity .6s ease;
+}
+
+body:not(.immersive) .video-title,
+body:not(.immersive) .video-caption,
+body:not(.immersive) .controls,
+body:not(.immersive) .nav-back{
+opacity:1;
+}
+
+.fullscreen-tip{
+margin-top:6px;
+font-size:11px;
+opacity:.45;
+letter-spacing:0.5px;
+text-align:center;
+}
+
+body::after{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+background:
+radial-gradient(
+circle at center,
+rgba(0,0,0,0) 60%,
+rgba(0,0,0,0.35) 100%
+);
+z-index:1;
+}
+
 </style>
 
 </head>
@@ -149,6 +189,10 @@ allowfullscreen></iframe>
 
 <div class="video-caption" id="video-caption"></div>
 
+<div class="fullscreen-tip">
+F : Fullscreen · ESC : Exit
+</div>
+
 <div class="controls">
 
 <button onclick="prevVideo()">Prev</button>
@@ -158,7 +202,7 @@ allowfullscreen></iframe>
 </div>
 
 <div class="nav-back">
-<a id="backToHall">← Hall</a>
+  <a id="backToHall">← Hall</a>
 </div>
 
 <script>
@@ -237,8 +281,7 @@ const captionElement =
 document.getElementById("video-caption");
 
 if(captionElement){
-captionElement.innerText =
-video.caption || "";
+captionElement.innerText = video.caption || "";
 }
 
 }
@@ -291,17 +334,20 @@ nextVideo();
 
 });
 
+/* ======================================
+   키보드 이동
+====================================== */
+
 document.addEventListener("keydown", function(e){
 
-if(e.key === "ArrowRight"){
-nextVideo();
-}
-
-if(e.key === "ArrowLeft"){
-prevVideo();
-}
+if(e.key === "ArrowRight") nextVideo();
+if(e.key === "ArrowLeft") prevVideo();
 
 });
+
+/* ======================================
+   컨트롤 자동 숨김
+====================================== */
 
 const controls = document.querySelector(".controls");
 
@@ -324,15 +370,17 @@ document.addEventListener("touchstart", showControls);
 
 showControls();
 
+/* ======================================
+   전체 화면
+====================================== */
+
 function toggleFullscreen(){
 
 const elem = document.querySelector(".video-container");
 
 if (!document.fullscreenElement) {
 
-elem.requestFullscreen().catch(err => {
-console.log(err);
-});
+elem.requestFullscreen().catch(err => console.log(err));
 
 } else {
 
@@ -354,33 +402,42 @@ toggleFullscreen();
 
 });
 
+/* ======================================
+   Hall 돌아가기
+====================================== */
+
 const backBtn = document.getElementById("backToHall");
 
 if(backBtn){
 
 backBtn.onclick = () => {
 
-  const hall =
-    params.get("hall") || "hall50";
-
-  window.location.href = `/hall.html?hall=${hall}`;
-
-};
-
-}
-
-const backBtn = document.getElementById("backToHall");
-
-if(backBtn){
-
-const params = new URLSearchParams(location.search);
 const hall = params.get("hall") || "hall50";
 
-backBtn.onclick = () => {
 window.location.href = `/hall.html?hall=${hall}`;
+
 };
 
 }
+
+let immersiveTimer;
+
+function activateImmersive(){
+
+clearTimeout(immersiveTimer);
+
+document.body.classList.remove("immersive");
+
+immersiveTimer = setTimeout(()=>{
+document.body.classList.add("immersive");
+},3000);
+
+}
+
+document.addEventListener("mousemove", activateImmersive);
+document.addEventListener("touchstart", activateImmersive);
+
+activateImmersive();
 
 </script>
 
