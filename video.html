@@ -59,6 +59,25 @@ transition:opacity .4s ease;
 opacity:1;
 }
 
+.back-link{
+margin-top:25px;
+font-size:13px;
+opacity:.7;
+}
+
+.back-link a{
+color:#ccc;
+text-decoration:none;
+}
+
+.back-link a:hover{
+color:#fff;
+}
+
+<div class="back-link">
+<a id="backToHall">← 전시관으로 돌아가기</a>
+</div>
+
 button{
 background:rgba(255,255,255,0.08);
 color:#ddd;
@@ -86,10 +105,9 @@ padding:8px 16px;
 font-size:12px;
 }
 
-}
-
 .video-caption{
-margin-top:12px;
+margin-top:18px;
+opacity:0.8;
 font-size:13px;
 color:#bbb;
 text-align:center;
@@ -107,6 +125,7 @@ letter-spacing:0.3px;
 <div class="video-container">
 
 <iframe id="video-frame"
+loading="lazy"
 allow="autoplay; encrypted-media"
 allowfullscreen></iframe>
 
@@ -187,10 +206,12 @@ const video = videos[currentIndex];
 
 const frame = document.getElementById("video-frame");
 
+frame.src = "";
+
 frame.src =
 "https://www.youtube.com/embed/" +
 video.youtube +
-"?autoplay=1&mute=1&enablejsapi=1&rel=0";
+"?autoplay=1&mute=1&enablejsapi=1&rel=0&playsinline=1";
 
 const captionElement =
 document.getElementById("video-caption");
@@ -312,6 +333,21 @@ toggleFullscreen();
 }
 
 });
+
+const backBtn = document.getElementById("backToHall");
+
+if(backBtn){
+
+backBtn.onclick = () => {
+
+  const hall =
+    params.get("hall") || "hall50";
+
+  window.location.href = `/hall.html?hall=${hall}`;
+
+};
+
+}
 
 </script>
 
