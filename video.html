@@ -114,6 +114,22 @@ text-align:center;
 letter-spacing:0.3px;
 }
 
+.nav-back{
+margin-top:25px;
+font-size:13px;
+opacity:.7;
+}
+
+.nav-back a{
+color:#ccc;
+text-decoration:none;
+cursor:pointer;
+}
+
+.nav-back a:hover{
+color:#fff;
+}
+
 </style>
 
 </head>
@@ -139,6 +155,10 @@ allowfullscreen></iframe>
 
 <button onclick="nextVideo()">Next</button>
 
+</div>
+
+<div class="nav-back">
+<a id="backToHall">← Hall</a>
 </div>
 
 <script>
@@ -345,6 +365,19 @@ backBtn.onclick = () => {
 
   window.location.href = `/hall.html?hall=${hall}`;
 
+};
+
+}
+
+const backBtn = document.getElementById("backToHall");
+
+if(backBtn){
+
+const params = new URLSearchParams(location.search);
+const hall = params.get("hall") || "hall50";
+
+backBtn.onclick = () => {
+window.location.href = `/hall.html?hall=${hall}`;
 };
 
 }
