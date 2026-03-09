@@ -160,7 +160,6 @@ document.addEventListener("click", function(e) {
 
   e.preventDefault();
 
-  // exhibition → hall 입구로 변경
   const url = new URL(link.href);
   const id = url.searchParams.get("id");
 
@@ -169,8 +168,8 @@ document.addEventListener("click", function(e) {
   });
 
   window.location.href = `hall.html?hall=hall01`;
-});
 
+});
 window.addEventListener("load", () => {
   document.body.classList.add("page-ready");
 });
