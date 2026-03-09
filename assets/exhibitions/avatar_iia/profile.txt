@@ -1,0 +1,57 @@
+<div class="gap-lg section-title">작가 프로필</div>
+<div class="profile-subtitle">개인전</div>
+<div class="exhibition-text info">
+<span>2024 『아바타II』 갤러리 공간미끌 (서울)</span>
+<span>2019 『아바타: 환상 꿈』 한국카메라박물관 (과천)</span>
+<span>2019 『아바타』 갤러리 나우 (서울)</span>
+<span>2017 『꼭두각시』 갤러리 이즈 (서울)</span>
+<span>2015 『별이 빛나는 밤』 핑야오국제사진축전 초대전, 핑야오전시장 (중국)</span>
+<span>2015 『별이 빛나는 밤』 가나아트스페이스 (서울)</span>
+</div>
+
+<div class="profile-subtitle">주요 그룹전</div>
+<div class="exhibition-text info">
+<span>2025 『2025 인천국제현대사진기획전』 인천문화예술회관 (인천)</span>
+<span>2025 『2025 여주국제사진전』 강변유원지길 (여주)</span>
+<span>2025 『부산국제사진제: International Open Call_혼이 있는 바다』 스페이스 원지 (부산)</span>
+<span>2025 『찢고 삐져나온 것들』 이스트아뜰리에 갤러리 서울 (서울)</span>
+<span>2024 『현대사진가 특별전_형태의 탐구』 Born star Rocks gallery (미국)</span>
+<span>2024 『Lishui Photography Festival』 리수이 사진박물관 (중국)</span>
+<span>2024 『빛과 그림자의 춤』 유누프 루벨스키 사진박물관 (폴란드)</span>
+<span>2023 『Listen, Sound of The photo』 랑그레오 시립미술관 (스페인)</span>
+<span>2023 『뉴 웨이브 - 대한민국국제포토페스티벌』 초대전, 예술의전당 한가람미술관 (서울)</span>
+<span>2023 『우크라이나 리브네 국제사진전: HOPE』 Rivne Museum (우크라이나)</span>
+<span>2023 『스페인 아스투리아스 국제사진전: HOPE』 abba playa Gijon Hotel (스페인)</span>
+<span>2023 『판단중지』 선광미술관 (인천)</span>
+<span>2021 『선의 경계: 사진으로 읽기』 갤러리89 (프랑스)</span>
+<span>2021 『로마국제사진전』 메디나로마 갤러리 (이탈리아)</span>
+<span>2018 『몽테 소사이어티: 오늘을 그리다』 백학미술관 (광주)</span>
+<span>2018 『제3회 PASA FESTIVAL – 젊은 시각』 수원미술전시관 (수원)</span>
+<span>2018 『피렌체국제사진전』 Galleria Mentana (이탈리아)</span>
+<span>2016 『동강국제사진제 Growing Up IV』 영월문화예술회관 (영월)</span>
+</div>
+
+<div class="profile-subtitle">사진집</div>
+<div class="exhibition-text info">
+<span>2019 Avatar, 도서출판 하얀나무 (ISBN 979-11-85154-46-6)</span>
+<span>2017 Marionette, 도서출판 하얀나무 (ISBN 979-11-85154-27-5)</span>
+<span>2015 The Starry Night, 도서출판 하얀나무 (ISBN 979-11-85154-09-1)</span>
+</div>
+
+<div class="profile-subtitle">수상/선정</div>
+<div class="exhibition-text info">
+<span>2025 Beyond The Screen Festival, Honorable mention (벨기에)</span>
+<span>2024 SF스토리 공모전 AI영상부문 대상 (동아사이언스)</span>
+<span>2019 한국카메라박물관, 올해의 사진가 선정</span>
+<span>2018 제9회 갤러리 나우 작가상(NoW Advance Exhibition)</span>
+<span>2017 제4회 대한민국국제포토페스티벌 우수작가상</span>
+</div>
+
+<div class="profile-subtitle">연락처</div>
+<div class="exhibition-text info">
+<span>E-mail : chemiology@naver.com</span>
+<span>Homepage : https://www.kimkyoungsoo.com</span>
+<span>Blog : https://blog.naver.com/chemiology</span>
+<span>Facebook : http://www.facebook.com/chemiology</span>
+<span>Instagram : https://www.instagram.com/kskimpc</span>
+</div>
