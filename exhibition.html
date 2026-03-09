@@ -103,33 +103,6 @@
   화면을 터치하면 전시의 숨이 시작됩니다.
 </p>
 
-  <!-- 방명록 (전시화면용, 하나만) -->
-  <section class="exhibition-guestbook">
-  <h3 class="guestbook-title">방명록</h3>
-
-  <form 
-    action="https://script.google.com/macros/s/AKfycbxosBRSAcNGTRHQXIm6EIVQKEnFhFlK4jMGpIDFnccUfwXcLdRZO2vKn3GsmQvMjo8raQ/exec"
-    method="GET"
-    target="hidden_iframe"
-  >
-    <input type="hidden" name="exhibition_id">
-    <input type="hidden" name="page" value="viewer">
-
-    <input
-      type="text"
-      name="message"
-      placeholder="이 전시에 대한 한 줄 감상"
-      maxlength="80"
-      required
-    >
-
-    <button type="submit">남기기</button>
-  </form>
-
-  <iframe name="hidden_iframe" style="display:none;"></iframe>
-</section>
-
-
   <!-- 캡션 -->
   <div class="caption" id="caption"></div>
 

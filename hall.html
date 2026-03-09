@@ -69,6 +69,57 @@
 
 </div>
 
+<div class="artist-note-area">
+
+  <div id="artistNote" class="artist-note"></div>
+
+  <!-- 방명록 -->
+  <div class="guestbook">
+
+    <form 
+      action="https://script.google.com/macros/s/AKfycbxosBRSAcNGTRHQXIm6EIVQKEnFhFlK4jMGpIDFnccUfwXcLdRZO2vKn3GsmQvMjo8raQ/exec"
+      method="GET"
+      target="hidden_iframe"
+      onsubmit="return guestbookSubmit(this)"
+    >
+
+    <form
+    action="https://script.google.com/macros/s/..."
+    method="GET"
+    target="hidden_iframe"
+    onsubmit="return guestbookSubmit(this)"
+    >
+
+      <input type="hidden" name="exhibition_id">
+      <input type="hidden" name="page" value="hall">
+
+      <input
+        type="text"
+        name="message"
+        placeholder="이 전시에 대한 한 줄 감상"
+        maxlength="80"
+        required
+      >
+
+      <button type="submit">남기기</button>
+
+    </form>
+
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
+
+  </div>
+
+   <!-- 최근 감상 -->
+
+   <div class="guestbook-list" id="guestbookList"></div>
+
+  <div class="entry-buttons">
+    <a href="/index.html" class="back-main">← 대표화면</a>
+    <a id="enterExhibition" class="enter-exhibition">작품 보기 →</a>
+  </div>
+
+</div>
+
 <audio id="hallAudio" preload="auto" loop>
   <source src="/assets/audio/avatar_ii.mp3" type="audio/mpeg">
 </audio>
@@ -76,6 +127,20 @@
 <div class="page-fade" id="pageFade"></div>
 
 <script src="/js/hall.js"></script>
+
+<script>
+
+function guestbookSubmit(form){
+
+alert("감사합니다. 소중한 감상이 기록되었습니다.");
+
+form.message.value="";
+
+return true;
+
+}
+
+</script>
 
 </body>
 
