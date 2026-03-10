@@ -486,3 +486,38 @@ document.addEventListener("contextmenu", function(e) {
   }
 
 });
+
+/* ======================================
+   note-profile 자동으로 불러오기
+====================================== */
+
+async function loadNoteProfile(){
+
+  const container = document.getElementById("note-profile");
+  if(!container) return;
+
+  try {
+
+    const file = window.location.pathname.split("/").pop();
+    const id = file.replace("exhibition-","").replace(".html","");
+
+    const res = await fetch(`txt/${id}.txt`);
+
+    if(!res.ok){
+      console.warn("txt not found");
+      return;
+    }
+
+    const text = await res.text();
+
+    container.innerHTML = `<pre>${text}</pre>`;
+
+  } catch(err){
+
+    console.warn("note load error", err);
+
+  }
+
+}
+
+loadNoteProfile();
