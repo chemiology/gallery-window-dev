@@ -1,5 +1,5 @@
 /* ======================================
-   Hall Loader – Stable Final Version
+   Hall Loader – Stable Clean Version
 ====================================== */
 
 function getExhibitionStatus(ex) {
@@ -16,6 +16,11 @@ function getExhibitionStatus(ex) {
   return "current";
 }
 
+
+/* ======================================
+   Load Hall
+====================================== */
+
 async function loadHall() {
 
   const params = new URLSearchParams(location.search);
@@ -23,261 +28,250 @@ async function loadHall() {
 
   try {
 
-    // gallery 데이터 로드
     const res = await fetch("/assets/config/gallery.json");
     const data = await res.json();
 
     const exhibitions =
       data.currentExhibitions || data.exhibitions || [];
 
-    // hall 번호에 해당하는 전시 찾기
-    const exhibition = exhibitions.find(ex => {
-      return ex.hall === hallId &&
-             getExhibitionStatus(ex) !== "past";
-    });
+    const exhibition = exhibitions.find(ex =>
+      ex.hall === hallId &&
+      getExhibitionStatus(ex) !== "past"
+    );
 
-/* ---------- Hall 타이틀 ---------- */
 
-const hallTitleElement = document.getElementById("hallTitle");
+    /* ---------- Hall Title ---------- */
 
-if (hallTitleElement) {
-  hallTitleElement.textContent =
-    exhibition?.hallTitle ||
-    `${hallId.replace("hall","")}관`;
-}
+    const hallTitle = document.getElementById("hallTitle");
 
-/* ---------- 전시 입구 또는 빈 Hall ---------- */
+    if (hallTitle) {
+      hallTitle.textContent =
+        exhibition?.hallTitle ||
+        `${hallId.replace("hall","")}관`;
+    }
 
-if (exhibition) {
 
-  loadHallEntry(exhibition.id, hallId);
-
-} else {
-
-  const entry = document.querySelector(".hall-entry");
-
-  if (entry) {
-    entry.innerHTML = `
-      <div class="hall-empty">
-        <p>이 전시장은 현재 준비 중입니다.</p>
-        <p style="opacity:.6;margin-top:8px;">
-          곧 새로운 전시가 시작됩니다.
-        </p>
-      </div>
-    `;
-  }
-
-  console.log("Empty hall:", hallId);
-}
-
-  /* ---------- 전시 입구 로드 ---------- */
-  if (exhibition) {
-    loadHallEntry(exhibition.id, hallId);
-  } else {
-    console.warn("No exhibition assigned to:", hallId);
-  }
-
-  } catch (err) {
-    console.error("Hall load failed:", err);
-  }
-}
-
-/* ======================================
-   Hall Entry Loader
-====================================== */
-
-async function loadHallEntry(exhibitionId, hallId) {
-
-  try {
-
-    const res = await fetch("/assets/config/gallery.json");
-    const data = await res.json();
-
-    const exhibition =
-      (data.exhibitions || data.currentExhibitions || [])
-        .find(ex => ex.id === exhibitionId);
+    /* ---------- Empty Hall ---------- */
 
     if (!exhibition) {
-      console.warn("Exhibition not found:", exhibitionId);
-      return;
-    }
-
-    /* 방명록 exhibition id 전달 */
-
-    const guestbookInput =
-    document.querySelector('input[name="exhibition_id"]');
-
-    if (guestbookInput) {
-      guestbookInput.value = exhibition.id;
-    }
-
-    const basePath =
-      `/assets/exhibitions/${exhibition.id}/`;
-
-
-    /* ---------- COMING 상태 ---------- */
-
-    if (getExhibitionStatus(exhibition) === "coming") {
 
       const entry = document.querySelector(".hall-entry");
 
       if (entry) {
         entry.innerHTML = `
           <div class="hall-empty">
-            <p>이 전시는 곧 시작됩니다.</p>
+            <p>이 전시장은 현재 준비 중입니다.</p>
             <p style="opacity:.6;margin-top:8px;">
-              조금만 기다려 주세요.
+              곧 새로운 전시가 시작됩니다.
             </p>
           </div>
         `;
       }
 
+      console.log("Empty hall:", hallId);
       return;
     }
 
+    loadHallEntry(exhibition, hallId);
 
-    /* ---------- 포스터 ---------- */
+  } catch (err) {
 
-    const poster = document.getElementById("hallPoster");
+    console.error("Hall load failed:", err);
 
-    if (poster) {
-      poster.src = basePath + "poster.jpg";
+  }
 
-      poster.onclick = () => {
+}
 
-        const target =
-          hallId.startsWith("hall5")
-          ? `/video.html?id=${exhibition.id}`
-          : `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
 
-        window.location.href = target;
+/* ======================================
+   Load Hall Entry
+====================================== */
 
-      };
+async function loadHallEntry(exhibition, hallId) {
+
+  const basePath =
+    `/assets/exhibitions/${exhibition.id}/`;
+
+
+  /* ---------- COMING 상태 ---------- */
+
+  if (getExhibitionStatus(exhibition) === "coming") {
+
+    const entry = document.querySelector(".hall-entry");
+
+    if (entry) {
+      entry.innerHTML = `
+        <div class="hall-empty">
+          <p>이 전시는 곧 시작됩니다.</p>
+          <p style="opacity:.6;margin-top:8px;">
+            조금만 기다려 주세요.
+          </p>
+        </div>
+      `;
     }
 
-    /* ---------- 작품보기 버튼 ---------- */
+    return;
+  }
 
-    const enterBtn = document.getElementById("enterExhibition");
 
-    if (enterBtn) {
+  /* ---------- 방명록 ID 전달 ---------- */
+
+  const guestbookInput =
+    document.querySelector('input[name="exhibition_id"]');
+
+  if (guestbookInput) {
+    guestbookInput.value = exhibition.id;
+  }
+
+
+  /* ---------- 포스터 ---------- */
+
+  const poster = document.getElementById("hallPoster");
+
+  if (poster) {
+
+    poster.src = basePath + "poster.jpg";
+
+    poster.onclick = () => {
 
       const target =
         hallId.startsWith("hall5")
-            ? `/video.html?id=${exhibition.id}`
-            : `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
+          ? `/video.html?id=${exhibition.id}`
+          : `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
+
+      window.location.href = target;
+
+    };
+
+  }
 
 
-      enterBtn.href = target;
+  /* ---------- 작품보기 버튼 ---------- */
 
-      enterBtn.onclick = (e) => {
-        e.preventDefault();
+  const enterBtn = document.getElementById("enterExhibition");
 
-      // ✅ Google Analytics — 전시장 입장 기록
+  if (enterBtn) {
+
+    const target =
+      hallId.startsWith("hall5")
+        ? `/video.html?id=${exhibition.id}`
+        : `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
+
+    enterBtn.href = target;
+
+    enterBtn.onclick = (e) => {
+
+      e.preventDefault();
+
       gtag('event', 'enter_exhibition', {
         exhibition_id: exhibition.id,
         hall: hallId
       });
 
-     document.body.classList.add("transitioning"); // ⭐ 추가
+      document.body.classList.add("transitioning");
 
-        const fade = document.getElementById("pageFade");
-        fade?.classList.add("active");
+      const fade = document.getElementById("pageFade");
+      fade?.classList.add("active");
 
-        setTimeout(() => {
-          window.location.href = target;
-        }, 280);
-      };
+      setTimeout(() => {
+        window.location.href = target;
+      }, 280);
+
+    };
+
+  }
+
+
+  /* ---------- 작가노트 ---------- */
+
+  try {
+
+    const note = await fetch(basePath + "note.txt");
+
+    const noteElement = document.getElementById("artistNote");
+
+    if (noteElement) {
+      noteElement.innerText = await note.text();
     }
 
+  } catch {
 
-    /* ---------- 작가노트 ---------- */
+    console.warn("Artist note missing");
 
-    try {
-      const note = await fetch(basePath + "note.txt");
-
-      document.getElementById("artistNote").innerText =
-        await note.text();
-
-    } catch {
-      console.warn("Artist note missing");
-    }
+  }
 
 
-/* ---------- 작가 프로필 ---------- */
+  /* ---------- 작가 프로필 ---------- */
 
-try {
+  try {
 
-  const profile = await fetch(basePath + "profile.txt");
-  const text = await profile.text();
+    const profile = await fetch(basePath + "profile.txt");
+    const text = await profile.text();
 
-  const lines = text.split("\n");
+    const lines = text.split("\n");
 
-  let html = "";
-  let inList = false;
+    let html = "";
+    let inList = false;
 
-  lines.forEach(line => {
+    lines.forEach(line => {
 
-    line = line.trim();
-    if(!line) return;
+      line = line.trim();
+      if(!line) return;
 
-    if(line.startsWith("[") && line.endsWith("]")){
+      if(line.startsWith("[") && line.endsWith("]")){
 
-      if(inList){
-        html += "</div>";
-        inList = false;
+        if(inList){
+          html += "</div>";
+          inList = false;
+        }
+
+        html += `<div class="profile-subtitle">${line}</div>`;
+        html += `<div class="exhibition-text info">`;
+        inList = true;
+
+      } else {
+
+        html += `<span>${line}</span>`;
+
       }
 
-      html += `<div class="profile-subtitle">${line}</div>`;
-      html += `<div class="exhibition-text info">`;
-      inList = true;
+    });
 
-    } else {
+    if(inList) html += "</div>";
 
-      html += `<span>${line}</span>`;
+    const profileElement = document.getElementById("artistProfile");
 
+    if (profileElement) {
+      profileElement.innerHTML = html;
     }
 
-  });
+  } catch {
 
-  if(inList) html += "</div>";
+    console.warn("Artist profile missing");
 
-  document.getElementById("artistProfile").innerHTML = html;
-
-} catch {
-
-  console.warn("Artist profile missing");
+  }
 
 }
 
+
 /* ======================================
-   Entrance Animation (single trigger)
+   Page Load Events
 ====================================== */
 
 window.addEventListener("load", () => {
+
+  loadHall();
+
   setTimeout(() => {
     document.querySelector(".hall-entry")
       ?.classList.add("show");
   }, 200);
-});
 
-
-/* ======================================
-   Start
-====================================== */
-
-loadHall();
-
-window.addEventListener("load", () => {
   document.body.classList.add("page-ready");
-});
 
-window.addEventListener("load", () => {
   const fade = document.getElementById("pageFade");
-  if (fade) {
-    fade.classList.remove("active");
-  }
-});
+  fade?.classList.remove("active");
 
-window.addEventListener("load", () => {
   document.body.classList.remove("transitioning");
+
 });
