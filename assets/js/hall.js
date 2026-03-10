@@ -203,23 +203,51 @@ async function loadHallEntry(exhibitionId, hallId) {
     }
 
 
-    /* ---------- 작가 프로필 ---------- */
+/* ---------- 작가 프로필 ---------- */
 
-    try {
-      const profile = await fetch(basePath + "profile.txt");
+try {
 
-      document.getElementById("artistProfile").innerHTML =
-        await profile.text();
+  const profile = await fetch(basePath + "profile.txt");
+  const text = await profile.text();
 
-    } catch {
-      console.warn("Artist profile missing");
+  const lines = text.split("\n");
+
+  let html = "";
+  let inList = false;
+
+  lines.forEach(line => {
+
+    line = line.trim();
+    if(!line) return;
+
+    if(line.startsWith("[") && line.endsWith("]")){
+
+      if(inList){
+        html += "</div>";
+        inList = false;
+      }
+
+      html += `<div class="profile-subtitle">${line}</div>`;
+      html += `<div class="exhibition-text info">`;
+      inList = true;
+
+    } else {
+
+      html += `<span>${line}</span>`;
+
     }
 
-  } catch (err) {
-    console.error("Hall entry load failed:", err);
-  }
-}
+  });
 
+  if(inList) html += "</div>";
+
+  document.getElementById("artistProfile").innerHTML = html;
+
+} catch {
+
+  console.warn("Artist profile missing");
+
+}
 
 /* ======================================
    Entrance Animation (single trigger)
@@ -253,4 +281,3 @@ window.addEventListener("load", () => {
 window.addEventListener("load", () => {
   document.body.classList.remove("transitioning");
 });
-
