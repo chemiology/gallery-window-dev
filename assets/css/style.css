@@ -81,7 +81,7 @@ img {
   font-size: 16px;            /* 작가노트보다 1단계 큼 */
   line-height: 1.7;
 
-  color: rgba(230, 231, 233, 0.78); /* 작가노트보다 살짝 어두움 */
+  color: rgba(230, 231, 233, 0.9); /* 작가노트보다 살짝 어두움 */
 
   text-align: left;   /* ⭐ 원래대로 복구 */
   max-width: none;      /* ⭐ 폭 제한 제거 */

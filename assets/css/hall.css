@@ -1,1 +1,98 @@
 /* hall page override */
+
+.btn-en{
+display:block;
+font-size:11px;
+opacity:0.7;
+margin-top:2px;
+letter-spacing:0.04em;
+}
+
+.hall-guide{
+font-size:13px;
+color:#bfc3c8;
+line-height:1.6;
+margin-bottom:24px;
+}
+
+.hall-guide span{
+display:block;
+font-size:12px;
+opacity:0.75;
+margin-top:2px;
+}
+
+.poster-wrap{
+position:relative;
+display:inline-block;
+}
+
+.poster-caption{
+position:absolute;
+inset:0;
+
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+
+background:rgba(0,0,0,0.45);
+
+color:#fff;
+font-size:18px;
+letter-spacing:0.08em;
+
+opacity:0;
+transition:opacity .35s ease;
+}
+
+.poster-caption span{
+font-size:12px;
+margin-top:6px;
+opacity:.8;
+}
+
+.poster-wrap:hover .poster-caption{
+opacity:1;
+}
+
+/* Poster light gloss effect */
+
+.poster-wrap{
+position:relative;
+overflow:hidden;
+}
+
+/* 빛 레이어 */
+
+.poster-wrap::after{
+
+content:"";
+
+position:absolute;
+top:-120%;
+left:-60%;
+
+width:60%;
+height:300%;
+
+background:linear-gradient(
+75deg,
+rgba(255,255,255,0) 0%,
+rgba(255,255,255,0.18) 50%,
+rgba(255,255,255,0) 100%
+);
+
+transform:rotate(25deg);
+transition:transform 0.9s ease;
+
+pointer-events:none;
+}
+
+/* hover 시 빛 이동 */
+
+.poster-wrap:hover::after{
+
+transform:translateX(260%) rotate(25deg);
+
+}
