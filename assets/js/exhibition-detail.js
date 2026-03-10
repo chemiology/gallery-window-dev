@@ -13,7 +13,10 @@ async function loadNoteProfile(){
     const file = window.location.pathname.split("/").pop();
 
     // exhibition-kks-20260215.html → kks-20260215
-    const id = file.replace("exhibition-","").replace(".html","");
+    const id = file
+      .replace("exhibition-","")
+      .replace(".html","")
+      .replace(/P$/,"");
 
     // txt 파일 경로
     const path = `/exhibitions/txt/${id}.txt`;
@@ -45,7 +48,7 @@ async function loadNoteProfile(){
           inList = false;
         }
 
-        const title = line.replace(/\[|\]/g,"");
+        const title = line;
 
         html += `<div class="gap-lg section-title">${title}</div>`;
 
