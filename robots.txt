@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gallerywindow.com/sitemap.xml
