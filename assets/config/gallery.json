@@ -8,7 +8,8 @@
   },
 
   "headlineNotice": {
-"text": "<p>해당 전시관의 포스터를 클릭하시면 전시장으로 입장할 수 있습니다. 전시장 입구에서 ‘작품보기’버튼을 클릭하시면 전시가 시작됩니다.</p><p>Click the poster of the exhibition hall to enter the gallery. At the entrance, click [작품보기->], or click the poster again to start the exhibition.</p>"
+"text": "<p>해당 전시관의 포스터를 클릭하시면 전시장으로 입장할 수 있습니다. 전시장 입구에서 ‘작품보기’버튼을 클릭하시면 전시가 시작됩니다.</p><p>Click a poster to enter the exhibition hall.
+Then press “View Exhibition” to start the show.</p>"
   },
 
   "currentExhibitions": [
