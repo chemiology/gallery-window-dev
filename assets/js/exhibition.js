@@ -514,19 +514,9 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
 
   const notice = document.getElementById("slideshow-notice");
-
   if (!notice) return;
 
-  /* 5초 후 숨김 */
-
-  setTimeout(() => {
-    notice.classList.add("hidden");
-  }, 5000);
-
-  /* 마우스 움직이면 다시 표시 */
-
-  document.addEventListener("mousemove", () => {
-
+  function showNotice() {
     notice.classList.remove("hidden");
 
     clearTimeout(notice.hideTimer);
@@ -534,8 +524,19 @@ document.addEventListener("DOMContentLoaded", () => {
     notice.hideTimer = setTimeout(() => {
       notice.classList.add("hidden");
     }, 3000);
+  }
 
-  });
+  /* 처음 5초 표시 */
+
+  setTimeout(() => {
+    notice.classList.add("hidden");
+  }, 5000);
+
+  /* 인터랙션 */
+
+  document.addEventListener("mousemove", showNotice);
+  document.addEventListener("click", showNotice);
+  document.addEventListener("touchstart", showNotice);
 
 });
 
