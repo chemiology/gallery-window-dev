@@ -10,8 +10,6 @@ let slideSeconds = 10;
 let autoMode = true;
 
 let audio = null;
-let preloadImg = new Image();
-
 
 function getDeviceType() {
   return window.matchMedia("(pointer: coarse)").matches
@@ -26,7 +24,12 @@ function getDeviceType() {
 
 const params = new URLSearchParams(window.location.search);
 
-const exhibitionId = params.get("id") || "avatar_ii";
+const exhibitionId = params.get("id");
+
+if (!exhibitionId) {
+  window.location.href = "/";
+}
+
 const hallId = params.get("hall") || "hall01";
 
 const input = document.querySelector('input[name="exhibition_id"]');
@@ -41,14 +44,6 @@ if (input) {
 
 document.addEventListener("DOMContentLoaded", () => {
   if (!exhibitionId) return;
-
-// hidden input에 자동 삽입
-if (exhibitionId) {
-  const input = document.querySelector('input[name="exhibition_id"]');
-  if (input) {
-    input.value = exhibitionId;
-  }
-}
 
   loadExhibition(exhibitionId);
   setupControls();
@@ -193,7 +188,7 @@ function showImage(index) {
   /* 작품 조회 기록 */
 
   gtag('event', 'view_artwork', {
-    exhibition_id: new URLSearchParams(location.search).get("id"),
+    exhibition_id: exhibitionId,
     artwork_index: currentIndex + 1,
     artwork_file: images[currentIndex],
     device_type: getDeviceType()
@@ -204,7 +199,7 @@ function showImage(index) {
   if (currentIndex === images.length - 1) {
 
     gtag('event', 'exhibition_completed', {
-      exhibition_id: new URLSearchParams(location.search).get("id"),
+      exhibition_id: exhibitionId,
       total_artworks: images.length,
       device_type: getDeviceType()
     });
@@ -453,24 +448,6 @@ function isExhibitionEnded(endDate) {
   return today > endDate;
 }
 
-function moveGuestbookToArchive(exhibitionId, endDate) {
-  if (!isExhibitionEnded(endDate)) return;
-
-  const activeKey = `guestbook_${exhibitionId}`;
-  const archiveKey = `archiveGuestbook_${exhibitionId}`;
-
-  const activeData = JSON.parse(localStorage.getItem(activeKey) || "[]");
-  const archiveData = JSON.parse(localStorage.getItem(archiveKey) || "[]");
-
-  if (activeData.length > 0) {
-    localStorage.setItem(
-      archiveKey,
-      JSON.stringify(activeData.concat(archiveData))
-    );
-    localStorage.removeItem(activeKey);
-  }
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   const guestbook = document.querySelector(".exhibition-guestbook");
   const input = document.getElementById("guestbook-input");
@@ -574,9 +551,18 @@ let touchEndX = 0;
 
 const viewer = document.querySelector(".viewer");
 
-viewer.addEventListener("touchstart", e => {
-  touchStartX = e.changedTouches[0].screenX;
-});
+if (viewer) {
+
+  viewer.addEventListener("touchstart", e => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+
+  viewer.addEventListener("touchend", e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  });
+
+}
 
 viewer.addEventListener("touchend", e => {
   touchEndX = e.changedTouches[0].screenX;
