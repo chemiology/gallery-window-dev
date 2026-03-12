@@ -121,21 +121,56 @@ async function loadExhibition(id) {
 }
 
 /* -----------------------------------------------------
+   Auto Slide Notice
+----------------------------------------------------- */
+
+
+window.addEventListener("load", () => {
+
+  const notice = document.getElementById("slideshow-notice");
+
+  if(!notice) return;
+
+  setTimeout(()=>{
+    notice.style.opacity = "0";
+  },5000);
+
+});
+
+
+/* -----------------------------------------------------
    Auto Slide
 ----------------------------------------------------- */
 
 function startAuto() {
+
   stopAuto();
   autoMode = true;
-  timer = setInterval(nextImage, slideSeconds * 1000);
+
+  /* 첫 슬라이드만 짧게 표시 */
+
+  timer = setTimeout(() => {
+
+    nextImage();
+
+    /* 이후 정상 슬라이드 */
+
+    timer = setInterval(nextImage, slideSeconds * 1000);
+
+  }, 6000);   // 첫 작품 6초
+
 }
 
 function stopAuto() {
+
   if (timer) {
+    clearTimeout(timer);
     clearInterval(timer);
     timer = null;
   }
+
   autoMode = false;
+
 }
 
 /* -----------------------------------------------------
