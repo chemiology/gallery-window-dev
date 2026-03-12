@@ -1610,28 +1610,6 @@ body.hall {
 
 }
 
-/* ======================================
-   Exhibition Image Protection
-====================================== */
-
-.viewer {
-  position: relative;
-}
-
-#exhibition-image {
-  user-select: none;
-  -webkit-user-drag: none;
-  -webkit-touch-callout: none;
-  pointer-events: auto;
-}
-
-.image-shield {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  background: transparent;
-}
-
 /* ===== Hall Guestbook ===== */
 
 .guestbook-section{

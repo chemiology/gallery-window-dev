@@ -548,7 +548,6 @@ body.exhibition-detail .exhibition-text span {
 }
 
 #slideshow-notice{
-
   position:fixed;
 
   top:80px;
@@ -572,6 +571,7 @@ body.exhibition-detail .exhibition-text span {
 
   opacity:1;
   transition:opacity .8s ease;
+  pointer-events:none;
 }
 
 /* ---------------------------------------
@@ -679,4 +679,28 @@ body.exhibition-detail .exhibition-text span {
 
   transition:width linear;
 
+}
+
+/* ======================================
+   Exhibition Image Protection
+====================================== */
+
+.viewer {
+  position: relative;
+}
+
+#exhibition-image {
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  pointer-events: auto;
+}
+
+.image-shield {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: transparent;
+
+  pointer-events: auto;
 }
