@@ -181,6 +181,7 @@ function showImage(index) {
 
   const img = document.getElementById("exhibition-image");
   const caption = document.getElementById("exhibition-caption");
+  const counter = document.getElementById("artwork-counter");
 
   if (!img || images.length === 0) return;
 
@@ -190,6 +191,7 @@ function showImage(index) {
   currentIndex = (index + images.length) % images.length;
 
   /* 작품 조회 기록 */
+
   gtag('event', 'view_artwork', {
     exhibition_id: new URLSearchParams(location.search).get("id"),
     artwork_index: currentIndex + 1,
@@ -197,7 +199,8 @@ function showImage(index) {
     device_type: getDeviceType()
   });
 
-  /* ⭐ 전시 완주 체크 */
+  /* 전시 완주 체크 */
+
   if (currentIndex === images.length - 1) {
 
     gtag('event', 'exhibition_completed', {
@@ -208,32 +211,86 @@ function showImage(index) {
 
   }
 
-  if (isLoopReset) {
-    document.querySelector(".viewer").classList.add("loop-dark");
-    setTimeout(() => {
-      document.querySelector(".viewer").classList.remove("loop-dark");
-    }, 900);
-  }
+  /* -------------------------------------------------
+     Fade-in transition
+  ------------------------------------------------- */
 
-  img.classList.remove("visible");
-  img.src = images[currentIndex];
+  img.classList.remove("loaded");
 
   img.onload = () => {
-    setTimeout(() => {
-      img.classList.add("visible");
-    }, 150);
+    img.classList.add("loaded");
   };
 
+  img.src = images[currentIndex];
+
   /* caption update */
-  if (caption) {
-    if (captions && captions[currentIndex]) {
-      caption.innerText = captions[currentIndex];
-    } else {
-      caption.innerText = "";
+
+if (caption) {
+
+  caption.classList.add("fade");
+
+  setTimeout(() => {
+
+    caption.innerText = captions[currentIndex] || "";
+
+    caption.classList.remove("fade");
+
+  }, 180);
+
+}
+
+  /* 작품 번호 표시 */
+
+  if (counter) {
+    counter.textContent =
+      (currentIndex + 1) + " / " + images.length;
+  }
+
+  /* 다음 작품 preload */
+
+  const nextIndex = (currentIndex + 1) % images.length;
+
+  const preload = new Image();
+  preload.src = images[nextIndex];
+
+  /* loop reset effect */
+
+  if (isLoopReset) {
+    const viewer = document.querySelector(".viewer");
+
+    if (viewer) {
+      viewer.classList.add("loop-dark");
+
+      setTimeout(() => {
+        viewer.classList.remove("loop-dark");
+      }, 900);
     }
   }
 
+  /* slide progress */
+
+  const progress = document.getElementById("slide-progress");
+
+  if(progress){
+
+    progress.style.transition = "none";
+    progress.style.width = "0%";
+
+    setTimeout(() => {
+
+      progress.style.transition =
+        "width " + slideSeconds + "s linear";
+
+      progress.style.width = "100%";
+
+    }, 50);
+
+  }
+
+
 }
+
+
 
 function preloadInitialImages() {
   for (let i = 1; i < Math.min(3, images.length); i++) {
@@ -448,6 +505,38 @@ document.addEventListener("DOMContentLoaded", () => {
   input.addEventListener("blur", () => {
     guestbook.classList.remove("active");
   });
+});
+
+/* -------------------------------------
+   Slideshow notice interaction
+------------------------------------- */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const notice = document.getElementById("slideshow-notice");
+
+  if (!notice) return;
+
+  /* 5초 후 숨김 */
+
+  setTimeout(() => {
+    notice.classList.add("hidden");
+  }, 5000);
+
+  /* 마우스 움직이면 다시 표시 */
+
+  document.addEventListener("mousemove", () => {
+
+    notice.classList.remove("hidden");
+
+    clearTimeout(notice.hideTimer);
+
+    notice.hideTimer = setTimeout(() => {
+      notice.classList.add("hidden");
+    }, 3000);
+
+  });
+
 });
 
 document.getElementById("backHome").href =
