@@ -516,21 +516,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const notice = document.getElementById("slideshow-notice");
   if (!notice) return;
 
-  function showNotice() {
-    notice.classList.remove("hidden");
+  let hideTimer;
 
-    clearTimeout(notice.hideTimer);
+  function showNotice(){
 
-    notice.hideTimer = setTimeout(() => {
-      notice.classList.add("hidden");
-    }, 3000);
+    notice.style.opacity = "1";
+
+    clearTimeout(hideTimer);
+
+    hideTimer = setTimeout(()=>{
+      notice.style.opacity = "0";
+    },3000);
+
   }
 
   /* 처음 5초 표시 */
 
-  setTimeout(() => {
-    notice.classList.add("hidden");
-  }, 5000);
+  hideTimer = setTimeout(()=>{
+    notice.style.opacity = "0";
+  },5000);
 
   /* 인터랙션 */
 
@@ -539,6 +543,10 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("touchstart", showNotice);
 
 });
+
+
+
+
 
 document.getElementById("backHome").href =
   `hall.html?hall=${hallId}`;
