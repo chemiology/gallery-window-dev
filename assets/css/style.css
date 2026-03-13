@@ -222,15 +222,6 @@ letter-spacing: 0.04em;
   }
 }
 
-/* ==============================
-   Archive
-============================== */
-
-body.archive {
-  background: #0f1114;
-  color: #d4d6da;
-}
-
 /* =========================
    Main Page Footer
    ========================= */
@@ -343,27 +334,6 @@ body.exhibition-detail {
 }
 
 /* (여기에는 정말 필요한 것만, 대부분은 exhibition-detail.css로) */
-
-/* Archive (예정/지난 전시) 포스터 정렬 보정 */
-
-/* =========================
-   Poster Image (FINAL)
-========================= */
-
-.poster-item img{
-  width:100%;
-  height:auto;
-  display:block;
-  border-radius:6px;
-  transition:transform .25s ease;
-}
-
-.poster-item figcaption {
-  margin-top: 8px;
-  text-align: center;
-  font-size: 13px;
-  color: #555;
-}
 
 /* =========================
    Detail Page Image & Footer Fix (SAFE OVERRIDE)
@@ -1075,6 +1045,15 @@ body.home .exhibition img:hover {
   transform: translateY(0);
 }
 
+/* ==============================
+   Archive
+============================== */
+
+body.archive {
+  background: #0f1114;
+  color: #d4d6da;
+}
+
 /* ===== Archive page readability fix ===== */
 
 .archive-page {
@@ -1086,111 +1065,20 @@ body.home .exhibition img:hover {
   text-align: center;
 }
 
-.archive-nav a {
-  color: #ffffff;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255,255,255,0.4);
+.archive-nav{
+  margin-top:60px;
+  text-align:center;
 }
 
-.archive-nav a:hover {
-  color: #fff;
-  border-color: #fff;
+.archive-nav a{
+  color:#333;
+  text-decoration:none;
+  border-bottom:1px solid rgba(0,0,0,0.3);
 }
 
-/* ===============================
-   Archive layout (final)
-================================ */
-
-/* 포스터 영역 */
-.poster-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 48px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.poster-item img:hover {
-  transform: scale(1.01);
-}
-
-/* 하단 버튼 */
-.archive-nav a {
-  color: #dcdcdc;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255,255,255,0.4);
-}
-
-.archive-nav a:hover {
-  color: #ffffff;
-}
-
-/* ===============================
-   Archive text visibility fix
-================================ */
-
-/* 하단 네비게이션 */
-.archive-nav a {
-  color: #333;
-  border-bottom: 1px solid rgba(0,0,0,0.3);
-}
-
-.archive-nav a:hover {
-  color: #000;
-  border-color: #000;
-}
-
-/* ===============================
-   Gallery interaction tone
-================================ */
-
-a, button, .hall-poster, .poster-item img {
-  transition: all 0.35s ease;
-}
-
-a:hover,
-button:hover,
-.poster-item img:hover,
-.hall-poster:hover {
-  opacity: 0.82;
-  transform: translateY(-2px);
-}
-
-/* ===============================
-   Gallery entrance atmosphere
-================================ */
-
-/* 전시장 연출 전용 */
-body.hall,
-body.exhibition {
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
-body.page-ready {
-  opacity: 1;
-}
-
-.main-links {
-  margin: 90px auto 48px;   /* ⭐ 포스터와의 거리 설정 */
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-}
-
-/* ===== Emergency layout restore ===== */
-
-main {
-  opacity: 1 !important;
-  visibility: visible !important;
-  display: block !important;
-/*  min-height: auto;   */
-}
-
-/* ===== Safety guard : fade overlay fail-safe ===== */
-body:not(.transitioning) .page-fade {
-  opacity: 0 !important;
-  pointer-events: none !important;
+.archive-nav a:hover{
+  color:#000;
+  border-color:#000;
 }
 
 /* ======================================
@@ -1270,6 +1158,175 @@ body.archive-detail-page {
   height: auto;
 }
 
+/* Archive (예정/지난 전시) 포스터 정렬 보정 */
+
+/* =========================
+   Poster Image (FINAL)
+========================= */
+
+.poster-item {
+  text-align: center;
+}
+
+.poster-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  transition: transform 0.25s ease;
+}
+
+.poster-item figcaption {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 13px;
+  letter-spacing:0.02em;
+  color: #555;
+}
+
+/* ===============================
+   Archive layout (final)
+================================ */
+
+/* 포스터 영역 */
+.poster-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 40px;
+  max-width: 1400px;
+  margin: 60px auto;
+  padding: 0 40px;
+}
+
+.poster-item img:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+
+/* 반응형 (자동 열 변경) */
+@media (max-width: 1100px) {
+  .poster-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .poster-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+  /* -----------------
+     ARCHIVE / POSTER GRID
+     (모바일 2열)
+  ----------------- */
+@media (max-width:768px){
+
+  .archive-page .poster-grid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0,1fr));
+    gap:14px;
+
+    width:100%;
+    max-width:100%;
+    padding:0 12px;
+    box-sizing:border-box;
+  }
+
+  .archive-page .poster-item{
+    min-width:0;   /* ⭐ 핵심 — overflow 차단 */
+  }
+
+  .archive-page .poster-item img{
+    width:100%;
+    height:auto;
+  }
+
+}
+
+
+
+/* 하단 버튼 */
+.archive-nav a {
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+}
+
+.archive-nav a:hover {
+  color: #ffffff;
+}
+
+/* ===============================
+   Archive text visibility fix
+================================ */
+
+/* 하단 네비게이션 */
+.archive-nav a {
+  color: #333;
+  border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+
+.archive-nav a:hover {
+  color: #000;
+  border-color: #000;
+}
+
+.exhibition-navigation{
+  display:none;
+}
+
+/* ===============================
+   Gallery interaction tone
+================================ */
+
+a, button, .hall-poster, .poster-item img {
+  transition: all 0.35s ease;
+}
+
+a:hover,
+button:hover,
+.hall-poster:hover {
+  opacity: 0.82;
+  transform: translateY(-2px);
+}
+
+/* ===============================
+   Gallery entrance atmosphere
+================================ */
+
+/* 전시장 연출 전용 */
+body.hall,
+body.exhibition {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+body.page-ready {
+  opacity: 1;
+}
+
+.main-links {
+  margin: 90px auto 48px;   /* ⭐ 포스터와의 거리 설정 */
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+/* ===== Emergency layout restore ===== */
+
+main {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+/*  min-height: auto;   */
+}
+
+/* ===== Safety guard : fade overlay fail-safe ===== */
+body:not(.transitioning) .page-fade {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
 
 /* ===============================
    Gallery artwork depth
@@ -1391,33 +1448,7 @@ body.hall {
     margin:0 auto;
   }
 
-  /* -----------------
-     ARCHIVE / POSTER GRID
-     (모바일 2열)
-  ----------------- */
-@media (max-width:768px){
 
-  .archive-page .poster-grid{
-    display:grid;
-    grid-template-columns:repeat(2, minmax(0,1fr));
-    gap:14px;
-
-    width:100%;
-    max-width:100%;
-    padding:0 12px;
-    box-sizing:border-box;
-  }
-
-  .archive-page .poster-item{
-    min-width:0;   /* ⭐ 핵심 — overflow 차단 */
-  }
-
-  .archive-page .poster-item img{
-    width:100%;
-    height:auto;
-  }
-
-}
 
   /* -----------------
      HALL LAYOUT
