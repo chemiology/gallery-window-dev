@@ -1147,9 +1147,10 @@ body.archive {
 }
 
 .archive-nav a{
-  color:#333;
+  color:#222;
   text-decoration:none;
-  border-bottom:1px solid rgba(0,0,0,0.3);
+
+  border-bottom:1px solid rgba(0,0,0,0.4);
 }
 
 .archive-nav a:hover{
@@ -1289,8 +1290,9 @@ body.archive-detail-page {
 body.upcoming-page .poster-grid{
 
   grid-template-columns: repeat(3, 1fr);
-  max-width:900px;
-  margin:0 auto;
+  max-width: 1100px;   /* 기존보다 약간 넓게 */
+  margin: 30px auto;   /* 위 간격 줄임 */
+
 
 }
 
@@ -1299,6 +1301,7 @@ body.upcoming-page .poster-grid{
 body.past-page .poster-grid{
 
   grid-template-columns: repeat(5, 1fr);
+  margin: 20px auto;  /* 간격 크게 감소 */
 
 }
 
@@ -1306,6 +1309,8 @@ body.past-page .poster-grid{
 
   font-size:22px;
   font-weight:500;
+
+  color: #222;      /* 진하게 */
 
   margin:80px auto 30px;
 
