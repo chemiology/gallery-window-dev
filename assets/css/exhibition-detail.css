@@ -222,12 +222,13 @@ body.exhibition-detail .exhibition-guestbook form {
   height:auto;
 }
 
-.exhibition-poster,
-.exhibition-support-image{
+/* 보조 이미지 프레임 */
+body.exhibition-detail .exhibition-support-image{
+  max-width:66%;
   margin:28px auto;
-  text-align:center;
 }
 
+/* 이미지 공통 */
 .exhibition-poster img,
 .exhibition-support-image img{
   max-width:100%;
