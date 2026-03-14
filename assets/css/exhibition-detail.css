@@ -1,196 +1,131 @@
 /* =========================================
    Exhibition Detail Page Only
-   상세페이지 전용 CSS
-   ========================================= */
+========================================= */
 
-/* 1. 상세페이지 스크롤 복구 */
+/* ---------- Base ---------- */
+
 body.exhibition-detail {
-  overflow-y: auto;
-  overflow-x: hidden;
+  background:#eef4f8;
+  color:#222;
+
+  overflow-y:auto;
+  overflow-x:hidden;
 }
 
-/* 2. 상세페이지 포스터 이미지 안정화
-   viewer 이미지 규칙 완전 차단 */
-body.exhibition-detail figure.exhibition-poster img {
-  max-width: 100%;
-  height: auto;
-  width: auto;
-  display: block;
-  object-fit: contain;
+/* 상세페이지 전체 레이아웃 */
+
+body.exhibition-detail .exhibition-content{
+  max-width:810px;
+  margin:0 auto;
+  padding:0 16px;
 }
 
-/* 3. 상세페이지 텍스트 기본 간격 정리 */
-body.exhibition-detail .exhibition-text p {
-  margin: 0;
-  line-height: 1.4;
+/* ---------- Poster ---------- */
+
+body.exhibition-detail .exhibition-poster{
+  max-width:66%;
+  margin:0 auto 36px;
+  text-align:center;
 }
 
-/* 범용 간격 유틸 – 상세페이지 전용 */
-/* 상세페이지 간격 유틸 클래스 */
-body.exhibition-detail .gap-sm { margin-top: 12px; }
-body.exhibition-detail .gap-md { margin-top: 20px; }
-body.exhibition-detail .gap-lg { margin-top: 28px; }
-
-/* 상세페이지 텍스트 기본 크기 조정 */
-body.exhibition-detail .exhibition-text {
-  font-size: 14.5px;     /* 과하면 14px, 여유 있으면 15px */
-  line-height: 1.7;
+body.exhibition-detail .exhibition-poster img{
+  max-width:100%;
+  height:auto;
+  display:block;
+  margin:0 auto;
+  object-fit:contain;
 }
 
-body.exhibition-detail .exhibition-text {
-  color: #333;
+/* ---------- Support Image ---------- */
+
+body.exhibition-detail .exhibition-support-image{
+  max-width:56%;
+  margin:28px auto;
 }
 
-/* 4. 촘촘한 정보형 텍스트 (span 사용 시) */
-body.exhibition-detail .exhibition-text span {
-  display: block;
-  line-height: 1.25;
-  margin-bottom: 1px;
+.exhibition-support-image img{
+  max-width:100%;
+  height:auto;
+  display:block;
+  margin:auto;
 }
 
-body.exhibition-detail .exhibition-text span {
-  font-size: 13px;
-  line-height: 1.35;
+/* ---------- Text ---------- */
+
+body.exhibition-detail .exhibition-text{
+  max-width:820px;
+  margin:0 auto;
+
+  font-size:14.5px;
+  line-height:1.7;
+
+  word-break:keep-all;
 }
 
-/* 5. 제목/섹션 구분용 문단은 약간 여백 */
-body.exhibition-detail .exhibition-text p + p {
-  margin-top: 6px;
+/* 기본 문단 */
+
+body.exhibition-detail .exhibition-text p{
+  margin:0;
 }
 
-/* 이미지 아래 간격 */
-body.exhibition-detail .exhibition-poster {
-  margin-bottom: 40px;   /* 이미지와 텍스트 사이 */
+/* 문단 간 간격 */
+
+body.exhibition-detail .exhibition-text p + p{
+  margin-top:6px;
 }
 
-/* 6. 모바일 대응 */
-@media (max-width: 768px) {
+/* 정보형 텍스트 */
 
-  body.exhibition-detail figure.exhibition-poster img {
-    max-width: 100%;
-  }
-
-  body.exhibition-detail .exhibition-text span {
-    line-height: 1.3;
-  }
+body.exhibition-detail .exhibition-text span{
+  display:block;
+  font-size:13px;
+  line-height:1.35;
+  margin-bottom:1px;
 }
 
-/* =========================================
-   상세페이지 전체 레이아웃 프레임
-   ========================================= */
+/* ---------- Gap Utilities ---------- */
 
-body.exhibition-detail .exhibition-content {
-  max-width: 810px;      /* 전시 상세 기준 폭 */
-  margin: 0 auto;         /* 화면 가운데 정렬 */
-  padding: 0 16px;   /* ⭐ 28 → 16 */
+.gap-sm{ margin-top:12px; }
+.gap-md{ margin-top:20px; }
+.gap-lg{ margin-top:28px; }
+
+/* ---------- Guestbook ---------- */
+
+body.exhibition-detail .exhibition-guestbook{
+  max-width:810px;
+  margin:80px auto 0;
+  padding:0 28px;
+  clear:both;
 }
 
-/* 포스터 프레임을 2/3로 축소 */
-body.exhibition-detail .exhibition-poster {
-  max-width: 66%;
-  margin: 0 auto 36px;   /* 가운데 정렬 + 텍스트와 간격 */
+body.exhibition-detail .exhibition-guestbook form{
+  display:flex;
+  gap:12px;
 }
 
-body.exhibition-detail .exhibition-poster {
-  text-align: center;
+/* ---------- Back Link ---------- */
+
+body.exhibition-detail .back-to-list{
+  margin-top:64px;
+  padding-top:24px;
+
+  border-top:1px solid rgba(0,0,0,0.08);
+
+  text-align:center;
 }
 
-/* 포스터 이미지 크기 축소 */
-body.exhibition-detail .exhibition-poster img {
-  max-width: 100%;        
-  height: auto;
-  display: block;
-  margin: 0 auto;        /* 가운데 유지 */
+body.exhibition-detail .back-to-list a{
+  font-size:13px;
+  color:#444;
+  text-decoration:none;
+  letter-spacing:0.02em;
 }
 
-/* 상세페이지 전용 배경과 기본 텍스트 색 */
-body.exhibition-detail {
-  background: #eef4f8;   /* 고급스러운 연한 하늘색 */
-  color: #222;           /* 진한 회색 (완전 검정보다 부드러움) */
+body.exhibition-detail .back-to-list a:hover{
+  text-decoration:underline;
 }
 
-/* 범용 간격 유틸 */
-.gap-sm { margin-top: 12px; }
-.gap-md { margin-top: 20px; }
-.gap-lg { margin-top: 28px; }
-
-/* 상세페이지 하단 – 목록으로 돌아가기 */
-body.exhibition-detail .back-to-list {
-  margin-top: 64px;      /* 텍스트와 충분한 간격 */
-  padding-top: 24px;
-  border-top: 1px solid rgba(0,0,0,0.08); /* 은은한 구분선 */
-  text-align: center;
-}
-
-body.exhibition-detail .back-to-list a {
-  font-size: 13px;
-  color: #444;
-  text-decoration: none;
-  letter-spacing: 0.02em;
-}
-
-body.exhibition-detail .back-to-list a:hover {
-  text-decoration: underline;
-}
-
-body.exhibition-detail .exhibition-guestbook {
-  max-width: 810px;
-  margin: 80px auto 0;
-  padding: 0 28px;
-  clear: both;
-}
-
-body.exhibition-detail .exhibition-guestbook form {
-  display: flex;
-  gap: 12px;
-}
-
-/* 작가 프로필 안정화 */
-
-.exhibition-text {
-  max-width: 820px;
-  margin: 0 auto;
-  word-break: keep-all;
-  word-break: normal;     /* ⭐ 강제 줄깨짐 제거 */
-}
-
-.exhibition-text p {
-  word-break: keep-all;
-}
-
-/* ===============================
-   Mobile detail optimisation
-================================ */
-@media (max-width: 768px) {
-
-  body.exhibition-detail .exhibition-content {
-    padding: 0 14px;
-  }
-
-  .exhibition-text {
-    font-size: 14px;     /* ⭐ 핵심 */
-    line-height: 1.65;
-  }
-
-  body.exhibition-detail .exhibition-poster {
-    max-width: 82%;      /* 모바일 포스터 균형 */
-  }
-
-}
-
-/* ===============================
-   Remove profile white boxes
-================================ */
-
-.exhibition-text *,
-.exhibition-text p,
-.exhibition-text div,
-.exhibition-text section,
-.exhibition-text pre {
-  background: transparent !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
-}
+/* ---------- Profile Text ---------- */
 
 #note-profile{
   text-align:left;
@@ -214,25 +149,37 @@ body.exhibition-detail .exhibition-guestbook form {
   margin-bottom:4px;
 }
 
-/* ===============================
-   전시상세 페이지 포스터 보조이미지 처리
-================================ */
-.exhibition-support-image img{
-  max-width:100%;
-  height:auto;
+/* ---------- Remove unwanted boxes ---------- */
+
+.exhibition-text *,
+.exhibition-text p,
+.exhibition-text div,
+.exhibition-text section,
+.exhibition-text pre{
+  background:transparent !important;
+  box-shadow:none !important;
+  border-radius:0 !important;
 }
 
-/* 보조 이미지 프레임 */
-body.exhibition-detail .exhibition-support-image{
-  max-width:66%;
-  margin:28px auto;
-}
+/* ---------- Mobile ---------- */
 
-/* 이미지 공통 */
-.exhibition-poster img,
-.exhibition-support-image img{
-  max-width:100%;
-  height:auto;
-  display:block;
-  margin:auto;
+@media (max-width:768px){
+
+  body.exhibition-detail .exhibition-content{
+    padding:0 14px;
+  }
+
+  .exhibition-text{
+    font-size:14px;
+    line-height:1.65;
+  }
+
+  body.exhibition-detail .exhibition-poster{
+    max-width:82%;
+  }
+
+  body.exhibition-detail .exhibition-support-image{
+    max-width:74%;
+  }
+
 }
