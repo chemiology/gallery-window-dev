@@ -376,5 +376,20 @@ body.home .exhibition img{
 }
 
 
+@media (max-width:768px){
+
+  .exhibition img{
+    width:100%;
+    height:auto;
+    max-height:none;
+  }
+
+  .exhibition{
+    max-width:160px;
+    margin:0 auto;
+  }
+
+}
+
 
 
