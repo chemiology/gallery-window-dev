@@ -296,3 +296,24 @@ body.past-page .poster-grid{
   }
 
 }
+
+@media (max-width:768px){
+
+  body.upcoming-page .poster-grid,
+  body.past-page .poster-grid{
+
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+
+    width:100%;
+    max-width:360px;
+    margin:40px auto;
+  }
+
+  .poster-item img{
+    width:100%;
+    height:auto;
+  }
+
+}
