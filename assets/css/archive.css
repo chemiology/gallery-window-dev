@@ -234,20 +234,6 @@ body.past-page .poster-grid{
   }
 }
 
-@media (max-width:768px){
-
-  .exhibitions{
-    grid-template-columns: 1fr !important;
-    justify-items: center;
-  }
-
-  .exhibition{
-    max-width:320px;
-    width:100%;
-  }
-
-}
-
 /* =========================
    MOBILE ARCHIVE FIX
 ========================= */
@@ -255,15 +241,30 @@ body.past-page .poster-grid{
 @media (max-width:768px){
 
   .poster-grid{
+    display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:24px;
+    gap:20px;
+
+    width:100%;
+    max-width:100%;
     padding:0 16px;
+    box-sizing:border-box;
+  }
+
+  .poster-item{
+    width:100%;
+  }
+
+  .poster-item img{
+    width:100%;
+    height:auto;
   }
 
   .poster-item figcaption{
     font-size:13px;
     line-height:1.4;
     word-break:keep-all;
+    text-align:center;
   }
 
 }
