@@ -152,3 +152,36 @@ body.past-page .poster-grid{
   text-align:center;
 
 }
+
+.poster-item figcaption{
+
+  word-break:keep-all;
+  overflow-wrap:break-word;
+
+  text-align:center;
+  line-height:1.45;
+
+}
+
+.poster-item{
+  min-width:0;
+}
+
+.poster-item{
+  min-width:0;
+}
+
+.poster-item img{
+  width:100%;
+  height:auto;
+}
+
+.poster-item figcaption{
+
+  word-break:keep-all;
+  overflow-wrap:break-word;
+
+  text-align:center;
+  line-height:1.45;
+
+}

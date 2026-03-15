@@ -1590,3 +1590,25 @@ body.hall {
   }
 
 }
+
+@media (max-width:768px){
+
+  .exhibitions{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:40px;
+    padding:0 16px;
+  }
+
+  .exhibition{
+    width:100%;
+    max-width:320px;
+    margin:0 auto;
+  }
+
+  .exhibition img{
+    width:100%;
+    height:auto;
+  }
+
+}
