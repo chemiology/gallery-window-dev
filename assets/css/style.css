@@ -1637,3 +1637,50 @@ html, body {
   }
 
 }
+
+/* ===== MOBILE STABILITY PATCH ===== */
+@media (max-width:768px){
+
+  html, body{
+    overflow-x:hidden;
+  }
+
+  main{
+    width:100%;
+    max-width:100%;
+    padding:0 16px;
+    box-sizing:border-box;
+  }
+
+  .site-header{
+    padding:24px 16px 12px;
+  }
+
+  .exhibitions{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+    width:100%;
+    max-width:100%;
+    padding:0 16px;
+    box-sizing:border-box;
+  }
+
+  .exhibition{
+    width:100%;
+    max-width:160px;
+    margin:0 auto;
+  }
+
+  .exhibition-body{
+    display:block;
+  }
+
+  .exhibition img{
+    width:100%;
+    height:auto;
+    max-height:none;
+    object-fit:contain;
+  }
+
+}
