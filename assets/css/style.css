@@ -180,7 +180,15 @@ opacity: 0.8;
 letter-spacing: 0.04em;
 }
 
+/* ---------- Responsive ---------- */
 
+@media (max-width: 900px) {
+  .bottom-area {
+    grid-template-columns: 1fr;
+    gap: 80px;
+    padding: 0 32px;
+  }
+}
 
 /* =====================================================
    Responsive
@@ -443,6 +451,43 @@ body.home .guestbook li {
 }
 
 /* =========================
+   Hall (Exhibition Wall)
+========================= */
+
+.hall-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 0 20px;   /* 좌우 안전 여백 */
+  background: #111;
+  position: relative;
+  z-index: 2;
+}
+
+.hall-card {
+  text-align: center;
+  transition: transform 0.4s ease;
+  overflow: hidden;  /* 이미지 넘침 방지 */
+}
+
+.hall-card img {
+  height: 70vh;
+  max-height: 720px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.hall-card:hover {
+  transform: translateY(-8px);
+}
+
+/* =========================
    Global Exhibition Space
 ========================= */
 .site-background {
@@ -465,10 +510,66 @@ body.home .guestbook li {
   background-repeat: no-repeat;
 }
 
+.site-background.hall {
+  background-image: url("../images/bg_hall.jpg");
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+
 body {
   background: transparent;
 }
 
+main,
+.hall-grid,
+.container,
+.wrapper {
+  background: transparent !important;
+}
+
+/* Hall poster override */
+
+.hall-card img {
+  max-width: none !important;
+  width: auto !important;
+  height: 70vh !important;
+  max-height: 720px;
+display: block;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+/* ===== Page transition (gallery entrance) ===== */
+
+.page-fade {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+  z-index: 9999;
+}
+
+.page-fade.active {
+  opacity: 1;
+}
+
+/* ===== Hall poster reveal ===== */
+
+.hall-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.hall-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* ===== Poster overlay caption ===== */
 
@@ -507,6 +608,63 @@ body {
   width: auto;
   margin: 0 auto;
   display: block;
+}
+
+/* =========================
+   Hall Entry Layout
+========================= */
+
+.hall-poster {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+  position: relative;
+  z-index: 5;
+}
+
+.hall-poster:hover {
+  transform: scale(1.025);
+  filter: contrast(1.1) brightness(1.04);
+}
+
+.artist-profile {
+  color: #ddd;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.artist-note-area {
+  flex: 1;
+  max-width: 620px;
+}
+
+/* ===== Hall entry reveal ===== */
+
+.hall-entry {
+  display: grid;
+  grid-template-columns: 520px 560px;
+  gap: 60px;
+  align-items: start;
+  max-width: 1200px;
+  margin: 100px auto;
+  padding: 0 40px;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 1.2s ease,
+    transform 1.2s ease;
+}
+
+
+.hall-entry.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ===== Enter exhibition button ===== */
@@ -584,6 +742,73 @@ body.home .exhibition img {
   max-height: 720px;
 }
 
+.hall-left img {
+  width: 100%;
+  height: auto;
+}
+
+.hall-entry.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#hallPoster {
+  width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+}
+
+
+.hall-left {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  flex-shrink: 0;
+  text-align: center;
+  filter: drop-shadow(0 30px 40px rgba(0,0,0,0.35));
+}
+
+.hall-left img {
+  width: 100%;
+  height: auto;
+}
+
+.artist-profile {
+  margin-top: 40px;
+  font-size: 14px;
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+.site-background.hall::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(
+    circle at center,
+    rgba(0,0,0,0.2),
+    rgba(0,0,0,0.75)
+  );
+}
+
+#hallPoster {
+  cursor: pointer;
+  transition: transform .35s ease;
+}
+
+#hallPoster:hover {
+  transform: scale(1.02);
+}
+
+.site-background {
+  z-index: -1;
+}
+
+#hallPoster {
+  pointer-events: auto;
+}
+
 /* 대표화면 포스터 인터랙션 */
 
 body.home .exhibition img {
@@ -592,6 +817,51 @@ body.home .exhibition img {
 
 body.home .exhibition img:hover {
   transform: scale(1.03);
+}
+
+.hall-entry .artist-note {
+  font-size: 0.9rem;     /* ⭐ 2단계 축소 느낌 */
+  line-height: 1.8;
+  margin-top: 0;
+}
+
+/*
+.hall-entry {
+  align-items: start;   /* center → start */
+}
+*/
+
+/* ===== Hall background slow zoom ===== */
+
+.site-background.hall {
+  animation: hallZoom 18s ease-out forwards;
+}
+
+@keyframes hallZoom {
+  from {
+    transform: scale(1.04);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.site-background.hall {
+  will-change: transform;
+}
+
+/* ===== Hall artist note reading focus ===== */
+
+.hall-entry .artist-note p {
+  opacity: 0.72;
+  transition: opacity .6s ease;
+}
+
+/* 첫 문단 강조 */
+.hall-entry .artist-note p:first-of-type {
+  opacity: 1;
+  font-size: 1.05em;
+  letter-spacing: 0.01em;
 }
 
 .entry-buttons {
@@ -612,6 +882,39 @@ body.home .exhibition img:hover {
   border: 1px solid rgba(255,255,255,0.6);
   background: rgba(0,0,0,0.35);
   backdrop-filter: blur(6px);
+}
+
+/* ===== Poster light gloss effect ===== */
+
+#hallPoster {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 빛 레이어 */
+#hallPoster::after {
+  content: "";
+  position: absolute;
+  top: -120%;
+  left: -60%;
+  width: 60%;
+  height: 300%;
+
+  background: linear-gradient(
+    75deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.18) 50%,
+    rgba(255,255,255,0) 100%
+  );
+
+  transform: rotate(25deg);
+  transition: transform 0.9s ease;
+  pointer-events: none;
+}
+
+/* hover 시 빛 이동 */
+#hallPoster:hover::after {
+  transform: translateX(260%) rotate(25deg);
 }
 
 body.home .exhibition img {
@@ -639,13 +942,82 @@ body.home .exhibition img:hover {
   opacity: 1;
 }
 
+/* ===== Hall entrance interaction ===== */
+
+/* 포스터 기본 */
+#hallPoster {
+  cursor: pointer;
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+/* 포스터 hover */
+#hallPoster:hover {
+  transform: scale(1.015);
+  filter: brightness(1.08);
+}
+
+/* 작품보기 버튼 기본 */
+.enter-exhibition {
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* ⭐ 포스터 hover 시 버튼도 반응 */
+#hallPoster:hover ~ .artist-note-area .enter-exhibition,
+#hallPoster:hover + .artist-profile + .artist-note-area .enter-exhibition {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.9);
+}
+
+.hall-content {
+    display: flex;
+    gap: 60px;
+}
+
+.hall-left-note {
+    width: 420px;
+}
+
+.hall-right-list {
+    flex: 1;
+}
+
 #exhibitionList {
     max-width: 1400px;
     margin: 40px auto 80px auto;
 }
 
+.hall-left {
+  transform: translateY(-20px);
+}
+
+.hall-poster {
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.45),
+    0 6px 12px rgba(0,0,0,0.35);
+  filter: contrast(1.06) brightness(1.02);
+}
+
+.artist-note-area {
+  padding-top: 18px;
+}
+
+.hall-entry.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .section-title + .exhibition-text {
   margin-bottom: 24px;
+}
+
+@media (max-width: 900px) {
+  .hall-entry {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
 }
 
 .profile-subtitle {
@@ -657,6 +1029,50 @@ body.home .exhibition img:hover {
 
 .profile-subtitle {
   margin-top: 36px;
+}
+
+/* Hall cinematic entrance */
+.hall-entry {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 1.6s ease,
+    transform 1.6s ease;
+}
+
+.hall-entry.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===============================
+   Gallery interaction tone
+================================ */
+
+a, button, .hall-poster, .poster-item img {
+  transition: all 0.35s ease;
+}
+
+a:hover,
+button:hover,
+.hall-poster:hover {
+  opacity: 0.82;
+  transform: translateY(-2px);
+}
+
+/* ===============================
+   Gallery entrance atmosphere
+================================ */
+
+/* 전시장 연출 전용 */
+body.hall,
+body.exhibition {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+body.page-ready {
+  opacity: 1;
 }
 
 .main-links {
@@ -681,6 +1097,30 @@ body:not(.transitioning) .page-fade {
   pointer-events: none !important;
 }
 
+/* ===============================
+   Gallery artwork depth
+   (작품만 입체감 유지)
+================================ */
+
+.exhibition img,
+.hall-poster,
+.exhibition-poster img {
+  box-shadow:
+    0 12px 28px rgba(0,0,0,0.18),
+    0 2px 6px rgba(0,0,0,0.12);
+
+  transition: transform 0.35s ease,
+              box-shadow 0.35s ease;
+}
+
+.exhibition img:hover,
+.hall-poster:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 22px 48px rgba(0,0,0,0.28),
+    0 6px 14px rgba(0,0,0,0.18);
+}
+
 /* ==============================
    Archive
 ============================== */
@@ -690,6 +1130,107 @@ body.archive {
   color: #d4d6da;
 }
 
+/* ===== Archive page readability fix ===== */
+
+.archive-page {
+  color: #e6e6e6;
+}
+
+.archive-title {
+  color: #ffffff;
+  text-align: center;
+}
+
+.archive-nav{
+  margin-top:20px;
+  margin-bottom:10px;   /* 추가 */
+  text-align:center;
+}
+
+.archive-page .poster-grid{
+  margin-top:10px;
+}
+
+.archive-nav a{
+  color:#222;
+  text-decoration:none;
+
+  border-bottom:1px solid rgba(0,0,0,0.4);
+}
+
+.archive-nav a:hover{
+  color:#000;
+  border-color:#000;
+}
+
+/* ======================================
+   Archive Exhibition Detail Page
+====================================== */
+
+body.archive-detail-page {
+  background: #eaf2f7;   /* 연한 하늘색 */
+  color: #222;
+}
+
+/* 포스터 (hall과 비슷한 크기) */
+.archive-detail-page .exhibition-poster img {
+  width: 420px;
+  max-width: 90%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 48px;
+}
+
+/* 텍스트 영역 — 포스터보다 넓게 */
+.archive-detail-page .exhibition-text {
+  max-width: 720px;
+  margin: 0 auto 60px;
+  text-align: justify;
+  line-height: 1.9;
+  color: #222;
+}
+
+/* 하단 버튼 중앙 */
+.archive-detail-page .archive-nav {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.archive-detail-page .archive-nav a {
+  color: #222;
+  text-decoration: none;
+  border-bottom: 1px solid #222;
+  padding-bottom: 3px;
+}
+
+.archive-detail-page .archive-nav a:hover {
+  opacity: 0.6;
+}
+
+/* ===============================
+   Archive Detail (전시 상세)
+================================ */
+
+/* 상세페이지 기본 프레임 */
+.archive-detail-page main {
+  max-width: 920px;
+  margin: 80px auto;
+  padding: 0 24px;
+  text-align: center;
+}
+
+/* 포스터 중앙 정렬 */
+.archive-detail-page .exhibition-poster {
+  text-align: center;
+}
+
+.archive-detail-page .exhibition-poster img {
+  display: block;
+  margin: 0 auto 40px;
+  max-width: 520px;
+  width: 100%;
+  height: auto;
+}
 
 /* Archive (예정/지난 전시) 포스터 정렬 보정 */
 
@@ -749,6 +1290,118 @@ body.archive {
 }
 
 
+/* Upcoming Exhibition */
+
+body.upcoming-page .poster-grid{
+
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 1100px;   /* 기존보다 약간 넓게 */
+  margin: 30px auto;   /* 위 간격 줄임 */
+  margin-top:20px;
+}
+
+/* Past Exhibition */
+
+body.past-page .poster-grid{
+
+  grid-template-columns: repeat(5, 1fr);
+  margin: 20px auto;  /* 간격 크게 감소 */
+  margin-top:10px;
+}
+
+.year-divider{
+
+  font-size:22px;
+  font-weight:500;
+
+  color: #222;      /* 진하게 */
+
+  margin:80px auto 30px;
+
+  max-width:1400px;
+  padding:0 40px;
+
+  cursor:pointer;
+  user-select:none;
+
+}
+
+/* 화살표 */
+
+.year-divider::before{
+  content:"▾ ";
+  display:inline-block;
+  transition:transform 0.25s ease;
+}
+
+/* 접힘 상태 */
+
+.year-divider.closed::before{
+  transform:rotate(-90deg);
+}
+
+  /* -----------------
+     ARCHIVE / POSTER GRID
+     (모바일 2열)
+  ----------------- */
+@media (max-width:768px){
+
+  .archive-page .poster-grid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0,1fr));
+    gap:14px;
+
+    width:100%;
+    max-width:100%;
+    padding:0 12px;
+    box-sizing:border-box;
+  }
+
+  .archive-page .poster-item{
+    min-width:0;   /* ⭐ 핵심 — overflow 차단 */
+  }
+
+  .archive-page .poster-item img{
+    width:100%;
+    height:auto;
+  }
+
+}
+
+
+
+/* 하단 버튼 */
+.archive-nav a {
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+}
+
+.archive-nav a:hover {
+  color: #ffffff;
+}
+
+/* ===============================
+   Archive text visibility fix
+================================ */
+
+/* 하단 네비게이션 */
+.archive-nav a {
+  color: #333;
+  border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+
+.archive-nav a:hover {
+  color: #000;
+  border-color: #000;
+}
+
+.exhibition-navigation{
+  display:none;
+}
+
+
+
+
 
 
 /* ===============================
@@ -794,6 +1447,27 @@ body {
   overflow-x: hidden;
 }
 
+/* =========================
+   HALL MOBILE ALIGN FIX
+========================= */
+
+body.hall {
+  overflow-x: hidden;
+}
+
+.site-background.hall {
+  position: fixed;   /* ⭐ absolute → fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 /* =====================================
    MOBILE LAYOUT FINAL (≤768px)
    Gallery Window unified system
@@ -825,6 +1499,32 @@ body {
     margin:0 auto;
   }
 
+
+
+  /* -----------------
+     HALL LAYOUT
+  ----------------- */
+  .hall-entry{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    padding:0 16px;
+    box-sizing:border-box;
+  }
+
+  .hall-left,
+  .artist-note-area{
+    width:100%;
+    max-width:360px;
+    margin:0 auto;
+  }
+
+  .hall-poster{
+    width:100%;
+    height:auto;
+    display:block;
+  }
+
   /* -----------------
      Exhibition Text
   ----------------- */
@@ -839,6 +1539,34 @@ body {
   color:#e12d86;
   font-weight:600;
   letter-spacing:0.02em;
+}
+
+/* =====================================
+   HALL MOBILE NOTE WIDTH FIX (FINAL)
+===================================== */
+
+@media (max-width:768px){
+
+  .hall-entry{
+    padding:0 16px;
+    box-sizing:border-box;
+  }
+
+  .artist-note-area{
+    width:100%;
+    max-width:100%;
+    margin:0 auto;
+    box-sizing:border-box;
+  }
+
+  .artist-note{
+    width:100%;
+    max-width:100%;
+    min-width:0;                 /* ⭐ grid/flex overflow 방지 핵심 */
+    overflow-wrap:break-word;    /* 긴 문장 강제 줄바꿈 */
+    word-break:keep-all;
+  }
+
 }
 
 /* =========================
@@ -918,6 +1646,32 @@ body {
   z-index: 6;
 }
 
+/* =========================
+   HOME MOBILE GRID FIX
+========================= */
+
+@media (max-width:768px){
+
+  .exhibitions{
+    display:grid;
+    grid-template-columns:1fr;   /* ⭐ 1열 */
+    gap:40px;
+    padding:0 16px;
+  }
+
+  .exhibition{
+    width:100%;
+    max-width:320px;
+    margin:0 auto;
+  }
+
+  .exhibition img{
+    width:100%;
+    height:auto;
+    display:block;
+  }
+
+}
 
 #exhibition-image {
   opacity: 0;
@@ -1013,577 +1767,4 @@ font-size:14px;
 margin-bottom:8px;
 color:#ddd;
 letter-spacing:0.5px;
-}
-
-
-
-
-
-
-
-
-
-
-
-.site-background.hall {
-  background-image: url("../images/bg_hall.jpg");
-  background-size: cover;
-  background-position: top center;
-  background-repeat: no-repeat;
-}
-
-body.hall main,
-body.hall .hall-grid,
-body.hall .container,
-body.hall .wrapper {
-  background: transparent;
-}
-
-/* Hall poster override */
-
-.hall-card img {
-  max-width: none !important;
-  width: auto !important;
-  height: 70vh !important;
-  max-height: 720px;
-display: block;
-  margin: 0 auto;
-  object-fit: contain;
-}
-
-/* ===== Page transition (gallery entrance) ===== */
-
-.page-fade {
-  position: fixed;
-  inset: 0;
-  background: #000;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.6s ease;
-  z-index: 9999;
-}
-
-.page-fade.active {
-  opacity: 1;
-}
-
-.site-background.hall::after {
-  content:"";
-  position:absolute;
-  inset:0;
-  background: radial-gradient(
-    circle at center,
-    rgba(0,0,0,0.2),
-    rgba(0,0,0,0.75)
-  );
-}
-
-#hallPoster {
-  cursor: pointer;
-  transition: transform .35s ease;
-}
-
-#hallPoster:hover {
-  transform: scale(1.02);
-}
-
-.site-background {
-  z-index: -1;
-}
-
-#hallPoster {
-  pointer-events: auto;
-}
-
-.hall-entry .artist-note {
-  font-size: 0.9rem;     /* ⭐ 2단계 축소 느낌 */
-  line-height: 1.8;
-  margin-top: 0;
-}
-
-/* ===== Hall background slow zoom ===== */
-
-.site-background.hall {
-  animation: hallZoom 18s ease-out forwards;
-}
-
-@keyframes hallZoom {
-  from {
-    transform: scale(1.04);
-  }
-  to {
-    transform: scale(1);
-  }
-}
-
-.site-background.hall {
-  will-change: transform;
-}
-
-/* ===== Hall artist note reading focus ===== */
-
-.hall-entry .artist-note p {
-  opacity: 0.72;
-  transition: opacity .6s ease;
-}
-
-/* 첫 문단 강조 */
-.hall-entry .artist-note p:first-of-type {
-  opacity: 1;
-  font-size: 1.05em;
-  letter-spacing: 0.01em;
-}
-
-/* ===== Poster light gloss effect ===== */
-
-#hallPoster {
-  position: relative;
-  overflow: hidden;
-}
-
-/* 빛 레이어 */
-#hallPoster::after {
-  content: "";
-  position: absolute;
-  top: -120%;
-  left: -60%;
-  width: 60%;
-  height: 300%;
-
-  background: linear-gradient(
-    75deg,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.18) 50%,
-    rgba(255,255,255,0) 100%
-  );
-
-  transform: rotate(25deg);
-  transition: transform 0.9s ease;
-  pointer-events: none;
-}
-
-/* hover 시 빛 이동 */
-#hallPoster:hover::after {
-  transform: translateX(260%) rotate(25deg);
-}
-
-.hall-left {
-  transform: translateY(-20px);
-}
-
-/* ===== Hall entrance interaction ===== */
-
-/* 포스터 기본 */
-#hallPoster {
-  cursor: pointer;
-  transition: transform 0.35s ease, filter 0.35s ease;
-}
-
-/* 포스터 hover */
-#hallPoster:hover {
-  transform: scale(1.015);
-  filter: brightness(1.08);
-}
-
-/* 작품보기 버튼 기본 */
-.enter-exhibition {
-  transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    border-color 0.3s ease;
-}
-
-/* ⭐ 포스터 hover 시 버튼도 반응 */
-#hallPoster:hover ~ .artist-note-area .enter-exhibition,
-#hallPoster:hover + .artist-profile + .artist-note-area .enter-exhibition {
-  background: rgba(255,255,255,0.12);
-  border-color: rgba(255,255,255,0.9);
-}
-
-/* Hall cinematic entrance */
-.hall-entry {
-  opacity: 0;
-  transform: translateY(18px);
-  transition:
-    opacity 1.6s ease,
-    transform 1.6s ease;
-}
-
-.hall-entry.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ===============================
-   Gallery interaction tone
-================================ */
-
-a, button, .hall-poster, .poster-item img {
-  transition: all 0.35s ease;
-}
-
-a:hover,
-button:hover,
-.hall-poster:hover {
-  opacity: 0.82;
-  transform: translateY(-2px);
-}
-
-/* ===============================
-   Gallery entrance atmosphere
-================================ */
-
-/* 전시장 연출 전용 */
-body.hall,
-body.exhibition {
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
-body.page-ready {
-  opacity: 1;
-}
-
-
-/* ===============================
-   Gallery artwork depth
-   (작품만 입체감 유지)
-================================ */
-
-.exhibition img,
-.hall-poster,
-.exhibition-poster img {
-  box-shadow:
-    0 12px 28px rgba(0,0,0,0.18),
-    0 2px 6px rgba(0,0,0,0.12);
-
-  transition: transform 0.35s ease,
-              box-shadow 0.35s ease;
-}
-
-.exhibition img:hover,
-.hall-poster:hover {
-  transform: translateY(-6px);
-  box-shadow:
-    0 22px 48px rgba(0,0,0,0.28),
-    0 6px 14px rgba(0,0,0,0.18);
-}
-
-/* =========================
-   HALL MOBILE ALIGN FIX
-========================= */
-
-body.hall {
-  overflow-x: hidden;
-}
-
-.site-background.hall {
-  position: fixed;   /* ⭐ absolute → fixed */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-  /* -----------------
-     HALL LAYOUT
-  ----------------- */
-  .hall-entry{
-    display:flex;
-    flex-direction:column;
-    width:100%;
-    padding:0 16px;
-    box-sizing:border-box;
-  }
-
-  .hall-left,
-  .artist-note-area{
-    width:100%;
-    max-width:360px;
-    margin:0 auto;
-  }
-
-  .hall-poster{
-    width:100%;
-    height:auto;
-    display:block;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ===== Hall entry reveal ===== */
-
-.hall-entry {
-  display: grid;
-  grid-template-columns: 520px 560px;
-  gap: 60px;
-  align-items: start;
-  max-width: 1200px;
-  margin: 100px auto;
-  padding: 0 40px;
-  position: relative;
-  z-index: 2;
-  opacity: 0;
-  transform: translateY(40px);
-  transition:
-    opacity 1.2s ease,
-    transform 1.2s ease;
-}
-
-.hall-entry.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.hall-left img {
-  width: 100%;
-  height: auto;
-}
-
-.hall-entry.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-#hallPoster {
-  width: 100%;
-  max-height: 78vh;
-  object-fit: contain;
-}
-
-.hall-left {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 500px;
-  flex-shrink: 0;
-  text-align: center;
-  filter: drop-shadow(0 30px 40px rgba(0,0,0,0.35));
-}
-
-.hall-left img {
-  width: 100%;
-  height: auto;
-}
-
-.artist-profile {
-  margin-top: 40px;
-  font-size: 14px;
-  line-height: 1.7;
-  opacity: 0.9;
-}
-
-/* =========================
-   Hall Entry Layout
-========================= */
-
-.hall-poster {
-  box-shadow:
-    0 20px 40px rgba(0,0,0,0.45),
-    0 6px 12px rgba(0,0,0,0.35);
-  filter: contrast(1.06) brightness(1.02);
-}
-
-.artist-note-area {
-  padding-top: 18px;
-}
-
-.hall-entry.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-
-.hall-poster {
-  width: 100%;
-  height: auto;
-  display: block;
-  margin-bottom: 40px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.25s ease;
-  position: relative;
-  z-index: 5;
-}
-
-.hall-poster:hover {
-  transform: scale(1.025);
-  filter: contrast(1.1) brightness(1.04);
-}
-
-.artist-profile {
-  color: #ddd;
-  line-height: 1.7;
-  font-size: 14px;
-}
-
-.artist-note-area {
-  flex: 1;
-  max-width: 620px;
-}
-
-/* =========================
-   Hall (Exhibition Wall)
-========================= */
-
-.hall-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 40px;
-  max-width: 1100px;
-  margin: 60px auto;
-  padding: 0 20px;   /* 좌우 안전 여백 */
-  background: #111;
-  position: relative;
-  z-index: 2;
-}
-
-/* ===== Hall poster reveal ===== */
-
-.hall-card {
-  opacity: 0;
-  transform: translateY(30px);
-  transition:
-    opacity 0.8s ease,
-    transform 0.8s ease;
-}
-
-.hall-card.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.hall-card {
-  text-align: center;
-  transition: transform 0.4s ease;
-  overflow: hidden;  /* 이미지 넘침 방지 */
-}
-
-.hall-card img {
-  height: 70vh;
-  max-height: 720px;
-  width: auto;
-  display: block;
-  margin: 0 auto;
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-}
-
-.hall-card:hover {
-  transform: translateY(-8px);
-}
-
-.hall-content {
-    display: flex;
-    gap: 60px;
-}
-
-.hall-left-note {
-    width: 420px;
-}
-
-.hall-right-list {
-    flex: 1;
-}
-
-/* ---------- Responsive ---------- */
-
-@media (max-width: 900px) {
-  .bottom-area {
-    grid-template-columns: 1fr;
-    gap: 80px;
-    padding: 0 32px;
-  }
-}
-
-@media (max-width: 900px) {
-  .hall-entry {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-}
-
-/* =====================================
-   HALL MOBILE NOTE WIDTH FIX (FINAL)
-===================================== */
-
-@media (max-width:768px){
-
-  .hall-entry{
-    padding:0 16px;
-    box-sizing:border-box;
-  }
-
-  .artist-note-area{
-    width:100%;
-    max-width:100%;
-    margin:0 auto;
-    box-sizing:border-box;
-  }
-
-  .artist-note{
-    width:100%;
-    max-width:100%;
-    min-width:0;                 /* ⭐ grid/flex overflow 방지 핵심 */
-    overflow-wrap:break-word;    /* 긴 문장 강제 줄바꿈 */
-    word-break:keep-all;
-  }
-
-}
-
-
-/* =========================
-   HOME MOBILE GRID FIX
-========================= */
-
-@media (max-width:768px){
-
-  .exhibitions{
-    display:grid;
-    grid-template-columns:1fr;   /* ⭐ 1열 */
-    gap:40px;
-    padding:0 16px;
-  }
-
-  .exhibition{
-    width:100%;
-    max-width:320px;
-    margin:0 auto;
-  }
-
-  .exhibition img{
-    width:100%;
-    height:auto;
-    display:block;
-  }
-
 }
