@@ -1,3 +1,77 @@
+/* ======================================
+   Archive Exhibition Detail Page
+====================================== */
+
+body.archive-detail-page {
+  background: #eaf2f7;   /* 연한 하늘색 */
+  color: #222;
+}
+
+/* 포스터 (hall과 비슷한 크기) */
+.archive-detail-page .exhibition-poster img {
+  width: 420px;
+  max-width: 90%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 48px;
+}
+
+/* 텍스트 영역 — 포스터보다 넓게 */
+.archive-detail-page .exhibition-text {
+  max-width: 720px;
+  margin: 0 auto 60px;
+  text-align: justify;
+  line-height: 1.9;
+  color: #222;
+}
+
+/* 하단 버튼 중앙 */
+.archive-detail-page .archive-nav {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.archive-detail-page .archive-nav a {
+  color: #222;
+  text-decoration: none;
+  border-bottom: 1px solid #222;
+  padding-bottom: 3px;
+}
+
+.archive-detail-page .archive-nav a:hover {
+  opacity: 0.6;
+}
+
+
+/* ===============================
+   Archive Detail (전시 상세)
+================================ */
+
+/* 상세페이지 기본 프레임 */
+.archive-detail-page main {
+  max-width: 920px;
+  margin: 80px auto;
+  padding: 0 24px;
+  text-align: center;
+}
+
+/* 포스터 중앙 정렬 */
+.archive-detail-page .exhibition-poster {
+  text-align: center;
+}
+
+.archive-detail-page .exhibition-poster img {
+  display: block;
+  margin: 0 auto 40px;
+  max-width: 520px;
+  width: 100%;
+  height: auto;
+}
+
+/* 여기까지 style.css에서 옮겨 옴 */
+
+
+
 /* =========================================
    Exhibition Detail Page
    Gallery Window
