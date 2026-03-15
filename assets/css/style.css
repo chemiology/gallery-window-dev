@@ -1305,18 +1305,17 @@ body.hall {
   body.hall .hall-left,
   body.hall .artist-note-area{
     width:100%;
-    max-width:360px;
+    max-width:520px;
     margin:0 auto;
   }
 
-}
-
-  .hall-poster{
+  body.hall .hall-poster{
     width:100%;
     height:auto;
     display:block;
   }
 
+}
 
 
 
