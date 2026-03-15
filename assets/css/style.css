@@ -1532,33 +1532,6 @@ body.hall {
   }
 }
 
-/* =========================
-   HOME MOBILE GRID FIX
-========================= */
-
-@media (max-width:768px){
-
-  .exhibitions{
-    display:grid;
-    grid-template-columns:1fr;   /* ⭐ 1열 */
-    gap:40px;
-    padding:0 16px;
-  }
-
-  .exhibition{
-    width:100%;
-    max-width:320px;
-    margin:0 auto;
-  }
-
-  .exhibition img{
-    width:100%;
-    height:auto;
-    display:block;
-  }
-
-}
-
 /* =====================================
    HALL MOBILE NOTE WIDTH FIX (FINAL)
 ===================================== */
@@ -1583,6 +1556,34 @@ body.hall {
     min-width:0;                 /* ⭐ grid/flex overflow 방지 핵심 */
     overflow-wrap:break-word;    /* 긴 문장 강제 줄바꿈 */
     word-break:keep-all;
+  }
+
+}
+
+
+/* =========================
+   HOME MOBILE GRID FIX
+========================= */
+
+@media (max-width:768px){
+
+  .exhibitions{
+    display:grid;
+    grid-template-columns:1fr;   /* ⭐ 1열 */
+    gap:40px;
+    padding:0 16px;
+  }
+
+  .exhibition{
+    width:100%;
+    max-width:320px;
+    margin:0 auto;
+  }
+
+  .exhibition img{
+    width:100%;
+    height:auto;
+    display:block;
   }
 
 }
