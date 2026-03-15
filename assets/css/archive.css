@@ -7,6 +7,15 @@
 
 }
 
+/* ===== ARCHIVE GRID BASE ===== */
+
+.archive-page .poster-grid{
+
+  display:grid;
+  gap:24px;
+
+}
+
 
 /* ===== Archive page readability fix ===== */
 
@@ -90,36 +99,6 @@ body.past-page .poster-grid{
 .year-divider.closed::before{
   transform:rotate(-90deg);
 }
-
-  /* -----------------
-     ARCHIVE / POSTER GRID
-     (모바일 2열)
-  ----------------- */
-@media (max-width:768px){
-
-  .archive-page .poster-grid{
-    display:grid;
-    grid-template-columns:repeat(2, minmax(0,1fr));
-    gap:14px;
-
-    width:100%;
-    max-width:100%;
-    padding:0 12px;
-    box-sizing:border-box;
-  }
-
-  .archive-page .poster-item{
-    min-width:0;   /* ⭐ 핵심 — overflow 차단 */
-  }
-
-  .archive-page .poster-item img{
-    width:100%;
-    height:auto;
-  }
-
-}
-
-
 
 /* 하단 버튼 */
 .archive-nav a {
@@ -243,103 +222,12 @@ body.past-page .poster-grid{
   }
 }
 
-/* =========================
-   MOBILE ARCHIVE FIX
-========================= */
-
-@media (max-width:768px){
-
-  .poster-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:18px;
-
-    width:100%;
-    max-width:360px;
-    margin:40px auto;
-    padding:0;
-  }
-
-  .poster-item{
-    width:100%;
-  }
-
-  .poster-item img{
-    width:100%;
-    height:auto;
-  }
-
-  .poster-item figcaption{
-    font-size:13px;
-    line-height:1.4;
-    text-align:center;
-    word-break:keep-all;
-  }
-
-}
-
-/* =========================
-   MOBILE ARCHIVE FINAL FIX
-========================= */
-
-@media (max-width:768px){
-
-  body.upcoming-page .poster-grid,
-  body.past-page .poster-grid{
-    grid-template-columns:repeat(2,1fr) !important;
-    max-width:360px;
-    margin:40px auto;
-    padding:0;
-    gap:18px;
-  }
-
-  .poster-item img{
-    width:100%;
-    height:auto;
-  }
-
-  .poster-item figcaption{
-    text-align:center;
-    font-size:13px;
-    line-height:1.4;
-  }
-
-}
-
-@media (max-width:768px){
-
-  body.upcoming-page .poster-grid,
-  body.past-page .poster-grid{
-
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:18px;
-
-    width:100%;
-    max-width:360px;
-    margin:40px auto;
-  }
-
-  .poster-item img{
-    width:100%;
-    height:auto;
-  }
-
-}
-
 /* ===== MOBILE GRID FIX (최종) ===== */
 
 @media (max-width:768px){
 
   .archive-page .poster-grid{
-
     grid-template-columns:repeat(2,1fr);
-    gap:18px;
-
-    width:100%;
-    max-width:360px;
-    margin:40px auto;
-
   }
 
 }
