@@ -233,3 +233,37 @@ body.past-page .poster-grid{
     padding: 0 12px;
   }
 }
+
+@media (max-width:768px){
+
+  .exhibitions{
+    grid-template-columns: 1fr !important;
+    justify-items: center;
+  }
+
+  .exhibition{
+    max-width:320px;
+    width:100%;
+  }
+
+}
+
+/* =========================
+   MOBILE ARCHIVE FIX
+========================= */
+
+@media (max-width:768px){
+
+  .poster-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+    padding:0 16px;
+  }
+
+  .poster-item figcaption{
+    font-size:13px;
+    line-height:1.4;
+    word-break:keep-all;
+  }
+
+}
