@@ -243,12 +243,12 @@ body.past-page .poster-grid{
   .poster-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:20px;
+    gap:18px;
 
     width:100%;
-    max-width:100%;
-    padding:0 16px;
-    box-sizing:border-box;
+    max-width:360px;
+    margin:40px auto;
+    padding:0;
   }
 
   .poster-item{
@@ -263,8 +263,8 @@ body.past-page .poster-grid{
   .poster-item figcaption{
     font-size:13px;
     line-height:1.4;
-    word-break:keep-all;
     text-align:center;
+    word-break:keep-all;
   }
 
 }
