@@ -1293,12 +1293,13 @@ body.hall {
   /* -----------------
      HALL LAYOUT
   ----------------- */
+@media (max-width:768px){
+
   .hall-entry{
     display:flex;
     flex-direction:column;
     width:100%;
     padding:0 16px;
-    box-sizing:border-box;
   }
 
   .hall-left,
@@ -1307,6 +1308,8 @@ body.hall {
     max-width:360px;
     margin:0 auto;
   }
+
+}
 
   .hall-poster{
     width:100%;
