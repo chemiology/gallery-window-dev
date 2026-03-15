@@ -302,6 +302,22 @@ body.home .exhibition a:focus{
   will-change:transform;
 }
 
+body.home .exhibition-body{
+  display:block;
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 16px;
+}
+
+body.home .exhibition{
+  max-width:420px;
+  margin:0 auto;
+}
+
+body.home .exhibition img{
+  width:100%;
+  height:auto;
+}
 
 
 
