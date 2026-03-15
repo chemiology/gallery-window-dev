@@ -65,17 +65,30 @@
    Exhibition List
 ===================================================== */
 
-.exhibitions {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+.exhibitions{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
 
-  gap: 36px 72px;
+  gap:36px 72px;
 
-  max-width: 1400px;
-  margin: 48px auto 12px;
-  padding: 0 80px;
+  max-width:1400px;
+  margin:48px auto 12px;
 
-  justify-items: center;
+  padding:0 80px;
+
+  box-sizing:border-box;
+  width:100%;
+
+  justify-items:center;
+}
+
+@media (max-width:768px){
+
+  .exhibitions{
+    padding:0 16px;
+    gap:24px;
+  }
+
 }
 
 .exhibition{
