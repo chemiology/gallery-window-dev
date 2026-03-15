@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if(info){
     info.innerHTML = `
-      <p>${ex.artist} 온라인사진전_${ex.titleKR}</p>
+      <p>${ex.artist} 온라인전시_${ex.titleKR}</p>
       <p>- 전시제목 : ${ex.titleKR} / ${ex.titleEN}</p>
       <p>- 전시기간 : ${ex.start} ~ ${ex.end}</p>
       <p>- 전시장소 : 갤러리 창 (https://gallerywindow.com)</p>
