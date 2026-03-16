@@ -105,9 +105,14 @@
 }
 
 .exhibition{
+  position:relative;
   width:100%;
+  max-width:420px;
 }
 
+.exhibitions{
+  justify-items:center;
+}
 
 /* grid modes */
 
