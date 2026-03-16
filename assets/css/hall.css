@@ -101,7 +101,7 @@ body.hall .artist-profile{
   white-space:normal;
   line-height:1.7;
   margin-top:40px;
-  font-size:14px;
+  font-size:16px;
 }
 
 .artist-profile p{
@@ -399,7 +399,6 @@ color:#fff;
 }
 
 body.hall .exhibition img:hover{
-  transform:scale(1.01);
 
   box-shadow:
   0 20px 42px rgba(0,0,0,.28),
