@@ -72,6 +72,7 @@ body.archive-page.past-page .archive-grid{
 }
 
 
+
 /* =====================================================
    POSTER ITEM
 ===================================================== */
@@ -140,7 +141,7 @@ body.archive-page.past-page .archive-grid{
     padding:0;
   }
 
-  body.archive-page .archive-grid{
+  body.archive-page.past-page .archive-grid{
 
     grid-template-columns:repeat(3,1fr);
 
@@ -149,9 +150,13 @@ body.archive-page.past-page .archive-grid{
     width:100%;
     margin:0 auto;
 
-    padding:0 12px;
+    padding:0;
 
     box-sizing:border-box;
+  }
+
+  body.archive-page main{
+    padding:0 12px;
   }
 
   .poster-item figcaption{
@@ -172,3 +177,29 @@ body.archive-page.past-page .archive-grid{
   }
 
 }
+
+@media (max-width:768px){
+
+body.archive-page.past-page .archive-grid{
+grid-template-columns:repeat(3,1fr);
+}
+
+}
+
+.archive-grid{
+display:grid;
+width:100%;
+box-sizing:border-box;
+}
+
+.poster-item{
+width:100%;
+box-sizing:border-box;
+}
+
+.poster-item img{
+display:block;
+width:100%;
+height:auto;
+}
+

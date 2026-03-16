@@ -380,3 +380,8 @@ color:#fff;
 body.hall a{
 color:#fff;
 }
+
+.artist-profile span{
+  display:block;
+  margin-bottom:6px;
+}
