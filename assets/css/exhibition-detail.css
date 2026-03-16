@@ -144,7 +144,7 @@ body.exhibition-detail .exhibition-poster img{
 
 body.archive-detail-page figure.exhibition-support-image{
 
-  width:56%;
+  width:48%;
   margin:28px auto;
 
 }
@@ -193,7 +193,7 @@ body.archive-detail-page .exhibition-text{
 
 body.exhibition-detail .exhibition-text span{
   display:block;
-  font-size:14px;
+  font-size:16px;
   line-height:1.45;
   margin-bottom:2px;
 }
@@ -364,4 +364,12 @@ body.exhibition-detail{
 
 body.exhibition-detail .exhibition-text{
   white-space:pre-wrap !important;
+}
+
+/* exhibition info */
+
+body.archive-detail-page .exhibition-info{
+  line-height:1.5;
+  font-size:15px;
+  margin-top:14px;
 }
