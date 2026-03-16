@@ -429,6 +429,7 @@ body.hall .exhibition img:hover{
 
   opacity:0;
   transition:opacity .35s ease;
+  pointer-events:none;
 }
 
 .poster-wrap:hover .poster-caption{
@@ -474,4 +475,14 @@ body.hall .exhibition-text p{
 body.hall .exhibition-text span{
   margin-bottom:2px;
   line-height:1.5;
+}
+
+body.hall .guestbook-form textarea{
+  width:100%;
+  max-width:720px;
+}
+
+body.hall .guestbook-form input{
+  width:100%;
+  max-width:720px;
 }

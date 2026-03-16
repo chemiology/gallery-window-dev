@@ -98,16 +98,6 @@ body.archive-detail-page {
 ========================================= */
 
 
-/* ---------- Base ---------- */
-
-body.exhibition-detail{
-  background:#eef4f8;
-  color:#222;
-  overflow-y:auto;
-  overflow-x:hidden;
-}
-
-
 /* ---------- Layout ---------- */
 
 body.exhibition-detail .exhibition-content{
@@ -144,7 +134,7 @@ body.exhibition-detail .exhibition-poster img{
 
 body.exhibition-detail figure.exhibition-support-image,
 body.archive-detail-page figure.exhibition-support-image{
-  width:46%;
+  width:60%;
   margin:32px auto;
 }
 
@@ -193,8 +183,8 @@ body.archive-detail-page .exhibition-text{
 body.exhibition-detail .exhibition-text span{
   display:block;
   font-size:16px;
-  line-height:1.45;
-  margin-bottom:2px;
+  line-height:1.5;
+  margin-bottom:4px;
 }
 
 
@@ -386,4 +376,9 @@ body.exhibition-detail .exhibition-text p{
 .detail-nav a{
   font-size:16px;
   color:#44505c;
+}
+
+body.exhibition-detail .exhibition-text p{
+  margin-top:6px;
+  margin-bottom:6px;
 }

@@ -339,13 +339,6 @@ body.exhibition-detail figure.exhibition-poster img {
   display: block;
 }
 
-/* 정보 텍스트 span 줄 단위 강제 */
-body.exhibition-detail .exhibition-text span {
-  display: block !important;
-  line-height: 1.25 !important;
-  margin-bottom: 1px !important;
-}
-
 /* 입력창을 이미지 밖으로 이동 */
 .exhibition-guestbook form {
   position: relative;   /* stacking 안정 */

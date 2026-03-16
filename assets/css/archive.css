@@ -160,8 +160,8 @@ body.archive-page.past-page .archive-grid{
   }
 
   .poster-item figcaption{
-    font-size:12px;
-    line-height:1.35;
+    font-size:15px;
+    line-height:1.5;
   }
 
   .year-divider{
@@ -203,3 +203,6 @@ width:100%;
 height:auto;
 }
 
+body.archive-page{
+  background:#eef4f8;
+}
