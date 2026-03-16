@@ -1,3 +1,234 @@
+
+
+/* ===== Hall entry reveal ===== */
+
+.hall-entry {
+  display: grid;
+  grid-template-columns: 520px 560px;
+  gap: 60px;
+  align-items: start;
+  max-width: 1200px;
+  margin: 100px auto;
+  padding: 0 40px;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 1.2s ease,
+    transform 1.2s ease;
+}
+
+.hall-entry.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hall-left img {
+  width: 100%;
+  height: auto;
+}
+
+.hall-entry.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#hallPoster {
+  width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+}
+
+.hall-left {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  flex-shrink: 0;
+  text-align: center;
+  filter: drop-shadow(0 30px 40px rgba(0,0,0,0.35));
+}
+
+.hall-left img {
+  width: 100%;
+  height: auto;
+}
+
+.artist-profile {
+  margin-top: 40px;
+  font-size: 14px;
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+/* =========================
+   Hall Entry Layout
+========================= */
+
+.hall-poster {
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.45),
+    0 6px 12px rgba(0,0,0,0.35);
+  filter: contrast(1.06) brightness(1.02);
+}
+
+.artist-note-area {
+  padding-top: 18px;
+}
+
+.hall-entry.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hall-poster {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+  position: relative;
+  z-index: 5;
+}
+
+.hall-poster:hover {
+  transform: scale(1.025);
+  filter: contrast(1.1) brightness(1.04);
+}
+
+.artist-profile {
+  color: #ddd;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.artist-note-area {
+  flex: 1;
+  max-width: 620px;
+}
+
+/* =========================
+   Hall (Exhibition Wall)
+========================= */
+
+.hall-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 0 20px;   /* 좌우 안전 여백 */
+  background: #111;
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== Hall poster reveal ===== */
+
+.hall-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.hall-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hall-card {
+  text-align: center;
+  transition: transform 0.4s ease;
+  overflow: hidden;  /* 이미지 넘침 방지 */
+}
+
+.hall-card img {
+  height: 70vh;
+  max-height: 720px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.hall-card:hover {
+  transform: translateY(-8px);
+}
+
+.hall-content {
+    display: flex;
+    gap: 60px;
+}
+
+.hall-left-note {
+    width: 420px;
+}
+
+.hall-right-list {
+    flex: 1;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+  .hall-entry {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* =====================================
+   HALL MOBILE NOTE WIDTH FIX (FINAL)
+===================================== */
+
+@media (max-width:768px){
+
+  .hall-entry{
+    padding:0 16px;
+    box-sizing:border-box;
+  }
+
+  .artist-note-area{
+    width:100%;
+    max-width:100%;
+    margin:0 auto;
+    box-sizing:border-box;
+  }
+
+  .artist-note{
+    width:100%;
+    max-width:100%;
+    min-width:0;                 /* ⭐ grid/flex overflow 방지 핵심 */
+    overflow-wrap:break-word;    /* 긴 문장 강제 줄바꿈 */
+    word-break:keep-all;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* hall page override */
 
 .btn-en{
