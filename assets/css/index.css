@@ -237,7 +237,6 @@ body.home .meta{
 
   .exhibition{
     width:100%;
-    max-width:160px;
   }
 
   .exhibition img{
@@ -274,4 +273,8 @@ display:block;
   width:100%;
   height:auto;
   display:block;
+}
+
+body.home .exhibition{
+  max-width:none !important;
 }
