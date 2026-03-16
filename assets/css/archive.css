@@ -195,3 +195,16 @@ body.archive-page{
   }
 
 }
+
+@media (max-width:768px){
+
+  body.archive-page main{
+    padding:0;
+  }
+
+  body.archive-page .archive-grid{
+    margin:0 auto;
+    padding:0 12px;
+  }
+
+}

@@ -87,8 +87,8 @@ body.hall .artist-profile{
   margin-top:40px;
   font-size:14px;
   line-height:1.7;
-  color:#ddd;
-  opacity:0.9;
+  color:#e6e7e9;
+  opacity:1;
 }
 
 .artist-note-area{
@@ -413,5 +413,9 @@ body.hall .guestbook-list h4{
 
 body.hall .artist-note{
   color:#e6e7e9;
+  text-align:justify !important;
+}
+
+body.hall .artist-note{
   text-align:justify !important;
 }
