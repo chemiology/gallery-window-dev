@@ -331,3 +331,12 @@ body.exhibition-detail .exhibition-text pre{
 body.archive-detail-page #note-profile .section-title{
   text-align:left;
 }
+
+body.exhibition-detail{
+  background:
+    linear-gradient(
+      to bottom,
+      #f6f8fb 0%,
+      #e9eff5 100%
+    );
+}

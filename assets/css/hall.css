@@ -388,3 +388,7 @@ body.hall .enter-exhibition{
   margin-left:auto;
   margin-right:auto;
 }
+
+.hall-entry .artist-note{
+  text-align:justify;
+}
