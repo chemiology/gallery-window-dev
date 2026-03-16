@@ -252,3 +252,9 @@ body.home .meta{
   }
 
 }
+
+body.home .exhibition img{
+width:100%;
+height:auto;
+display:block;
+}

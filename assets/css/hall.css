@@ -97,8 +97,15 @@ body.hall .artist-note{
 }
 
 body.hall .artist-profile{
+  text-align:justify;
+  white-space:normal;
+  line-height:1.7;
   margin-top:40px;
   font-size:14px;
+}
+
+.artist-profile p{
+margin-bottom:1em;
 }
 
 .artist-note-area{
@@ -364,4 +371,12 @@ body.hall .enter-exhibition{
     word-break:keep-all;
   }
 
+}
+
+body.hall{
+color:#fff;
+}
+
+body.hall a{
+color:#fff;
 }
