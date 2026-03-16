@@ -169,3 +169,12 @@ body.archive-page{
       #e9eff5 100%
     );
 }
+
+body.archive-page{
+  background:
+    linear-gradient(
+      to bottom,
+      #f6f8fb 0%,
+      #e9eff5 100%
+    ) !important;
+}

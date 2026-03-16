@@ -392,3 +392,21 @@ body.hall .enter-exhibition{
 .hall-entry .artist-note{
   text-align:justify;
 }
+
+.hall-entry .artist-note{
+  text-align: justify !important;
+}
+
+body.hall{
+  color:#e6e7e9;
+}
+
+body.hall a{
+  color:#e6e7e9;
+}
+
+body.hall .guestbook-title,
+body.hall .guestbook-list,
+body.hall .guestbook-list h4{
+  color:#ddd;
+}

@@ -411,3 +411,11 @@ padding:0;
 body.archive-page main{
   padding:0;
 }
+
+body.home .poster-item figcaption{
+  text-align:center;
+}
+
+body.archive-page main{
+  padding:0;
+}
