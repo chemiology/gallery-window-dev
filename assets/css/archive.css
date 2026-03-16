@@ -166,8 +166,6 @@ body.archive-page .poster-grid{
 .archive-grid{
   display:grid;
 
-  grid-template-columns:repeat(3,1fr);
-
   gap:18px;
 
   width:100%;
@@ -193,13 +191,13 @@ body.archive-page .poster-grid{
 ================================ */
 
 /* 예정 전시 */
-body.archive-page.upcoming-page .poster-grid{
+body.archive-page.upcoming-page .archive-grid{
   grid-template-columns:repeat(3,1fr);
   gap:60px;
 }
 
 /* 지난 전시 */
-body.archive-page.past-page .poster-grid{
+body.archive-page.past-page .archive-grid{
   grid-template-columns:repeat(5,1fr);
   gap:60px;
 }
@@ -210,12 +208,12 @@ body.archive-page.past-page .poster-grid{
 
 @media (max-width:768px){
 
-  body.archive-page.upcoming-page .poster-grid{
+  body.archive-page.upcoming-page .archive-grid{
     grid-template-columns:repeat(3,1fr);
     gap:16px;
   }
 
-  body.archive-page.past-page .poster-grid{
+  body.archive-page.past-page .archive-grid{
     grid-template-columns:repeat(3,1fr);
     gap:16px;
   }
