@@ -68,7 +68,8 @@ body.past-page .poster-grid{
 }
 
 .poster-item img{
-  width:100%;
+  max-width:220px;
+  margin:0 auto;
   height:auto;
   display:block;
   border-radius:6px;
@@ -183,6 +184,34 @@ body.archive-page .poster-grid{
 
   .archive-grid{
     grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+/* ===== ARCHIVE DESKTOP GRID ===== */
+
+body.upcoming-page .poster-grid{
+  grid-template-columns:repeat(3,1fr);
+  gap:60px;        /* 포스터 간격 크게 */
+}
+
+body.past-page .poster-grid{
+  grid-template-columns:repeat(5,1fr);
+  gap:60px;        /* 포스터 간격 크게 */
+}
+
+/* ===== ARCHIVE MOBILE GRID ===== */
+
+@media (max-width:768px){
+
+  body.upcoming-page .poster-grid{
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+  }
+
+  body.past-page .poster-grid{
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
   }
 
 }

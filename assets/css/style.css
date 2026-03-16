@@ -697,15 +697,16 @@ body.archive {
    Poster Image (FINAL)
 ========================= */
 
-.poster-item {
-  text-align: center;
+.poster-item{
+  width:100%;
 }
 
-.poster-item img {
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
-  transition: transform 0.25s ease;
+.poster-item img{
+  width:100%;
+  height:auto;
+  display:block;
+
+  border-radius:6px;
 }
 
 .poster-item figcaption {
@@ -720,17 +721,17 @@ body.archive {
    Poster Grid (Base Layout)
 ================================ */
 
-.poster-grid{
+.poster-grid{       /* 대표화면 용 */
   display:grid;
 
   width:100%;
-
-  gap:40px;
-
   max-width:1400px;
-  margin:60px auto;
 
+  margin:60px auto;
   padding:0 16px;
+
+  gap:60px;          /* 포스터 간격 크게 */
+
   box-sizing:border-box;
 }
 
