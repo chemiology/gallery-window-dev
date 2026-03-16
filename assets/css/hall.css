@@ -40,7 +40,6 @@
 .hall-entry{
   display:grid;
   grid-template-columns:520px 560px;
-
   gap:60px;
   align-items:start;
 
@@ -57,6 +56,8 @@
   transition:
     opacity 1.2s ease,
     transform 1.2s ease;
+
+  box-sizing:border-box;
 }
 
 .hall-entry.show{
@@ -82,12 +83,22 @@
   height:auto;
 }
 
+
+/* =====================================================
+   ARTIST PROFILE / NOTE
+===================================================== */
+
+body.hall .artist-profile,
+body.hall .artist-note{
+  text-align:justify;
+  text-align-last:left;
+  line-height:1.7;
+  color:#e6e7e9;
+}
+
 body.hall .artist-profile{
   margin-top:40px;
   font-size:14px;
-  line-height:1.7;
-  color:#e6e7e9;
-  opacity:1;
 }
 
 .artist-note-area{
@@ -99,7 +110,6 @@ body.hall .artist-profile{
 .hall-entry .artist-note{
   font-size:0.9rem;
   line-height:1.8;
-  margin-top:0;
 }
 
 .hall-entry .artist-note p{
@@ -113,6 +123,14 @@ body.hall .artist-profile{
   letter-spacing:.01em;
 }
 
+body.hall .artist-profile strong{
+  display:block;
+  margin-top:28px;
+  margin-bottom:8px;
+  font-weight:500;
+  letter-spacing:.04em;
+}
+
 
 /* =====================================================
    HALL POSTER
@@ -121,7 +139,6 @@ body.hall .artist-profile{
 #hallPoster{
   width:100%;
   max-height:78vh;
-
   object-fit:contain;
 
   cursor:pointer;
@@ -166,6 +183,31 @@ body.hall .artist-profile{
 
 #hallPoster:hover::after{
   transform:translateX(260%) rotate(25deg);
+}
+
+
+/* =====================================================
+   ENTRY BUTTONS
+===================================================== */
+
+.entry-buttons{
+  position:absolute;
+  top:-60px;
+  left:0;
+
+  display:flex;
+  flex-direction:row;
+  gap:20px;
+
+  z-index:3;
+}
+
+.entry-buttons a{
+  padding:10px 18px;
+  font-size:14px;
+  border:1px solid rgba(255,255,255,0.6);
+  background:rgba(0,0,0,0.35);
+  backdrop-filter:blur(6px);
 }
 
 body.hall .enter-exhibition{
@@ -268,42 +310,15 @@ body.hall .enter-exhibition{
 
 
 /* =====================================================
-   POSTER CAPTION OVERLAY
+   GUESTBOOK
 ===================================================== */
 
-.poster-wrap{
-  position:relative;
-  display:inline-block;
-  overflow:hidden;
-}
-
-.poster-caption{
-  position:absolute;
-  inset:0;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-
-  background:rgba(0,0,0,.45);
-
-  color:#fff;
-  font-size:18px;
-  letter-spacing:.08em;
-
-  opacity:0;
-  transition:opacity .35s ease;
-}
-
-.poster-caption span{
-  font-size:12px;
-  margin-top:6px;
-  opacity:.8;
-}
-
-.poster-wrap:hover .poster-caption{
-  opacity:1;
+.guestbook-section{
+  margin-top:40px;
+  text-align:center;
+  max-width:520px;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 
@@ -340,11 +355,6 @@ body.hall .enter-exhibition{
     margin:0 auto;
   }
 
-  .hall-poster{
-    width:100%;
-    height:auto;
-  }
-
   .artist-note{
     width:100%;
     max-width:100%;
@@ -354,64 +364,4 @@ body.hall .enter-exhibition{
     word-break:keep-all;
   }
 
-}
-
-.entry-buttons{
-  position:absolute;
-  top:-60px;
-  left:0;
-
-  display:flex;
-  flex-direction:row;
-  gap:20px;
-
-  z-index:3;
-}
-
-.entry-buttons a{
-  padding:10px 18px;
-  font-size:14px;
-  border:1px solid rgba(255,255,255,0.6);
-  background:rgba(0,0,0,0.35);
-  backdrop-filter:blur(6px);
-}
-
-.artist-note{
-  text-align:justify;
-}
-
-.guestbook-section{
-  margin-top:40px;
-  text-align:center;
-  max-width:520px;
-  margin-left:auto;
-  margin-right:auto;
-}
-
-.hall-entry .artist-note{
-  text-align:justify;
-}
-
-.hall-entry .artist-note{
-  text-align: justify !important;
-}
-
-body.hall{
-  color:#e6e7e9;
-}
-
-body.hall a{
-  color:#e6e7e9;
-}
-
-body.hall .guestbook-title,
-body.hall .guestbook-list,
-body.hall .guestbook-list h4{
-  color:#ddd;
-}
-
-body.hall .artist-note{
-  color:#e6e7e9;
-  text-align:justify !important;
-  text-align-last:left;
 }

@@ -6,6 +6,10 @@
   color:#e6e6e6;
 }
 
+body.archive-page{
+  background:#f2f6fb;
+}
+
 .archive-title{
   color:#222;
   font-size:32px;
@@ -37,7 +41,7 @@
 
 
 /* =====================================================
-   ARCHIVE GRID (MAIN SYSTEM)
+   ARCHIVE GRID
 ===================================================== */
 
 .archive-grid{
@@ -59,13 +63,9 @@
    DESKTOP GRID
 ===================================================== */
 
-/* 예정 전시 */
-
 body.archive-page.upcoming-page .archive-grid{
   grid-template-columns:repeat(3,1fr);
 }
-
-/* 지난 전시 */
 
 body.archive-page.past-page .archive-grid{
   grid-template-columns:repeat(5,1fr);
@@ -82,11 +82,12 @@ body.archive-page.past-page .archive-grid{
 }
 
 .poster-item img{
-  max-width:220px;
-  margin:0 auto;
-
+  width:100%;
   height:auto;
+
   display:block;
+  margin:0 auto;
+  max-width:100%;
 
   border-radius:6px;
 }
@@ -121,37 +122,16 @@ body.archive-page.past-page .archive-grid{
 .year-divider::before{
   content:"▾ ";
   display:inline-block;
-  transition:transform 0.25s ease;
+  transition:transform .25s ease;
 }
 
 .year-divider.closed::before{
   transform:rotate(-90deg);
 }
 
-body.archive-page{
-  background:
-    linear-gradient(
-      to bottom,
-      #f6f8fb 0%,
-      #e9eff5 100%
-    );
-}
-
-body.archive-page{
-  background:
-    linear-gradient(
-      to bottom,
-      #f6f8fb 0%,
-      #e9eff5 100%
-    ) !important;
-}
-
-body.archive-page{
-  background:#f2f6fb !important;
-}
 
 /* =====================================================
-   MOBILE GRID (FINAL)
+   MOBILE GRID
 ===================================================== */
 
 @media (max-width:768px){
@@ -162,7 +142,7 @@ body.archive-page{
 
   body.archive-page .archive-grid{
 
-    grid-template-columns:repeat(3,1fr);   /* 모바일 3열  */
+    grid-template-columns:repeat(3,1fr);
 
     gap:16px;
 
@@ -181,6 +161,14 @@ body.archive-page{
 
   .year-divider{
     padding:0 12px;
+  }
+
+}
+
+@media (max-width:768px){
+
+  body.archive-page{
+    overflow-x:hidden;
   }
 
 }
