@@ -246,6 +246,6 @@ figure.exhibition-support-image img{
 
 body.exhibition-detail figure.exhibition-poster img {
     width: 70% !important;     /* ← 여기서 크기 조절 */
-    max-width: 380px !important;
+    max-width: 520px !important;
     height: auto !important;
 }
