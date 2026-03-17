@@ -348,6 +348,7 @@ img{
 
 @media (max-width:768px){
 
+  /* 포스터 중앙 */
   body.exhibition-detail figure.exhibition-poster{
     width:100%;
     text-align:center;
@@ -358,10 +359,7 @@ img{
     margin:0 auto !important;
   }
 
-}
-
-@media (max-width:768px){
-
+  /* 텍스트 여백 */
   #note-profile{
     max-width:100% !important;
     padding:0 16px !important;
