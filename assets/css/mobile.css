@@ -1,7 +1,3 @@
-body{
-  outline:5px solid red;
-}
-
 /* ======================================
    Gallery Window – MOBILE FINAL
    (≤768px)
@@ -206,6 +202,54 @@ img{
   .exhibition-text{
     max-width:100%;
     padding:0;
+  }
+
+}
+
+@media (max-width:768px){
+
+  body.upcoming-page .archive-grid{
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap:16px;
+    padding:0 16px;
+  }
+
+}
+
+@media (max-width:768px){
+
+  body.archive-page:not(.upcoming-page) .archive-grid{
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap:14px;
+    padding:0 16px;
+  }
+
+}
+
+@media (max-width:768px){
+
+  .archive-grid{
+    width:100%;
+    max-width:100%;
+    margin:0 auto;
+    padding:0 16px;
+  }
+
+}
+
+@media (max-width:768px){
+
+  figure.exhibition-poster img{
+    display:block;
+    margin:0 auto;
+  }
+
+}
+
+@media (max-width:768px){
+
+  #note-profile{
+    padding:0 12px;
   }
 
 }
