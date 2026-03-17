@@ -438,3 +438,19 @@ img{
 
 }
 
+@media (max-width:768px){
+
+  body.exhibition-detail #note-profile{
+    max-width:none !important;
+    width:100% !important;
+    margin:0 auto !important;
+  }
+
+  body.exhibition-detail .exhibition-text{
+    max-width:none !important;
+    width:100% !important;
+    margin:0 !important;
+  }
+
+}
+
