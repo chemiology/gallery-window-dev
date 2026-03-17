@@ -6,10 +6,6 @@
   color:#e6e6e6;
 }
 
-body.archive-page{
-  background:#f2f6fb;
-}
-
 .archive-title{
   color:#222;
   font-size:32px;
@@ -203,6 +199,8 @@ width:100%;
 height:auto;
 }
 
-body.archive-page{
-  background:#eef4f8;
+body.archive-page,
+body.archive-page.upcoming-page,
+body.archive-page.past-page{
+  background:#eef4f8 !important;
 }

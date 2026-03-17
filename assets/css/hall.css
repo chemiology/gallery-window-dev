@@ -478,8 +478,8 @@ body.hall .exhibition-text span{
 }
 
 body.hall .guestbook-form textarea{
-  width:100%;
-  max-width:720px;
+  width:80%;
+  max-width:600px;
 }
 
 body.hall .guestbook-form input{
