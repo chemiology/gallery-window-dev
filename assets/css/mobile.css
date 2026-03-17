@@ -53,7 +53,7 @@ main,
    ARCHIVE
 ========================= */
 
-.poster-grid{
+.archive-grid{
   display:grid;
   gap:14px;
   width:100%;
@@ -62,12 +62,12 @@ main,
 }
 
 /* 예정 전시 */
-body.upcoming-page .poster-grid{
+body.upcoming-page .archive-grid{
   grid-template-columns:repeat(3,1fr);
 }
 
 /* 지난 전시 */
-body.archive-page:not(.upcoming-page) .poster-grid{
+body.archive-page:not(.upcoming-page) .archive-grid{
   grid-template-columns:repeat(4,1fr);
 }
 
@@ -81,6 +81,10 @@ body.archive-page:not(.upcoming-page) .poster-grid{
   width:100%;
   height:auto;
   display:block;
+}
+
+.archive-grid .poster-item{
+  min-width:0;
 }
 
 /* =========================
