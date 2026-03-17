@@ -1,0 +1,199 @@
+/* =====================================================
+   ARCHIVE PAGE BASE
+===================================================== */
+
+.archive-page{
+  color:#e6e6e6;
+  background:#eef4f8 !important;
+}
+
+.archive-title{
+  color:#222;
+  font-size:32px;
+  font-weight:600;
+  margin-bottom:30px;
+  text-align:center;
+}
+
+.archive-nav{
+  margin-top:20px;
+  margin-bottom:10px;
+  text-align:center;
+}
+
+.archive-nav a{
+  color:#333;
+  text-decoration:none;
+  border-bottom:1px solid rgba(0,0,0,0.3);
+}
+
+.archive-nav a:hover{
+  color:#000;
+  border-color:#000;
+}
+
+.exhibition-navigation{
+  display:none;
+}
+
+
+/* =====================================================
+   ARCHIVE GRID
+===================================================== */
+
+.archive-grid{
+
+  display:grid;
+
+  width:100%;
+  max-width:1200px;
+
+  margin:20px auto;
+
+  padding:0;
+
+  gap:60px;
+
+  box-sizing:border-box;
+
+  align-items:start;
+
+}
+
+
+/* =====================================================
+   DESKTOP GRID
+===================================================== */
+
+body.archive-page.upcoming-page .archive-grid{
+  grid-template-columns:repeat(3,1fr);
+}
+
+body.archive-page.past-page .archive-grid{
+  grid-template-columns:repeat(5,1fr);
+}
+
+
+/* =====================================================
+   POSTER ITEM
+===================================================== */
+
+.poster-item{
+  width:100%;
+  min-width:0;
+  box-sizing:border-box;
+}
+
+.poster-item img{
+  width:100%;
+  height:auto;
+
+  display:block;
+  margin:0 auto;
+
+  max-width:100%;
+
+  border-radius:6px;
+}
+
+.poster-item figcaption{
+
+  text-align:center;
+
+  line-height:1.45;
+
+  word-break:keep-all;
+
+}
+
+
+/* =====================================================
+   YEAR DIVIDER
+===================================================== */
+
+.year-divider{
+
+  font-size:22px;
+  font-weight:500;
+
+  color:#222;
+
+  margin:80px auto 30px;
+
+  max-width:1400px;
+
+  padding:0 40px;
+
+  cursor:pointer;
+  user-select:none;
+
+}
+
+.year-divider::before{
+  content:"▾ ";
+  display:inline-block;
+  transition:transform .25s ease;
+}
+
+.year-divider.closed::before{
+  transform:rotate(-90deg);
+}
+
+
+/* =====================================================
+   MOBILE GRID (FINAL FIX)
+===================================================== */
+
+@media (max-width:768px){
+
+  body.archive-page{
+    overflow-x:hidden;
+  }
+
+  body.archive-page main{
+    padding:0 16px;
+  }
+
+  body.archive-page .archive-grid{
+
+    /* 🔴 핵심 수정 */
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+    width:100%;
+    margin:0 auto;
+    padding:0;
+
+    box-sizing:border-box;
+  }
+
+  /* 🔴 추가 (중요) */
+  .poster-item{
+    width:100%;
+    max-width:none !important;
+  }
+
+  .poster-item img{
+    width:100%;
+    height:auto;
+  }
+
+}
+
+  .poster-item img{
+    width:100%;
+    height:auto;
+    display:block;
+  }
+
+  .poster-item figcaption{
+    font-size:15px;
+    line-height:1.5;
+  }
+
+  .year-divider{
+    padding:0 12px;
+  }
+
+}
