@@ -1,12 +1,16 @@
 /* ======================================
-   MOBILE FINAL (STABLE)
+   Gallery Window – MOBILE FINAL
 ====================================== */
 
 @media (max-width:768px){
 
 /* =========================
-   공통 여백
+   공통
 ========================= */
+
+html, body{
+  overflow-x:hidden;
+}
 
 main,
 .site-header,
@@ -40,11 +44,16 @@ main,
   display:block;
 }
 
+/* 클릭 방해 방지 */
+.exhibition-badge{
+  pointer-events:none;
+}
+
 /* =========================
    ARCHIVE
 ========================= */
 
-.archive-grid{
+.poster-grid{
   display:grid;
   gap:14px;
   width:100%;
@@ -53,16 +62,16 @@ main,
 }
 
 /* 예정 전시 */
-body.upcoming-page .archive-grid{
+body.upcoming-page .poster-grid{
   grid-template-columns:repeat(3,1fr);
 }
 
 /* 지난 전시 */
-body.archive-page:not(.upcoming-page) .archive-grid{
+body.archive-page:not(.upcoming-page) .poster-grid{
   grid-template-columns:repeat(4,1fr);
 }
 
-/* 아이템 밀림 방지 */
+/* 카드 밀림 방지 */
 .poster-item{
   width:100%;
   min-width:0;
@@ -111,7 +120,7 @@ body.exhibition-detail figure.exhibition-poster img{
   margin:0 auto;
 }
 
-/* 텍스트 */
+/* 텍스트 영역 */
 body.exhibition-detail #note-profile{
   width:100%;
   max-width:100%;
@@ -123,6 +132,14 @@ body.exhibition-detail .exhibition-text{
   width:100%;
   max-width:100%;
   margin:0;
+}
+
+/* =========================
+   버튼
+========================= */
+
+.main-links{
+  margin:40px auto;
 }
 
 /* =========================
