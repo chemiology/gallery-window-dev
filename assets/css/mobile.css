@@ -345,3 +345,32 @@ img{
   }
 
 }
+
+@media (max-width:768px){
+
+  body.exhibition-detail figure.exhibition-poster{
+    width:100%;
+    text-align:center;
+  }
+
+  body.exhibition-detail figure.exhibition-poster img{
+    display:block;
+    margin:0 auto !important;
+  }
+
+}
+
+@media (max-width:768px){
+
+  #note-profile{
+    max-width:100% !important;
+    padding:0 16px !important;
+    margin:0 auto;
+  }
+
+  .exhibition-text{
+    max-width:100% !important;
+    padding:0 !important;
+  }
+
+}
