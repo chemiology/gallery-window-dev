@@ -33,6 +33,7 @@ body.archive-detail-page{
   max-width:66%;
   margin:0 auto 36px;
   text-align:center;
+  display:block; 
 }
 
 .exhibition-poster img{
@@ -77,35 +78,23 @@ figure.exhibition-support-image img{
   overflow-wrap:break-word;
 
   letter-spacing:0;
+  text-align:justify;
 }
-
 
 /* =========================================
    EXHIBITION INFO (완전 분리)
 ========================================= */
 
 #exhibition-info{
-  font-size:16px;
-  line-height:1.4;
+  font-size:15px;
+  line-height:1.3;
   margin-bottom:16px;
 }
 
 #exhibition-info p{
   margin:2px 0 !important;
-  line-height:1.4 !important;
+  line-height:1.3 !important;
 }
-
-
-/* =========================================
-   PARAGRAPH (본문)
-========================================= */
-
-.exhibition-text p{
-  margin:6px 0;
-  text-align:left;
-  text-indent:0;
-}
-
 
 /* =========================================
    SPAN (리스트/약력)
@@ -117,7 +106,6 @@ figure.exhibition-support-image img{
   line-height:1.35;
   font-size:16px;
 }
-
 
 /* =========================================
    SECTION TITLE (핵심 해결)
@@ -135,10 +123,20 @@ figure.exhibition-support-image img{
   letter-spacing:0.03em;
 }
 
-
 /* gap 보정 */
 .exhibition-text p.gap-lg{
   margin-top:10px;
+}
+
+
+/* =========================================
+   PARAGRAPH (본문)
+========================================= */
+
+.exhibition-text p{
+  text-align:justify;
+  margin:6px 0;
+  text-indent:0;
 }
 
 
