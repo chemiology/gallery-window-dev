@@ -80,7 +80,6 @@ main,
   .upcoming-page .poster-grid{
     grid-template-columns:repeat(3, 1fr);
   }
-
 }
 
 /* =========================
@@ -165,4 +164,44 @@ img{
 
 *{
   box-sizing:border-box;
+}
+
+/* 기존 코드들 */
+
+
+
+
+/* =========================
+   MOBILE FIX (FINAL)
+========================= */
+
+@media (max-width:768px){
+
+  /* GRID 중앙 정렬 */
+  .archive-grid,
+  .poster-grid{
+    width:100%;
+    max-width:100%;
+    margin:0 auto;
+    padding:0 16px;
+  }
+
+  /* 상세 포스터 중앙 */
+  body.exhibition-detail figure.exhibition-poster img{
+    width:90% !important;
+    margin:0 auto !important;
+    display:block;
+  }
+
+  /* 텍스트 여백 축소 */
+  #note-profile{
+    max-width:100%;
+    padding:0 12px;
+  }
+
+  .exhibition-text{
+    max-width:100%;
+    padding:0;
+  }
+
 }
