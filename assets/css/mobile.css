@@ -1,15 +1,16 @@
 /* ======================================
    Gallery Window – MOBILE FINAL
-   (≤768px)
 ====================================== */
+
+@media (max-width:768px){
+
+/* =========================
+   공통
+========================= */
 
 html, body{
   overflow-x:hidden;
 }
-
-/* =========================
-   공통 레이아웃
-========================= */
 
 main,
 .site-header,
@@ -22,12 +23,12 @@ main,
 }
 
 /* =========================
-   HOME (대표화면)
+   HOME
 ========================= */
 
 .exhibitions{
   display:grid;
-  grid-template-columns:1fr;   /* 1열 */
+  grid-template-columns:1fr;
   gap:40px;
 }
 
@@ -35,7 +36,6 @@ main,
   width:100%;
   max-width:320px;
   margin:0 auto;
-  position:relative;
 }
 
 .exhibition img{
@@ -44,23 +44,24 @@ main,
   display:block;
 }
 
-/* 🔥 1관 배지 클릭 방해 제거 */
 .exhibition-badge{
   pointer-events:none;
 }
 
 /* =========================
-   ARCHIVE (지난 전시)
+   ARCHIVE
 ========================= */
 
 .poster-grid{
-  display:grid !important;
-  grid-template-columns:repeat(2, 1fr)
-  gap:16px;
-
+  display:grid;
+  gap:14px;
   width:100%;
   padding:0 12px;
-  box-sizing:border-box;
+}
+
+.poster-item{
+  width:100%;
+  min-width:0;
 }
 
 .poster-item img{
@@ -69,17 +70,14 @@ main,
   display:block;
 }
 
-@media (max-width:768px){
+/* 예정 전시 */
+body.upcoming-page .poster-grid{
+  grid-template-columns:repeat(3, 1fr);
+}
 
-  /* 지난 전시 → 4열 */
-  .archive-page .poster-grid{
-    grid-template-columns:repeat(4, 1fr);
-  }
-
-  /* 예정 전시 → 3열 */
-  .upcoming-page .poster-grid{
-    grid-template-columns:repeat(3, 1fr);
-  }
+/* 지난 전시 */
+body.archive-page:not(.upcoming-page) .poster-grid{
+  grid-template-columns:repeat(4, 1fr);
 }
 
 /* =========================
@@ -100,7 +98,6 @@ main,
   margin:0 auto;
 }
 
-/* 포스터 크게 */
 .hall-poster{
   width:100%;
   max-width:320px;
@@ -108,45 +105,33 @@ main,
   display:block;
 }
 
-/* 텍스트 */
-.hall-left{
-  font-size:14px;
-  line-height:1.6;
-}
-
 /* =========================
    EXHIBITION DETAIL
 ========================= */
 
-/* 🔥 포스터 크게 */
+/* 포스터 */
 body.exhibition-detail figure.exhibition-poster img{
   width:90% !important;
-  max-width:none !important;
-  height:auto !important;
+  height:auto;
   display:block;
   margin:0 auto;
 }
 
-/* 전시 정보 텍스트 */
-#note-profile{
-  max-width:100%;
-  padding:0 16px;
-  box-sizing:border-box;
+/* 텍스트 영역 */
+body.exhibition-detail #note-profile{
+  max-width:100% !important;
+  padding:0 10px;
 }
 
-#exhibition-info{
-  font-size:14px;
-  line-height:1.5;
-}
-
-/* 본문 텍스트 */
-.exhibition-text{
-  font-size:14px;
-  line-height:1.6;
+body.exhibition-detail .exhibition-text{
+  max-width:none !important;
+  width:100%;
+  margin:0;
+  padding:0;
 }
 
 /* =========================
-   버튼 영역
+   버튼
 ========================= */
 
 .main-links{
@@ -154,7 +139,7 @@ body.exhibition-detail figure.exhibition-poster img{
 }
 
 /* =========================
-   기타 안정화
+   안정화
 ========================= */
 
 img{
@@ -166,300 +151,4 @@ img{
   box-sizing:border-box;
 }
 
-/* 기존 코드들 */
-
-
-
-
-/* =========================
-   MOBILE FIX (FINAL)
-========================= */
-
-@media (max-width:768px){
-
-  /* GRID 중앙 정렬 */
-  .archive-grid,
-  .poster-grid{
-    width:100%;
-    max-width:100%;
-    margin:0 auto;
-    padding:0 16px;
-  }
-
-  /* 상세 포스터 중앙 */
-  body.exhibition-detail figure.exhibition-poster img{
-    width:90% !important;
-    margin:0 auto !important;
-    display:block;
-  }
-
-  /* 텍스트 여백 축소 */
-  #note-profile{
-    max-width:100%;
-    padding:0 12px;
-  }
-
-  .exhibition-text{
-    max-width:100%;
-    padding:0;
-  }
-
 }
-
-@media (max-width:768px){
-
-  body.upcoming-page .archive-grid{
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap:16px;
-    padding:0 16px;
-  }
-
-}
-
-@media (max-width:768px){
-
-  body.archive-page:not(.upcoming-page) .archive-grid{
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap:14px;
-    padding:0 16px;
-  }
-
-}
-
-@media (max-width:768px){
-
-  .archive-grid{
-    width:100%;
-    max-width:100%;
-    margin:0 auto;
-    padding:0 16px;
-  }
-
-}
-
-@media (max-width:768px){
-
-  figure.exhibition-poster img{
-    display:block;
-    margin:0 auto;
-  }
-
-}
-
-@media (max-width:768px){
-
-  #note-profile{
-    padding:0 12px;
-  }
-
-}
-
-@media (max-width:768px){
-
-  body.archive-page .archive-grid{
-    display:grid !important;
-    grid-template-columns: repeat(3, 1fr) !important; /* 예정전시 기준 */
-    justify-content:center;   /* 🔥 핵심 */
-    margin:0 auto !important;
-  }
-
-}
-
-@media (max-width:768px){
-
-  body.archive-page:not(.upcoming-page) .archive-grid{
-    grid-template-columns: repeat(4, 1fr) !important;
-  }
-
-}
-
-@media (max-width:768px){
-
-  .archive-grid{
-    justify-items:center;   /* 🔥 아이템 중앙 */
-  }
-
-}
-
-@media (max-width:768px){
-
-  /* 🔥 grid 강제 재정의 */
-  .archive-grid{
-    display:grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap:12px !important;
-    padding:0 12px !important;
-    margin:0 auto !important;
-  }
-
-  /* 🔥 핵심: item이 밀지 못하게 차단 */
-  .archive-grid .poster-item{
-    width:100% !important;
-    min-width:0 !important;   /* 🔥 매우 중요 */
-  }
-
-  /* 🔥 이미지가 넘치지 않게 */
-  .archive-grid img{
-    width:100% !important;
-    height:auto !important;
-    display:block;
-  }
-
-}
-
-@media (max-width:768px){
-
-  body.archive-page:not(.upcoming-page) .archive-grid{
-    grid-template-columns: repeat(4, 1fr) !important;
-  }
-
-}
-
-@media (max-width:768px){
-
-  /* 🔥 grid는 그대로 두고 */
-  .archive-grid{
-    grid-template-columns: repeat(3, 1fr) !important;
-  }
-
-  /* 🔥 진짜 핵심: 아이템 크기 강제 해제 */
-  .archive-grid .poster-item{
-    width:100% !important;
-    max-width:100% !important;
-    min-width:0 !important;
-  }
-
-  /* 🔥 이미지도 제한 */
-  .archive-grid img{
-    width:100% !important;
-    max-width:100% !important;
-    height:auto;
-  }
-
-}
-
-@media (max-width:768px){
-
-  body.archive-page:not(.upcoming-page) .archive-grid{
-    grid-template-columns: repeat(4, 1fr) !important;
-  }
-
-}
-
-@media (max-width:768px){
-
-  /* 포스터 중앙 */
-  body.exhibition-detail figure.exhibition-poster{
-    width:100%;
-    text-align:center;
-  }
-
-  body.exhibition-detail figure.exhibition-poster img{
-    display:block;
-    margin:0 auto !important;
-  }
-
-  /* 텍스트 여백 */
-  #note-profile{
-    max-width:100% !important;
-    padding:0 16px !important;
-    margin:0 auto;
-  }
-
-  .exhibition-text{
-    max-width:100% !important;
-    padding:0 !important;
-  }
-
-}
-
-@media (max-width:768px){
-
-  /* 포스터 중앙 */
-  body.exhibition-detail figure.exhibition-poster img{
-    display:block !important;
-    margin-left:auto !important;
-    margin-right:auto !important;
-  }
-
-  /* 텍스트 여백 */
-  body.exhibition-detail #note-profile{
-    max-width:100% !important;
-    padding-left:12px !important;
-    padding-right:12px !important;
-  }
-
-  body.exhibition-detail .exhibition-text{
-    max-width:100% !important;
-    padding:0 !important;
-  }
-
-}
-
-@media (max-width:768px){
-
-  body.exhibition-detail figure.exhibition-poster{
-    display:block !important;
-    width:100% !important;
-    text-align:center !important;
-  }
-
-  body.exhibition-detail figure.exhibition-poster img{
-    display:block !important;
-    margin-left:auto !important;
-    margin-right:auto !important;
-  }
-
-}
-
-@media (max-width:768px){
-
-  body.exhibition-detail main,
-  body.exhibition-detail section,
-  body.exhibition-detail #note-profile{
-    max-width:100% !important;
-    padding-left:12px !important;
-    padding-right:12px !important;
-    margin:0 auto !important;
-  }
-
-  body.exhibition-detail .exhibition-text{
-    max-width:100% !important;
-    padding:0 !important;
-  }
-
-}
-
-@media (max-width:768px){
-
-  body.exhibition-detail *{
-    max-width:100% !important;
-  }
-
-}
-
-@media (max-width:768px){
-
-  body.exhibition-detail #note-profile{
-    max-width:none !important;
-    width:100% !important;
-    margin:0 auto !important;
-  }
-
-  body.exhibition-detail .exhibition-text{
-    max-width:none !important;
-    width:100% !important;
-    margin:0 !important;
-  }
-
-}
-
-@media (max-width:768px){
-
-  body.exhibition-detail{
-    padding-left:8px !important;
-    padding-right:8px !important;
-  }
-
-}
-

@@ -762,3 +762,79 @@ a{
   filter:brightness(1.03);
 
 }
+
+
+/* =========================
+   HALL TYPOGRAPHY
+========================= */
+
+.hall{
+  color:#eaeaea;
+}
+
+.hall .artist-profile{
+  font-size:13.5px;
+  line-height:1.5;
+  color:#cfcfcf;
+}
+
+.hall-guide{
+  font-size:13px;
+  line-height:1.5;
+  color:#d8d8d8;
+  margin:20px 0 24px;
+}
+
+.hall .artist-note{
+  font-size:14px;
+  line-height:1.6;
+  color:#eaeaea;
+  letter-spacing:0;
+}
+
+.hall .artist-note p{
+  margin:6px 0;
+}
+
+/* PC에서만 살짝 크게 */
+@media (min-width:769px){
+  .hall .artist-note{
+    font-size:15px;
+    line-height:1.7;
+  }
+}
+
+/* =========================
+   EXHIBITION TYPO
+========================= */
+
+#exhibition-info{
+  font-size:13.5px;
+  line-height:1.35;
+  color:#444;
+}
+
+#exhibition-info p{
+  margin:2px 0;
+}
+
+.exhibition-text{
+  font-size:15px;
+  line-height:1.6;
+  word-break:keep-all;
+  letter-spacing:0;
+  color:#222;
+}
+
+.exhibition-text p{
+  margin:6px 0;
+}
+
+.exhibition-text strong,
+.section-title{
+  font-size:16px;
+  font-weight:600;
+  margin:14px 0 6px;
+  display:block;
+  color:#111;
+}
