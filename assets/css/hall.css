@@ -395,17 +395,6 @@ color:#fff;
   letter-spacing:.05em;
 }
 
-.exhibition img{
-  transition:transform .35s ease, box-shadow .35s ease;
-}
-
-body.hall .exhibition img:hover{
-
-  box-shadow:
-  0 20px 42px rgba(0,0,0,.28),
-  0 6px 14px rgba(0,0,0,.18);
-}
-
 .profile-subtitle{
   margin-top:28px;
   margin-bottom:12px;
@@ -485,4 +474,22 @@ body.hall .guestbook-form textarea{
 body.hall .guestbook-form input{
   width:100%;
   max-width:720px;
+}
+
+/* =========================
+   Guestbook Form Fix
+========================= */
+
+body.hall .guestbook-form{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+body.hall .guestbook-form textarea{
+  width:80%;
+}
+
+body.hall .guestbook-form button{
+  white-space:nowrap;
 }

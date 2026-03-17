@@ -451,3 +451,326 @@ body.home .poster-item figcaption{
 .poster-wrap:hover .poster-caption {
   opacity: 1;
 }
+
+/* =====================================================
+   Gallery Window – Page Scope Protection
+   (Final CSS Stabilization)
+===================================================== */
+
+/* ---------- Home ---------- */
+
+body.home main,
+body.home section,
+body.home article{
+  position:relative;
+}
+
+/* ---------- Archive ---------- */
+
+body.archive-page{
+  background:#eef4f8;
+  color:#222;
+}
+
+/* ---------- Hall ---------- */
+
+body.hall{
+  background:#0f1114;
+  color:#e6e7e9;
+}
+
+/* ---------- Exhibition Detail ---------- */
+
+body.exhibition-detail{
+  background:#eef4f8;
+  color:#222;
+}
+
+/* ---------- Prevent Viewer Interference ---------- */
+
+body.exhibition-detail .viewer,
+body.exhibition-detail #exhibition-image,
+body.exhibition-detail #artwork-counter{
+  display:none !important;
+}
+
+/* ---------- Text Rendering Stability ---------- */
+
+body.exhibition-detail .exhibition-text{
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans KR",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+}
+
+/* =====================================================
+   Gallery Window Layout Protection
+===================================================== */
+
+/* grid 계산 안정화 */
+*, *::before, *::after{
+  box-sizing:border-box;
+}
+
+/* 이미지 레이아웃 보호 */
+img{
+  max-width:100%;
+  height:auto;
+  display:block;
+}
+
+/* 모바일 overflow 방지 */
+body{
+  overflow-x:hidden;
+}
+
+/* =====================================================
+   Typography Stabilization
+===================================================== */
+
+/* 기본 텍스트 */
+
+body{
+  font-size:16px;
+  line-height:1.6;
+  letter-spacing:0;
+}
+
+/* 제목 */
+
+h1,h2,h3,h4{
+  line-height:1.35;
+  letter-spacing:0.01em;
+}
+
+/* 문단 */
+
+p{
+  margin:0.6em 0;
+}
+
+/* 캡션 */
+
+figcaption{
+  font-size:0.95rem;
+  line-height:1.5;
+}
+
+/* 링크 */
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+/* =====================================================
+   Image Lazy Fade Effect
+===================================================== */
+
+img{
+
+  opacity:0;
+
+  filter:blur(8px);
+
+  transform:scale(1.02);
+
+  transition:
+    opacity .6s ease,
+    filter .6s ease,
+    transform .6s ease;
+
+}
+
+img.loaded{
+
+  opacity:1;
+
+  filter:blur(0);
+
+  transform:scale(1);
+
+}
+
+/* =====================================================
+   Gallery Caption Style
+===================================================== */
+
+.poster-item figcaption{
+
+  margin-top:12px;
+
+  font-size:15px;
+  line-height:1.5;
+
+  color:#2a2a2a;
+
+  letter-spacing:0.02em;
+
+}
+
+/* 작가 이름 강조 */
+
+.poster-item figcaption strong{
+  font-weight:600;
+}
+
+/* hover 시 약한 강조 */
+
+.poster-item:hover figcaption{
+  color:#000;
+}
+
+/* =====================================================
+   Poster Caption Hover Effect
+===================================================== */
+
+.poster-item{
+  position:relative;
+}
+
+/* 기본 상태 */
+
+.poster-item figcaption{
+
+  margin-top:12px;
+
+  font-size:15px;
+  line-height:1.5;
+
+  color:#2a2a2a;
+
+  opacity:0.75;
+
+  transition:
+    opacity .35s ease,
+    transform .35s ease;
+
+}
+
+/* hover 상태 */
+
+.poster-item:hover figcaption{
+
+  opacity:1;
+
+  transform:translateY(-2px);
+
+}
+
+/* =====================================================
+   Poster Caption Hover Effect
+===================================================== */
+
+.poster-item{
+  position:relative;
+}
+
+/* 기본 상태 */
+
+.poster-item figcaption{
+
+  margin-top:12px;
+
+  font-size:15px;
+  line-height:1.5;
+
+  color:#2a2a2a;
+
+  opacity:0.75;
+
+  transition:
+    opacity .35s ease,
+    transform .35s ease;
+
+}
+
+/* hover 상태 */
+
+.poster-item:hover figcaption{
+
+  opacity:1;
+
+  transform:translateY(-2px);
+
+}
+
+/* =====================================================
+   Poster Gloss Effect
+===================================================== */
+
+.poster-item{
+  position:relative;
+  overflow:hidden;
+}
+
+/* 빛 레이어 */
+
+.poster-item::after{
+
+  content:"";
+
+  position:absolute;
+
+  top:-120%;
+  left:-60%;
+
+  width:60%;
+  height:300%;
+
+  background:linear-gradient(
+    75deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,.15) 50%,
+    rgba(255,255,255,0) 100%
+  );
+
+  transform:rotate(25deg);
+
+  transition:transform .9s ease;
+
+  pointer-events:none;
+
+}
+
+/* hover 시 빛 이동 */
+
+.poster-item:hover::after{
+  transform:translateX(220%) rotate(25deg);
+}
+
+/* =====================================================
+   Exhibition Poster Image
+===================================================== */
+
+.poster-item img,
+.exhibition img{
+
+  display:block;
+  width:100%;
+  height:auto;
+
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease,
+    filter .35s ease;
+
+}
+
+.poster-item img:hover,
+.exhibition img:hover{
+
+  transform:scale(1.02) translateY(-2px);
+
+  box-shadow:
+    0 16px 36px rgba(0,0,0,0.25),
+    0 4px 10px rgba(0,0,0,0.15);
+
+  filter:brightness(1.03);
+
+}

@@ -89,22 +89,27 @@
 ===================================================== */
 
 .exhibitions{
+
   display:grid;
 
-  grid-template-columns:repeat(2,1fr);
-
-  gap:80px 120px;
-
+  width:100%;
   max-width:1400px;
+
   margin:48px auto 12px;
 
   padding:0 80px;
 
-  width:100%;
   box-sizing:border-box;
+
+  justify-content:center;
   justify-items:center;
 
 }
+
+
+/* =====================================================
+   EXHIBITION CARD
+===================================================== */
 
 .exhibition{
   position:relative;
@@ -112,34 +117,42 @@
   max-width:420px;
 }
 
-.exhibitions{
-  justify-items:center;
-}
 
-/* grid modes */
+/* =====================================================
+   GRID MODES
+===================================================== */
+
+/* 전시 1~2개 */
 
 .exhibitions.grid-2{
+
   grid-template-columns:repeat(2,minmax(0,420px));
-  justify-content:center;
+
+  gap:120px;
+
 }
+
+
+/* 전시 3~6개 */
 
 .exhibitions.grid-3{
+
   grid-template-columns:repeat(3,minmax(0,360px));
-  justify-content:center;
+
+  gap:64px;
+
 }
+
+
+/* 전시 7개 이상 */
 
 .exhibitions.grid-4{
+
   grid-template-columns:repeat(4,minmax(0,300px));
-  justify-content:center;
+
+  gap:48px;
+
 }
-
-
-/* spacing */
-
-.exhibitions.grid-2{ gap:120px; }
-.exhibitions.grid-3{ gap:48px; }
-.exhibitions.grid-4{ gap:36px; }
-
 
 /* =====================================================
    EXHIBITION CARD
@@ -154,21 +167,6 @@
   width:100%;
   height:auto;
   object-fit:cover;
-
-  transition:
-    transform .35s ease,
-    box-shadow .35s ease;
-}
-
-
-/* hover */
-
-body.home .exhibition img:hover{
-  transform:scale(1.03) translateY(-4px);
-
-  box-shadow:
-    0 20px 42px rgba(0,0,0,.28),
-    0 6px 14px rgba(0,0,0,.18);
 }
 
 
@@ -249,11 +247,6 @@ body.home .meta{
     width:100%;
   }
 
-  .exhibition img{
-    width:100%;
-    height:auto;
-  }
-
   main,
   .bottom-area{
     padding-left:16px;
@@ -263,26 +256,8 @@ body.home .meta{
 
 }
 
-body.home .exhibition img{
-width:100%;
-height:auto;
-display:block;
-}
-
-body.home .exhibition img{
-width:100%;
-height:auto;
-display:block;
-}
-
 .exhibition{
   width:100%;
-}
-
-.exhibition img{
-  width:100%;
-  height:auto;
-  display:block;
 }
 
 body.home .exhibition{
@@ -291,4 +266,46 @@ body.home .exhibition{
 
 body.home .exhibition-body{
   display:block;
+}
+
+/* =====================================================
+   EXHIBITION GRID
+===================================================== */
+
+.exhibitions{
+
+  display:grid;
+
+  width:100%;
+  max-width:1400px;
+
+  margin:48px auto 12px;
+
+  padding:0 80px;
+
+  box-sizing:border-box;
+
+  justify-content:center;
+  justify-items:center;
+
+}
+
+
+/* =====================================================
+   GRID MODES
+===================================================== */
+
+.exhibitions.grid-2{
+  grid-template-columns:repeat(2,minmax(0,420px));
+  gap:120px;
+}
+
+.exhibitions.grid-3{
+  grid-template-columns:repeat(3,minmax(0,360px));
+  gap:64px;
+}
+
+.exhibitions.grid-4{
+  grid-template-columns:repeat(4,minmax(0,300px));
+  gap:48px;
 }

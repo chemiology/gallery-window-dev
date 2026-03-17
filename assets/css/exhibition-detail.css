@@ -398,3 +398,58 @@ body.archive-detail-page .exhibition-text strong,
 body.archive-detail-page .exhibition-text b{
   color:#222;
 }
+
+/* =========================
+   Exhibition Detail Fix
+========================= */
+
+body.exhibition-detail{
+  background:#eef4f8 !important;
+}
+
+/* 텍스트 영역 */
+body.exhibition-detail .exhibition-text{
+  max-width:680px;
+  margin:0 auto;
+  color:#222;
+  letter-spacing:0;
+}
+
+/* 전시정보 줄간격 */
+body.exhibition-detail .exhibition-text p{
+  margin:4px 0;
+  text-indent:0;
+}
+
+/* span 구조 정리 */
+body.exhibition-detail .exhibition-text span{
+  display:block;
+  margin-bottom:2px;
+  text-indent:0;
+}
+
+/* 소제목 */
+body.exhibition-detail .exhibition-text strong,
+body.exhibition-detail .exhibition-text b{
+  display:block;
+  margin-top:28px;
+  margin-bottom:8px;
+  color:#222;
+  text-align:left;
+}
+
+/* =========================
+   Back to List Button
+========================= */
+
+body.exhibition-detail .back-to-list{
+  margin-top:60px;
+  margin-bottom:80px;
+  text-align:center;
+  border-top:none;
+}
+
+body.exhibition-detail .back-to-list a{
+  font-size:18px;
+  color:#444;
+}
