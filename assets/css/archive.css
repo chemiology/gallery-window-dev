@@ -141,7 +141,7 @@ body.archive-page.past-page .archive-grid{
 
 
 /* =====================================================
-   MOBILE GRID
+   MOBILE GRID (FINAL FIX)
 ===================================================== */
 
 @media (max-width:768px){
@@ -151,24 +151,35 @@ body.archive-page.past-page .archive-grid{
   }
 
   body.archive-page main{
-    padding:0 12px;
+    padding:0 16px;
   }
 
   body.archive-page .archive-grid{
 
-    grid-template-columns:repeat(3,1fr);
+    /* 🔴 핵심 수정 */
+    grid-template-columns:repeat(2,1fr);
 
-    gap:16px;
+    gap:18px;
 
     width:100%;
-
     margin:0 auto;
-
     padding:0;
 
     box-sizing:border-box;
-
   }
+
+  /* 🔴 추가 (중요) */
+  .poster-item{
+    width:100%;
+    max-width:none !important;
+  }
+
+  .poster-item img{
+    width:100%;
+    height:auto;
+  }
+
+}
 
   .poster-item img{
     width:100%;
