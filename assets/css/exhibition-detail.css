@@ -30,8 +30,8 @@ body.archive-detail-page{
 ========================================= */
 
 .exhibition-poster{
-  width:66%;
-  margin:0 auto 36px;
+  max-width: 480px;   /* ← 크기 제한 (조절 가능) */
+  margin: 0 auto;     /* ← 중앙 정렬 */
   text-align:center;
   display:block; 
   display:flex;
@@ -67,7 +67,7 @@ figure.exhibition-support-image img{
 ========================================= */
 
 .exhibition-text{
-  max-width:680px;
+  max-width:720px;
   margin:0 auto;
 
   font-size:19px;
@@ -147,7 +147,7 @@ figure.exhibition-support-image img{
 ========================================= */
 
 #note-profile{
-  max-width:720px;
+  max-width: none;
   margin:0 auto;
   text-align:left;
 }
