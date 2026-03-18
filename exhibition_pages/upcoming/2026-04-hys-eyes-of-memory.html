@@ -16,7 +16,7 @@ const EXHIBITION = {
   titleEN: "Eyes of Memory",
   start: "2026-04-01",
   end: "2026-06-30",
-  poster: "exhibition_pages/images/2026-04-hys-eyes-of-memory.jpg",
+  poster: "../exhibition_pages/images/2026-04-hys-eyes-of-memory.jpg",
   state: "upcoming"   // upcoming 또는 past
 };
 </script>
@@ -72,7 +72,7 @@ const EXHIBITION = {
 </figure>
 
 <figure class="exhibition-support-image">
-  <img src="exhibition_pages/images/2026-04-hys-eyes-of-memorya.jpg"
+  <img src="../exhibition_pages/images/2026-04-hys-eyes-of-memorya.jpg"
        alt="Eyes of Memory – supplementary image">
 </figure>
 
@@ -105,8 +105,7 @@ const ex = EXHIBITION;
 
 const url = window.location.href;
 
-const posterURL =
-`https://gallerywindow.com${ex.poster}`;
+const posterURL = ex.poster;
 
 document.getElementById("meta-image").href = posterURL;
 document.getElementById("schema-image").content = posterURL;
@@ -119,8 +118,8 @@ const state = ex.state || "upcoming";
 
 const listPage =
 state === "past"
-? "archive/past.html"
-: "archive/upcoming.html";
+? "../archive/past.html"
+: "../archive/upcoming.html";
 
 const listText =
 state === "past"

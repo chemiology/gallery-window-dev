@@ -16,7 +16,7 @@ const EXHIBITION = {
   titleEN: "Being Beyond Time(Media Art)",
   start: "2026-04-01",
   end: "2026-06-30",
-  poster: "exhibition_pages/images/2026-04-hys-being-beyond-time.jpg",
+  poster: "../exhibition_pages/images/2026-04-hys-being-beyond-time.jpg",
   state: "upcoming"   // upcoming 또는 past
 };
 </script>
@@ -100,8 +100,7 @@ const ex = EXHIBITION;
 
 const url = window.location.href;
 
-const posterURL =
-`https://gallerywindow.com${ex.poster}`;
+const posterURL = ex.poster;
 
 document.getElementById("meta-image").href = posterURL;
 document.getElementById("schema-image").content = posterURL;
@@ -114,8 +113,8 @@ const state = ex.state || "upcoming";
 
 const listPage =
 state === "past"
-? "archive/past.html"
-: "archive/upcoming.html";
+? "../archive/past.html"
+: "../archive/upcoming.html";
 
 const listText =
 state === "past"
