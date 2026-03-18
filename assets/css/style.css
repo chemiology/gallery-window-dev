@@ -1123,3 +1123,37 @@ body.exhibition-detail .back-to-list a:hover{
   color:#000;
   text-decoration:underline;
 }
+
+/* =========================
+   HALL TEXT TONE FIX
+========================= */
+
+body.hall .artist-profile{
+  color:#d8dbe0 !important;   /* 기존보다 밝게 */
+}
+
+body.hall .artist-note{
+  color:#e2e5e9 !important;   /* 본문은 더 밝게 */
+}
+
+/* 가독성 안정 */
+body.hall .artist-note p{
+  opacity:0.92;
+}
+
+/* =========================
+   GUESTBOOK TITLE UNIFY
+========================= */
+
+body.hall .guestbook h3{
+  font-size:16px;
+  font-weight:500;
+  color:#d8dbe0;
+  margin-bottom:16px;
+}
+
+/* 리스트 텍스트 */
+body.hall .guestbook li{
+  font-size:14px;
+  color:#cfd3d8;
+}
