@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if(info){
     info.innerHTML = `
-      <p>${ex.artist} 온라인전시_${ex.titleKR}</p>
+      <p>${ex.artist} _${ex.titleKR}</p>
       <p>- 전시제목 : ${ex.titleKR} / ${ex.titleEN}</p>
       <p>- 전시기간 : ${ex.start} ~ ${ex.end}</p>
       <p>- 전시장소 : 갤러리 창 (gallerywindow.com)</p>
@@ -201,7 +201,7 @@ async function loadNoteProfile(){
     const id = file.replace(".html","");
 
     const res = await fetch(
-      BASE_PATH + `exhibition_pages/txt/${id}.txt`
+      `txt/${id}.txt`
     );
 
     if(!res.ok){
