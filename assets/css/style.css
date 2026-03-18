@@ -992,7 +992,7 @@ body.exhibition-detail .back-to-list a:hover{
   color:#000;
 }
 
-
+/* ===== MOBILE OLD (DISABLED) =====
 @media (max-width:768px){
 
   body.exhibition-detail #note-profile{
@@ -1009,6 +1009,7 @@ body.exhibition-detail .back-to-list a:hover{
   }
 
 }
+*/
 
 .notice-detail{
   max-width:720px;
@@ -1156,4 +1157,55 @@ body.hall .guestbook h3{
 body.hall .guestbook li{
   font-size:14px;
   color:#cfd3d8;
+}
+
+/* =========================
+   HALL TEXT FINAL TUNING
+========================= */
+
+/* 작가 프로필 */
+body.hall .artist-profile{
+  color:#d4d8dd !important;
+  opacity:0.9;
+}
+
+/* 작가 노트 */
+body.hall .artist-note{
+  color:#e0e4e8 !important;
+  opacity:0.92;
+}
+
+/* 문단 안정화 */
+body.hall .artist-note p{
+  line-height:1.65;
+}
+
+/* 강조 텍스트 */
+body.hall .artist-note strong{
+  color:#f0f2f4;
+}
+
+/* ===== [ADD] HALL TEXT FIX ===== */
+body.hall .artist-profile{
+  color:#d4d8dd !important;
+}
+
+body.hall .artist-note{
+  color:#e0e4e8 !important;
+}
+
+/* ===== [ADD] NOTICE FIX ===== */
+.notice-detail{
+  max-width:720px;
+  margin:0 auto;
+  padding:40px 16px;
+}
+
+.notice-nav{
+  text-align:center;
+  margin:60px 0 40px;
+}
+
+.notice-nav a{
+  color:#444;
 }

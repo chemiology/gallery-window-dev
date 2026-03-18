@@ -1,12 +1,12 @@
 /* ======================================
-   MOBILE BASE (≤768px)
-   – Stable Foundation Version
+   MOBILE FINAL (≤768px)
+   – Safe Clean Version
 ====================================== */
 
 @media (max-width:768px){
 
 /* =========================
-   GLOBAL RESET (SAFE)
+   GLOBAL
 ========================= */
 
 html, body{
@@ -28,12 +28,13 @@ img{
 }
 
 /* =========================
-   HOME (대표화면)
+   HOME
 ========================= */
 
 body.home .exhibitions{
   display:grid;
   gap:32px;
+  grid-template-columns:repeat(3,1fr); /* 기본 3열 */
 }
 
 /* 1개 */
@@ -46,12 +47,7 @@ body.home .exhibitions:has(.exhibition:nth-child(2):last-child){
   grid-template-columns:repeat(2,1fr);
 }
 
-/* 3개 이상 */
-body.home .exhibitions{
-  grid-template-columns:repeat(3,1fr);
-}
-
-/* 카드 크기 */
+/* 카드 */
 body.home .exhibition{
   width:100%;
   max-width:320px;
@@ -59,18 +55,19 @@ body.home .exhibition{
 }
 
 /* =========================
-   ARCHIVE (핵심 문제 영역)
+   ARCHIVE (핵심 안정 영역)
 ========================= */
 
-/* grid 강제 재정의 */
 body.archive-page .archive-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:16px;
 
   width:100%;
-  padding:0 12px;
   margin:0 auto;
+  padding:0 12px;
+
+  justify-items:center; /* 🔥 쏠림 방지 핵심 */
 }
 
 /* 지난 전시 */
@@ -78,36 +75,21 @@ body.archive-page:not(.upcoming-page) .archive-grid{
   grid-template-columns:repeat(4,1fr);
 }
 
-/* 쏠림 방지 핵심 */
+/* 아이템 안정 */
 body.archive-page .poster-item{
   width:100%;
+  max-width:120px;  /* 🔥 핵심 */
   min-width:0;
 }
 
 body.archive-page .poster-item img{
   width:100%;
-}
-
-body.archive-page .archive-grid{
-  justify-content:center;
-}
-
-body.archive-page .poster-item{
-  width:100%;
-  min-width:0;
-  max-width:100%;
-}
-
-body.archive-page .poster-item img{
-  width:100%;
-  display:block;
 }
 
 /* =========================
    HALL
 ========================= */
 
-/* 기존 grid 무력화 */
 body.hall .exhibition-body{
   display:block;
 }
@@ -127,30 +109,29 @@ body.hall .hall-poster{
    EXHIBITION DETAIL
 ========================= */
 
-/* 포스터 중앙 */
+/* 포스터 */
 body.exhibition-detail figure.exhibition-poster{
-  width:100%;
   text-align:center;
 }
 
 body.exhibition-detail figure.exhibition-poster img{
-  width:95%;   /* 기존 90 → 확대 */
-  max-width:520px;  /* 너무 커지는 것 방지 */
+  width:95%;
+  max-width:520px;
   margin:0 auto;
 }
 
-/* 텍스트 영역 */
+/* 텍스트 */
 body.exhibition-detail #note-profile{
   width:100%;
-  padding:0 8px;   /* 기존 12 → 절반 */
-  box-sizing:border-box;
+  padding:0 4px;   /* 🔥 최종 */
 }
 
 body.exhibition-detail .exhibition-text{
   width:100%;
-  padding:0 4px;
+  padding:0 2px;
 }
 
+/* 보조 이미지 */
 body.exhibition-detail .exhibition-support-image img{
   width:90%;
   max-width:480px;
@@ -158,7 +139,7 @@ body.exhibition-detail .exhibition-support-image img{
 }
 
 /* =========================
-   TYPOGRAPHY (모바일 가독성)
+   TYPOGRAPHY
 ========================= */
 
 body.exhibition-detail #exhibition-info{
@@ -167,8 +148,8 @@ body.exhibition-detail #exhibition-info{
 }
 
 body.exhibition-detail .exhibition-text{
-  font-size:15px;
-  line-height:1.6;
+  font-size:15.5px;
+  line-height:1.7;
 }
 
 body.exhibition-detail .section-title{
@@ -177,161 +158,56 @@ body.exhibition-detail .section-title{
 }
 
 /* =========================
-   SAFE OVERRIDE (필요 최소)
+   BUTTON (모바일 핵심 UX)
 ========================= */
 
-/* layout 깨짐 방지 */
+body.exhibition-detail{
+  padding-bottom:90px;
+}
+
+body.exhibition-detail .back-to-list{
+  position:fixed;
+  left:50%;
+  bottom:8px;
+  transform:translateX(-50%);
+
+  background:#fff;
+  padding:12px 18px;
+
+  border-radius:8px;
+  border:1px solid rgba(0,0,0,0.08);
+
+  box-shadow:
+    0 6px 18px rgba(0,0,0,0.18),
+    0 2px 6px rgba(0,0,0,0.12);
+
+  z-index:1000;
+}
+
+body.exhibition-detail .back-to-list a{
+  font-size:14px;
+  font-weight:500;
+  color:#222;
+}
+
+/* =========================
+   INTERACTION SAFE
+========================= */
+
+body.exhibition-detail figure img:active{
+  transform:scale(0.98);
+}
+
+a, button{
+  min-height:44px;
+}
+
+/* =========================
+   SAFE GUARD
+========================= */
+
 body.exhibition-detail *{
   max-width:100%;
 }
-
-}
-
-@media (max-width:768px){
-
-  body.exhibition-detail .back-to-list{
-    position:fixed;
-    left:50%;
-    bottom:0;   /* 🔥 8 → 0 (바닥) */
-    transform:translateX(-50%);
-
-    background:#fff;
-    padding:10px 16px;
-
-    border:1px solid #ccc;
-    border-radius:6px;
-
-    box-shadow:0 4px 12px rgba(0,0,0,0.15);
-
-    z-index:1000;
-  }
-
-  body.exhibition-detail .back-to-list a{
-    font-size:13px;
-    color:#333;
-  }
-
-}
-
-body.exhibition-detail{
-  padding-bottom:80px;
-}
-
-@media (max-width:768px){
-
-  body.exhibition-detail .back-to-list{
-    position:fixed;
-    left:50%;
-    bottom:16px;
-    transform:translateX(-50%);
-
-    background:#fff;
-    padding:12px 18px;
-
-    border-radius:8px;
-    border:1px solid rgba(0,0,0,0.08);
-
-    box-shadow:
-      0 6px 18px rgba(0,0,0,0.18),
-      0 2px 6px rgba(0,0,0,0.12);
-
-    z-index:1000;
-
-    backdrop-filter:blur(6px);
-  }
-
-  body.exhibition-detail .back-to-list a{
-    font-size:14px;
-    font-weight:500;
-    color:#222;
-  }
-
-}
-
-@media (max-width:768px){
-
-  body.exhibition-detail .back-to-list:active{
-    transform:translateX(-50%) scale(0.96);
-  }
-
-}
-
-@media (max-width:768px){
-
-  body.exhibition-detail{
-    padding-bottom:90px;
-  }
-
-}
-
-@media (max-width:768px){
-
-  body.exhibition-detail .exhibition-text{
-    font-size:15.5px;
-    line-height:1.7;
-    letter-spacing:-0.01em;
-  }
-
-}
-
-@media (max-width:768px){
-
-  body.exhibition-detail figure img{
-    transition:transform 0.3s ease;
-  }
-
-  body.exhibition-detail figure img:active{
-    transform:scale(0.98);
-  }
-
-}
-
-@media (max-width:768px){
-
-  a, button{
-    min-height:44px;
-  }
-
-}
-
-@media (max-width:768px){
-
-  body.archive-page .archive-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:16px;
-
-    width:100%;
-    margin:0 auto;
-
-    justify-items:center;   /* 🔥 핵심 */
-  }
-
-  body.archive-page .poster-item{
-    width:100%;
-    max-width:120px;        /* 🔥 핵심 (쏠림 방지) */
-  }
-
-}
-
-@media (max-width:768px){
-
-  body.exhibition-detail .back-to-list{
-    bottom:8px;   /* 기존 16 → 더 아래 */
-  }
-
-}
-
-@media (max-width:768px){
-
-  body.exhibition-detail #note-profile{
-    padding-left:4px !important;
-    padding-right:4px !important;
-  }
-
-  body.exhibition-detail .exhibition-text{
-    padding-left:2px !important;
-    padding-right:2px !important;
-  }
 
 }
