@@ -16,7 +16,7 @@ const EXHIBITION = {
   titleEN: "Avatar II",
   start: "2026-02-15",
   end: "2026-03-31",
-  poster: "/exhibition_pages/images/2026-02-kks-avatar-ii.jpg",
+  poster: "exhibition_pages/images/2026-02-kks-avatar-ii.jpg",
   state: "upcoming"   // upcoming 또는 past
 };
 </script>
@@ -45,10 +45,10 @@ const EXHIBITION = {
 <meta name="author" id="meta-author">
 <meta name="keywords" id="meta-keywords">
 
-  <link rel="stylesheet" href="/assets/css/style.css">
-  <link rel="stylesheet" href="/assets/css/exhibition.css">
-  <link rel="stylesheet" href="/assets/css/exhibition-detail.css">
-  <link rel="stylesheet" href="/assets/css/mobile.css" media="(max-width:768px)">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/exhibition.css">
+  <link rel="stylesheet" href="assets/css/exhibition-detail.css">
+  <link rel="stylesheet" href="assets/css/mobile.css" media="(max-width:768px)">
 
 <!-- Structured Data -->
 <script type="application/ld+json" id="structured-data"></script>
@@ -88,7 +88,7 @@ const EXHIBITION = {
 
 </main>
 
-<script src="/assets/js/exhibition-detail.js"></script>
+<script src="assets/js/exhibition-detail.js"></script>
 
 <script>
 
@@ -114,8 +114,8 @@ const state = ex.state || "upcoming";
 
 const listPage =
 state === "past"
-? "/archive/past.html"
-: "/archive/upcoming.html";
+? "archive/past.html"
+: "archive/upcoming.html";
 
 const listText =
 state === "past"
