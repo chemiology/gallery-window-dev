@@ -188,7 +188,7 @@ async function loadNoteProfile() {
     const file = window.location.pathname.split("/").pop();
     const id = file.replace(".html", "");
 
-    const res = await fetch(`txt/${id}.txt`);
+    const res = await fetch(`/gallery-window-dev/exhibition_pages/txt/${id}.txt`);
 
     if (!res.ok) {
       console.warn("TXT not found:", id);
