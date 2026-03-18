@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Photo Base 소개</title>
+
+  <!-- 공통 최소 스타일 (폰트, 기본 리셋용) -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- 공지 상세 전용 스타일 (핵심) -->
+  <link rel="stylesheet" href="notice/notice.css">
+</head>
+
+<body class="notice-page">   <!-- ⭐ 반드시 추가 -->
+
+<main>
+
+<article class="notice-detail">
+
+  <header class="notice-header">
+    <h1>Photo Base 소개</h1>
+    <p class="notice-date">2026.02.13</p>
+  </header>
+
+  <!-- 이미지가 있으면 이 블록만 사용 -->
+  <figure class="notice-image">
+    <img src="assets/images/photobase01.jpg"
+         alt="Photo Base 검색창 이미지">
+  </figure>
+
+  <section class="notice-body">
+    <p>
+      사진전시정보 검색 시스템인 Photo Base를 소개합니다.
+    </p>
+
+    <p>
+      지난 10년 동안 국내에서 진행되는 사진전시정보를 데이터베이스로 구축해 왔고, 
+      '2026년 2월 3주차 사진전시 일정 (2/15~2/21)' 과 같은 제목으로 매주 전시정보를 제 블로그를 통해 공개해왔습니다. 
+      이번에 그동안 축적된 데이터베이스를 효과적으로 활용할 수 있도록 하기 위하여 Photo Base라는 이름으로 전시검색 시스템을 제작하여 공개합니다.
+    </p>
+
+    <p>
+      Photo Base 전시 검색은 2016년 중반부터 국내에서 개최된 사진 전시 정보를 구축해 온 데이터베이스로, 현재에도 지속적으로 업데이트되고 있습니다.
+      전시 제목이나 작가명, 전시장소와 전시기간이 확인되는 모든 사진 전시를 포함하고 있으며, ‘오늘의 전시’, ‘이주의 전시’, ‘이달의 전시’를 선택한 뒤 (필요한 경우 지역을 함께 선택하여) 검색하면 됩니다.
+      또한 작가명, 전시제목, 전시장, 기간 등을 조합하여 검색할 수 있습니다.
+      다만 기간검색은 작가, 전시제목, 전시장 중 하나 이상을 입력한 경우에만 사용할 수 있습니다.
+      화면에 처음 접속하면 데이터 로딩에 약 20~30초 정도 소요될 수 있습니다. 
+      ‘검색’ 버튼 옆에 ‘데이터 불러오는 중...’이라는 표기가 나오는 동안에는 검색을 할 수 없으나, 잠시 기다리면 ‘검색’ 버튼이 활성화되어 검색을 할 수 있게 됩니다.
+    </p>
+
+    <p>
+      Photo Base 전시검색은 웹과 휴대폰에서 모두 이용이 가능합니다. 
+      하기의 Photo Base 주소창을 클릭하면 바로 검색시스템이 엣지나 크롬 등 웹브라우저에 나타납니다. 
+      즐기찾기를 해 놓으면 필요할 때 바로 연결하여 사용할 수 있습니다. 
+      사용방법은 매우 간단하고, 직관적이어서 누구나 이용할 수 있습니다. 
+      전문가가 아닌 개인이 만들었기에 인터페이스는 보잘 것 없지만 2015년 하반기부터 현재까지 23,000 건 이상의 사진전 정보가 포함되어 있고 지금도 업데이트가 지속적으로 이루어지고 있으며 다양한 방식으로 검색이 가능합니다. 
+    </p>
+
+    <p>
+      하기의 Photo Base 주소를 클릭하면 접속할 수 있습니다.  
+
+    </p>
+
+    <p>
+      Photo Base의 구체적인 사용법과 휴대폰에 설치하는 방법등은 제 블로그에 오시면 확인하실 수 있고, 사용법 파일도 다운로드 할 수있습니다.
+      하기의 블로그 연결 주소를 클릭하면 접속할 수 있습니다.     </p>
+
+  </section>
+
+<p>
+  Photo Base 접속 주소는
+  <a href="https://script.google.com/macros/s/AKfycbx6EvlxwUFH4xl4_I1JOqDEkgx-46_wB3fqNwml_qccTS9hjHBlrKCyShGjzo61_RvB/exec"
+     target="_blank"
+     rel="noopener noreferrer">
+    <span class="official-site">공식 사이트</span>
+  </a>
+  입니다.
+</p>
+
+<p>
+  Photo Base의 사용방법은
+  <a href="https://blog.naver.com/chemiology/224168794152"
+     target="_blank"
+     rel="noopener noreferrer">
+    <span class="official-site">공식 사이트</span>
+  </a>
+  를 참고하세요.
+</p>
+
+
+
+  <nav class="notice-nav">
+    <a href="index.html">← 공지 목록으로 돌아가기</a>
+  </nav>
+
+</article>
+</main>
+
+<div class="page-fade" id="pageFade"></div>
+
+<script>
+window.addEventListener("load", function () {
+  document.body.classList.add("page-ready");   // ⭐ 이것도 추가
+});
+</script>
+
+</body>
+</html>
