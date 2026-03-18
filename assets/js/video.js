@@ -1,3 +1,10 @@
+/* BASE PATH 자동 처리 */
+
+const BASE_PATH = location.pathname.includes('/archive/') 
+  || location.pathname.includes('/exhibition_pages/')
+  ? '../'
+  : '';
+
 /* video page override */
 
 
@@ -13,7 +20,7 @@ let currentIndex = 0;
 
 /* 전시 제목 */
 
-fetch("/assets/config/gallery.json")
+fetch("assets/config/gallery.json")
 .then(r => r.json())
 .then(data => {
 
@@ -30,7 +37,7 @@ document.getElementById("videoTitle").innerText = ex.title;
 
 /* 영상 목록 */
 
-fetch("/assets/config/videos.json")
+fetch("assets/config/videos.json")
 .then(r => r.json())
 .then(data => {
 
@@ -187,7 +194,7 @@ backBtn.addEventListener("click", () => {
 
 const hall = params.get("hall") || "hall50";
 
-window.location.href = `/hall.html?hall=${hall}`;
+window.location.href = BASE_PATH + `hall.html?hall=${hall}`;
 
 });
 

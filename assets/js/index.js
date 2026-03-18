@@ -1,3 +1,10 @@
+/* =========================
+   BASE PATH
+========================= */
+
+const BASE_PATH = '';
+
+
 function getExhibitionStatus(ex) {
 
   const today = new Date();
@@ -24,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 async function loadGallery() {
   try {
 
-    const response = await fetch("/assets/config/gallery.json", { cache: "no-store" });
+    const response = await fetch(BASE_PATH + "assets/config/gallery.json", { cache: "no-store" });
 
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -137,14 +144,14 @@ function renderExhibitions(exhibitions) {
 
     const img = document.createElement("img");
 
-    img.src = `/assets/exhibitions/${exhibition.id}/poster.jpg`;
+    img.src = BASE_PATH + `assets/exhibitions/${exhibition.id}/poster.jpg`;
     img.alt = exhibition.title;
 
     img.style.cursor = "pointer";
     img.loading = "lazy";
 
     img.onerror = () => {
-      img.src = "/assets/images/poster-placeholder.jpg";
+      img.src = BASE_PATH + "assets/images/poster-placeholder.jpg";
     };
 
     const meta = document.createElement("div");
@@ -161,7 +168,7 @@ function renderExhibitions(exhibitions) {
         return;
       }
 
-  location.href = `hall.html?hall=${exhibition.hall}`;
+  location.href = BASE_PATH + `hall.html?hall=${exhibition.hall}`;
 };
     body.appendChild(posterWrap);
     block.appendChild(body);
@@ -240,19 +247,6 @@ window.addEventListener("load", () => {
   document.body.classList.add("page-ready");
 });
 
-function showErrorMessage() {
-
-  const container = document.querySelector(".exhibitions");
-
-  if (!container) return;
-
-  container.innerHTML = `
-    <div style="text-align:center;padding:60px;color:#aaa;">
-      Exhibition data could not be loaded.
-    </div>
-  `;
-}
-
 async function loadHeadlineNotice(noticeConfig) {
 
   if (!noticeConfig || !noticeConfig.file) return;
@@ -261,31 +255,6 @@ async function loadHeadlineNotice(noticeConfig) {
 
     const response = await fetch(noticeConfig.file);
     const html = await response.text();
-
-    document.getElementById("headline-notice")
-
-    if (noticeContainer) {
-      noticeContainer.innerHTML = html;
-    }
-
-  } catch (error) {
-
-    console.error("Headline notice load failed:", error);
-
-  }
-
-}
-
-async function loadHeadlineNotice(noticeConfig) {
-
-  if (!noticeConfig || !noticeConfig.file) return;
-
-  try {
-
-    const response = await fetch(noticeConfig.file);
-    const html = await response.text();
-
-    const noticeContainer = document.getElementById("headline-notice");
 
     if (noticeContainer) {
       noticeContainer.innerHTML = html;

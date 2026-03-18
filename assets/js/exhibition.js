@@ -1,3 +1,7 @@
+const BASE_PATH = location.pathname.includes('/exhibition_pages/')
+  ? '../'
+  : '';
+
 /* =====================================================
    Gallery Window – Exhibition JS (Final)
 ===================================================== */
@@ -27,7 +31,7 @@ const params = new URLSearchParams(window.location.search);
 const exhibitionId = params.get("id");
 
 if (!exhibitionId) {
-  window.location.href = "/";
+  window.location.href = "./";
 }
 
 const hallId = params.get("hall") || "hall01";
@@ -57,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
 async function loadExhibition(id) {
   try {
 
-    const res = await fetch("/assets/config/gallery.json");
+    const res = await fetch(BASE_PATH + "assets/config/gallery.json");
     const data = await res.json();
 
     console.log("현재 전시 ID:", id);
@@ -73,7 +77,7 @@ async function loadExhibition(id) {
       `Gallery Window — ${exhibition.title}`;
 
     const basePath =
-      `/assets/exhibitions/${exhibition.id}/`;
+      BASE_PATH + `assets/exhibitions/${exhibition.id}/`;
 
     /* ---------- 테마 색 ---------- */
     if (exhibition.themeColor) {
@@ -527,7 +531,7 @@ if (backBtn) {
   const hallId = params.get("hall") || "hall01";
 
   // Home 버튼 목적지 설정
-  backBtn.href = `hall.html?hall=${hallId}`;
+  backBtn.href = BASE_PATH + `hall.html?hall=${hallId}`;
 
   // 페이드 전환
   backBtn.addEventListener("click", function(e) {
@@ -555,11 +559,6 @@ if (viewer) {
 
   viewer.addEventListener("touchstart", e => {
     touchStartX = e.changedTouches[0].screenX;
-  });
-
-  viewer.addEventListener("touchend", e => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
   });
 
 }

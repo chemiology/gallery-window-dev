@@ -1,0 +1,284 @@
+/* ======================================
+   Gallery Window – MOBILE FINAL
+====================================== */
+
+@media (max-width:768px){
+
+/* =========================
+   공통
+========================= */
+
+html, body{
+  overflow-x:hidden;
+}
+
+main,
+.site-header,
+.exhibitions,
+.main-links,
+.bottom-area{
+  padding-left:16px;
+  padding-right:16px;
+  box-sizing:border-box;
+}
+
+/* =========================
+   HOME
+========================= */
+
+.exhibitions{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:40px;
+}
+
+.exhibition{
+  width:100%;
+  max-width:320px;
+  margin:0 auto;
+}
+
+.exhibition img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+.exhibition-badge{
+  pointer-events:none;
+}
+
+/* =========================
+   ARCHIVE
+========================= */
+
+.poster-grid{
+  display:grid;
+  gap:14px;
+  width:100%;
+  padding:0 12px;
+}
+
+.poster-item{
+  width:100%;
+  min-width:0;
+}
+
+.poster-item img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+/* 예정 전시 */
+body.upcoming-page .poster-grid{
+  grid-template-columns:repeat(3, 1fr);
+}
+
+/* 지난 전시 */
+body.archive-page:not(.upcoming-page) .poster-grid{
+  grid-template-columns:repeat(4, 1fr);
+}
+
+/* =========================
+   HALL
+========================= */
+
+.hall-entry{
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  padding:0 16px;
+}
+
+.hall-left,
+.artist-note-area{
+  width:100%;
+  max-width:100%;
+  margin:0 auto;
+}
+
+.hall-poster{
+  width:100%;
+  max-width:320px;
+  margin:0 auto;
+  display:block;
+}
+
+/* =========================
+   EXHIBITION DETAIL
+========================= */
+
+/* 포스터 */
+body.exhibition-detail figure.exhibition-poster img{
+  width:90% !important;
+  height:auto;
+  display:block;
+  margin:0 auto;
+}
+
+/* 텍스트 영역 */
+body.exhibition-detail #note-profile{
+  max-width:100% !important;
+  padding:0 10px;
+}
+
+body.exhibition-detail .exhibition-text{
+  max-width:none !important;
+  width:100%;
+  margin:0;
+  padding:0;
+}
+
+/* =========================
+   버튼
+========================= */
+
+.main-links{
+  margin:40px auto;
+}
+
+/* =========================
+   안정화
+========================= */
+
+img{
+  max-width:100%;
+  height:auto;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+@media (max-width:768px){
+
+  /* =========================
+     ARCHIVE (쏠림 해결 핵심)
+  ========================= */
+
+  .archive-grid{
+    display:grid !important;
+    gap:12px !important;
+    width:100% !important;
+    margin:0 auto !important;
+    padding:0 12px !important;
+  }
+
+  /* 예정 전시 */
+  body.upcoming-page .archive-grid{
+    grid-template-columns:repeat(3,1fr) !important;
+  }
+
+  /* 지난 전시 */
+  body.archive-page:not(.upcoming-page) .archive-grid{
+    grid-template-columns:repeat(4,1fr) !important;
+  }
+
+  /* 카드가 밀지 못하게 */
+  .archive-grid .poster-item{
+    width:100% !important;
+    min-width:0 !important;
+  }
+
+  .archive-grid img{
+    width:100% !important;
+    height:auto !important;
+  }
+
+  /* =========================
+     DETAIL (포스터 중앙)
+  ========================= */
+
+  body.exhibition-detail figure.exhibition-poster img{
+    display:block !important;
+    margin:0 auto !important;
+    width:90% !important;
+    max-width:none !important;
+  }
+
+  /* =========================
+     DETAIL (텍스트)
+  ========================= */
+
+  body.exhibition-detail #note-profile{
+    max-width:none !important;
+    width:100% !important;
+    padding:0 10px !important;
+  }
+
+  body.exhibition-detail .exhibition-text{
+    max-width:none !important;
+    width:100% !important;
+    margin:0 !important;
+  }
+
+}
+
+
+@media (max-width:768px){
+
+  .archive-grid{
+    display:grid !important;
+    grid-template-columns:repeat(3,1fr) !important;
+    gap:12px !important;
+    width:100% !important;
+    margin:0 auto !important;
+  }
+
+  body.archive-page:not(.upcoming-page) .archive-grid{
+    grid-template-columns:repeat(4,1fr) !important;
+  }
+
+}
+
+@media (max-width:768px){
+
+  body.exhibition-detail main,
+  body.exhibition-detail section{
+    padding-left:0 !important;
+    padding-right:0 !important;
+  }
+
+  body.exhibition-detail figure.exhibition-poster{
+    width:100% !important;
+    text-align:center;
+  }
+
+  body.exhibition-detail figure.exhibition-poster img{
+    margin:0 auto !important;
+    display:block !important;
+  }
+
+}
+
+@media (max-width:768px){
+
+  body.exhibition-detail #note-profile{
+    width:100% !important;
+    max-width:none !important;
+    padding:0 10px !important;
+  }
+
+}
+
+@media (max-width:768px){
+
+  .archive-grid{
+    display:grid;
+    gap:12px;
+  }
+
+  body.upcoming-page .archive-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  body.archive-page:not(.upcoming-page) .archive-grid{
+    grid-template-columns:repeat(4,1fr);
+  }
+
+  .poster-item{
+    min-width:0;
+  }
+
+}

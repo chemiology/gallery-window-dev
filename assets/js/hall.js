@@ -1,3 +1,13 @@
+/* =========================
+   BASE PATH
+========================= */
+
+const BASE_PATH = location.pathname.includes('/archive/')
+  || location.pathname.includes('/exhibition_pages/')
+  ? '../'
+  : '';
+
+
 /* ======================================
    Hall Loader – Stable Clean Version
 ====================================== */
@@ -28,7 +38,7 @@ async function loadHall() {
 
   try {
 
-    const res = await fetch("/assets/config/gallery.json");
+    const res = await fetch(BASE_PATH + "assets/config/gallery.json");
     const data = await res.json();
 
     const exhibitions =
@@ -90,7 +100,7 @@ async function loadHall() {
 async function loadHallEntry(exhibition, hallId) {
 
   const basePath =
-    `/assets/exhibitions/${exhibition.id}/`;
+    BASE_PATH + `assets/exhibitions/${exhibition.id}/`;
 
 
   /* ---------- COMING 상태 ---------- */
@@ -136,8 +146,8 @@ async function loadHallEntry(exhibition, hallId) {
 
       const target =
         hallId.startsWith("hall5")
-          ? `/video.html?id=${exhibition.id}`
-          : `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
+          ? BASE_PATH + `video.html?id=${exhibition.id}`
+          : BASE_PATH + `exhibition.html?id=${exhibition.id}&hall=${hallId}`;
 
       window.location.href = target;
 
@@ -154,8 +164,8 @@ async function loadHallEntry(exhibition, hallId) {
 
     const target =
       hallId.startsWith("hall5")
-        ? `/video.html?id=${exhibition.id}`
-        : `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
+        ? BASE_PATH + `video.html?id=${exhibition.id}`
+        : BASE_PATH + `exhibition.html?id=${exhibition.id}&hall=${hallId}`;
 
     enterBtn.href = target;
 
