@@ -940,3 +940,54 @@ body.hall .exhibition-text{
 body.hall .artist-note{
   color:#eaeaea !important;
 }
+
+/* =========================
+   NOTICE DETAIL BUTTON
+========================= */
+
+.notice-back{
+  display:block;
+  width:fit-content;
+
+  margin:60px auto 0;   /* 중앙 */
+  text-align:center;
+
+  font-size:14px;
+  color:#444;
+
+  border-bottom:1px solid #aaa;
+  padding-bottom:4px;
+}
+
+.notice-back:hover{
+  color:#000;
+  border-color:#000;
+}
+
+.notice-content a{
+  color:#444;
+}
+
+.notice-content a:hover{
+  color:#000;
+  text-decoration:underline;
+}
+
+/* =========================
+   EXHIBITION BACK BUTTON (PC)
+========================= */
+
+body.exhibition-detail .back-to-list{
+  display:block;
+  margin:40px 0;
+  text-align:left;
+}
+
+body.exhibition-detail .back-to-list a{
+  font-size:14px;
+  color:#444;
+}
+
+body.exhibition-detail .back-to-list a:hover{
+  color:#000;
+}

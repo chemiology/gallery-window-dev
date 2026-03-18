@@ -33,17 +33,29 @@ img{
 
 body.home .exhibitions{
   display:grid;
-  grid-template-columns:1fr;
-  gap:40px;
+  gap:32px;
 }
 
+/* 1개 */
+body.home .exhibitions:has(.exhibition:nth-child(1):last-child){
+  grid-template-columns:1fr;
+}
+
+/* 2개 */
+body.home .exhibitions:has(.exhibition:nth-child(2):last-child){
+  grid-template-columns:repeat(2,1fr);
+}
+
+/* 3개 이상 */
+body.home .exhibitions{
+  grid-template-columns:repeat(3,1fr);
+}
+
+/* 카드 크기 */
 body.home .exhibition{
+  width:100%;
   max-width:320px;
   margin:0 auto;
-}
-
-body.home .exhibition img{
-  width:100%;
 }
 
 /* =========================
@@ -74,6 +86,21 @@ body.archive-page .poster-item{
 
 body.archive-page .poster-item img{
   width:100%;
+}
+
+body.archive-page .archive-grid{
+  justify-content:center;
+}
+
+body.archive-page .poster-item{
+  width:100%;
+  min-width:0;
+  max-width:100%;
+}
+
+body.archive-page .poster-item img{
+  width:100%;
+  display:block;
 }
 
 /* =========================
@@ -107,20 +134,27 @@ body.exhibition-detail figure.exhibition-poster{
 }
 
 body.exhibition-detail figure.exhibition-poster img{
-  width:90%;
+  width:95%;   /* 기존 90 → 확대 */
+  max-width:520px;  /* 너무 커지는 것 방지 */
   margin:0 auto;
 }
 
 /* 텍스트 영역 */
 body.exhibition-detail #note-profile{
   width:100%;
-  padding:0 12px;
+  padding:0 8px;   /* 기존 12 → 절반 */
   box-sizing:border-box;
 }
 
 body.exhibition-detail .exhibition-text{
   width:100%;
-  padding:0;
+  padding:0 4px;
+}
+
+body.exhibition-detail .exhibition-support-image img{
+  width:90%;
+  max-width:480px;
+  margin:20px auto 0;
 }
 
 /* =========================
@@ -150,5 +184,112 @@ body.exhibition-detail .section-title{
 body.exhibition-detail *{
   max-width:100%;
 }
+
+}
+
+@media (max-width:768px){
+
+  body.exhibition-detail .back-to-list{
+    position:fixed;
+    left:50%;
+    bottom:20px;
+    transform:translateX(-50%);
+
+    background:#fff;
+    padding:10px 16px;
+
+    border:1px solid #ccc;
+    border-radius:6px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+
+    z-index:1000;
+  }
+
+  body.exhibition-detail .back-to-list a{
+    font-size:13px;
+    color:#333;
+  }
+
+}
+
+body.exhibition-detail{
+  padding-bottom:80px;
+}
+
+@media (max-width:768px){
+
+  body.exhibition-detail .back-to-list{
+    position:fixed;
+    left:50%;
+    bottom:16px;
+    transform:translateX(-50%);
+
+    background:#fff;
+    padding:12px 18px;
+
+    border-radius:8px;
+    border:1px solid rgba(0,0,0,0.08);
+
+    box-shadow:
+      0 6px 18px rgba(0,0,0,0.18),
+      0 2px 6px rgba(0,0,0,0.12);
+
+    z-index:1000;
+
+    backdrop-filter:blur(6px);
+  }
+
+  body.exhibition-detail .back-to-list a{
+    font-size:14px;
+    font-weight:500;
+    color:#222;
+  }
+
+}
+
+@media (max-width:768px){
+
+  body.exhibition-detail .back-to-list:active{
+    transform:translateX(-50%) scale(0.96);
+  }
+
+}
+
+@media (max-width:768px){
+
+  body.exhibition-detail{
+    padding-bottom:90px;
+  }
+
+}
+
+@media (max-width:768px){
+
+  body.exhibition-detail .exhibition-text{
+    font-size:15.5px;
+    line-height:1.7;
+    letter-spacing:-0.01em;
+  }
+
+}
+
+@media (max-width:768px){
+
+  body.exhibition-detail figure img{
+    transition:transform 0.3s ease;
+  }
+
+  body.exhibition-detail figure img:active{
+    transform:scale(0.98);
+  }
+
+}
+
+@media (max-width:768px){
+
+  a, button{
+    min-height:44px;
+  }
 
 }
