@@ -115,8 +115,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const listPage =
     state === "past"
-      ? "../archive/past.html"
-      : "../archive/upcoming.html";
+      ? "/gallery-window-dev/archive/past.html"
+      : "/gallery-window-dev/archive/upcoming.html";
 
   const listText =
     state === "past"

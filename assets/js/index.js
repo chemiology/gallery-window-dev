@@ -247,7 +247,7 @@ window.addEventListener("load", () => {
   document.body.classList.add("page-ready");
 });
 
-async function loadHeadlineNotice(noticeConfig) {
+const response = await fetch(`/gallery-window-dev/${noticeConfig.file}`);
 
   if (!noticeConfig || !noticeConfig.file) return;
 
