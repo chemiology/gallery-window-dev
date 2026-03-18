@@ -1084,3 +1084,42 @@ body.exhibition-detail .back-to-list a:hover{
   color:#000;
   text-decoration:underline;
 }
+
+/* =========================
+   NOTICE DETAIL FINAL FIX
+========================= */
+
+.notice-detail{
+  max-width:720px;
+  margin:0 auto;
+  padding:40px 16px;
+  box-sizing:border-box;
+}
+
+/* 제목 */
+.notice-detail h1{
+  margin:0 0 24px;
+  text-align:left;
+}
+
+/* 본문 */
+.notice-detail p{
+  text-align:left;
+}
+
+/* 하단 버튼 */
+.notice-nav{
+  text-align:center;
+  margin:60px 0 40px;
+}
+
+.notice-nav a{
+  font-size:14px;
+  color:#444;
+  text-decoration:none;
+}
+
+.notice-nav a:hover{
+  color:#000;
+  text-decoration:underline;
+}

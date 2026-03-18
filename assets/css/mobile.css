@@ -192,7 +192,7 @@ body.exhibition-detail *{
   body.exhibition-detail .back-to-list{
     position:fixed;
     left:50%;
-    bottom:20px;
+    bottom:0;   /* 🔥 8 → 0 (바닥) */
     transform:translateX(-50%);
 
     background:#fff;
@@ -318,6 +318,20 @@ body.exhibition-detail{
 
   body.exhibition-detail .back-to-list{
     bottom:8px;   /* 기존 16 → 더 아래 */
+  }
+
+}
+
+@media (max-width:768px){
+
+  body.exhibition-detail #note-profile{
+    padding-left:4px !important;
+    padding-right:4px !important;
+  }
+
+  body.exhibition-detail .exhibition-text{
+    padding-left:2px !important;
+    padding-right:2px !important;
   }
 
 }
