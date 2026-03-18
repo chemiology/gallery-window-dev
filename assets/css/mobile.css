@@ -293,3 +293,31 @@ body.exhibition-detail{
   }
 
 }
+
+@media (max-width:768px){
+
+  body.archive-page .archive-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+
+    width:100%;
+    margin:0 auto;
+
+    justify-items:center;   /* 🔥 핵심 */
+  }
+
+  body.archive-page .poster-item{
+    width:100%;
+    max-width:120px;        /* 🔥 핵심 (쏠림 방지) */
+  }
+
+}
+
+@media (max-width:768px){
+
+  body.exhibition-detail .back-to-list{
+    bottom:8px;   /* 기존 16 → 더 아래 */
+  }
+
+}
