@@ -1,0 +1,676 @@
+/* =====================================================
+   HALL BACKGROUND
+===================================================== */
+
+.site-background.hall{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+
+  background-image:url("../images/bg_hall.jpg");
+  background-size:cover;
+  background-position:top center;
+  background-repeat:no-repeat;
+
+  animation:hallZoom 18s ease-out forwards;
+  will-change:transform;
+}
+
+.site-background.hall::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(
+    circle at center,
+    rgba(0,0,0,0.2),
+    rgba(0,0,0,0.75)
+  );
+}
+
+@keyframes hallZoom{
+  from{transform:scale(1.04);}
+  to{transform:scale(1);}
+}
+
+
+/* =====================================================
+   HALL ENTRY LAYOUT
+===================================================== */
+
+.hall-entry{
+  display:grid;
+  grid-template-columns:520px 560px;
+  gap:60px;
+  align-items:start;
+
+  max-width:1200px;
+  margin:100px auto;
+  padding:0 40px;
+
+  position:relative;
+  z-index:2;
+
+  opacity:0;
+  transform:translateY(40px);
+
+  transition:
+    opacity 1.2s ease,
+    transform 1.2s ease;
+
+  box-sizing:border-box;
+}
+
+.hall-entry.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.hall-left{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+
+  width:500px;
+  flex-shrink:0;
+
+  transform: none;
+  filter: none;
+}
+
+.hall-left img{
+  width:100%;
+  height:auto;
+}
+
+.poster-wrap{
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.25));
+}
+
+
+/* =====================================================
+   ARTIST PROFILE / NOTE
+===================================================== */
+
+body.hall .artist-profile,
+body.hall .artist-note{
+  text-align:justify;
+  text-align-last:left;
+  line-height:1.7;
+  color:#e6e7e9;
+}
+
+body.hall .artist-profile{
+  text-align:justify;
+  white-space:normal;
+  line-height:1.7;
+  margin-top:40px;
+  font-size:16px;
+}
+
+.artist-profile p{
+margin-bottom:1em;
+}
+
+.artist-note-area{
+  flex:1;
+  max-width:620px;
+  padding-top:18px;
+}
+
+.hall-entry .artist-note{
+  font-size:0.9rem;
+  line-height:1.8;
+}
+
+.hall-entry .artist-note p{
+  opacity:.72;
+  transition:opacity .6s ease;
+}
+
+.hall-entry .artist-note p:first-of-type{
+  opacity:1;
+  font-size:1.05em;
+  letter-spacing:.01em;
+}
+
+body.hall .artist-profile strong{
+  display:block;
+  margin-top:28px;
+  margin-bottom:8px;
+  font-weight:500;
+  letter-spacing:.04em;
+}
+
+
+/* =====================================================
+   HALL POSTER
+===================================================== */
+
+#hallPoster{
+  width:100%;
+  max-height:78vh;
+  object-fit:contain;
+
+  cursor:pointer;
+
+  position:relative;
+  overflow:hidden;
+
+  transition:
+    transform .35s ease,
+    filter .35s ease;
+}
+
+#hallPoster:hover{
+  transform:scale(1.015);
+  filter:brightness(1.08);
+}
+
+/* gloss effect */
+/* 
+#hallPoster::after{
+  content:"";
+
+  position:absolute;
+  top:-120%;
+  left:-60%;
+
+  width:60%;
+  height:300%;
+
+  background:linear-gradient(
+    75deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,.18) 50%,
+    rgba(255,255,255,0) 100%
+  );
+
+  transform:rotate(25deg);
+  transition:transform .9s ease;
+
+  pointer-events:none;
+}
+*/
+
+#hallPoster:hover::after{
+  transform:translateX(260%) rotate(25deg);
+}
+
+
+/* =====================================================
+   ENTRY BUTTONS
+===================================================== */
+
+.entry-buttons{
+  position:absolute;
+  top:-60px;
+  left:0;
+
+  display:flex;
+  flex-direction:row;
+  gap:20px;
+
+  z-index:3;
+}
+
+.entry-buttons a{
+  padding:10px 18px;
+  font-size:14px;
+  border:1px solid rgba(255,255,255,0.6);
+  background:rgba(0,0,0,0.35);
+  backdrop-filter:blur(6px);
+}
+
+body.hall .enter-exhibition{
+  transition:
+    background .3s ease,
+    color .3s ease,
+    border-color .3s ease;
+}
+
+#hallPoster:hover ~ .artist-note-area .enter-exhibition,
+#hallPoster:hover + .artist-profile + .artist-note-area .enter-exhibition{
+  background:rgba(255,255,255,.12);
+  border-color:rgba(255,255,255,.9);
+}
+
+
+/* =====================================================
+   HALL GRID (EXHIBITION WALL)
+===================================================== */
+
+.hall-grid{
+  display:grid;
+
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:40px;
+
+  max-width:1100px;
+  margin:60px auto;
+
+  padding:0 20px;
+
+  background:#111;
+  position:relative;
+  z-index:2;
+}
+
+.hall-card{
+  text-align:center;
+  overflow:hidden;
+
+  opacity:0;
+  transform:translateY(30px);
+
+  transition:
+    opacity .8s ease,
+    transform .8s ease;
+}
+
+.hall-card.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.hall-card:hover{
+  transform:translateY(-8px);
+}
+
+.hall-card img{
+  width:auto;
+  height:70vh;
+  max-height:720px;
+
+  display:block;
+  margin:0 auto;
+
+  object-fit:contain;
+
+  border-radius:8px;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.25);
+}
+
+
+/* =====================================================
+   HALL INFO TEXT
+===================================================== */
+
+.hall-guide{
+  font-size:13px;
+  color:#bfc3c8;
+  line-height:1.6;
+  margin-bottom:24px;
+}
+
+.hall-guide span{
+  display:block;
+  font-size:12px;
+  opacity:.75;
+  margin-top:2px;
+}
+
+.btn-en{
+  display:block;
+  font-size:11px;
+  opacity:.7;
+  margin-top:2px;
+  letter-spacing:.04em;
+}
+
+
+/* =====================================================
+   GUESTBOOK
+===================================================== */
+
+.guestbook-section{
+  margin-top:40px;
+  text-align:center;
+  max-width:520px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width:900px){
+
+  .hall-entry{
+    grid-template-columns:1fr;
+    gap:40px;
+  }
+
+}
+
+@media (max-width:768px){
+
+  body.hall{
+    overflow-x:hidden;
+  }
+
+  .hall-entry{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    padding:0 16px;
+  }
+
+  .hall-left,
+  .artist-note-area{
+    width:100%;
+    max-width:520px;
+    margin:0 auto;
+  }
+
+  .artist-note{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+
+    overflow-wrap:break-word;
+    word-break:keep-all;
+  }
+
+}
+
+body.hall{
+color:#fff;
+}
+
+body.hall a{
+color:#fff;
+}
+
+.artist-profile span{
+  display:block;
+  margin-bottom:6px;
+}
+
+.profile-subtitle{
+  margin-top:32px;
+  margin-bottom:14px;
+
+  font-weight:500;
+  letter-spacing:.05em;
+}
+
+.profile-subtitle{
+  margin-top:28px;
+  margin-bottom:12px;
+
+  font-weight:500;
+  letter-spacing:.04em;
+}
+
+.poster-caption{
+
+  position:absolute;
+  inset:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:rgba(0,0,0,0.25);
+
+  color:#fff;
+
+  opacity:0;
+  transition:opacity .35s ease;
+  pointer-events:none;
+}
+
+.poster-wrap:hover .poster-caption{
+  opacity:1;
+}
+
+.guestbook-title,
+.recent-guestbook-title{
+  font-size:14px;
+  color:#c3c7cc;
+}
+
+.guestbook li{
+  font-size:13.5px;
+  color:#b5bac0;
+}
+
+@media (max-width:768px){
+
+  body.archive-page .archive-grid{
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+
+    padding:0;
+    margin:0 auto;
+
+    width:100%;
+  }
+
+  .poster-item img{
+    width:100%;
+    height:auto;
+    display:block;
+  }
+
+}
+
+body.hall .exhibition-text p{
+  margin-top:6px;
+  margin-bottom:6px;
+}
+
+body.hall .exhibition-text span{
+  margin-bottom:2px;
+  line-height:1.5;
+}
+
+body.hall .guestbook-form textarea{
+  width:80%;
+  max-width:600px;
+}
+
+body.hall .guestbook-form input{
+  width:100%;
+  max-width:720px;
+}
+
+/* =========================
+   Guestbook Form Fix
+========================= */
+
+body.hall .guestbook-form{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+body.hall .guestbook-form textarea{
+  width:80%;
+}
+
+body.hall .guestbook-form button{
+  white-space:nowrap;
+}
+
+/* =========================
+   HALL TEXT (FINAL CLEAN)
+========================= */
+
+/* 작가 프로필 */
+body.hall .artist-profile{
+  color:#e6eaee;
+  opacity:0.9;
+}
+
+/* 작가 노트 */
+body.hall .artist-note{
+  color:#f0f3f6;
+  opacity:0.92;
+}
+
+/* 문단 */
+body.hall .artist-note p{
+  line-height:1.65;
+}
+
+/* 강조 */
+body.hall .artist-note strong{
+  color:#f0f2f4;
+}
+
+
+/* =========================
+   GUESTBOOK (FINAL)
+========================= */
+
+/* 제목 */
+.guestbook-title,
+.recent-guestbook-title{
+  color:#dbe0e6;
+}
+
+/* 내용 통일 */
+.guestbook li,
+.guestbook.poetic li{
+  font-size:14px;
+  line-height:1.65;
+  color:#dbe0e6;
+  opacity:0.95;
+  letter-spacing:0.02em;
+}
+
+
+/* =========================
+   HALL THEME COLOR (FINAL)
+========================= */
+
+body.hall{
+  --theme-color:#c6d4e1;
+}
+
+/* ===== HALL THEME (FOCUSED) ===== */
+
+/* 1관 타이틀 */
+#hallTitle{
+  color: var(--theme-color);
+  font-weight:500;
+}
+
+/* 버튼 공통 */
+.hall-entry a{
+  border:1px solid rgba(255,255,255,0.35);
+  color:#e6e7e9;
+  transition:all .25s ease;
+}
+
+/* hover */
+.hall-entry a:hover{
+  background:var(--theme-color);
+  color:#111;   /* 어둡게 고정 */
+  border-color:var(--theme-color);
+}
+
+body.hall .guestbook input,
+body.hall .guestbook textarea{
+
+  border:1px solid rgba(255,255,255,0.25);
+  transition:all .2s ease;
+}
+
+/* focus */
+body.hall .guestbook input:focus,
+body.hall .guestbook textarea:focus{
+
+  border-color:var(--theme-color);
+  box-shadow:0 0 8px var(--theme-color);
+  outline:none;
+}
+
+body.hall .guestbook-title,
+body.hall .recent-guestbook-title{
+  color:var(--theme-color);
+}
+
+/* focus 시 테마 */
+body.hall .guestbook input:focus,
+body.hall .guestbook textarea:focus{
+
+  outline:none;
+  border-color:var(--theme-color);
+  box-shadow:0 0 6px var(--theme-color);
+}
+
+/* 버튼 공통 */
+.hall-entry a{
+  border:1px solid rgba(255,255,255,0.3);
+  color:#e6e7e9;
+  transition:all .25s ease;
+}
+
+/* hover */
+.hall-entry a:hover{
+  border-color:var(--theme-color);
+  color:var(--theme-color);
+}
+
+/* ===== FINAL GUESTBOOK UNIFY (HALL ONLY) ===== */
+
+.guestbook li,
+.guestbook.poetic li{
+
+  font-size:14px;
+  line-height:1.65;
+
+  color:#dbe0e6;
+  opacity:0.95;
+
+  letter-spacing:0.02em;
+}
+
+/* ===== FINAL FORCE GUESTBOOK TITLE ===== */
+
+body.hall .guestbook-title,
+body.hall .recent-guestbook-title{
+  font-size:16px !important;
+  color:#dbe0e6 !important;
+}
+
+body.theme-cool::before{
+  content:"";
+  position:fixed;
+  inset:0;
+
+  background: radial-gradient(
+    circle at 70% 30%,
+    rgba(198,212,225,0.12),
+    transparent 65%
+  );
+
+  pointer-events:none;
+  z-index:0;
+}
+
+body.theme-warm::before{
+  content:"";
+  position:fixed;
+  inset:0;
+
+  background: radial-gradient(
+    circle at 60% 40%,
+    rgba(217,160,102,0.15),
+    transparent 65%
+  );
+
+  pointer-events:none;
+  z-index:0;
+}
+
+body.theme-mono{
+  filter:contrast(1.05) brightness(0.95);
+}
+
