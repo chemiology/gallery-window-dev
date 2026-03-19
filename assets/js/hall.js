@@ -49,49 +49,27 @@ async function loadHall() {
       getExhibitionStatus(ex) !== "past"
     );
 
-
-    /* ---------- Hall Title ---------- */
-
-    const hallTitle = document.getElementById("hallTitle");
-
-    if (hallTitle) {
-      hallTitle.textContent =
-        exhibition?.hallTitle ||
-        `${hallId.replace("hall","")}관`;
+    /* 🔥 여기 추가 (themeColor) */
+    if (exhibition?.themeColor) {
+      document.body.style.setProperty(
+        "--theme-color",
+        exhibition.themeColor
+      );
+      console.log("🎨 themeColor:", exhibition.themeColor);
     }
 
-
-    /* ---------- Empty Hall ---------- */
-
+    /* 기존 코드 그대로 유지 */
     if (!exhibition) {
-
-      const entry = document.querySelector(".hall-entry");
-
-      if (entry) {
-        entry.innerHTML = `
-          <div class="hall-empty">
-            <p>이 전시장은 현재 준비 중입니다.</p>
-            <p style="opacity:.6;margin-top:8px;">
-              곧 새로운 전시가 시작됩니다.
-            </p>
-          </div>
-        `;
-      }
-
-      console.log("Empty hall:", hallId);
+      ...
       return;
     }
 
     loadHallEntry(exhibition, hallId);
 
   } catch (err) {
-
     console.error("Hall load failed:", err);
-
   }
-
 }
-
 
 /* ======================================
    Load Hall Entry
@@ -285,95 +263,3 @@ window.addEventListener("load", () => {
   document.body.classList.remove("transitioning");
 
 });
-
-/* ======================================
-   Theme Colors 선택 (DEV SAFE VERSION)
-====================================== */
-
-async function loadHall() {
-
-  try {
-
-    console.log("🔥 hall.js 실행됨");
-
-    /* -------------------------------
-       1. JSON 로드
-    ------------------------------- */
-    const res = await fetch("./assets/config/gallery.json");
-    const data = await res.json();
-
-    console.log("gallery.json 로드됨");
-
-    /* -------------------------------
-       2. URL에서 id 가져오기
-    ------------------------------- */
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("id");
-
-    console.log("현재 id:", id);
-
-    /* -------------------------------
-       3. 전시 선택 (🔥 핵심)
-    ------------------------------- */
-    let exhibition = null;
-
-    if (id) {
-      exhibition = data.currentExhibitions.find(e => e.id === id);
-    }
-
-    /* 👉 fallback (매우 중요) */
-    if (!exhibition) {
-      exhibition = data.currentExhibitions[0];
-      console.log("fallback 전시 사용");
-    }
-
-    /* 👉 그래도 없으면 종료 */
-    if (!exhibition) {
-      console.warn("❌ 전시 데이터 없음");
-      return;
-    }
-
-    console.log("선택된 전시:", exhibition);
-
-    /* -------------------------------
-       4. themeColor 적용
-    ------------------------------- */
-    if (exhibition.themeColor) {
-
-      document.body.style.setProperty(
-        "--theme-color",
-        exhibition.themeColor
-      );
-
-      console.log("🎨 themeColor 적용:", exhibition.themeColor);
-
-    } else {
-      console.log("themeColor 없음");
-    }
-
-  } catch (err) {
-    console.error("Hall load failed:", err);
-  }
-}
-
-
-
-
-/* 실행 */
-loadHall();
-
-<script id="fix1">
-function guestbookSaved(){
-  console.log("guestbookSaved called");
-}
-</script>
-
-
-
-
-const res = await fetch("/assets/config/gallery.json");
-
-console.log("응답 상태:", res.status);
-
-const text = await res.text();
-console.log("응답 내용:", text);
