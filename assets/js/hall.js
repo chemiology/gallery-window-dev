@@ -265,11 +265,6 @@ window.addEventListener("load", () => {
 
 });
 
-/* 🔍 디버깅 (먼저 확인) */
-console.log("hallId:", hallId);
-console.log("exhibitions:", exhibitions);
-console.log("exhibition:", exhibition);
-
 /* 🔥 fallback (그 다음) */
 let finalExhibition = exhibition;
 
