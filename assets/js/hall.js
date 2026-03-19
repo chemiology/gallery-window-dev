@@ -265,12 +265,6 @@ window.addEventListener("load", () => {
 
 });
 
-
-const exhibition = exhibitions.find(ex =>
-  ex.hall === hallId &&
-  getExhibitionStatus(ex) !== "past"
-);
-
 /* 🔍 디버깅 (먼저 확인) */
 console.log("hallId:", hallId);
 console.log("exhibitions:", exhibitions);
