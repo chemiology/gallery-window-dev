@@ -15,7 +15,7 @@
     {
       "id": "avatar_ii",
       "title": "Avatar II",
-      "hall": "hall01",
+      "hall": "hall02",
       "hallTitle": "2관",
       "order": 60,
       "artist": "김경수",
@@ -90,7 +90,7 @@
       "title": "Being Beyond Time",
       "hall": "hall50",
       "hallTitle": "영상관",
-      "order": 52,
+      "order": 50,
       "status": "current",
       "artist": "한영숙",
       "startDate": "2026-03-01",
