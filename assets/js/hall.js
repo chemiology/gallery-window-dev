@@ -299,7 +299,7 @@ async function loadHall() {
     /* -------------------------------
        1. JSON 로드
     ------------------------------- */
-    const res = await fetch("/assets/config/gallery.json");
+    const res = await fetch("./assets/config/gallery.json");
     const data = await res.json();
 
     console.log("gallery.json 로드됨");
@@ -356,6 +356,9 @@ async function loadHall() {
   }
 }
 
+
+
+
 /* 실행 */
 loadHall();
 
@@ -364,3 +367,13 @@ function guestbookSaved(){
   console.log("guestbookSaved called");
 }
 </script>
+
+
+
+
+const res = await fetch("/assets/config/gallery.json");
+
+console.log("응답 상태:", res.status);
+
+const text = await res.text();
+console.log("응답 내용:", text);
