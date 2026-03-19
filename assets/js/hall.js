@@ -285,3 +285,37 @@ window.addEventListener("load", () => {
   document.body.classList.remove("transitioning");
 
 });
+
+/* ======================================
+   Theme Colors 선택
+====================================== */
+
+async function loadHall() {
+
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+
+  try {
+
+    const res = await fetch("/assets/config/gallery.json");
+    const data = await res.json();
+
+    const exhibition =
+      data.currentExhibitions.find(e => e.id === id);
+
+    if (!exhibition) return;
+
+    /* 🔥 themeColor 적용 */
+    if (exhibition.themeColor) {
+      document.body.style.setProperty(
+        "--theme-color",
+        exhibition.themeColor
+      );
+    }
+
+  } catch (err) {
+    console.error("Hall load failed:", err);
+  }
+}
+
+loadHall();
