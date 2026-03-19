@@ -16,8 +16,8 @@
       "id": "avatar_ii",
       "title": "Avatar II",
       "hall": "hall01",
-      "hallTitle": "1관",
-      "order": 1,
+      "hallTitle": "2관",
+      "order": 60,
       "artist": "김경수",
       "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg","014.jpg","015.jpg","016.jpg","017.jpg","018.jpg","019.jpg"],
       "captions": [
@@ -54,6 +54,7 @@
       "hall": "hall01",
       "hallTitle": "1관 초대전",
       "order": 1,
+      "status": "current",
       "artist": "한영숙",
       "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg","014.jpg","015.jpg","016.jpg","017.jpg","018.jpg","019.jpg"],
       "captions": [
@@ -80,7 +81,7 @@
       "themeColor": "#f9efa3",
       "themeMode": "warm",
       "slideSeconds": 10,
-      "startDate": "2026-04-01",
+      "startDate": "2026-03-01",
       "endDate": "2026-06-30"
     },
 
@@ -90,9 +91,9 @@
       "hall": "hall50",
       "hallTitle": "영상관",
       "order": 52,
-      "status": "hidden",
+      "status": "current",
       "artist": "한영숙",
-      "startDate": "2026-04-01",
+      "startDate": "2026-03-01",
       "endDate": "2026-06-30"
     },
 
