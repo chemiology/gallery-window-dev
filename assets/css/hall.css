@@ -497,115 +497,7 @@ body.hall .guestbook-form button{
   white-space:nowrap;
 }
 
-/* =========================
-   HALL TEXT (FINAL CLEAN)
-========================= */
-
-/* 작가 프로필 */
-body.hall .artist-profile{
-  color:#e6eaee;
-  opacity:0.9;
-}
-
-/* 작가 노트 */
-body.hall .artist-note{
-  color:#f0f3f6;
-  opacity:0.92;
-}
-
-/* 문단 */
-body.hall .artist-note p{
-  line-height:1.65;
-}
-
-/* 강조 */
-body.hall .artist-note strong{
-  color:#f0f2f4;
-}
-
-
-/* =========================
-   GUESTBOOK (FINAL)
-========================= */
-
-/* 제목 */
-.guestbook-title,
-.recent-guestbook-title{
-  color:#dbe0e6;
-}
-
-/* 내용 통일 */
-.guestbook li,
-.guestbook.poetic li{
-  font-size:14px;
-  line-height:1.65;
-  color:#dbe0e6;
-  opacity:0.95;
-  letter-spacing:0.02em;
-}
-
-
-/* =========================
-   HALL THEME COLOR (FINAL)
-========================= */
-
-body.hall{
-  --theme-color:#c6d4e1;
-}
-
-/* ===== HALL THEME (FOCUSED) ===== */
-
-/* 1관 타이틀 */
-#hallTitle{
-  color: var(--theme-color);
-  font-weight:500;
-}
-
-/* 버튼 공통 */
-.hall-entry a{
-  border:1px solid rgba(255,255,255,0.35);
-  color:#e6e7e9;
-  transition:all .25s ease;
-}
-
-/* hover */
-.hall-entry a:hover{
-  background:var(--theme-color);
-  color:#000;
-  border-color:var(--theme-color);
-}
-
-body.hall .guestbook input,
-body.hall .guestbook textarea{
-
-  border:1px solid rgba(255,255,255,0.25);
-  transition:all .2s ease;
-}
-
-/* focus */
-body.hall .guestbook input:focus,
-body.hall .guestbook textarea:focus{
-
-  border-color:var(--theme-color);
-  box-shadow:0 0 8px var(--theme-color);
-  outline:none;
-}
-
-body.hall .guestbook-title,
-body.hall .recent-guestbook-title{
-  color:var(--theme-color);
-}
-
-/* focus 시 테마 */
-body.hall .guestbook input:focus,
-body.hall .guestbook textarea:focus{
-
-  outline:none;
-  border-color:var(--theme-color);
-  box-shadow:0 0 6px var(--theme-color);
-}
-
-/* 버튼 공통 */
+/* 기본 */
 .hall-entry a{
   border:1px solid rgba(255,255,255,0.3);
   color:#e6e7e9;
@@ -614,28 +506,7 @@ body.hall .guestbook textarea:focus{
 
 /* hover */
 .hall-entry a:hover{
+  background:var(--theme-color);
+  color:#000;   /* 🔥 핵심 */
   border-color:var(--theme-color);
-  color:var(--theme-color);
-}
-
-/* ===== FINAL GUESTBOOK UNIFY (HALL ONLY) ===== */
-
-.guestbook li,
-.guestbook.poetic li{
-
-  font-size:14px;
-  line-height:1.65;
-
-  color:#dbe0e6;
-  opacity:0.95;
-
-  letter-spacing:0.02em;
-}
-
-/* ===== FINAL FORCE GUESTBOOK TITLE ===== */
-
-body.hall .guestbook-title,
-body.hall .recent-guestbook-title{
-  font-size:16px !important;
-  color:#dbe0e6 !important;
 }
