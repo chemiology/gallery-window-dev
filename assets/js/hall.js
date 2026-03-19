@@ -264,11 +264,3 @@ window.addEventListener("load", () => {
   document.body.classList.remove("transitioning");
 
 });
-
-/* 🔥 fallback (그 다음) */
-let finalExhibition = exhibition;
-
-if (!finalExhibition) {
-  console.warn("조건 매칭 실패 → fallback 사용");
-  finalExhibition = exhibitions[0];
-}
