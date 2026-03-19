@@ -553,21 +553,31 @@ body.hall{
   --theme-color:#c6d4e1;
 }
 
-/* 배경 분위기 */
-body.hall::before{
-  content:"";
-  position:fixed;
-  inset:0;
+/* ===== HALL THEME (FOCUSED) ===== */
 
-  background:radial-gradient(
-    circle at 50% 30%,
-    var(--theme-color),
-    transparent 65%
-  );
+/* 1관 타이틀 */
+#hallTitle{
+  color: var(--theme-color);
+}
 
-  opacity:0.22;
-  pointer-events:none;
-  z-index:0;
+/* 버튼 */
+#enterExhibition,
+.hall-link{
+  border-color: var(--theme-color);
+  color: var(--theme-color);
+}
+
+/* 버튼 hover */
+#enterExhibition:hover{
+  background: var(--theme-color);
+  color:#000;
+}
+
+/* 포스터 강조 */
+#hallPoster{
+  box-shadow:
+    0 12px 28px rgba(0,0,0,0.3),
+    0 0 18px var(--theme-color);
 }
 
 /* 콘텐츠 위 */
@@ -601,4 +611,12 @@ body.hall .bottom-area{
   opacity:0.95;
 
   letter-spacing:0.02em;
+}
+
+/* ===== FINAL FORCE GUESTBOOK TITLE ===== */
+
+body.hall .guestbook-title,
+body.hall .recent-guestbook-title{
+  font-size:16px !important;
+  color:#dbe0e6 !important;
 }
