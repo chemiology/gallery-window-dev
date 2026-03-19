@@ -557,32 +557,43 @@ body.hall{
 
 /* 1관 타이틀 */
 #hallTitle{
-  color:#e6e7e9; /* 기본 */
+  color: var(--theme-color);
+  font-weight:500;
 }
 
-#hallTitle::after{
-  content:"";
-  display:block;
-  width:24px;
-  height:2px;
-  margin-top:6px;
+/* 버튼 공통 */
+.hall-entry a{
+  border:1px solid rgba(255,255,255,0.35);
+  color:#e6e7e9;
+  transition:all .25s ease;
+}
 
+/* hover */
+.hall-entry a:hover{
   background:var(--theme-color);
-  opacity:0.6;
+  color:#000;
+  border-color:var(--theme-color);
 }
 
-/* 포스터 hover만 */
-#hallPoster:hover{
-  box-shadow:
-    0 12px 28px rgba(0,0,0,0.3),
-    0 0 12px var(--theme-color);
-}
-
-/* 입력창 */
 body.hall .guestbook input,
 body.hall .guestbook textarea{
 
-  border:1px solid rgba(255,255,255,0.2);
+  border:1px solid rgba(255,255,255,0.25);
+  transition:all .2s ease;
+}
+
+/* focus */
+body.hall .guestbook input:focus,
+body.hall .guestbook textarea:focus{
+
+  border-color:var(--theme-color);
+  box-shadow:0 0 8px var(--theme-color);
+  outline:none;
+}
+
+body.hall .guestbook-title,
+body.hall .recent-guestbook-title{
+  color:var(--theme-color);
 }
 
 /* focus 시 테마 */
@@ -594,26 +605,18 @@ body.hall .guestbook textarea:focus{
   box-shadow:0 0 6px var(--theme-color);
 }
 
-#enterExhibition{
+/* 버튼 공통 */
+.hall-entry a{
   border:1px solid rgba(255,255,255,0.3);
+  color:#e6e7e9;
+  transition:all .25s ease;
 }
 
-#enterExhibition:hover{
+/* hover */
+.hall-entry a:hover{
   border-color:var(--theme-color);
   color:var(--theme-color);
 }
-
-/* 콘텐츠 위 */
-body.hall main{
-  position:relative;
-  z-index:1;
-}
-
-/* 하단 라인 */
-body.hall .bottom-area{
-  border-top:1px solid var(--theme-color);
-}
-
 
 /* ===== FINAL GUESTBOOK UNIFY (HALL ONLY) ===== */
 
