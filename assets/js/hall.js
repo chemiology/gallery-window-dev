@@ -64,7 +64,7 @@ async function loadHall() {
       return;
     }
 
-    loadHallEntry(exhibition, hallId);
+    loadHallEntry(finalExhibition, hallId);
 
   } catch (err) {
     console.error("Hall load failed:", err);
@@ -263,3 +263,22 @@ window.addEventListener("load", () => {
   document.body.classList.remove("transitioning");
 
 });
+
+
+const exhibition = exhibitions.find(ex =>
+  ex.hall === hallId &&
+  getExhibitionStatus(ex) !== "past"
+);
+
+/* 🔍 디버깅 (먼저 확인) */
+console.log("hallId:", hallId);
+console.log("exhibitions:", exhibitions);
+console.log("exhibition:", exhibition);
+
+/* 🔥 fallback (그 다음) */
+let finalExhibition = exhibition;
+
+if (!finalExhibition) {
+  console.warn("조건 매칭 실패 → fallback 사용");
+  finalExhibition = exhibitions[0];
+}
