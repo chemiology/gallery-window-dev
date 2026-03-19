@@ -496,3 +496,109 @@ body.hall .guestbook-form textarea{
 body.hall .guestbook-form button{
   white-space:nowrap;
 }
+
+/* =========================
+   HALL TEXT (FINAL CLEAN)
+========================= */
+
+/* 작가 프로필 */
+body.hall .artist-profile{
+  color:#e6eaee;
+  opacity:0.9;
+}
+
+/* 작가 노트 */
+body.hall .artist-note{
+  color:#f0f3f6;
+  opacity:0.92;
+}
+
+/* 문단 */
+body.hall .artist-note p{
+  line-height:1.65;
+}
+
+/* 강조 */
+body.hall .artist-note strong{
+  color:#f0f2f4;
+}
+
+
+/* =========================
+   GUESTBOOK (FINAL)
+========================= */
+
+/* 제목 */
+.guestbook-title,
+.recent-guestbook-title{
+  color:#dbe0e6;
+}
+
+/* 내용 통일 */
+.guestbook li,
+.guestbook.poetic li{
+  font-size:14px;
+  line-height:1.65;
+  color:#dbe0e6;
+  opacity:0.95;
+  letter-spacing:0.02em;
+}
+
+
+/* =========================
+   HALL THEME COLOR (FINAL)
+========================= */
+
+body.hall{
+  --theme-color:#c6d4e1;
+}
+
+/* 배경 분위기 */
+body.hall::before{
+  content:"";
+  position:fixed;
+  inset:0;
+
+  background:radial-gradient(
+    circle at 50% 30%,
+    var(--theme-color),
+    transparent 65%
+  );
+
+  opacity:0.22;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* 콘텐츠 위 */
+body.hall main{
+  position:relative;
+  z-index:1;
+}
+
+/* 포스터 hover */
+body.hall .poster-item img:hover{
+  box-shadow:
+    0 16px 36px rgba(0,0,0,0.25),
+    0 0 26px var(--theme-color);
+}
+
+/* 하단 라인 */
+body.hall .bottom-area{
+  border-top:1px solid var(--theme-color);
+}
+
+
+/* ===== FINAL GUESTBOOK UNIFY (HALL ONLY) ===== */
+
+.guestbook li,
+.guestbook.poetic li{
+
+  font-size:14px;
+  line-height:1.65;
+
+  color:#dbe0e6;
+  opacity:0.95;
+
+  letter-spacing:0.02em;
+}
