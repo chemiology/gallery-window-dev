@@ -1,3 +1,5 @@
+console.log("🔥 시작");
+
 /* =========================
    BASE PATH
 ========================= */
@@ -7,6 +9,8 @@ const BASE_PATH = location.pathname.includes('/archive/')
   ? '../'
   : '';
 
+
+console.log("🔥 시작");
 
 /* ======================================
    Hall Loader – Stable Clean Version
@@ -71,11 +75,6 @@ if (exhibition?.themeColor) {
     exhibition.themeColor
   );
   console.log("🎨 themeColor 적용됨:", exhibition.themeColor);
-}
-
-/* 🔥 themeMode 적용 */
-if (exhibition?.themeMode) {
-  document.body.classList.add("theme-" + exhibition.themeMode);
 }
 
     /* 🔥 핵심 */
