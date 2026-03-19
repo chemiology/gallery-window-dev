@@ -497,16 +497,25 @@ body.hall .guestbook-form button{
   white-space:nowrap;
 }
 
-/* 기본 */
-.hall-entry a{
-  border:1px solid rgba(255,255,255,0.3);
-  color:#e6e7e9;
-  transition:all .25s ease;
+#hallTitle{
+  color: var(--theme-color);
+  font-weight:500;
 }
 
-/* hover */
-.hall-entry a:hover{
-  background:var(--theme-color);
-  color:#000;   /* 🔥 핵심 */
+body.hall .guestbook input,
+body.hall .guestbook textarea{
+  border:1px solid rgba(255,255,255,0.25);
+}
+
+/* focus */
+body.hall .guestbook input:focus,
+body.hall .guestbook textarea:focus{
+  outline:none;
   border-color:var(--theme-color);
+  box-shadow:0 0 8px var(--theme-color);
+}
+
+body.hall .guestbook-title,
+body.hall .recent-guestbook-title{
+  color:var(--theme-color);
 }
