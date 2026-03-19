@@ -557,40 +557,56 @@ body.hall{
 
 /* 1관 타이틀 */
 #hallTitle{
-  color: var(--theme-color);
+  color:#e6e7e9; /* 기본 */
 }
 
-/* 버튼 */
-#enterExhibition,
-.hall-link{
-  border-color: var(--theme-color);
-  color: var(--theme-color);
+#hallTitle::after{
+  content:"";
+  display:block;
+  width:24px;
+  height:2px;
+  margin-top:6px;
+
+  background:var(--theme-color);
+  opacity:0.6;
 }
 
-/* 버튼 hover */
-#enterExhibition:hover{
-  background: var(--theme-color);
-  color:#000;
-}
-
-/* 포스터 강조 */
-#hallPoster{
+/* 포스터 hover만 */
+#hallPoster:hover{
   box-shadow:
     0 12px 28px rgba(0,0,0,0.3),
-    0 0 18px var(--theme-color);
+    0 0 12px var(--theme-color);
+}
+
+/* 입력창 */
+body.hall .guestbook input,
+body.hall .guestbook textarea{
+
+  border:1px solid rgba(255,255,255,0.2);
+}
+
+/* focus 시 테마 */
+body.hall .guestbook input:focus,
+body.hall .guestbook textarea:focus{
+
+  outline:none;
+  border-color:var(--theme-color);
+  box-shadow:0 0 6px var(--theme-color);
+}
+
+#enterExhibition{
+  border:1px solid rgba(255,255,255,0.3);
+}
+
+#enterExhibition:hover{
+  border-color:var(--theme-color);
+  color:var(--theme-color);
 }
 
 /* 콘텐츠 위 */
 body.hall main{
   position:relative;
   z-index:1;
-}
-
-/* 포스터 hover */
-body.hall .poster-item img:hover{
-  box-shadow:
-    0 16px 36px rgba(0,0,0,0.25),
-    0 0 26px var(--theme-color);
 }
 
 /* 하단 라인 */
