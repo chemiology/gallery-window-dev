@@ -1221,18 +1221,18 @@ body.hall .artist-note{
   color:#f0f3f6 !important;   /* 본문은 더 밝게 */
 }
 
-/* ===== FINAL FORCE HALL GUESTBOOK UNIFY ===== */
+/* ===== FINAL FORCE GUESTBOOK UNIFY ===== */
 
 body.hall .bottom-area .guestbook li,
 body.hall .bottom-area .guestbook.poetic li{
 
   font-size:14px !important;
-  line-height:1.6 !important;
+  line-height:1.65 !important;
 
-  color:#d8dde3 !important;
+  color:#dbe0e6 !important;
   opacity:0.95 !important;
 
-  letter-spacing:0.02em;
+  letter-spacing:0.02em !important;
 }
 
 /* ===== HALL DYNAMIC THEME ===== */
@@ -1261,14 +1261,14 @@ body.hall button{
   border-color:var(--theme-color);
 }
 
-/* ===== FINAL NOTICE LINK COLOR FIX ===== */
+/* ===== FINAL NOTICE LINK STRONG ===== */
 
 body .notice-detail a,
 body .notice-content a,
 body .notice-nav a,
 body .notice-back{
 
-  color:#5c6f82 !important;   /* 블루+그레이 */
+  color:#4a6fa5 !important;   /* 확실한 블루톤 */
   font-weight:500;
 }
 
@@ -1281,3 +1281,9 @@ body .notice-back:hover{
   color:#2f4f6f !important;
   text-decoration:underline;
 }
+
+/* ===== DEV TEST: themeColor 확인 ===== */
+body.hall{
+  background-color: var(--theme-color) !important;
+}
+
