@@ -44,12 +44,18 @@ async function loadHall() {
     const exhibitions =
       data.currentExhibitions || data.exhibitions || [];
 
-    const exhibition = exhibitions.find(ex =>
+    let exhibition = exhibitions.find(ex =>
       ex.hall === hallId &&
       getExhibitionStatus(ex) !== "past"
     );
 
-    /* 🔥 여기 추가 (themeColor) */
+    /* 🔥 fallback 추가 (안전장치) */
+    if (!exhibition) {
+      console.warn("조건 매칭 실패 → fallback 사용");
+      exhibition = exhibitions[0];
+    }
+
+    /* 🔥 themeColor 적용 */
     if (exhibition?.themeColor) {
       document.body.style.setProperty(
         "--theme-color",
@@ -58,13 +64,8 @@ async function loadHall() {
       console.log("🎨 themeColor:", exhibition.themeColor);
     }
 
-    /* 기존 코드 그대로 유지 */
-    if (!exhibition) {
-      ...
-      return;
-    }
-
-    loadHallEntry(finalExhibition, hallId);
+    /* 🔥 핵심 */
+    loadHallEntry(exhibition, hallId);
 
   } catch (err) {
     console.error("Hall load failed:", err);
