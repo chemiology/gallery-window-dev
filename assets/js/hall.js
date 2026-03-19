@@ -9,9 +9,6 @@ const BASE_PATH = location.pathname.includes('/archive/')
   ? '../'
   : '';
 
-
-console.log("🔥 시작");
-
 /* ======================================
    Hall Loader – Stable Clean Version
 ====================================== */
