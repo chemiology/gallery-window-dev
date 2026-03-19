@@ -1185,7 +1185,7 @@ body.hall .artist-note strong{
   color:#f0f2f4;
 }
 
-/* ===== [ADD] HALL TEXT FIX ===== */
+/* ===== [OLD] HALL TEXT FIX (backup - 유지 권장) =====
 body.hall .artist-profile{
   color:#d4d8dd !important;
 }
@@ -1193,6 +1193,7 @@ body.hall .artist-profile{
 body.hall .artist-note{
   color:#e0e4e8 !important;
 }
+*/
 
 /* ===== [ADD] NOTICE FIX ===== */
 .notice-detail{
@@ -1208,4 +1209,75 @@ body.hall .artist-note{
 
 .notice-nav a{
   color:#444;
+}
+
+/* ===== FINAL HALL TEXT BRIGHTNESS TUNING ===== */
+
+body.hall .artist-profile{
+  color:#e6eaee !important;   /* 기존보다 한 단계 밝게 */
+}
+
+body.hall .artist-note{
+  color:#f0f3f6 !important;   /* 본문은 더 밝게 */
+}
+
+/* ===== FINAL FORCE HALL GUESTBOOK UNIFY ===== */
+
+body.hall .bottom-area .guestbook li,
+body.hall .bottom-area .guestbook.poetic li{
+
+  font-size:14px !important;
+  line-height:1.6 !important;
+
+  color:#d8dde3 !important;
+  opacity:0.95 !important;
+
+  letter-spacing:0.02em;
+}
+
+/* ===== HALL DYNAMIC THEME ===== */
+
+body.hall{
+
+  /* fallback */
+  --theme-color:#c6d4e1;
+}
+
+/* 포스터 hover */
+body.hall .poster-item img:hover{
+  box-shadow:
+    0 16px 36px rgba(0,0,0,0.25),
+    0 0 22px var(--theme-color);
+}
+
+/* 하단 영역 */
+body.hall .bottom-area{
+  border-top:1px solid var(--theme-color);
+}
+
+/* 버튼 */
+body.hall a,
+body.hall button{
+  border-color:var(--theme-color);
+}
+
+/* ===== FINAL NOTICE LINK COLOR FIX ===== */
+
+body .notice-detail a,
+body .notice-content a,
+body .notice-nav a,
+body .notice-back{
+
+  color:#5c6f82 !important;   /* 블루+그레이 */
+  font-weight:500;
+}
+
+/* hover */
+body .notice-detail a:hover,
+body .notice-content a:hover,
+body .notice-nav a:hover,
+body .notice-back:hover{
+
+  color:#2f4f6f !important;
+  text-decoration:underline;
 }
