@@ -74,6 +74,11 @@ if (exhibition?.themeColor) {
   console.log("🎨 themeColor 적용됨:", exhibition.themeColor);
 }
 
+/* 🔥 themeMode 적용 */
+if (exhibition?.themeMode) {
+  document.body.classList.add("theme-" + exhibition.themeMode);
+}
+
     /* 🔥 핵심 */
     loadHallEntry(exhibition, hallId);
 
