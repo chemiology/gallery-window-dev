@@ -1,4 +1,11 @@
 /* =========================
+   BASE PATH (DEV 전용)
+========================= */
+
+const BASE_PATH = './';
+
+
+/* =========================
    EXHIBITION STATUS
 ========================= */
 
@@ -28,8 +35,7 @@ async function loadHall() {
 
   try {
 
-    /* 🔥 절대경로 (운영 안정) */
-    const res = await fetch("/assets/config/gallery.json");
+    const res = await fetch(BASE_PATH + "assets/config/gallery.json");
     const data = await res.json();
 
     const exhibitions =
@@ -51,7 +57,7 @@ async function loadHall() {
         `${hallId.replace("hall","")}관`;
     }
 
-    /* ---------- Empty Hall (fallback 제거) ---------- */
+    /* ---------- Empty Hall ---------- */
 
     if (!exhibition) {
 
@@ -108,9 +114,8 @@ async function loadHall() {
 
 async function loadHallEntry(exhibition, hallId) {
 
-  /* 🔥 절대경로 (운영 안정) */
   const basePath =
-    `/assets/exhibitions/${exhibition.id}/`;
+    BASE_PATH + `assets/exhibitions/${exhibition.id}/`;
 
 
   /* ---------- COMING 상태 ---------- */
@@ -152,17 +157,16 @@ async function loadHallEntry(exhibition, hallId) {
 
     poster.src = basePath + "poster.jpg";
 
-    /* 이미지 없을 때 fallback */
     poster.onerror = () => {
-      poster.src = "/assets/images/poster-placeholder.jpg";
+      poster.src = BASE_PATH + "assets/images/poster-placeholder.jpg";
     };
 
     poster.onclick = () => {
 
       const target =
         hallId.startsWith("hall5")
-          ? `/video.html?id=${exhibition.id}`
-          : `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
+          ? BASE_PATH + `video.html?id=${exhibition.id}`
+          : BASE_PATH + `exhibition.html?id=${exhibition.id}&hall=${hallId}`;
 
       window.location.href = target;
 
@@ -179,8 +183,8 @@ async function loadHallEntry(exhibition, hallId) {
 
     const target =
       hallId.startsWith("hall5")
-        ? `/video.html?id=${exhibition.id}`
-        : `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
+        ? BASE_PATH + `video.html?id=${exhibition.id}`
+        : BASE_PATH + `exhibition.html?id=${exhibition.id}&hall=${hallId}`;
 
     enterBtn.href = target;
 
@@ -188,7 +192,6 @@ async function loadHallEntry(exhibition, hallId) {
 
       e.preventDefault();
 
-      /* gtag 안전 처리 */
       if (typeof gtag !== "undefined") {
         gtag('event', 'enter_exhibition', {
           exhibition_id: exhibition.id,
