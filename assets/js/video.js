@@ -71,7 +71,8 @@ function loadVideo(){
   /* 🔥 가장 단순 & 확실한 방식 */
   frame.src =
     "https://www.youtube.com/embed/" +
-    video.id;
+    video.id +
+    "?autoplay=1&mute=1";
 
   container.appendChild(frame);
 
@@ -113,9 +114,9 @@ if(backBtn){
   backBtn.addEventListener("click", () => {
 
     if(hall){
-      location.href = `/hall.html?hall=${hall}`;
+      location.href = BASE_PATH + `/hall.html?hall=${hall}`;
     }else{
-      location.href = "/";
+      location.href = BASE_PATH + "/";
     }
 
   });
