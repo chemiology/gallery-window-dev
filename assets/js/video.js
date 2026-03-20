@@ -107,7 +107,7 @@ function loadVideo(){
   frame.src =
     "https://www.youtube.com/embed/" +
     video.id +
-    "?autoplay=1&mute=1&enablejsapi=1&rel=0&playsinline=1&t=" + Date.now();
+   "?autoplay=1&mute=1&loop=1&playlist=" + video.id + "&rel=0&playsinline=1"
 
   container.appendChild(frame);
 
