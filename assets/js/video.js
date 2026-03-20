@@ -1,3 +1,23 @@
+/* =========================
+   BASE PATH (반드시 포함)
+========================= */
+
+const BASE_PATH = (() => {
+  const path = location.pathname;
+
+  if (path.includes('/gallery-window-dev/')) {
+    return '/gallery-window-dev';
+  }
+
+  const segments = path.split('/').filter(Boolean);
+  if (location.hostname.includes('github.io') && segments.length > 0) {
+    return '/' + segments[0];
+  }
+
+  return '';
+})();
+
+
 /* =====================================================
    VIDEO JS – 완전 복구 안정 버전
 ===================================================== */
@@ -122,3 +142,33 @@ if(backBtn){
   });
 
 }
+
+/* =========================
+   Hall 이동 (완전 안정)
+========================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const backBtn = document.getElementById("backToHall");
+
+  if(!backBtn){
+    console.warn("❌ back 버튼 없음");
+    return;
+  }
+
+  backBtn.addEventListener("click", () => {
+
+    const params = new URLSearchParams(location.search);
+    const hall = params.get("hall");
+
+    console.log("hall 이동:", hall);
+
+    if(hall){
+      location.href = BASE_PATH + `/hall.html?hall=${hall}`;
+    }else{
+      location.href = BASE_PATH + "/";
+    }
+
+  });
+
+});
