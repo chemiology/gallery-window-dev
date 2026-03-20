@@ -48,7 +48,6 @@
       "endDate": "2026-03-31"
     },
 
-  "currentExhibitions": [
     {
       "id": "avatar_iia",
       "title": "Avatar IIA",
@@ -81,8 +80,8 @@
       "themeColor": "#c6d4e1",
       "themeMode": "cool",
       "slideSeconds": 10,
-      "startDate": "2027-04-15",
-      "endDate": "2027-03-31"
+      "startDate": "2026-03-15",
+      "endDate": "2026-03-31"
     },
 
     {
