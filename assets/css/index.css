@@ -309,3 +309,84 @@ body.home .exhibition-body{
   grid-template-columns:repeat(4,minmax(0,300px));
   gap:48px;
 }
+
+/* =========================
+   COMING – FINAL VERSION
+========================= */
+
+/* 포스터 컨테이너 기준 */
+.exhibition{
+  position:relative;
+}
+
+/* 배지 */
+.coming-badge{
+  position:absolute;
+  top:14px;
+  left:14px;
+
+  padding:6px 12px;
+
+  font-size:11px;
+  letter-spacing:0.12em;
+
+  color:#fff;
+
+  background:rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:20px;
+
+  opacity:0;
+  transform:translateY(-6px);
+
+  transition:
+    opacity .6s ease,
+    transform .6s ease;
+}
+
+/* 등장 */
+.exhibition.coming .coming-badge{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* 포스터 흐림 */
+.exhibition.coming img{
+  opacity:0.72;
+  filter: grayscale(12%);
+  transition: all .4s ease;
+}
+
+/* hover 시 살아남 */
+.exhibition.coming:hover img{
+  opacity:0.95;
+  filter:none;
+}
+
+/* 은은한 빛 */
+.exhibition.coming::after{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:linear-gradient(
+    120deg,
+    transparent 40%,
+    rgba(255,255,255,0.08),
+    transparent 60%
+  );
+
+  opacity:0;
+  transition:opacity .5s ease;
+}
+
+.exhibition.coming:hover::after{
+  opacity:1;
+}
+
+/* themeColor 연결 */
+.exhibition.coming .coming-badge{
+  border-color: var(--theme-color, rgba(255,255,255,0.2));
+}
