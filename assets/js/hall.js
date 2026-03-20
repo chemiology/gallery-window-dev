@@ -1,9 +1,11 @@
 /* =========================
-   BASE PATH (DEV 전용)
+   BASE PATH (통합)
 ========================= */
 
-const BASE_PATH = './';
-
+const BASE_PATH =
+  location.hostname.includes("github.io")
+    ? "./"
+    : "/";
 
 /* =========================
    EXHIBITION STATUS
@@ -23,7 +25,6 @@ function getExhibitionStatus(ex) {
   return "current";
 }
 
-
 /* ======================================
    LOAD HALL
 ====================================== */
@@ -42,10 +43,16 @@ async function loadHall() {
       data.currentExhibitions || data.exhibitions || [];
 
     /* 🔥 핵심: hall 기준 + past 제외 */
-    const exhibition = exhibitions.find(ex =>
+    let exhibition = exhibitions.find(ex =>
       ex.hall === hallId &&
       getExhibitionStatus(ex) !== "past"
     );
+
+    /* 🔥 fallback (안정성) */
+    if (!exhibition) {
+      console.warn("조건 매칭 실패 → fallback 사용");
+      exhibition = exhibitions[0];
+    }
 
     /* ---------- Hall Title ---------- */
 
@@ -107,7 +114,6 @@ async function loadHall() {
 
 }
 
-
 /* ======================================
    LOAD HALL ENTRY
 ====================================== */
@@ -116,7 +122,6 @@ async function loadHallEntry(exhibition, hallId) {
 
   const basePath =
     BASE_PATH + `assets/exhibitions/${exhibition.id}/`;
-
 
   /* ---------- COMING 상태 ---------- */
 
@@ -138,7 +143,6 @@ async function loadHallEntry(exhibition, hallId) {
     return;
   }
 
-
   /* ---------- 방명록 ID 전달 ---------- */
 
   const guestbookInput =
@@ -147,7 +151,6 @@ async function loadHallEntry(exhibition, hallId) {
   if (guestbookInput) {
     guestbookInput.value = exhibition.id;
   }
-
 
   /* ---------- 포스터 ---------- */
 
@@ -173,7 +176,6 @@ async function loadHallEntry(exhibition, hallId) {
     };
 
   }
-
 
   /* ---------- 작품보기 버튼 ---------- */
 
@@ -212,7 +214,6 @@ async function loadHallEntry(exhibition, hallId) {
 
   }
 
-
   /* ---------- 작가노트 ---------- */
 
   try {
@@ -231,7 +232,6 @@ async function loadHallEntry(exhibition, hallId) {
     console.warn("Artist note missing");
 
   }
-
 
   /* ---------- 작가 프로필 ---------- */
 
@@ -285,7 +285,6 @@ async function loadHallEntry(exhibition, hallId) {
   }
 
 }
-
 
 /* ======================================
    INIT

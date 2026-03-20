@@ -1,138 +1,207 @@
-/* BASE PATH 자동 처리 */
+/* =========================
+   BASE PATH (DEV용 핵심)
+========================= */
 
 const BASE_PATH = location.pathname.includes('/archive/') 
   || location.pathname.includes('/exhibition_pages/')
   ? '../'
   : '';
 
-/* video page override */
-
-
-/* URL 파라미터 */
+/* =========================
+   URL 파라미터
+========================= */
 
 const params = new URLSearchParams(location.search);
 const exhibitionId = params.get("id");
 
-/* 상태 */
+/* =========================
+   상태
+========================= */
 
 let videos = [];
 let currentIndex = 0;
+let autoTimer = null;
 
-/* 전시 제목 */
+/* =========================
+   전시 제목
+========================= */
 
-fetch("assets/config/gallery.json")
+fetch(BASE_PATH + "assets/config/gallery.json")
 .then(r => r.json())
 .then(data => {
 
-const exhibitions =
-data.currentExhibitions || data.exhibitions || [];
+  const exhibitions =
+    data.currentExhibitions || data.exhibitions || [];
 
-const ex = exhibitions.find(e => e.id === exhibitionId);
+  const ex = exhibitions.find(e => e.id === exhibitionId);
 
-if(ex){
-document.getElementById("videoTitle").innerText = ex.title;
-}
+  if(ex){
+    document.getElementById("videoTitle").innerText = ex.title;
+  }
 
 });
 
-/* 영상 목록 */
+/* =========================
+   영상 목록
+========================= */
 
-fetch("assets/config/videos.json")
+fetch(BASE_PATH + "assets/config/videos.json")
 .then(r => r.json())
 .then(data => {
 
-videos = data[exhibitionId] || [];
+  videos = data[exhibitionId] || [];
 
-if(!videos.length) return;
+  if(!videos.length){
+    console.warn("영상 없음:", exhibitionId);
+    return;
+  }
 
-loadVideo();
+  loadVideo();
 
 });
 
-/* 영상 로드 */
+/* =========================
+   영상 로드
+========================= */
 
 function loadVideo(){
 
-if(!videos.length) return;
+  if(!videos.length) return;
 
-const video = videos[currentIndex];
+  clearTimeout(autoTimer);
 
-const container = document.querySelector(".video-container");
-const loading = document.querySelector(".video-loading");
+  const video = videos[currentIndex];
 
-loading.style.display = "block";
+  const container = document.querySelector(".video-container");
+  const loading = document.querySelector(".video-loading");
 
-/* 기존 iframe 제거 */
+  if(!container) return;
 
-const oldFrame = document.getElementById("video-frame");
-if(oldFrame) oldFrame.remove();
+  loading.style.display = "block";
 
-/* 새 iframe 생성 */
+  /* 기존 iframe 제거 */
 
-const frame = document.createElement("iframe");
+  const oldFrame = document.getElementById("video-frame");
+  if(oldFrame) oldFrame.remove();
 
-frame.id = "video-frame";
-frame.loading = "lazy";
-frame.allow = "autoplay; encrypted-media";
-frame.allowFullscreen = true;
+  /* 새 iframe */
 
-frame.src =
-"https://www.youtube.com/embed/" +
-video.youtube +
-"?autoplay=1&mute=1&enablejsapi=1&rel=0&playsinline=1&t=" + Date.now();
+  const frame = document.createElement("iframe");
 
-container.appendChild(frame);
+  frame.id = "video-frame";
+  frame.loading = "lazy";
+  frame.allow = "autoplay; encrypted-media";
+  frame.allowFullscreen = true;
 
-/* 로딩 제거 */
+  /* =========================
+     플랫폼 분기
+  ========================= */
 
-setTimeout(()=>{
-loading.style.display = "none";
-frame.classList.add("show");
-},1200);
+  let src = "";
 
-/* 캡션 */
+  if(video.type === "youtube"){
 
-const captionElement = document.getElementById("video-caption");
-if(captionElement) captionElement.innerText = video.caption || "";
+    src =
+      "https://www.youtube.com/embed/" +
+      video.id +
+      "?autoplay=1&mute=1&enablejsapi=1&rel=0&playsinline=1&loop=1&playlist=" + video.id;
+
+  }else if(video.type === "vimeo"){
+
+    src =
+      "https://player.vimeo.com/video/" +
+      video.id +
+      "?autoplay=1&muted=1&loop=1&title=0&byline=0&portrait=0";
+
+  }else{
+
+    console.warn("지원되지 않는 video type:", video);
+    return;
+
+  }
+
+  frame.src = src;
+
+  container.appendChild(frame);
+
+  /* 로딩 제거 */
+
+  setTimeout(()=>{
+    loading.style.display = "none";
+    frame.classList.add("show");
+  }, 800);
+
+  /* =========================
+     캡션
+  ========================= */
+
+  const captionElement = document.getElementById("video-caption");
+
+  if(captionElement){
+
+    captionElement.style.opacity = 0;
+
+    setTimeout(()=>{
+      captionElement.innerText = video.caption || "";
+      captionElement.style.opacity = 1;
+    }, 200);
+
+  }
+
+  /* =========================
+     자동 흐름
+  ========================= */
+
+  if(videos.length > 1){
+
+    autoTimer = setTimeout(() => {
+      nextVideo();
+    }, 30000);
+
+  }
 
 }
 
-/* 다음 영상 */
+/* =========================
+   다음 / 이전
+========================= */
 
 function nextVideo(){
 
-currentIndex++;
+  currentIndex++;
 
-if(currentIndex >= videos.length)
-currentIndex = 0;
+  if(currentIndex >= videos.length)
+    currentIndex = 0;
 
-loadVideo();
+  loadVideo();
 
 }
-
-/* 이전 영상 */
 
 function prevVideo(){
 
-currentIndex--;
+  currentIndex--;
 
-if(currentIndex < 0)
-currentIndex = videos.length - 1;
+  if(currentIndex < 0)
+    currentIndex = videos.length - 1;
 
-loadVideo();
+  loadVideo();
 
 }
 
-/* 키보드 이동 */
+/* =========================
+   키보드
+========================= */
 
 document.addEventListener("keydown", function(e){
 
-if(e.key === "ArrowRight") nextVideo();
-if(e.key === "ArrowLeft") prevVideo();
+  if(e.key === "ArrowRight") nextVideo();
+  if(e.key === "ArrowLeft") prevVideo();
 
 });
 
-/* 컨트롤 표시 */
+/* =========================
+   컨트롤
+========================= */
 
 const controls = document.querySelector(".controls");
 
@@ -140,13 +209,15 @@ let hideTimer;
 
 function showControls(){
 
-controls.classList.add("show");
+  if(!controls) return;
 
-clearTimeout(hideTimer);
+  controls.classList.add("show");
 
-hideTimer = setTimeout(()=>{
-controls.classList.remove("show");
-},2000);
+  clearTimeout(hideTimer);
+
+  hideTimer = setTimeout(()=>{
+    controls.classList.remove("show");
+  },2000);
 
 }
 
@@ -155,52 +226,54 @@ document.addEventListener("touchstart", showControls);
 
 showControls();
 
-/* 전체 화면 */
+/* =========================
+   전체화면
+========================= */
 
 function toggleFullscreen(){
 
-const elem = document.querySelector(".video-container");
+  const elem = document.querySelector(".video-container");
 
-if(!document.fullscreenElement){
-
-elem.requestFullscreen().catch(err => console.log(err));
-
-}else{
-
-document.exitFullscreen();
-
-}
+  if(!document.fullscreenElement){
+    elem.requestFullscreen().catch(err => console.log(err));
+  }else{
+    document.exitFullscreen();
+  }
 
 }
 
 document
 .querySelector(".video-container")
-.addEventListener("dblclick", toggleFullscreen);
+?.addEventListener("dblclick", toggleFullscreen);
 
 document.addEventListener("keydown", function(e){
 
-if(e.key === "f" || e.key === "F")
-toggleFullscreen();
+  if(e.key === "f" || e.key === "F")
+    toggleFullscreen();
 
 });
 
-/* Hall 이동 */
+/* =========================
+   Hall 이동
+========================= */
 
 const backBtn = document.getElementById("backToHall");
 
 if(backBtn){
 
-backBtn.addEventListener("click", () => {
+  backBtn.addEventListener("click", () => {
 
-const hall = params.get("hall") || "hall50";
+    const hall = params.get("hall") || "hall50";
 
-window.location.href = BASE_PATH + `hall.html?hall=${hall}`;
+    window.location.href = BASE_PATH + `hall.html?hall=${hall}`;
 
-});
+  });
 
 }
 
-/* meta 자동 숨김 */
+/* =========================
+   meta 자동 숨김
+========================= */
 
 const meta = document.querySelector(".meta");
 
@@ -208,13 +281,15 @@ let metaTimer;
 
 function showMeta(){
 
-meta.classList.remove("hide");
+  if(!meta) return;
 
-clearTimeout(metaTimer);
+  meta.classList.remove("hide");
 
-metaTimer = setTimeout(()=>{
-meta.classList.add("hide");
-},3000);
+  clearTimeout(metaTimer);
+
+  metaTimer = setTimeout(()=>{
+    meta.classList.add("hide");
+  },3000);
 
 }
 

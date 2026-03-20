@@ -1,7 +1,16 @@
 /* ======================================
-   EXHIBITION DETAIL SCRIPT (STABLE FINAL)
-   Gallery Window
+   EXHIBITION DETAIL SCRIPT (UNIFIED FINAL)
 ====================================== */
+
+/* =========================
+   BASE PATH (통합)
+========================= */
+
+const BASE_PATH =
+  location.hostname.includes("github.io")
+    ? "./"
+    : "/";
+
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -27,17 +36,15 @@ document.addEventListener("DOMContentLoaded", () => {
     `${ex.titleEN} — ${ex.artistEN} | Gallery Window`;
 
   /* =========================
-     META / SEO (SAFE)
+     META / SEO
   ========================= */
 
   const setContent = (id, value) => {
-    const el = document.getElementById(id);
-    if (el) el.content = value;
+    document.getElementById(id)?.setAttribute("content", value);
   };
 
   const setMeta = (selector, value) => {
-    const el = document.querySelector(selector);
-    if (el) el.content = value;
+    document.querySelector(selector)?.setAttribute("content", value);
   };
 
   setContent("meta-desc",
@@ -74,11 +81,8 @@ document.addEventListener("DOMContentLoaded", () => {
      IMAGE SEO
   ========================= */
 
-  const metaImage = document.getElementById("meta-image");
-  if (metaImage) metaImage.href = posterURL;
-
-  const schemaImage = document.getElementById("schema-image");
-  if (schemaImage) schemaImage.content = posterURL;
+  document.getElementById("meta-image")?.setAttribute("href", posterURL);
+  document.getElementById("schema-image")?.setAttribute("content", posterURL);
 
   /* =========================
      POSTER IMAGE
@@ -87,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const posterImg = document.getElementById("poster-image");
 
   if (posterImg) {
-    posterImg.src = ex.poster;
+    posterImg.src = posterURL;
     posterImg.alt =
       `${ex.titleEN} conceptual photography exhibition poster by ${ex.artistEN} at Gallery Window`;
   }
@@ -108,15 +112,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     BACK TO LIST
+     BACK LINK (통합)
   ========================= */
 
   const state = ex.state || "upcoming";
 
   const listPage =
     state === "past"
-      ? "/gallery-window-dev/archive/past.html"
-      : "/gallery-window-dev/archive/upcoming.html";
+      ? BASE_PATH + "archive/past.html"
+      : BASE_PATH + "archive/upcoming.html";
 
   const listText =
     state === "past"
@@ -175,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* ======================================
-   TXT LOAD (SAFE VERSION)
+   TXT LOAD (통합)
 ====================================== */
 
 async function loadNoteProfile() {
@@ -188,7 +192,9 @@ async function loadNoteProfile() {
     const file = window.location.pathname.split("/").pop();
     const id = file.replace(".html", "");
 
-    const res = await fetch(`/gallery-window-dev/exhibition_pages/txt/${id}.txt`);
+    const res = await fetch(
+      BASE_PATH + `exhibition_pages/txt/${id}.txt`
+    );
 
     if (!res.ok) {
       console.warn("TXT not found:", id);

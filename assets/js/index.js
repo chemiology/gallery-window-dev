@@ -1,8 +1,11 @@
 /* =========================
-   BASE PATH
+   BASE PATH (통합)
 ========================= */
 
-const BASE_PATH = '';
+const BASE_PATH =
+  location.hostname.includes("github.io")
+    ? "./"
+    : "/";
 
 /* =========================
    EXHIBITION STATUS
@@ -32,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadGallery();
   renderHomepageGuestbook();
-  loadHeadlineNotice(); // ✔ 공지 독립 실행
+  loadHeadlineNotice();
 
 });
 
@@ -115,9 +118,13 @@ function renderExhibitions(exhibitions) {
     const block = document.createElement("div");
     block.className = "exhibition";
 
-    if (getExhibitionStatus(exhibition) === "coming") {
+    const status = getExhibitionStatus(exhibition);
+
+    if (status === "coming") {
       block.classList.add("coming");
     }
+
+    /* ===== 전시관 이름 (핵심 수정) ===== */
 
     const hall = document.createElement("div");
     hall.className = "hall-label";
@@ -140,7 +147,13 @@ function renderExhibitions(exhibitions) {
     };
 
     img.onclick = () => {
-      location.href = `hall.html?hall=${exhibition.hall}`;
+
+      if (status === "coming") {
+        alert("이 전시는 준비 중입니다.");
+        return;
+      }
+
+      location.href = BASE_PATH + `hall.html?hall=${exhibition.hall}`;
     };
 
     const meta = document.createElement("div");
@@ -150,7 +163,9 @@ function renderExhibitions(exhibitions) {
     posterWrap.appendChild(img);
     posterWrap.appendChild(meta);
 
-    if (getExhibitionStatus(exhibition) === "coming") {
+    /* ===== COMING 표시 ===== */
+
+    if (status === "coming") {
 
       const badge = document.createElement("div");
       badge.className = "coming-badge";
@@ -165,10 +180,12 @@ function renderExhibitions(exhibitions) {
     container.appendChild(block);
   });
 
-    setTimeout(() => {
-      document.querySelectorAll(".coming-badge")
-        .forEach(el => el.style.opacity = 1);
-    }, 120);
+  /* 부드러운 표시 */
+
+  setTimeout(() => {
+    document.querySelectorAll(".coming-badge")
+      .forEach(el => el.style.opacity = 1);
+  }, 120);
 
 }
 
@@ -210,7 +227,7 @@ async function renderHomepageGuestbook() {
 }
 
 /* =========================
-   HEADLINE NOTICE (FINAL)
+   HEADLINE NOTICE
 ========================= */
 
 async function loadHeadlineNotice() {
@@ -220,7 +237,7 @@ async function loadHeadlineNotice() {
 
   try {
 
-    const response = await fetch("assets/notice/headlineNotice.html");
+    const response = await fetch(BASE_PATH + "assets/notice/headlineNotice.html");
 
     if (!response.ok) {
       console.warn("Notice file not found");
@@ -237,6 +254,10 @@ async function loadHeadlineNotice() {
   }
 
 }
+
+/* =========================
+   PAGE READY
+========================= */
 
 window.addEventListener("load", () => {
   document.body.classList.add("page-ready");
