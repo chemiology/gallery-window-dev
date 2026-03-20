@@ -1,0 +1,411 @@
+/* =====================================================
+   Gallery Window – INDEX PAGE
+===================================================== */
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.site-header{
+  max-width:1440px;
+  margin:0 auto;
+  padding:40px 96px 20px;
+}
+
+.site-header h1{
+  margin:0;
+  font-size:30px;
+  font-weight:500;
+  letter-spacing:.02em;
+  color:#d8dadd;
+}
+
+.site-header h1 .ko{
+  margin-right:18px;
+  color:#e3e4e6;
+}
+
+.site-header h1 .en{
+  font-weight:400;
+  opacity:.65;
+}
+
+.site-header .subtitle{
+  margin-top:12px;
+  font-size:14px;
+  color:#a2a7ad;
+}
+
+
+/* =====================================================
+   HEADLINE NOTICE
+===================================================== */
+
+#headline-notice{
+  margin-top:18px;
+  margin-bottom:28px;
+
+  font-size:16px;
+  line-height:1.6;
+
+  color:rgba(230,231,233,.95);
+
+  max-width:1000px;
+
+  text-align:left;
+
+  margin-left:0;
+  margin-right:0;
+}
+
+#headline-notice p{
+  margin:6px 0;
+}
+
+.notice-highlight{
+  color:#f2c94c;
+}
+
+
+/* =====================================================
+   INTRO TEXT
+===================================================== */
+
+.intro{
+  margin-top:10px;
+  max-width:760px;
+
+  font-size:13px;
+  line-height:1.6;
+
+  color:#a8adb3;
+  letter-spacing:.01em;
+}
+
+
+/* =====================================================
+   EXHIBITION GRID
+===================================================== */
+
+.exhibitions{
+
+  display:grid;
+
+  width:100%;
+  max-width:1400px;
+
+  margin:48px auto 12px;
+
+  padding:0 80px;
+
+  box-sizing:border-box;
+
+  justify-content:center;
+  justify-items:center;
+
+}
+
+
+/* =====================================================
+   EXHIBITION CARD
+===================================================== */
+
+.exhibition{
+  position:relative;
+  width:100%;
+  max-width:420px;
+}
+
+
+/* =====================================================
+   GRID MODES
+===================================================== */
+
+/* 전시 1~2개 */
+
+.exhibitions.grid-2{
+
+  grid-template-columns:repeat(2,minmax(0,420px));
+
+  gap:120px;
+
+}
+
+
+/* 전시 3~6개 */
+
+.exhibitions.grid-3{
+
+  grid-template-columns:repeat(3,minmax(0,360px));
+
+  gap:64px;
+
+}
+
+
+/* 전시 7개 이상 */
+
+.exhibitions.grid-4{
+
+  grid-template-columns:repeat(4,minmax(0,300px));
+
+  gap:48px;
+
+}
+
+/* =====================================================
+   EXHIBITION CARD
+===================================================== */
+
+.exhibition{
+  position:relative;
+  margin:0 auto;
+}
+
+.exhibition img{
+  width:100%;
+  height:auto;
+  object-fit:cover;
+}
+
+
+/* =====================================================
+   HALL LABEL
+===================================================== */
+
+.hall-label{
+  position:absolute;
+  top:12px;
+  left:12px;
+
+  z-index:5;
+
+  font-size:14px;
+  font-weight:500;
+  letter-spacing:.12em;
+
+  padding:6px 10px;
+
+  background:rgba(0,0,0,.55);
+  color:#fff;
+
+  border:1px solid rgba(255,255,255,.35);
+
+  backdrop-filter:blur(4px);
+}
+
+.exhibitions.grid-3 .hall-label{font-size:12px;}
+.exhibitions.grid-4 .hall-label{font-size:11px;}
+
+
+/* =====================================================
+   META (POSTER CAPTION)
+===================================================== */
+
+body.home .meta{
+  text-align:center;
+}
+
+.meta h3{
+  margin-top:10px;
+  font-size:16px;
+}
+
+.meta p{
+  margin:4px 0 0;
+  font-size:14px;
+  opacity:.8;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width:768px){
+
+  .site-header{
+    padding:24px 16px 16px;
+  }
+
+  #headline-notice{
+    max-width:100%;
+  }
+
+  .exhibitions{
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+
+    padding:0 16px;
+
+    width:100%;
+    max-width:none !important;
+  }
+
+  .exhibition{
+    width:100%;
+  }
+
+  main,
+  .bottom-area{
+    padding-left:16px;
+    padding-right:16px;
+    box-sizing:border-box;
+  }
+
+}
+
+.exhibition{
+  width:100%;
+}
+
+body.home .exhibition{
+  max-width:none !important;
+}
+
+body.home .exhibition-body{
+  display:block;
+}
+
+/* =====================================================
+   EXHIBITION GRID
+===================================================== */
+
+.exhibitions{
+
+  display:grid;
+
+  width:100%;
+  max-width:1400px;
+
+  margin:48px auto 12px;
+
+  padding:0 80px;
+
+  box-sizing:border-box;
+
+  justify-content:center;
+  justify-items:center;
+
+}
+
+
+/* =====================================================
+   GRID MODES
+===================================================== */
+
+.exhibitions.grid-2{
+  grid-template-columns:repeat(2,minmax(0,420px));
+  gap:120px;
+}
+
+.exhibitions.grid-3{
+  grid-template-columns:repeat(3,minmax(0,360px));
+  gap:64px;
+}
+
+.exhibitions.grid-4{
+  grid-template-columns:repeat(4,minmax(0,300px));
+  gap:48px;
+}
+
+/* =========================
+   COMING – FINAL VERSION
+========================= */
+
+/* 포스터 컨테이너 기준 */
+.exhibition{
+  position:relative;
+}
+
+/* 배지 */
+.coming-badge{
+  position:absolute;
+  top:14px;
+  left:14px;
+
+  padding:6px 12px;
+
+  font-size:11px;
+  letter-spacing:0.12em;
+
+  color:#fff;
+
+  background:rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:20px;
+
+  opacity:0;
+  transform:translateY(-6px);
+
+  transition:
+    opacity .6s ease,
+    transform .6s ease;
+}
+
+/* 등장 */
+.exhibition.coming .coming-badge{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* 포스터 흐림 */
+.exhibition.coming img{
+  opacity:0.72;
+  filter: grayscale(12%);
+  transition: all .4s ease;
+}
+
+/* hover 시 살아남 */
+.exhibition.coming:hover img{
+  opacity:0.95;
+  filter:none;
+}
+
+/* 은은한 빛 */
+.exhibition.coming::after{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:linear-gradient(
+    120deg,
+    transparent 40%,
+    rgba(255,255,255,0.08),
+    transparent 60%
+  );
+
+  opacity:0;
+  transition:opacity .5s ease;
+}
+
+.exhibition.coming:hover::after{
+  opacity:1;
+}
+
+/* themeColor 연결 */
+.exhibition.coming .coming-badge{
+  border-color: var(--theme-color, rgba(255,255,255,0.2));
+}
+
+.coming-badge {
+  font-size: 28px;
+  letter-spacing: 2px;
+  opacity: 0.9;
+}
+
+.exhibition.coming {
+  cursor: pointer;
+}
+
+.exhibition.new-open {
+  animation: fadeOpen 1.2s ease;
+}
+
+@keyframes fadeOpen {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
