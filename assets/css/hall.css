@@ -684,3 +684,24 @@ body.hall .hall-entry a:hover{
 
   opacity:1 !important;    /* 🔥 흐려짐 방지 */
 }
+
+/* ===== GUESTBOOK THEME ===== */
+
+/* 제목 */
+body.hall .guestbook-title,
+body.hall .recent-guestbook-title{
+  color: var(--theme-color);
+}
+
+/* 입력창 */
+body.hall .guestbook input,
+body.hall .guestbook textarea{
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* focus 시 */
+body.hall .guestbook input:focus,
+body.hall .guestbook textarea:focus{
+  border-color: var(--theme-color);
+  box-shadow: 0 0 6px var(--theme-color);
+}

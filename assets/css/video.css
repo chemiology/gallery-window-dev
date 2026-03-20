@@ -151,3 +151,60 @@ opacity:0;
   opacity: 0.08;
   pointer-events: none;
 }
+
+/* ===== VIDEO FADE EFFECT ===== */
+
+#video-frame{
+  opacity:0;
+  transition:opacity 0.8s ease;
+}
+
+#video-frame.show{
+  opacity:1;
+}
+
+/* ===== CINEMATIC OVERLAY ===== */
+
+.video-container::after{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(0,0,0,0) 40%,
+      rgba(0,0,0,0.45) 100%
+    );
+
+  pointer-events:none;
+}
+
+/* ===== FILM GRAIN ===== */
+
+.video-container::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background-image:url("https://grainy-gradients.vercel.app/noise.svg");
+
+  opacity:0.06;
+
+  pointer-events:none;
+}
+
+.video-container{
+  animation: slowBreath 12s ease-in-out infinite;
+}
+
+@keyframes slowBreath{
+  0% { transform:scale(1); }
+  50% { transform:scale(1.01); }
+  100% { transform:scale(1); }
+}
+
+.controls{
+  backdrop-filter: blur(8px);
+  background: rgba(0,0,0,0.3);
+}
