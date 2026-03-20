@@ -31,6 +31,9 @@ const BASE_PATH = (() => {
 const params = new URLSearchParams(location.search);
 const exhibitionId = params.get("id");
 
+/* 🔥 여기 추가 */
+console.log("exhibitionId:", exhibitionId);
+
 /* =========================
    상태
 ========================= */
@@ -63,11 +66,14 @@ fetch(BASE_PATH + "/assets/config/gallery.json")
    영상 목록
 ========================= */
 
-fetch(BASE_PATH + "/assets/config/videos.json")
+fetch("/assets/config/videos.json")
 .then(r => r.json())
 .then(data => {
 
   videos = data[exhibitionId] || [];
+
+  /* 🔥 여기 추가 */
+  console.log("videos:", videos);
 
   if(!videos.length){
     console.warn("영상 없음:", exhibitionId);
