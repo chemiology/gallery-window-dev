@@ -1,6 +1,28 @@
 /* ======================================
    EXHIBITION DETAIL SCRIPT (FINAL STABLE)
+   ✔ BASE_PATH 완전 대응
 ====================================== */
+
+/* =========================
+   BASE PATH (🔥 핵심)
+========================= */
+
+const BASE_PATH = (() => {
+  const path = location.pathname;
+
+  if (path.includes('/gallery-window-dev/')) {
+    return '/gallery-window-dev';
+  }
+
+  const segments = path.split('/').filter(Boolean);
+  if (location.hostname.includes('github.io') && segments.length > 0) {
+    return '/' + segments[0];
+  }
+
+  return '';
+})();
+
+/* ====================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -11,16 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const ex = EXHIBITION;
 
-  /* =========================
-     BASIC URL
-  ========================= */
-
   const url = window.location.href;
   const posterURL = ex.poster;
-
-  /* =========================
-     TITLE
-  ========================= */
 
   document.title =
     `${ex.titleEN} — ${ex.artistEN} | Gallery Window`;
@@ -102,15 +116,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     BACK LINK (🔥 핵심 수정)
+     BACK LINK (🔥 수정 완료)
   ========================= */
 
   const state = ex.state || "upcoming";
 
   const listPage =
     state === "past"
-      ? "/archive/past.html"
-      : "/archive/upcoming.html";
+      ? BASE_PATH + "/archive/past.html"
+      : BASE_PATH + "/archive/upcoming.html";
 
   const listText =
     state === "past"
@@ -160,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     TXT LOAD (🔥 핵심 수정)
+     TXT LOAD
   ========================= */
 
   loadNoteProfile();
@@ -182,7 +196,9 @@ async function loadNoteProfile() {
     const file = window.location.pathname.split("/").pop();
     const id = file.replace(".html", "");
 
-    const res = await fetch(`/exhibition_pages/txt/${id}.txt`);
+    const res = await fetch(
+      BASE_PATH + `/exhibition_pages/txt/${id}.txt`
+    );
 
     if (!res.ok) {
       console.warn("TXT not found:", id);

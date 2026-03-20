@@ -1,6 +1,31 @@
 /* =====================================================
-   Gallery Window – Exhibition JS (Final Stable)
+   Gallery Window – Exhibition JS (FINAL STABLE)
+   ✔ BASE_PATH 완전 대응
+   ✔ dev / 운영 / GitHub Pages 모두 안정
 ===================================================== */
+
+/* =========================
+   BASE PATH (🔥 핵심)
+========================= */
+
+const BASE_PATH = (() => {
+  const path = location.pathname;
+
+  if (path.includes('/gallery-window-dev/')) {
+    return '/gallery-window-dev';
+  }
+
+  const segments = path.split('/').filter(Boolean);
+  if (location.hostname.includes('github.io') && segments.length > 0) {
+    return '/' + segments[0];
+  }
+
+  return '';
+})();
+
+/* =========================
+   STATE
+========================= */
 
 let images = [];
 let captions = [];
@@ -26,7 +51,7 @@ const params = new URLSearchParams(window.location.search);
 const exhibitionId = params.get("id");
 
 if (!exhibitionId) {
-  window.location.href = "/";
+  window.location.href = BASE_PATH + "/";
 }
 
 const hallId = params.get("hall") || "hall01";
@@ -37,7 +62,7 @@ const input = document.querySelector('input[name="exhibition_id"]');
 if (input) input.value = exhibitionId;
 
 /* -----------------------------------------------------
-   Init
+   INIT
 ----------------------------------------------------- */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -55,7 +80,7 @@ async function loadExhibition(id) {
 
   try {
 
-    const res = await fetch("/assets/config/gallery.json");
+    const res = await fetch(BASE_PATH + "/assets/config/gallery.json");
     const data = await res.json();
 
     const exhibition =
@@ -69,7 +94,7 @@ async function loadExhibition(id) {
     document.title = `Gallery Window — ${exhibition.title}`;
 
     const basePath =
-      `/assets/exhibitions/${exhibition.id}/`;
+      BASE_PATH + `/assets/exhibitions/${exhibition.id}/`;
 
     /* ---------- theme ---------- */
 
@@ -205,8 +230,6 @@ function showImage(index) {
     }
   }
 
-  /* 이미지 */
-
   img.classList.remove("loaded");
 
   img.onload = () => {
@@ -214,8 +237,6 @@ function showImage(index) {
   };
 
   img.src = images[currentIndex];
-
-  /* caption */
 
   if (caption) {
 
@@ -227,19 +248,13 @@ function showImage(index) {
     }, 180);
   }
 
-  /* counter */
-
   if (counter) {
     counter.textContent =
       (currentIndex + 1) + " / " + images.length;
   }
 
-  /* preload */
-
   const nextIndex = (currentIndex + 1) % images.length;
   new Image().src = images[nextIndex];
-
-  /* loop effect */
 
   if (isLoopReset) {
     const viewer = document.querySelector(".viewer");
@@ -357,7 +372,7 @@ const backBtn = document.getElementById("backHome");
 
 if (backBtn) {
 
-  backBtn.href = `/hall.html?hall=${hallId}`;
+  backBtn.href = BASE_PATH + `/hall.html?hall=${hallId}`;
 
   backBtn.addEventListener("click", e => {
     e.preventDefault();

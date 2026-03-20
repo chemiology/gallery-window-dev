@@ -1,3 +1,28 @@
+/* =====================================================
+   Gallery Window – HALL JS (FINAL STABLE)
+   ✔ BASE_PATH 완전 대응
+   ✔ dev / 운영 모두 안정
+===================================================== */
+
+/* =========================
+   BASE PATH (🔥 핵심)
+========================= */
+
+const BASE_PATH = (() => {
+  const path = location.pathname;
+
+  if (path.includes('/gallery-window-dev/')) {
+    return '/gallery-window-dev';
+  }
+
+  const segments = path.split('/').filter(Boolean);
+  if (location.hostname.includes('github.io') && segments.length > 0) {
+    return '/' + segments[0];
+  }
+
+  return '';
+})();
+
 /* =========================
    EXHIBITION STATUS
 ========================= */
@@ -27,20 +52,16 @@ async function loadHall() {
 
   try {
 
-    const res = await fetch("/assets/config/gallery.json");
+    const res = await fetch(BASE_PATH + "/assets/config/gallery.json");
     const data = await res.json();
 
     const exhibitions =
       data.currentExhibitions || data.exhibitions || [];
 
-    /* ===== hall 기준 선택 ===== */
-
     let exhibition = exhibitions.find(ex =>
       ex.hall === hallId &&
       getExhibitionStatus(ex) !== "past"
     );
-
-    /* ===== fallback ===== */
 
     if (!exhibition && exhibitions.length > 0) {
       console.warn("조건 매칭 실패 → fallback 사용");
@@ -95,8 +116,6 @@ async function loadHall() {
       );
     }
 
-    /* ---------- 진입 ---------- */
-
     loadHallEntry(exhibition, hallId);
 
   } catch (err) {
@@ -114,7 +133,7 @@ async function loadHall() {
 async function loadHallEntry(exhibition, hallId) {
 
   const basePath =
-    `/assets/exhibitions/${exhibition.id}/`;
+    BASE_PATH + `/assets/exhibitions/${exhibition.id}/`;
 
   /* ---------- COMING 상태 ---------- */
 
@@ -154,15 +173,15 @@ async function loadHallEntry(exhibition, hallId) {
     poster.src = basePath + "poster.jpg";
 
     poster.onerror = () => {
-      poster.src = "/assets/images/poster-placeholder.jpg";
+      poster.src = BASE_PATH + "/assets/images/poster-placeholder.jpg";
     };
 
     poster.onclick = () => {
 
       const target =
         hallId.startsWith("hall5")
-          ? `/video.html?id=${exhibition.id}`
-          : `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
+          ? BASE_PATH + `/video.html?id=${exhibition.id}`
+          : BASE_PATH + `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
 
       window.location.href = target;
 
@@ -178,8 +197,8 @@ async function loadHallEntry(exhibition, hallId) {
 
     const target =
       hallId.startsWith("hall5")
-        ? `/video.html?id=${exhibition.id}`
-        : `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
+        ? BASE_PATH + `/video.html?id=${exhibition.id}`
+        : BASE_PATH + `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
 
     enterBtn.href = target;
 

@@ -1,3 +1,28 @@
+/* =====================================================
+   Gallery Window – INDEX JS (FINAL STABLE)
+   ✔ BASE_PATH 완전 자동 대응
+   ✔ dev / 운영 모두 안정
+===================================================== */
+
+/* =========================
+   BASE PATH (🔥 핵심)
+========================= */
+
+const BASE_PATH = (() => {
+  const path = location.pathname;
+
+  if (path.includes('/gallery-window-dev/')) {
+    return '/gallery-window-dev';
+  }
+
+  const segments = path.split('/').filter(Boolean);
+  if (location.hostname.includes('github.io') && segments.length > 0) {
+    return '/' + segments[0];
+  }
+
+  return '';
+})();
+
 /* =========================
    EXHIBITION STATUS
 ========================= */
@@ -38,7 +63,7 @@ async function loadGallery() {
 
   try {
 
-    const response = await fetch("/assets/config/gallery.json", { cache: "no-store" });
+    const response = await fetch(BASE_PATH + "/assets/config/gallery.json", { cache: "no-store" });
 
     if (!response.ok) throw new Error("Network error");
 
@@ -129,12 +154,12 @@ function renderExhibitions(exhibitions) {
 
     const img = document.createElement("img");
 
-    img.src = `/assets/exhibitions/${exhibition.id}/poster.jpg`;
+    img.src = BASE_PATH + `/assets/exhibitions/${exhibition.id}/poster.jpg`;
     img.alt = exhibition.title;
     img.loading = "lazy";
 
     img.onerror = () => {
-      img.src = "/assets/images/poster-placeholder.jpg";
+      img.src = BASE_PATH + "/assets/images/poster-placeholder.jpg";
     };
 
     img.onclick = () => {
@@ -144,7 +169,7 @@ function renderExhibitions(exhibitions) {
         return;
       }
 
-      location.href = `/hall.html?hall=${exhibition.hall}`;
+      location.href = BASE_PATH + `/hall.html?hall=${exhibition.hall}`;
     };
 
     const meta = document.createElement("div");
@@ -170,8 +195,6 @@ function renderExhibitions(exhibitions) {
     block.appendChild(body);
     container.appendChild(block);
   });
-
-  /* 부드러운 표시 */
 
   setTimeout(() => {
     document.querySelectorAll(".coming-badge")
@@ -228,7 +251,7 @@ async function loadHeadlineNotice() {
 
   try {
 
-    const response = await fetch("/assets/notice/headlineNotice.html");
+    const response = await fetch(BASE_PATH + "/assets/notice/headlineNotice.html");
 
     if (!response.ok) {
       console.warn("Notice file not found");
