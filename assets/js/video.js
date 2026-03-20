@@ -1,5 +1,3 @@
-console.log("BASE_PATH:", BASE_PATH);
-
 /* =====================================================
    Gallery Window – Video JS (FINAL MASTER)
    ✔ iframe 방식 (완전 안정)
@@ -25,6 +23,8 @@ const BASE_PATH = (() => {
 
   return '';
 })();
+
+console.log("BASE_PATH:", BASE_PATH);
 
 /* =========================
    URL
