@@ -1,13 +1,4 @@
 /* =========================
-   BASE PATH (통합)
-========================= */
-
-const BASE_PATH =
-  location.hostname.includes("github.io")
-    ? "./"
-    : "/";
-
-/* =========================
    EXHIBITION STATUS
 ========================= */
 
@@ -47,7 +38,7 @@ async function loadGallery() {
 
   try {
 
-    const response = await fetch(BASE_PATH + "assets/config/gallery.json", { cache: "no-store" });
+    const response = await fetch("/assets/config/gallery.json", { cache: "no-store" });
 
     if (!response.ok) throw new Error("Network error");
 
@@ -124,7 +115,7 @@ function renderExhibitions(exhibitions) {
       block.classList.add("coming");
     }
 
-    /* ===== 전시관 이름 (핵심 수정) ===== */
+    /* ===== 전시관 이름 ===== */
 
     const hall = document.createElement("div");
     hall.className = "hall-label";
@@ -138,12 +129,12 @@ function renderExhibitions(exhibitions) {
 
     const img = document.createElement("img");
 
-    img.src = BASE_PATH + `assets/exhibitions/${exhibition.id}/poster.jpg`;
+    img.src = `/assets/exhibitions/${exhibition.id}/poster.jpg`;
     img.alt = exhibition.title;
     img.loading = "lazy";
 
     img.onerror = () => {
-      img.src = BASE_PATH + "assets/images/poster-placeholder.jpg";
+      img.src = "/assets/images/poster-placeholder.jpg";
     };
 
     img.onclick = () => {
@@ -153,7 +144,7 @@ function renderExhibitions(exhibitions) {
         return;
       }
 
-      location.href = BASE_PATH + `hall.html?hall=${exhibition.hall}`;
+      location.href = `/hall.html?hall=${exhibition.hall}`;
     };
 
     const meta = document.createElement("div");
@@ -237,7 +228,7 @@ async function loadHeadlineNotice() {
 
   try {
 
-    const response = await fetch(BASE_PATH + "assets/notice/headlineNotice.html");
+    const response = await fetch("/assets/notice/headlineNotice.html");
 
     if (!response.ok) {
       console.warn("Notice file not found");

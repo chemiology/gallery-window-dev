@@ -1,16 +1,6 @@
 /* ======================================
-   EXHIBITION DETAIL SCRIPT (UNIFIED FINAL)
+   EXHIBITION DETAIL SCRIPT (FINAL STABLE)
 ====================================== */
-
-/* =========================
-   BASE PATH (통합)
-========================= */
-
-const BASE_PATH =
-  location.hostname.includes("github.io")
-    ? "./"
-    : "/";
-
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -112,15 +102,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     BACK LINK (통합)
+     BACK LINK (🔥 핵심 수정)
   ========================= */
 
   const state = ex.state || "upcoming";
 
   const listPage =
     state === "past"
-      ? BASE_PATH + "archive/past.html"
-      : BASE_PATH + "archive/upcoming.html";
+      ? "/archive/past.html"
+      : "/archive/upcoming.html";
 
   const listText =
     state === "past"
@@ -170,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     TXT LOAD
+     TXT LOAD (🔥 핵심 수정)
   ========================= */
 
   loadNoteProfile();
@@ -179,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* ======================================
-   TXT LOAD (통합)
+   TXT LOAD (FINAL)
 ====================================== */
 
 async function loadNoteProfile() {
@@ -192,9 +182,7 @@ async function loadNoteProfile() {
     const file = window.location.pathname.split("/").pop();
     const id = file.replace(".html", "");
 
-    const res = await fetch(
-      BASE_PATH + `exhibition_pages/txt/${id}.txt`
-    );
+    const res = await fetch(`/exhibition_pages/txt/${id}.txt`);
 
     if (!res.ok) {
       console.warn("TXT not found:", id);

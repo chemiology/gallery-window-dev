@@ -1,14 +1,5 @@
-/* =========================
-   BASE PATH (통합)
-========================= */
-
-const BASE_PATH =
-  location.hostname.includes("github.io")
-    ? "./"
-    : "/";
-
 /* =====================================================
-   Gallery Window – Exhibition JS (Unified Final)
+   Gallery Window – Exhibition JS (Final Stable)
 ===================================================== */
 
 let images = [];
@@ -35,12 +26,13 @@ const params = new URLSearchParams(window.location.search);
 const exhibitionId = params.get("id");
 
 if (!exhibitionId) {
-  window.location.href = BASE_PATH;
+  window.location.href = "/";
 }
 
 const hallId = params.get("hall") || "hall01";
 
 /* 방명록 ID */
+
 const input = document.querySelector('input[name="exhibition_id"]');
 if (input) input.value = exhibitionId;
 
@@ -63,7 +55,7 @@ async function loadExhibition(id) {
 
   try {
 
-    const res = await fetch(BASE_PATH + "assets/config/gallery.json");
+    const res = await fetch("/assets/config/gallery.json");
     const data = await res.json();
 
     const exhibition =
@@ -77,7 +69,7 @@ async function loadExhibition(id) {
     document.title = `Gallery Window — ${exhibition.title}`;
 
     const basePath =
-      BASE_PATH + `assets/exhibitions/${exhibition.id}/`;
+      `/assets/exhibitions/${exhibition.id}/`;
 
     /* ---------- theme ---------- */
 
@@ -191,7 +183,7 @@ function showImage(index) {
 
   currentIndex = (index + images.length) % images.length;
 
-  /* analytics (안전 처리) */
+  /* analytics */
 
   if (typeof gtag !== "undefined") {
 
@@ -358,14 +350,14 @@ function setupControls() {
 }
 
 /* -----------------------------------------------------
-   Back Button (통합)
+   Back Button
 ----------------------------------------------------- */
 
 const backBtn = document.getElementById("backHome");
 
 if (backBtn) {
 
-  backBtn.href = BASE_PATH + `hall.html?hall=${hallId}`;
+  backBtn.href = `/hall.html?hall=${hallId}`;
 
   backBtn.addEventListener("click", e => {
     e.preventDefault();

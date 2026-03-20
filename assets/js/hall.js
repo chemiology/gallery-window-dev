@@ -1,13 +1,4 @@
 /* =========================
-   BASE PATH (통합)
-========================= */
-
-const BASE_PATH =
-  location.hostname.includes("github.io")
-    ? "./"
-    : "/";
-
-/* =========================
    EXHIBITION STATUS
 ========================= */
 
@@ -36,20 +27,22 @@ async function loadHall() {
 
   try {
 
-    const res = await fetch(BASE_PATH + "assets/config/gallery.json");
+    const res = await fetch("/assets/config/gallery.json");
     const data = await res.json();
 
     const exhibitions =
       data.currentExhibitions || data.exhibitions || [];
 
-    /* 🔥 핵심: hall 기준 + past 제외 */
+    /* ===== hall 기준 선택 ===== */
+
     let exhibition = exhibitions.find(ex =>
       ex.hall === hallId &&
       getExhibitionStatus(ex) !== "past"
     );
 
-    /* 🔥 fallback (안정성) */
-    if (!exhibition) {
+    /* ===== fallback ===== */
+
+    if (!exhibition && exhibitions.length > 0) {
       console.warn("조건 매칭 실패 → fallback 사용");
       exhibition = exhibitions[0];
     }
@@ -121,7 +114,7 @@ async function loadHall() {
 async function loadHallEntry(exhibition, hallId) {
 
   const basePath =
-    BASE_PATH + `assets/exhibitions/${exhibition.id}/`;
+    `/assets/exhibitions/${exhibition.id}/`;
 
   /* ---------- COMING 상태 ---------- */
 
@@ -143,7 +136,7 @@ async function loadHallEntry(exhibition, hallId) {
     return;
   }
 
-  /* ---------- 방명록 ID 전달 ---------- */
+  /* ---------- 방명록 ID ---------- */
 
   const guestbookInput =
     document.querySelector('input[name="exhibition_id"]');
@@ -161,15 +154,15 @@ async function loadHallEntry(exhibition, hallId) {
     poster.src = basePath + "poster.jpg";
 
     poster.onerror = () => {
-      poster.src = BASE_PATH + "assets/images/poster-placeholder.jpg";
+      poster.src = "/assets/images/poster-placeholder.jpg";
     };
 
     poster.onclick = () => {
 
       const target =
         hallId.startsWith("hall5")
-          ? BASE_PATH + `video.html?id=${exhibition.id}`
-          : BASE_PATH + `exhibition.html?id=${exhibition.id}&hall=${hallId}`;
+          ? `/video.html?id=${exhibition.id}`
+          : `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
 
       window.location.href = target;
 
@@ -185,8 +178,8 @@ async function loadHallEntry(exhibition, hallId) {
 
     const target =
       hallId.startsWith("hall5")
-        ? BASE_PATH + `video.html?id=${exhibition.id}`
-        : BASE_PATH + `exhibition.html?id=${exhibition.id}&hall=${hallId}`;
+        ? `/video.html?id=${exhibition.id}`
+        : `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
 
     enterBtn.href = target;
 
@@ -221,11 +214,7 @@ async function loadHallEntry(exhibition, hallId) {
     const note = await fetch(basePath + "note.txt");
     const noteText = await note.text();
 
-    const noteElement = document.getElementById("artistNote");
-
-    if (noteElement) {
-      noteElement.innerText = noteText;
-    }
+    document.getElementById("artistNote").innerText = noteText;
 
   } catch {
 
@@ -271,12 +260,7 @@ async function loadHallEntry(exhibition, hallId) {
 
     if (inList) html += "</div>";
 
-    const profileElement =
-      document.getElementById("artistProfile");
-
-    if (profileElement) {
-      profileElement.innerHTML = html;
-    }
+    document.getElementById("artistProfile").innerHTML = html;
 
   } catch {
 

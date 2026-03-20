@@ -1,11 +1,6 @@
-/* =========================
-   BASE PATH (DEV용 핵심)
-========================= */
-
-const BASE_PATH = location.pathname.includes('/archive/') 
-  || location.pathname.includes('/exhibition_pages/')
-  ? '../'
-  : '';
+/* =====================================================
+   Gallery Window – Video JS (FINAL STABLE)
+===================================================== */
 
 /* =========================
    URL 파라미터
@@ -26,7 +21,7 @@ let autoTimer = null;
    전시 제목
 ========================= */
 
-fetch(BASE_PATH + "assets/config/gallery.json")
+fetch("/assets/config/gallery.json")
 .then(r => r.json())
 .then(data => {
 
@@ -45,7 +40,7 @@ fetch(BASE_PATH + "assets/config/gallery.json")
    영상 목록
 ========================= */
 
-fetch(BASE_PATH + "assets/config/videos.json")
+fetch("/assets/config/videos.json")
 .then(r => r.json())
 .then(data => {
 
@@ -235,7 +230,7 @@ function toggleFullscreen(){
   const elem = document.querySelector(".video-container");
 
   if(!document.fullscreenElement){
-    elem.requestFullscreen().catch(err => console.log(err));
+    elem?.requestFullscreen().catch(err => console.log(err));
   }else{
     document.exitFullscreen();
   }
@@ -254,7 +249,7 @@ document.addEventListener("keydown", function(e){
 });
 
 /* =========================
-   Hall 이동
+   Hall 이동 (🔥 핵심 수정)
 ========================= */
 
 const backBtn = document.getElementById("backToHall");
@@ -265,7 +260,7 @@ if(backBtn){
 
     const hall = params.get("hall") || "hall50";
 
-    window.location.href = BASE_PATH + `hall.html?hall=${hall}`;
+    window.location.href = `/hall.html?hall=${hall}`;
 
   });
 
