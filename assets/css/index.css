@@ -390,3 +390,22 @@ body.home .exhibition-body{
 .exhibition.coming .coming-badge{
   border-color: var(--theme-color, rgba(255,255,255,0.2));
 }
+
+.coming-badge {
+  font-size: 28px;
+  letter-spacing: 2px;
+  opacity: 0.9;
+}
+
+.exhibition.coming {
+  cursor: pointer;
+}
+
+.exhibition.new-open {
+  animation: fadeOpen 1.2s ease;
+}
+
+@keyframes fadeOpen {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
