@@ -114,6 +114,10 @@ function loadVideo(){
   /* 로딩 제거 */
   setTimeout(()=>{
     loading.style.display = "none";
+
+  /* 🔥 이 줄 추가 */
+  frame.style.opacity = "1";
+
     frame.classList.add("show");
   },1000);
 
