@@ -220,7 +220,7 @@ document.addEventListener("keydown", function(e){
 });
 
 /* =========================
-   Hall 이동
+   Hall 이동 (FINAL FIX)
 ========================= */
 
 const backBtn = document.getElementById("backToHall");
@@ -229,14 +229,20 @@ if(backBtn){
 
   backBtn.addEventListener("click", () => {
 
-    const hall = params.get("hall") || "hall50";
+    const hall = params.get("hall");
 
-    window.location.href = BASE_PATH + `/hall.html?hall=${hall}`;
+    /* 🔥 hall 값이 있으면 정확히 이동 */
+    if(hall){
+      window.location.href = BASE_PATH + `/hall.html?hall=${hall}`;
+    }
+    /* 🔥 없으면 안전하게 홈으로 */
+    else{
+      window.location.href = BASE_PATH + "/";
+    }
 
   });
 
 }
-
 /* =========================
    meta 숨김
 ========================= */
