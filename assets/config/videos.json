@@ -1,15 +1,17 @@
 {
   "video_avatar_ii": [
     {
-      "caption":"Avatar II Video, 2024",
-      "youtube": "IYRbB-b2I7Y"
+      "caption": "Avatar II Video, 2024",
+      "type": "youtube",
+      "id": "IYRbB-b2I7Y"
     }
   ],
 
   "video_avatar_reload": [
     {
-      "caption":"Avatar Reload Video, 2024",
-      "youtube": "CeXmqnsT2mU"
+      "caption": "Avatar Reload Video, 2024",
+      "type": "youtube",
+      "id": "CeXmqnsT2mU"
     }
   ]
 }
