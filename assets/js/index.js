@@ -1,11 +1,12 @@
 /* =====================================================
-   Gallery Window – INDEX JS (FINAL STABLE)
-   ✔ BASE_PATH 완전 자동 대응
-   ✔ dev / 운영 모두 안정
+   Gallery Window – INDEX JS (MASTER FINAL)
+   ✔ BASE_PATH 안정
+   ✔ COMING + 카운트다운
+   ✔ 자동 오픈 반영
 ===================================================== */
 
 /* =========================
-   BASE PATH (🔥 핵심)
+   BASE PATH
 ========================= */
 
 const BASE_PATH = (() => {
@@ -24,7 +25,7 @@ const BASE_PATH = (() => {
 })();
 
 /* =========================
-   EXHIBITION STATUS
+   STATUS
 ========================= */
 
 function getExhibitionStatus(ex) {
@@ -42,6 +43,27 @@ function getExhibitionStatus(ex) {
 }
 
 /* =========================
+   COUNTDOWN
+========================= */
+
+function getCountdownText(startDate){
+
+  if(!startDate) return "";
+
+  const today = new Date();
+  const start = new Date(startDate);
+
+  const diff = Math.ceil((start - today) / (1000*60*60*24));
+
+  if(diff <= 0) return "";
+
+  if(diff === 1) return "D-1";
+  if(diff <= 7) return `D-${diff}`;
+
+  return `${diff}일 후`;
+}
+
+/* =========================
    INIT
 ========================= */
 
@@ -56,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* =========================
-   LOAD GALLERY
+   LOAD
 ========================= */
 
 async function loadGallery() {
@@ -68,11 +90,6 @@ async function loadGallery() {
     if (!response.ok) throw new Error("Network error");
 
     const data = await response.json();
-
-    if (!data || typeof data !== "object") {
-      showErrorMessage();
-      return;
-    }
 
     const exhibitions =
       (data.currentExhibitions || [])
@@ -91,7 +108,7 @@ async function loadGallery() {
 }
 
 /* =========================
-   ERROR UI
+   ERROR
 ========================= */
 
 function showErrorMessage() {
@@ -107,7 +124,7 @@ function showErrorMessage() {
 }
 
 /* =========================
-   RENDER EXHIBITIONS
+   RENDER (🔥 핵심)
 ========================= */
 
 function renderExhibitions(exhibitions) {
@@ -121,18 +138,13 @@ function renderExhibitions(exhibitions) {
     getExhibitionStatus(ex) !== "past"
   );
 
-  const count = visible.length;
-
-  container.classList.remove("grid-2","grid-3","grid-4");
-
-  if (count <= 2) container.classList.add("grid-2");
-  else if (count <= 6) container.classList.add("grid-3");
-  else container.classList.add("grid-4");
-
   visible.forEach((exhibition, index) => {
 
     const block = document.createElement("div");
     block.className = "exhibition";
+
+    /* 🔥 시작일 저장 (여기 위치 중요) */
+    block.dataset.start = exhibition.startDate;
 
     const status = getExhibitionStatus(exhibition);
 
@@ -164,17 +176,11 @@ function renderExhibitions(exhibitions) {
 
     img.onclick = () => {
 
-      const hasPoster = exhibition.id; // 기본 존재
-      const hasData = exhibition.images && exhibition.images.length;
+      const isVideoHall = exhibition.hall.startsWith("hall5");
+      const hasImages = exhibition.images && exhibition.images.length;
 
-      // 🔥 데이터 없으면 차단
-      if (!hasData) {
+      if (!isVideoHall && !hasImages) {
         alert("이 전시는 아직 준비 중입니다.");
-        return;
-      }
-
-      if (status === "coming") {
-        alert("이 전시는 준비 중입니다.");
         return;
       }
 
@@ -188,13 +194,21 @@ function renderExhibitions(exhibitions) {
     posterWrap.appendChild(img);
     posterWrap.appendChild(meta);
 
-    /* ===== COMING 표시 ===== */
+    /* ===== COMING + COUNTDOWN ===== */
 
     if (status === "coming") {
 
       const badge = document.createElement("div");
       badge.className = "coming-badge";
-      badge.textContent = "COMING";
+
+      const countdown = getCountdownText(exhibition.startDate);
+
+      badge.innerHTML = `
+        <div>COMING</div>
+        <div style="font-size:14px;margin-top:4px;opacity:.8;">
+          ${countdown}
+        </div>
+      `;
 
       posterWrap.appendChild(badge);
     }
@@ -205,10 +219,35 @@ function renderExhibitions(exhibitions) {
     container.appendChild(block);
   });
 
-  setTimeout(() => {
-    document.querySelectorAll(".coming-badge")
-      .forEach(el => el.style.opacity = 1);
-  }, 120);
+  /* =========================
+     🔥 자동 오픈 처리 (핵심)
+  ========================= */
+
+  setInterval(() => {
+
+    const now = new Date();
+
+    document.querySelectorAll(".exhibition").forEach(block => {
+
+      const startDate = block.dataset.start;
+      if (!startDate) return;
+
+      const start = new Date(startDate);
+
+      if (now >= start && block.classList.contains("coming")) {
+
+        block.classList.remove("coming");
+
+        /* 🔥 여기가 new-open 위치 */
+        block.classList.add("new-open");
+
+        const badge = block.querySelector(".coming-badge");
+        if (badge) badge.remove();
+      }
+
+    });
+
+  }, 60000);
 
 }
 
@@ -250,7 +289,7 @@ async function renderHomepageGuestbook() {
 }
 
 /* =========================
-   HEADLINE NOTICE
+   NOTICE
 ========================= */
 
 async function loadHeadlineNotice() {
@@ -262,10 +301,7 @@ async function loadHeadlineNotice() {
 
     const response = await fetch(BASE_PATH + "/assets/notice/headlineNotice.html");
 
-    if (!response.ok) {
-      console.warn("Notice file not found");
-      return;
-    }
+    if (!response.ok) return;
 
     const html = await response.text();
     container.innerHTML = html;
@@ -279,7 +315,7 @@ async function loadHeadlineNotice() {
 }
 
 /* =========================
-   PAGE READY
+   READY
 ========================= */
 
 window.addEventListener("load", () => {
