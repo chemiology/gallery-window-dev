@@ -1,3 +1,5 @@
+console.log("BASE_PATH:", BASE_PATH);
+
 /* =====================================================
    Gallery Window – Video JS (FINAL MASTER)
    ✔ iframe 방식 (완전 안정)
@@ -66,7 +68,7 @@ fetch(BASE_PATH + "/assets/config/gallery.json")
    영상 목록
 ========================= */
 
-fetch("/assets/config/videos.json")
+fetch(BASE_PATH + "/assets/config/videos.json")
 .then(r => r.json())
 .then(data => {
 
