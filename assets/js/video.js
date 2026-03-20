@@ -72,11 +72,13 @@ fetch(BASE_PATH + "/assets/config/videos.json")
 .then(r => {
   console.log("fetch status:", r.status);
   return r.json();
+})
 .then(data => {
 
   videos = data[exhibitionId] || [];
 
   /* 🔥 여기 추가 */
+  const exhibitionId = params.get("id");
   console.log("videos:", videos);
 
   if(!videos.length){
