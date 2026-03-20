@@ -5,6 +5,12 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="index,follow">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gallery Window">
+<meta name="twitter:description" content="Online photography exhibition space.">
+<meta name="twitter:image" content="https://gallerywindow.com/assets/og-gallery.jpg">
 
 <title>Video Exhibition | Gallery Window</title>
 
@@ -18,153 +24,18 @@ gtag('config', 'G-M2QQ5KME88');
 </script>
 
 <!-- favicon -->
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#111111">
 
-<style>
+<!-- SEO -->
+<meta name="description"
+content="Gallery Window (갤러리 창) is an online photography exhibition platform presenting contemporary conceptual photography and digital exhibitions.">
 
-body{
-margin:0;
-background:#000;
-color:#ddd;
-font-family:system-ui, sans-serif;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-min-height:100vh;
-}
-
-.video-title{
-margin-top:30px;
-font-size:18px;
-letter-spacing:1px;
-}
-
-.video-container{
-width:90%;
-max-width:1100px;
-aspect-ratio:16/9;
-margin-top:20px;
-box-shadow:0 0 60px rgba(0,0,0,0.8);
-position:relative;
-}
-
-iframe{
-width:100%;
-height:100%;
-border:none;
-}
-
-.controls{
-margin-top:25px;
-opacity:0;
-transition:opacity .4s ease;
-}
-
-.controls.show{
-opacity:1;
-}
-
-button{
-background:rgba(255,255,255,0.08);
-color:#ddd;
-border:none;
-padding:10px 22px;
-margin:6px;
-font-size:13px;
-cursor:pointer;
-transition:all .25s ease;
-}
-
-button:hover{
-background:rgba(255,255,255,0.18);
-color:#fff;
-}
-
-@media (max-width:700px){
-
-.video-container{
-width:100%;
-}
-
-button{
-padding:10px 18px;
-font-size:13px;
-}
-
-}
-
-.video-caption{
-margin-top:18px;
-opacity:0.8;
-font-size:13px;
-color:#bbb;
-text-align:center;
-letter-spacing:0.3px;
-}
-
-.nav-back{
-margin-top:25px;
-font-size:13px;
-opacity:.7;
-}
-
-.nav-back a{
-color:#ccc;
-text-decoration:none;
-cursor:pointer;
-padding:6px 10px;
-border-radius:4px;
-transition:all .25s ease;
-display:inline-block;
-}
-
-.nav-back a:hover{
-color:#fff;
-background:rgba(255,255,255,0.08);
-}
-
-.fullscreen-tip{
-margin-top:6px;
-font-size:11px;
-opacity:.75;
-letter-spacing:0.6px;
-text-align:center;
-color:#ddd;
-}
-
-.video-loading{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-font-size:14px;
-opacity:0.7;
-letter-spacing:1px;
-pointer-events:none;
-}
-
-#video-frame{
-opacity:0;
-transition:opacity .6s ease;
-}
-
-#video-frame.show{
-opacity:1;
-}
-
-.meta{
-transition:opacity .6s ease;
-}
-
-.meta.hide{
-opacity:0;
-}
-
-</style>
+<!-- CSS -->
+<link rel="stylesheet" href="assets/css/video.css">
+<link rel="stylesheet" href="assets/css/mobile.css" media="(max-width:768px)">
 
 </head>
 
@@ -172,15 +43,14 @@ opacity:0;
 
 <div class="meta">
 
-<div class="video-title" id="videoTitle"></div>
-
-<div class="video-caption" id="video-caption"></div>
+  <div class="video-title" id="videoTitle"></div>
+  <div class="video-caption" id="video-caption"></div>
 
 </div>
 
 <div class="video-container">
 
-<div class="video-loading">Loading...</div>
+  <div class="video-loading">Loading...</div>
 
 </div>
 
@@ -190,239 +60,21 @@ F : Fullscreen · ESC : Exit
 
 <div class="controls">
 
-<button onclick="prevVideo()">Prev</button>
-<button onclick="nextVideo()">Next</button>
+  <button onclick="prevVideo()">Prev</button>
+  <button onclick="nextVideo()">Next</button>
 
 </div>
 
 <div class="nav-back">
-<a id="backToHall">← Hall</a>
+  <a id="backToHall">← Hall</a>
 </div>
 
-<script>
-
-/* URL 파라미터 */
-
-const params = new URLSearchParams(location.search);
-const exhibitionId = params.get("id");
-const hall = params.get("hall");
-
-/* 상태 */
-
-let videos = [];
-let currentIndex = 0;
-
-/* 전시 제목 */
-
-fetch("https://chemiology.github.io/gallery-window-dev/assets/config/gallery.json")
-.then(r => r.json())
-.then(data => {
-
-const exhibitions =
-data.currentExhibitions || data.exhibitions || [];
-
-const ex = exhibitions.find(e => e.id === exhibitionId);
-
-if(ex){
-document.getElementById("videoTitle").innerText = ex.title;
-}
-
-});
-
-/* 영상 목록 */
-
-fetch("https://chemiology.github.io/gallery-window-dev/assets/config/videos.json")
-.then(r => r.json())
-.then(data => {
-
-videos = data[exhibitionId] || [];
-
-if(!videos.length){
-  alert("영상 없음");
-  return;
-}
-
-loadVideo();
-
-});
-
-/* 영상 로드 */
-
-function loadVideo(){
-
-if(!videos.length) return;
-
-const video = videos[currentIndex];
-
-const container = document.querySelector(".video-container");
-const loading = document.querySelector(".video-loading");
-
-loading.style.display = "block";
-
-/* 기존 iframe 제거 */
-
-const oldFrame = document.getElementById("video-frame");
-if(oldFrame) oldFrame.remove();
-
-/* 새 iframe 생성 */
-
-const frame = document.createElement("iframe");
-
-frame.id = "video-frame";
-frame.loading = "lazy";
-
-/* 🔥 핵심 수정 */
-frame.allow = "autoplay; fullscreen";
-
-/* 🔥 핵심 수정 */
-frame.src =
-"https://www.youtube.com/embed/" +
-video.id +
-"?autoplay=1&mute=1";
-
-container.appendChild(frame);
-
-/* 로딩 제거 */
-
-setTimeout(()=>{
-loading.style.display = "none";
-frame.classList.add("show");
-},800);
-
-/* 캡션 */
-
-const captionElement = document.getElementById("video-caption");
-if(captionElement) captionElement.innerText = video.caption || "";
-
-}
-
-/* 다음 영상 */
-
-function nextVideo(){
-
-currentIndex++;
-
-if(currentIndex >= videos.length)
-currentIndex = 0;
-
-loadVideo();
-
-}
-
-/* 이전 영상 */
-
-function prevVideo(){
-
-currentIndex--;
-
-if(currentIndex < 0)
-currentIndex = videos.length - 1;
-
-loadVideo();
-
-}
-
-/* 키보드 이동 */
-
-document.addEventListener("keydown", function(e){
-
-if(e.key === "ArrowRight") nextVideo();
-if(e.key === "ArrowLeft") prevVideo();
-
-});
-
-/* 컨트롤 표시 */
-
-const controls = document.querySelector(".controls");
-
-let hideTimer;
-
-function showControls(){
-
-controls.classList.add("show");
-
-clearTimeout(hideTimer);
-
-hideTimer = setTimeout(()=>{
-controls.classList.remove("show");
-},2000);
-
-}
-
-document.addEventListener("mousemove", showControls);
-document.addEventListener("touchstart", showControls);
-
-showControls();
-
-/* 전체 화면 */
-
-function toggleFullscreen(){
-
-const elem = document.querySelector(".video-container");
-
-if(!document.fullscreenElement){
-
-elem.requestFullscreen().catch(err => console.log(err));
-
-}else{
-
-document.exitFullscreen();
-
-}
-
-}
-
-document
-.querySelector(".video-container")
-.addEventListener("dblclick", toggleFullscreen);
-
-document.addEventListener("keydown", function(e){
-
-if(e.key === "f" || e.key === "F")
-toggleFullscreen();
-
-});
-
-/* =========================
-   Hall 이동 (완전 수정)
-========================= */
-
-document.getElementById("backToHall").addEventListener("click", () => {
-
-if(hall){
-window.location.href =
-"https://chemiology.github.io/gallery-window-dev/hall.html?hall=" + hall;
-}else{
-window.location.href =
-"https://chemiology.github.io/gallery-window-dev/";
-}
-
-});
-
-/* meta 자동 숨김 */
-
-const meta = document.querySelector(".meta");
-
-let metaTimer;
-
-function showMeta(){
-
-meta.classList.remove("hide");
-
-clearTimeout(metaTimer);
-
-metaTimer = setTimeout(()=>{
-meta.classList.add("hide");
-},3000);
-
-}
-
-document.addEventListener("mousemove", showMeta);
-document.addEventListener("touchstart", showMeta);
-
-showMeta();
-
-</script>
+<!-- ======================
+     Scripts
+====================== -->
+
+<!-- 🔥 중요: defer 추가 (DOM 문제 방지) -->
+<script src="assets/js/video.js" defer></script>
 
 </body>
 </html>
