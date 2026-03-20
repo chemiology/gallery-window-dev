@@ -1,13 +1,12 @@
 /* =====================================================
-   Gallery Window – Video JS (MASTER FINAL)
-   ✔ BASE_PATH 완전 대응
-   ✔ YouTube API
-   ✔ 추천영상 차단
-   ✔ 전시형 UI
+   Gallery Window – Video JS (FINAL MASTER)
+   ✔ iframe 방식 (완전 안정)
+   ✔ 전시형 페이드
+   ✔ 자동 흐름
 ===================================================== */
 
 /* =========================
-   BASE PATH (🔥 핵심)
+   BASE PATH
 ========================= */
 
 const BASE_PATH = (() => {
@@ -26,7 +25,7 @@ const BASE_PATH = (() => {
 })();
 
 /* =========================
-   URL 파라미터
+   URL
 ========================= */
 
 const params = new URLSearchParams(location.search);
@@ -39,32 +38,7 @@ const exhibitionId = params.get("id");
 let videos = [];
 let currentIndex = 0;
 let autoTimer = null;
-let player = null;
-let ytReady = false;
-
-/* =========================
-   YouTube API 로드
-========================= */
-
-function loadYouTubeAPI(){
-  return new Promise(resolve => {
-
-    if(window.YT && YT.Player){
-      ytReady = true;
-      return resolve();
-    }
-
-    const tag = document.createElement("script");
-    tag.src = "https://www.youtube.com/iframe_api";
-
-    window.onYouTubeIframeAPIReady = function(){
-      ytReady = true;
-      resolve();
-    };
-
-    document.head.appendChild(tag);
-  });
-}
+let endFadeTimer = null;
 
 /* =========================
    전시 제목
@@ -91,7 +65,7 @@ fetch(BASE_PATH + "/assets/config/gallery.json")
 
 fetch(BASE_PATH + "/assets/config/videos.json")
 .then(r => r.json())
-.then(async data => {
+.then(data => {
 
   videos = data[exhibitionId] || [];
 
@@ -100,14 +74,12 @@ fetch(BASE_PATH + "/assets/config/videos.json")
     return;
   }
 
-  await loadYouTubeAPI();
-
   loadVideo();
 
 });
 
 /* =========================
-   영상 로드
+   영상 로드 (핵심)
 ========================= */
 
 function loadVideo(){
@@ -115,6 +87,7 @@ function loadVideo(){
   if(!videos.length) return;
 
   clearTimeout(autoTimer);
+  clearTimeout(endFadeTimer);
 
   const video = videos[currentIndex];
 
@@ -123,94 +96,53 @@ function loadVideo(){
 
   if(!container) return;
 
+  /* 🔥 페이드 아웃 */
   container.classList.remove("show");
 
   setTimeout(() => {
 
     loading.style.display = "block";
 
-    if(player){
-      player.destroy();
-      player = null;
-    }
-
+    /* 기존 제거 */
     const oldFrame = document.getElementById("video-frame");
     if(oldFrame) oldFrame.remove();
 
+    /* iframe 생성 */
+    const frame = document.createElement("iframe");
+
+    frame.id = "video-frame";
+    frame.loading = "lazy";
+    frame.allow = "autoplay; encrypted-media";
+    frame.allowFullscreen = true;
+
     /* =========================
-       YouTube
+       플랫폼 분기
     ========================= */
 
     if(video.type === "youtube"){
 
-      const div = document.createElement("div");
-      div.id = "video-frame";
-      container.appendChild(div);
+      frame.src =
+        "https://www.youtube.com/embed/" +
+        video.id +
+        "?autoplay=1&mute=1&loop=1&playlist=" + video.id +
+        "&rel=0&modestbranding=1&playsinline=1";
 
-      player = new YT.Player("video-frame", {
-        videoId: video.id,
-        playerVars: {
-          autoplay: 1,
-          mute: 1,
-          controls: 0,
-          rel: 0,
-          modestbranding: 1,
-          playsinline: 1,
-          origin: window.location.origin
-        },
-        events: {
-          onReady: (e) => {
-            e.target.playVideo();
-            loading.style.display = "none";
-            container.classList.add("show");
-          },
+    }else if(video.type === "vimeo"){
 
-          onStateChange: (event) => {
-
-            if(event.data === YT.PlayerState.ENDED){
-
-              if(videos.length > 1){
-                nextVideo();
-              }else{
-                setTimeout(()=>{
-                  player.seekTo(0);
-                  player.playVideo();
-                },150);
-              }
-
-            }
-
-          }
-        }
-      });
-
-    }
-
-    /* =========================
-       Vimeo
-    ========================= */
-
-    else if(video.type === "vimeo"){
-
-      const frame = document.createElement("iframe");
-
-      frame.id = "video-frame";
       frame.src =
         "https://player.vimeo.com/video/" +
         video.id +
-        "?autoplay=1&muted=1&loop=1&title=0&byline=0&portrait=0&controls=0";
-
-      frame.allow = "autoplay; fullscreen";
-      frame.allowFullscreen = true;
-
-      container.appendChild(frame);
-
-      setTimeout(()=>{
-        loading.style.display = "none";
-        container.classList.add("show");
-      },500);
+        "?autoplay=1&muted=1&loop=1&title=0&byline=0&portrait=0";
 
     }
+
+    container.appendChild(frame);
+
+    /* 🔥 페이드 인 */
+    setTimeout(()=>{
+      loading.style.display = "none";
+      container.classList.add("show");
+    },600);
 
     /* =========================
        캡션
@@ -243,6 +175,22 @@ function loadVideo(){
 
   }
 
+  /* =========================
+     🔥 전시형 여운 효과
+  ========================= */
+
+  endFadeTimer = setTimeout(() => {
+
+    const container = document.querySelector(".video-container");
+
+    container.classList.remove("show");
+
+    setTimeout(() => {
+      container.classList.add("show");
+    }, 800);
+
+  }, 28000);
+
 }
 
 /* =========================
@@ -273,7 +221,7 @@ document.addEventListener("keydown", function(e){
 });
 
 /* =========================
-   컨트롤 UI
+   컨트롤
 ========================= */
 
 const controls = document.querySelector(".controls");
