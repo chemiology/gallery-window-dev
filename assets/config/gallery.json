@@ -97,7 +97,21 @@
       "themeMode": "warm",
       "startDate": "2026-03-01",
       "endDate": "2026-06-30"
-      }
+    },
+
+    {
+      "id": "video_avatar_ii",
+      "title": "Avatar II (Video)",
+      "hall": "hall52",
+      "hallTitle": "영상관",
+      "order": 52,
+      "status": "current",
+      "artist": "김경수",
+      "themeColor": "#f9efa3",
+      "themeMode": "cool",
+      "startDate": "2026-03-01",
+      "endDate": "2026-12-31"
+    }
 
      ]
 
