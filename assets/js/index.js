@@ -121,7 +121,8 @@ function renderExhibitions(exhibitions) {
 
     const hall = document.createElement("div");
     hall.className = "hall-label";
-    hall.textContent = `${index + 1}관`;
+    hall.textContent =
+      exhibition.hallTitle || `${index + 1}관`;
 
     const body = document.createElement("div");
     body.className = "exhibition-body";
@@ -139,11 +140,8 @@ function renderExhibitions(exhibitions) {
     };
 
     img.onclick = () => {
-
-      if (exhibition.status === "coming") {
-        alert("이 전시는 곧 시작됩니다.");
-        return;
-      }
+      location.href = `hall.html?hall=${exhibition.hall}`;
+    };
 
       location.href = BASE_PATH + `hall.html?hall=${exhibition.hall}`;
     };
@@ -155,11 +153,26 @@ function renderExhibitions(exhibitions) {
     posterWrap.appendChild(img);
     posterWrap.appendChild(meta);
 
+    if (getExhibitionStatus(exhibition) === "coming") {
+
+      const badge = document.createElement("div");
+      badge.className = "coming-badge";
+      badge.textContent = "COMING";
+
+      posterWrap.appendChild(badge);
+    }
+
     body.appendChild(posterWrap);
     block.appendChild(hall);
     block.appendChild(body);
     container.appendChild(block);
   });
+
+    setTimeout(() => {
+      document.querySelectorAll(".coming-badge")
+        .forEach(el => el.style.opacity = 1);
+    }, 120);
+
 }
 
 /* =========================
@@ -227,23 +240,6 @@ async function loadHeadlineNotice() {
   }
 
 }
-
-/* =========================
-   GLOBAL EVENTS
-========================= */
-
-document.addEventListener("click", function(e) {
-
-  const link = e.target.closest("a[href*='exhibition.html']");
-  if (!link) return;
-
-  e.preventDefault();
-
-  gtag('event', 'enter_hall', { hall: 'hall01' });
-
-  window.location.href = "hall.html?hall=hall01";
-
-});
 
 window.addEventListener("load", () => {
   document.body.classList.add("page-ready");
