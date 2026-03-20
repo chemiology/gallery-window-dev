@@ -143,9 +143,6 @@ function renderExhibitions(exhibitions) {
       location.href = `hall.html?hall=${exhibition.hall}`;
     };
 
-      location.href = BASE_PATH + `hall.html?hall=${exhibition.hall}`;
-    };
-
     const meta = document.createElement("div");
     meta.className = "meta";
     meta.innerHTML = `<h3>${exhibition.title}</h3><p>${exhibition.artist}</p>`;
