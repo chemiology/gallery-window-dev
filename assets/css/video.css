@@ -228,3 +228,7 @@ opacity:0;
 .video-container.show {
   opacity: 1;
 }
+
+#video-frame{
+  opacity:1;   /* ← 0 → 1로 변경 */
+}
