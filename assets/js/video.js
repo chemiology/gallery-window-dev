@@ -100,14 +100,13 @@ function loadVideo(){
 
   frame.id = "video-frame";
   frame.loading = "lazy";
-  frame.allow = "autoplay; encrypted-media";
-  frame.allowFullscreen = true;
+  frame.allow = "autoplay; fullscreen; encrypted-media";
 
   /* 🔥 핵심 (JSON 대응) */
   frame.src =
     "https://www.youtube.com/embed/" +
     video.id +
-   "?autoplay=1&mute=1&loop=1&playlist=" + video.id + "&rel=0&playsinline=1"
+    "?autoplay=1&mute=1&rel=0&playsinline=1";
 
   container.appendChild(frame);
 
