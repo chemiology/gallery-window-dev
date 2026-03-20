@@ -69,7 +69,9 @@ fetch(BASE_PATH + "/assets/config/gallery.json")
 ========================= */
 
 fetch(BASE_PATH + "/assets/config/videos.json")
-.then(r => r.json())
+.then(r => {
+  console.log("fetch status:", r.status);
+  return r.json();
 .then(data => {
 
   videos = data[exhibitionId] || [];
@@ -91,6 +93,8 @@ fetch(BASE_PATH + "/assets/config/videos.json")
 ========================= */
 
 function loadVideo(){
+
+  console.log("🔥 loadVideo 실행됨");
 
   if(!videos.length) return;
 
