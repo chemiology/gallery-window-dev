@@ -112,7 +112,7 @@ function loadVideo(){
 
     frame.id = "video-frame";
     frame.loading = "lazy";
-    frame.allow = "autoplay; encrypted-media";
+    frame.allow = "autoplay; fullscreen; encrypted-media";
     frame.allowFullscreen = true;
 
     /* =========================
@@ -125,7 +125,7 @@ function loadVideo(){
         "https://www.youtube.com/embed/" +
         video.id +
         "?autoplay=1&mute=1&loop=1&playlist=" + video.id +
-        "&rel=0&modestbranding=1&playsinline=1";
+        "&rel=0&modestbranding=1&playsinline=1&enablejsapi=1";
 
     }else if(video.type === "vimeo"){
 
