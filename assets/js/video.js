@@ -1,8 +1,8 @@
 /* =====================================================
-   Gallery Window – Video JS (FINAL MASTER)
-   ✔ iframe 방식 (완전 안정)
-   ✔ 전시형 페이드
-   ✔ 자동 흐름
+   Gallery Window – Video JS (RESET STABLE)
+   ✔ 과거 정상 코드 기반
+   ✔ JSON 구조 대응
+   ✔ 경로 안정화
 ===================================================== */
 
 /* =========================
@@ -24,8 +24,6 @@ const BASE_PATH = (() => {
   return '';
 })();
 
-console.log("BASE_PATH:", BASE_PATH);
-
 /* =========================
    URL
 ========================= */
@@ -33,17 +31,12 @@ console.log("BASE_PATH:", BASE_PATH);
 const params = new URLSearchParams(location.search);
 const exhibitionId = params.get("id");
 
-/* 🔥 여기 추가 */
-console.log("exhibitionId:", exhibitionId);
-
 /* =========================
    상태
 ========================= */
 
 let videos = [];
 let currentIndex = 0;
-let autoTimer = null;
-let endFadeTimer = null;
 
 /* =========================
    전시 제목
@@ -69,17 +62,10 @@ fetch(BASE_PATH + "/assets/config/gallery.json")
 ========================= */
 
 fetch(BASE_PATH + "/assets/config/videos.json")
-.then(r => {
-  console.log("fetch status:", r.status);
-  return r.json();
-})
+.then(r => r.json())
 .then(data => {
 
   videos = data[exhibitionId] || [];
-
-  /* 🔥 여기 추가 */
-  const exhibitionId = params.get("id");
-  console.log("videos:", videos);
 
   if(!videos.length){
     console.warn("영상 없음:", exhibitionId);
@@ -96,114 +82,46 @@ fetch(BASE_PATH + "/assets/config/videos.json")
 
 function loadVideo(){
 
-  console.log("🔥 loadVideo 실행됨");
-
   if(!videos.length) return;
-
-  clearTimeout(autoTimer);
-  clearTimeout(endFadeTimer);
 
   const video = videos[currentIndex];
 
   const container = document.querySelector(".video-container");
   const loading = document.querySelector(".video-loading");
 
-  if(!container) return;
+  loading.style.display = "block";
 
-  /* 🔥 페이드 아웃 */
-  container.classList.remove("show");
+  /* 기존 제거 */
+  const oldFrame = document.getElementById("video-frame");
+  if(oldFrame) oldFrame.remove();
 
-  setTimeout(() => {
+  /* iframe 생성 */
+  const frame = document.createElement("iframe");
 
-    loading.style.display = "block";
+  frame.id = "video-frame";
+  frame.loading = "lazy";
+  frame.allow = "autoplay; encrypted-media";
+  frame.allowFullscreen = true;
 
-    /* 기존 제거 */
-    const oldFrame = document.getElementById("video-frame");
-    if(oldFrame) oldFrame.remove();
+  /* 🔥 핵심 (JSON 대응) */
+  frame.src =
+    "https://www.youtube.com/embed/" +
+    video.id +
+    "?autoplay=1&mute=1&enablejsapi=1&rel=0&playsinline=1&t=" + Date.now();
 
-    /* iframe 생성 */
-    const frame = document.createElement("iframe");
+  container.appendChild(frame);
 
-    frame.id = "video-frame";
-    frame.loading = "lazy";
-    frame.allow = "autoplay; fullscreen; encrypted-media";
-    frame.allowFullscreen = true;
+  /* 로딩 제거 */
+  setTimeout(()=>{
+    loading.style.display = "none";
+    frame.classList.add("show");
+  },1000);
 
-    /* =========================
-       플랫폼 분기
-    ========================= */
-
-    if(video.type === "youtube"){
-
-      frame.src =
-        "https://www.youtube.com/embed/" +
-        video.id +
-        "?autoplay=1&mute=1&loop=1&playlist=" + video.id +
-        "&rel=0&modestbranding=1&playsinline=1&enablejsapi=1";
-
-    }else if(video.type === "vimeo"){
-
-      frame.src =
-        "https://player.vimeo.com/video/" +
-        video.id +
-        "?autoplay=1&muted=1&loop=1&title=0&byline=0&portrait=0";
-
-    }
-
-    container.appendChild(frame);
-
-    /* 🔥 페이드 인 */
-    setTimeout(()=>{
-      loading.style.display = "none";
-      container.classList.add("show");
-    },600);
-
-    /* =========================
-       캡션
-    ========================= */
-
-    const captionElement = document.getElementById("video-caption");
-
-    if(captionElement){
-
-      captionElement.style.opacity = 0;
-
-      setTimeout(()=>{
-        captionElement.innerText = video.caption || "";
-        captionElement.style.opacity = 1;
-      },300);
-
-    }
-
-  }, 300);
-
-  /* =========================
-     자동 흐름
-  ========================= */
-
-  if(videos.length > 1){
-
-    autoTimer = setTimeout(() => {
-      nextVideo();
-    }, 30000);
-
+  /* 캡션 */
+  const captionElement = document.getElementById("video-caption");
+  if(captionElement){
+    captionElement.innerText = video.caption || "";
   }
-
-  /* =========================
-     🔥 전시형 여운 효과
-  ========================= */
-
-  endFadeTimer = setTimeout(() => {
-
-    const container = document.querySelector(".video-container");
-
-    container.classList.remove("show");
-
-    setTimeout(() => {
-      container.classList.add("show");
-    }, 800);
-
-  }, 28000);
 
 }
 
@@ -212,17 +130,25 @@ function loadVideo(){
 ========================= */
 
 function nextVideo(){
+
   currentIndex++;
+
   if(currentIndex >= videos.length)
     currentIndex = 0;
+
   loadVideo();
+
 }
 
 function prevVideo(){
+
   currentIndex--;
+
   if(currentIndex < 0)
     currentIndex = videos.length - 1;
+
   loadVideo();
+
 }
 
 /* =========================
@@ -230,8 +156,10 @@ function prevVideo(){
 ========================= */
 
 document.addEventListener("keydown", function(e){
+
   if(e.key === "ArrowRight") nextVideo();
   if(e.key === "ArrowLeft") prevVideo();
+
 });
 
 /* =========================
@@ -282,8 +210,10 @@ document
 ?.addEventListener("dblclick", toggleFullscreen);
 
 document.addEventListener("keydown", function(e){
+
   if(e.key === "f" || e.key === "F")
     toggleFullscreen();
+
 });
 
 /* =========================
@@ -305,7 +235,7 @@ if(backBtn){
 }
 
 /* =========================
-   meta 자동 숨김
+   meta 숨김
 ========================= */
 
 const meta = document.querySelector(".meta");
