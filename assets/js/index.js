@@ -164,6 +164,15 @@ function renderExhibitions(exhibitions) {
 
     img.onclick = () => {
 
+      const hasPoster = exhibition.id; // 기본 존재
+      const hasData = exhibition.images && exhibition.images.length;
+
+      // 🔥 데이터 없으면 차단
+      if (!hasData) {
+        alert("이 전시는 아직 준비 중입니다.");
+        return;
+      }
+
       if (status === "coming") {
         alert("이 전시는 준비 중입니다.");
         return;
