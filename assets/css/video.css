@@ -208,3 +208,12 @@ opacity:0;
   backdrop-filter: blur(8px);
   background: rgba(0,0,0,0.3);
 }
+
+.video-container {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.video-container.show {
+  opacity: 1;
+}
