@@ -190,11 +190,6 @@ body {
     0 0 60px rgba(0,0,0,0.6);
 }
 
-#video-frame {
-  transform: scale(1.02);
-  transition: transform 20s ease;
-}
-
 .video-caption {
   font-size: 12px;
   letter-spacing: 1.2px;
@@ -334,22 +329,20 @@ setTimeout(() => {
 }
 
 .top-ui {
-  position: fixed;
+  position: absolute;
   top: 40px;
   left: 40px;
-  z-index: 20;
+  z-index: 40;
+  font-size: 20px;
   color: rgba(255,255,255,0.85);
-  font-size: 18px;
-  line-height: 1.4;
 }
 
 .bottom-ui {
-  position: fixed;
+  position: absolute;
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 20;
-  text-align: center;
+  z-index: 40;
   color: rgba(255,255,255,0.7);
 }
 
@@ -357,6 +350,7 @@ setTimeout(() => {
   position: fixed;
   inset: 0;
   background: #000;
+  overflow: hidden;
 }
 
 #video-frame {
@@ -382,7 +376,7 @@ setTimeout(() => {
   top: 50%;
   left: 50%;
   width: 100vw;
-  height: 56.25vw; /* 16:9 비율 */
+  height: 56.25vw; /* 16:9 */
   transform: translate(-50%, -50%);
   border: none;
 }
@@ -393,4 +387,15 @@ setTimeout(() => {
     width: 177.78vh;
     height: 100vh;
   }
+}
+
+.ui-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 30;   /* ⭐ 중요 */
+  pointer-events: none;
+}
+
+#video-frame {
+  z-index: 1;
 }
