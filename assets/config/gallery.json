@@ -54,7 +54,7 @@
       "hall": "hall01",
       "hallTitle": "1관 초대전",
       "order": 1,
-      "status": "hidden",
+      "status": "current",
       "artist": "한영숙",
       "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg","014.jpg","015.jpg","016.jpg","017.jpg","018.jpg","019.jpg"],
       "captions": [
@@ -91,7 +91,7 @@
       "hall": "hall50",
       "hallTitle": "영상관",
       "order": 50,
-      "status": "hidden",
+      "status": "current",
       "artist": "한영숙",
       "themeColor": "#f9efa3",
       "themeMode": "warm",
