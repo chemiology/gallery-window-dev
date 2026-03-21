@@ -1,174 +1,217 @@
-/* =========================
-   BASE PATH (반드시 포함)
-========================= */
-
-const BASE_PATH = (() => {
-  const path = location.pathname;
-
-  if (path.includes('/gallery-window-dev/')) {
-    return '/gallery-window-dev';
-  }
-
-  const segments = path.split('/').filter(Boolean);
-  if (location.hostname.includes('github.io') && segments.length > 0) {
-    return '/' + segments[0];
-  }
-
-  return '';
-})();
+/* video page override */
 
 
-/* =====================================================
-   VIDEO JS – 완전 복구 안정 버전
-===================================================== */
+/* URL 파라미터 */
 
-/* URL */
 const params = new URLSearchParams(location.search);
 const exhibitionId = params.get("id");
-const hall = params.get("hall");
 
 /* 상태 */
+
 let videos = [];
 let currentIndex = 0;
 
-/* 제목 */
+/* 전시 제목 */
+
 fetch("/assets/config/gallery.json")
 .then(r => r.json())
 .then(data => {
 
-  const list = data.currentExhibitions || data.exhibitions || [];
+const exhibitions =
+data.currentExhibitions || data.exhibitions || [];
 
-  const ex = list.find(e => e.id === exhibitionId);
+const ex = exhibitions.find(e => e.id === exhibitionId);
 
-  if(ex){
-    document.getElementById("videoTitle").innerText = ex.title;
-  }
+if(ex){
+document.getElementById("videoTitle").innerText = ex.title;
+}
 
 });
 
 /* 영상 목록 */
+
 fetch("/assets/config/videos.json")
 .then(r => r.json())
 .then(data => {
 
-  videos = data[exhibitionId] || [];
+videos = data[exhibitionId] || [];
 
-  console.log("🔥 videos:", videos);
+if(!videos.length) return;
 
-  if(!videos.length){
-    alert("영상 데이터 없음");
-    return;
-  }
-
-  loadVideo();
+loadVideo();
 
 });
 
 /* 영상 로드 */
+
 function loadVideo(){
 
-  const video = videos[currentIndex];
+if(!videos.length) return;
 
-  const container = document.querySelector(".video-container");
-  const loading = document.querySelector(".video-loading");
+const video = videos[currentIndex];
 
-  loading.style.display = "block";
+const container = document.querySelector(".video-container");
+const loading = document.querySelector(".video-loading");
 
-  /* 기존 제거 */
-  const old = document.getElementById("video-frame");
-  if(old) old.remove();
+loading.style.display = "block";
 
-  /* iframe */
-  const frame = document.createElement("iframe");
+/* 기존 iframe 제거 */
 
-  frame.id = "video-frame";
-  frame.style.width = "100%";
-  frame.style.height = "100%";
-  frame.style.border = "none";
+const oldFrame = document.getElementById("video-frame");
+if(oldFrame) oldFrame.remove();
 
-  frame.allow = "autoplay; fullscreen";
+/* 새 iframe 생성 */
 
-  /* 🔥 가장 단순 & 확실한 방식 */
-  frame.src =
-    "https://www.youtube.com/embed/" +
-    video.id +
-    "?autoplay=1&mute=1";
+const frame = document.createElement("iframe");
 
-  container.appendChild(frame);
+frame.id = "video-frame";
+frame.loading = "lazy";
+frame.allow = "autoplay; encrypted-media";
+frame.allowFullscreen = true;
 
-  setTimeout(()=>{
-    loading.style.display = "none";
-  },800);
+frame.src =
+  "https://www.youtube.com/embed/" +
+  video.youtube +
+  "?autoplay=1&mute=1";
 
-  /* caption */
-  const caption = document.getElementById("video-caption");
-  if(caption){
-    caption.innerText = video.caption || "";
-  }
+container.appendChild(frame);
+
+/* 로딩 제거 */
+
+setTimeout(()=>{
+loading.style.display = "none";
+frame.classList.add("show");
+},1200);
+
+/* 캡션 */
+
+const captionElement = document.getElementById("video-caption");
+if(captionElement) captionElement.innerText = video.caption || "";
 
 }
 
-/* 다음 */
+/* 다음 영상 */
+
 function nextVideo(){
-  currentIndex = (currentIndex + 1) % videos.length;
-  loadVideo();
+
+currentIndex++;
+
+if(currentIndex >= videos.length)
+currentIndex = 0;
+
+loadVideo();
+
 }
 
-/* 이전 */
+/* 이전 영상 */
+
 function prevVideo(){
-  currentIndex = (currentIndex - 1 + videos.length) % videos.length;
-  loadVideo();
+
+currentIndex--;
+
+if(currentIndex < 0)
+currentIndex = videos.length - 1;
+
+loadVideo();
+
 }
 
-/* 키보드 */
-document.addEventListener("keydown", e=>{
-  if(e.key === "ArrowRight") nextVideo();
-  if(e.key === "ArrowLeft") prevVideo();
+/* 키보드 이동 */
+
+document.addEventListener("keydown", function(e){
+
+if(e.key === "ArrowRight") nextVideo();
+if(e.key === "ArrowLeft") prevVideo();
+
 });
 
-/* 🔥 back 버튼 (완전 수정) */
+/* 컨트롤 표시 */
+
+const controls = document.querySelector(".controls");
+
+let hideTimer;
+
+function showControls(){
+
+controls.classList.add("show");
+
+clearTimeout(hideTimer);
+
+hideTimer = setTimeout(()=>{
+controls.classList.remove("show");
+},2000);
+
+}
+
+document.addEventListener("mousemove", showControls);
+document.addEventListener("touchstart", showControls);
+
+showControls();
+
+/* 전체 화면 */
+
+function toggleFullscreen(){
+
+const elem = document.querySelector(".video-container");
+
+if(!document.fullscreenElement){
+
+elem.requestFullscreen().catch(err => console.log(err));
+
+}else{
+
+document.exitFullscreen();
+
+}
+
+}
+
+document
+.querySelector(".video-container")
+.addEventListener("dblclick", toggleFullscreen);
+
+document.addEventListener("keydown", function(e){
+
+if(e.key === "f" || e.key === "F")
+toggleFullscreen();
+
+});
+
+/* Hall 이동 */
+
 const backBtn = document.getElementById("backToHall");
 
 if(backBtn){
 
-  backBtn.addEventListener("click", () => {
+backBtn.addEventListener("click", () => {
 
-    if(hall){
-      location.href = BASE_PATH + `/hall.html?hall=${hall}`;
-    }else{
-      location.href = BASE_PATH + "/";
-    }
+const hall = params.get("hall") || "hall50";
 
-  });
+window.location.href = `/hall.html?hall=${hall}`;
+
+});
 
 }
 
-/* =========================
-   Hall 이동 (완전 안정)
-========================= */
+/* meta 자동 숨김 */
 
-document.addEventListener("DOMContentLoaded", () => {
+const meta = document.querySelector(".meta");
 
-  const backBtn = document.getElementById("backToHall");
+let metaTimer;
 
-  if(!backBtn){
-    console.warn("❌ back 버튼 없음");
-    return;
-  }
+function showMeta(){
 
-  backBtn.addEventListener("click", () => {
+meta.classList.remove("hide");
 
-    const params = new URLSearchParams(location.search);
-    const hall = params.get("hall");
+clearTimeout(metaTimer);
 
-    console.log("hall 이동:", hall);
+metaTimer = setTimeout(()=>{
+meta.classList.add("hide");
+},3000);
 
-    if(hall){
-      location.href = BASE_PATH + `/hall.html?hall=${hall}`;
-    }else{
-      location.href = BASE_PATH + "/";
-    }
+}
 
-  });
+document.addEventListener("mousemove", showMeta);
+document.addEventListener("touchstart", showMeta);
 
-});
+showMeta();
