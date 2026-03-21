@@ -289,6 +289,20 @@ iframe {
   pointer-events: none;
 }
 
+#fade-layer {
+  z-index: 9999;
+}
+
+.video-container {
+  position: relative;
+  z-index: 1;
+}
+
+.ui-layer {
+  position: relative;
+  z-index: 2;
+}
+
 iframe {
   opacity: 0;
   transition: opacity 2s ease;
@@ -298,3 +312,42 @@ setTimeout(() => {
   frame.style.opacity = 1;
 }, 1200);
 
+.bottom-ui {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+}
+
+.ui-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+/* 보일 때 */
+.ui-layer.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.top-ui {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  color: rgba(255,255,255,0.85);
+}
+
+.bottom-ui {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: rgba(255,255,255,0.6);
+}
