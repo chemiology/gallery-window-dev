@@ -82,9 +82,9 @@ letter-spacing:0.3px;
 }
 
 .nav-back{
-margin-top:25px;
-font-size:13px;
-opacity:.7;
+  margin-top: 35px;
+  font-size: 15px; /* 기존보다 2단계 ↑ */
+  opacity:.7;
 }
 
 .nav-back a{
@@ -103,12 +103,17 @@ background:rgba(255,255,255,0.08);
 }
 
 .fullscreen-tip{
-margin-top:6px;
-font-size:11px;
+  margin-top: 20px;
+  font-size: 14px; /* 기존보다 2단계 ↑ */
 opacity:.75;
 letter-spacing:0.6px;
 text-align:center;
 color:#ddd;
+}
+
+.fullscreen-tip,
+.nav-back a {
+  text-shadow: 0 0 8px rgba(0,0,0,0.8);
 }
 
 .video-loading{
@@ -153,7 +158,11 @@ opacity:0;
 }
 
 body {
-  background: radial-gradient(circle at center, #000 30%, #010101 100%);
+  background: radial-gradient(
+    circle at center,
+    #000 40%,
+    #000 100%
+  );
 }
 
 .video-container {
@@ -173,8 +182,8 @@ body {
 
 .video-container {
   box-shadow:
-    0 0 120px rgba(0,0,0,0.9),
-    0 0 40px rgba(255,255,255,0.05);
+    0 0 120px rgba(0,0,0,0.95),
+    0 0 60px rgba(0,0,0,0.6);
 }
 
 #video-frame {
