@@ -77,6 +77,9 @@ function loadVideo() {
   const frame = document.createElement("iframe");
 
   frame.id = "video-frame";
+  frame.style.width = "100vw";     // ⭐ 추가
+  frame.style.height = "100vh";    // ⭐ 추가
+  frame.style.border = "none";     // ⭐ 추가
   frame.loading = "lazy";
   frame.allow = "autoplay; fullscreen";
   frame.style.opacity = 0;
@@ -179,19 +182,12 @@ if (backBtn) {
 
     const hall = params.get("hall");
 
-    const BASE_PATH =
-      location.pathname.includes("/archive/") ||
-      location.pathname.includes("/exhibition_pages/")
-        ? "../"
-        : "";
-
     if (!hall) {
-      window.location.href = BASE_PATH + "index.html";
+      window.location.href = "index.html";
       return;
     }
 
-    window.location.href =
-      BASE_PATH + `hall.html?hall=${hall}`;
+    window.location.href = `hall.html?hall=${hall}`;
 
   });
 
