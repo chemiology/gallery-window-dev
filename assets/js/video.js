@@ -79,8 +79,17 @@ frame.style.opacity = 0;
 frame.src =
   "https://www.youtube.com/embed/" +
   video.id +
-  "?autoplay=1&mute=1&loop=1&playlist=" + video.id +
-  "&rel=0&modestbranding=1";
+  "?autoplay=1" +
+  "&mute=1" +
+  "&controls=1" +          // ⭐ 추가 (핵심)
+  "&loop=1" +
+  "&playlist=" + video.id +
+  "&rel=0" +
+  "&modestbranding=1" +
+  "&iv_load_policy=3";     // ⭐ 추가
+  "&modestbranding=1" +
+  "&rel=0" +
+  "&iv_load_policy=3"
 
 container.appendChild(frame);
 
@@ -285,16 +294,19 @@ setTimeout(() => {
 
 window.addEventListener("load", () => {
 
+  // 기존 코드 유지
   document.body.classList.add("page-ready");
 
+  // UI 잠깐 표시
+  showUI();
+
+  // 암전 제거
   const fade = document.getElementById("fade-layer");
 
-  // 1초 암전 유지
   setTimeout(() => {
 
     fade.style.opacity = 0;
 
-    // 완전히 제거 (성능 + 클릭 방지)
     setTimeout(() => {
       fade.remove();
     }, 1600);
@@ -334,3 +346,22 @@ document.addEventListener("click", () => {
   soundNotice.remove();
 
 }, { once: true });
+
+
+const ui = document.getElementById("uiLayer");
+
+let timer;
+
+function showUI() {
+
+  ui.classList.add("active");
+
+  clearTimeout(timer);
+
+  timer = setTimeout(() => {
+    ui.classList.remove("active");
+  }, 2000);
+
+}
+
+document.addEventListener("mousemove", showUI);
