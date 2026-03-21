@@ -179,10 +179,11 @@ if (backBtn) {
 
     const hall = params.get("hall");
 
-    const BASE_PATH = location.pathname.includes('/archive/') 
-      || location.pathname.includes('/exhibition_pages/')
-      ? '../'
-      : '';
+    const BASE_PATH =
+      location.pathname.includes("/archive/") ||
+      location.pathname.includes("/exhibition_pages/")
+        ? "../"
+        : "";
 
     if (!hall) {
       window.location.href = BASE_PATH + "index.html";
