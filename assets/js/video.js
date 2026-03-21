@@ -11,20 +11,24 @@ const exhibitionId = params.get("id");
 let videos = [];
 let currentIndex = 0;
 
-/* 전시 제목 */
+/* =========================
+   전시 테마 적용
+========================= */
 
 fetch("https://chemiology.github.io/gallery-window-dev/assets/config/gallery.json")
 .then(r => r.json())
 .then(data => {
 
-const exhibitions =
-data.currentExhibitions || data.exhibitions || [];
+  const exhibitions =
+    data.currentExhibitions || data.exhibitions || [];
 
-const ex = exhibitions.find(e => e.id === exhibitionId);
+  const ex = exhibitions.find(e => e.id === exhibitionId);
 
-if(ex){
-document.getElementById("videoTitle").innerText = ex.title;
-}
+  if (!ex) return;
+
+  /* 🔥 CSS 변수 적용 */
+  document.body.style.setProperty("--theme-color", ex.themeColor || "#ffffff");
+  document.body.setAttribute("data-theme", ex.themeMode || "neutral");
 
 });
 
@@ -55,10 +59,13 @@ const loading = document.querySelector(".video-loading");
 
 loading.style.display = "block";
 
-/* 기존 iframe 제거 */
+/* 기존 iframe 서서히 사라짐 */
 
 const oldFrame = document.getElementById("video-frame");
-if(oldFrame) oldFrame.remove();
+if (oldFrame) {
+  oldFrame.style.opacity = 0;
+  setTimeout(() => oldFrame.remove(), 800);
+}
 
 /* 새 iframe 생성 */
 
@@ -66,30 +73,47 @@ const frame = document.createElement("iframe");
 
 frame.id = "video-frame";
 frame.loading = "lazy";
+frame.style.opacity = 0;
 
-/* 🔥 핵심 수정 */
-frame.allow = "autoplay; fullscreen";
-
-/* 🔥 핵심 수정 */
+/* src */
 frame.src =
-"https://www.youtube.com/embed/" +
-video.id +
-"?autoplay=1&mute=1";
+  "https://www.youtube.com/embed/" +
+  video.id +
+  "?autoplay=1&mute=1&loop=1&playlist=" + video.id +
+  "&rel=0&modestbranding=1";
 
 container.appendChild(frame);
 
-/* 로딩 제거 */
-
+/* 🔥 부드러운 페이드 인 */
 setTimeout(()=>{
-loading.style.display = "none";
-frame.classList.add("show");
-},800);
+  frame.style.transition = "opacity 1.2s ease";
+  frame.style.opacity = 1;
+}, 100);
 
+/* 🔥 로딩 제거 */
+setTimeout(()=>{
+  document.querySelector(".meta")?.classList.add("hide");
+}, 4000);
 
 /* 캡션 */
 
 const captionElement = document.getElementById("video-caption");
 if(captionElement) captionElement.innerText = video.caption || "";
+
+/* =========================
+   자동 전환 (여러 영상일 때)
+========================= */
+
+if (videos.length > 1) {
+
+  clearInterval(window.videoTimer);
+
+  window.videoTimer = setInterval(() => {
+    nextVideo();
+  }, 30000); // 30초
+
+}
+
 
 }
 
@@ -219,3 +243,28 @@ document.addEventListener("mousemove", showMeta);
 document.addEventListener("touchstart", showMeta);
 
 showMeta();
+
+/* =========================
+   첫 클릭 시 음소거 해제
+========================= */
+
+document.addEventListener("click", () => {
+
+  const iframe = document.getElementById("video-frame");
+  if (!iframe) return;
+
+  iframe.src = iframe.src.replace("mute=1", "mute=0");
+
+}, { once: true });
+
+/* =========================
+   전시 흐름 (UI 사라짐)
+========================= */
+
+setTimeout(() => {
+  document.querySelector(".meta")?.classList.add("hide");
+}, 4000);
+
+window.addEventListener("load", () => {
+  document.body.classList.add("page-ready");
+});
