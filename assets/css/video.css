@@ -270,11 +270,12 @@ iframe {
 
 .sound-guide {
   position: fixed;
-  bottom: 18px;
+  bottom: 60px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 12px;
-  color: rgba(255,255,255,0.5);
+  z-index: 20;
+  color: rgba(255,255,255,0.6);
   letter-spacing: 0.05em;
   pointer-events: none;
 }
@@ -296,11 +297,6 @@ iframe {
 .video-container {
   position: relative;
   z-index: 1;
-}
-
-.ui-layer {
-  position: relative;
-  z-index: 2;
 }
 
 iframe {
@@ -325,6 +321,7 @@ setTimeout(() => {
 .ui-layer {
   position: fixed;
   inset: 0;
+  z-index: 10;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.6s ease;
@@ -333,21 +330,67 @@ setTimeout(() => {
 /* 보일 때 */
 .ui-layer.active {
   opacity: 1;
-  pointer-events: auto;
+  pointer-events: none;
 }
 
 .top-ui {
-  position: absolute;
+  position: fixed;
   top: 40px;
   left: 40px;
+  z-index: 20;
   color: rgba(255,255,255,0.85);
+  font-size: 18px;
+  line-height: 1.4;
 }
 
 .bottom-ui {
-  position: absolute;
+  position: fixed;
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 20;
   text-align: center;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.7);
+}
+
+.video-container {
+  position: fixed;
+  inset: 0;
+  background: #000;
+}
+
+#video-frame {
+  width: 100vw;
+  height: 100vh;
+  border: none;
+}
+
+.ui-layer button,
+.ui-layer a {
+  pointer-events: auto;
+}
+
+.video-container {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  overflow: hidden;
+}
+
+#video-frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 56.25vw; /* 16:9 비율 */
+  transform: translate(-50%, -50%);
+  border: none;
+}
+
+/* 화면이 세로로 길 때 대응 */
+@media (max-aspect-ratio: 16/9) {
+  #video-frame {
+    width: 177.78vh;
+    height: 100vh;
+  }
 }
