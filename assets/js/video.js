@@ -204,20 +204,29 @@ toggleFullscreen();
 
 });
 
-/* Hall 이동 */
+/* =========================
+   Hall 이동 (정상 수정)
+========================= */
 
 const backBtn = document.getElementById("backToHall");
 
-if(backBtn){
+if (backBtn) {
 
-backBtn.addEventListener("click", () => {
+  backBtn.addEventListener("click", () => {
 
-const hall = params.get("hall") || "hall50";
+    const hall = params.get("hall");
 
-window.location.href =
-  "https://chemiology.github.io/gallery-window-dev/hall.html?hall=" + hall;
+    if (!hall) {
+      // hall 정보 없으면 홈으로 (안전 처리)
+      window.location.href =
+        "https://chemiology.github.io/gallery-window-dev/";
+      return;
+    }
 
-});
+    window.location.href =
+      "https://chemiology.github.io/gallery-window-dev/hall.html?hall=" + hall;
+
+  });
 
 }
 
@@ -268,3 +277,34 @@ setTimeout(() => {
 window.addEventListener("load", () => {
   document.body.classList.add("page-ready");
 });
+
+/* =========================
+   사운드 안내 (전시형 UX)
+========================= */
+
+const soundNotice = document.createElement("div");
+soundNotice.innerText = "Click to enable sound";
+soundNotice.style.position = "fixed";
+soundNotice.style.bottom = "40px";
+soundNotice.style.left = "50%";
+soundNotice.style.transform = "translateX(-50%)";
+soundNotice.style.padding = "10px 18px";
+soundNotice.style.background = "rgba(0,0,0,0.6)";
+soundNotice.style.color = "#ddd";
+soundNotice.style.fontSize = "12px";
+soundNotice.style.letterSpacing = "1px";
+soundNotice.style.borderRadius = "4px";
+soundNotice.style.zIndex = "999";
+
+document.body.appendChild(soundNotice);
+
+document.addEventListener("click", () => {
+
+  const iframe = document.getElementById("video-frame");
+  if (!iframe) return;
+
+  iframe.src = iframe.src.replace("mute=1", "mute=0");
+
+  soundNotice.remove();
+
+}, { once: true });
