@@ -1,220 +1,174 @@
-/* video page override */
-
-
-/* URL 파라미터 */
+/* =========================
+   URL 파라미터
+========================= */
 
 const params = new URLSearchParams(location.search);
 const exhibitionId = params.get("id");
 
-/* 상태 */
+/* =========================
+   상태
+========================= */
 
 let videos = [];
 let currentIndex = 0;
+let videoTimer;
 
 /* =========================
    전시 테마 적용
 ========================= */
 
-fetch("https://chemiology.github.io/gallery-window-dev/assets/config/gallery.json")
-.then(r => r.json())
-.then(data => {
+fetch("assets/config/gallery.json")
+  .then(r => r.json())
+  .then(data => {
 
-  const exhibitions =
-    data.currentExhibitions || data.exhibitions || [];
+    const exhibitions =
+      data.currentExhibitions || data.exhibitions || [];
 
-  const ex = exhibitions.find(e => e.id === exhibitionId);
+    const ex = exhibitions.find(e => e.id === exhibitionId);
 
-  if (!ex) return;
+    if (!ex) return;
 
-  /* 🔥 CSS 변수 적용 */
-  document.body.style.setProperty("--theme-color", ex.themeColor || "#ffffff");
-  document.body.setAttribute("data-theme", ex.themeMode || "neutral");
+    document.body.style.setProperty("--theme-color", ex.themeColor || "#ffffff");
+    document.body.setAttribute("data-theme", ex.themeMode || "neutral");
 
-});
-
-/* 영상 목록 */
-
-fetch("https://chemiology.github.io/gallery-window-dev/assets/config/videos.json")
-.then(r => r.json())
-.then(data => {
-
-videos = data[exhibitionId] || [];
-
-if(!videos.length) return;
-
-loadVideo();
-
-});
-
-/* 영상 로드 */
-
-function loadVideo(){
-
-if(!videos.length) return;
-
-const video = videos[currentIndex];
-
-const container = document.querySelector(".video-container");
-const loading = document.querySelector(".video-loading");
-
-loading.style.display = "block";
-
-/* 기존 iframe 서서히 사라짐 */
-
-const oldFrame = document.getElementById("video-frame");
-if (oldFrame) {
-  oldFrame.style.opacity = 0;
-  setTimeout(() => oldFrame.remove(), 800);
-}
-
-/* 새 iframe 생성 */
-
-const frame = document.createElement("iframe");
-
-frame.id = "video-frame";
-frame.loading = "lazy";
-frame.style.opacity = 0;
-
-/* src */
-frame.src =
-  "https://www.youtube.com/embed/" +
-  video.id +
-  "?autoplay=1" +
-  "&mute=1" +
-  "&controls=1" +          // ⭐ 추가 (핵심)
-  "&loop=1" +
-  "&playlist=" + video.id +
-  "&rel=0" +
-  "&modestbranding=1" +
-  "&iv_load_policy=3";     // ⭐ 추가
-  "&modestbranding=1" +
-  "&rel=0" +
-  "&iv_load_policy=3"
-
-container.appendChild(frame);
-
-/* 🔥 부드러운 페이드 인 */
-setTimeout(()=>{
-  frame.style.transition = "opacity 1.2s ease";
-  frame.style.opacity = 1;
-}, 100);
-
-/* 🔥 로딩 제거 */
-setTimeout(()=>{
-  document.querySelector(".meta")?.classList.add("hide");
-}, 4000);
-
-/* 캡션 */
-
-const captionElement = document.getElementById("video-caption");
-if(captionElement) captionElement.innerText = video.caption || "";
+  });
 
 /* =========================
-   자동 전환 (여러 영상일 때)
+   영상 목록 로드
 ========================= */
 
-if (videos.length > 1) {
+fetch("assets/config/videos.json")
+  .then(r => r.json())
+  .then(data => {
 
-  clearInterval(window.videoTimer);
+    videos = data[exhibitionId] || [];
 
-  window.videoTimer = setInterval(() => {
-    nextVideo();
-  }, 30000); // 30초
+    if (!videos.length) return;
 
-}
+    loadVideo();
 
+  });
 
-}
+/* =========================
+   영상 로드
+========================= */
 
-/* 다음 영상 */
+function loadVideo() {
 
-function nextVideo(){
+  if (!videos.length) return;
 
-currentIndex++;
+  const video = videos[currentIndex];
 
-if(currentIndex >= videos.length)
-currentIndex = 0;
+  const container = document.querySelector(".video-container");
+  const loading = document.querySelector(".video-loading");
 
-loadVideo();
+  if (!container) return;
 
-}
+  if (loading) loading.style.display = "block";
 
-/* 이전 영상 */
+  /* 기존 iframe 제거 (페이드 아웃) */
+  const oldFrame = document.getElementById("video-frame");
+  if (oldFrame) {
+    oldFrame.style.opacity = 0;
+    setTimeout(() => oldFrame.remove(), 800);
+  }
 
-function prevVideo(){
+  /* 새 iframe 생성 */
+  const frame = document.createElement("iframe");
 
-currentIndex--;
+  frame.id = "video-frame";
+  frame.loading = "lazy";
+  frame.allow = "autoplay; fullscreen";
+  frame.style.opacity = 0;
 
-if(currentIndex < 0)
-currentIndex = videos.length - 1;
+  frame.src =
+    "https://www.youtube.com/embed/" +
+    video.id +
+    "?autoplay=1" +
+    "&mute=1" +
+    "&controls=1" +
+    "&loop=1" +
+    "&playlist=" + video.id +
+    "&rel=0" +
+    "&modestbranding=1" +
+    "&iv_load_policy=3";
 
-loadVideo();
+  container.appendChild(frame);
 
-}
+  /* 페이드 인 */
+  setTimeout(() => {
+    frame.style.transition = "opacity 1.2s ease";
+    frame.style.opacity = 1;
+  }, 100);
 
-/* 키보드 이동 */
+  /* 캡션 */
+  const caption = document.getElementById("video-caption");
+  if (caption) caption.innerText = video.caption || "";
 
-document.addEventListener("keydown", function(e){
+  const title = document.getElementById("videoTitle");
+  if (title) title.innerText = video.title || "";
 
-if(e.key === "ArrowRight") nextVideo();
-if(e.key === "ArrowLeft") prevVideo();
+  /* 자동 전환 */
+  if (videos.length > 1) {
 
-});
+    clearInterval(videoTimer);
 
-/* 컨트롤 표시 */
+    videoTimer = setInterval(() => {
+      nextVideo();
+    }, 30000);
 
-const controls = document.querySelector(".controls");
-
-let hideTimer;
-
-function showControls(){
-
-controls.classList.add("show");
-
-clearTimeout(hideTimer);
-
-hideTimer = setTimeout(()=>{
-controls.classList.remove("show");
-},2000);
-
-}
-
-document.addEventListener("mousemove", showControls);
-document.addEventListener("touchstart", showControls);
-
-showControls();
-
-/* 전체 화면 */
-
-function toggleFullscreen(){
-
-const elem = document.querySelector(".video-container");
-
-if(!document.fullscreenElement){
-
-elem.requestFullscreen().catch(err => console.log(err));
-
-}else{
-
-document.exitFullscreen();
+  }
 
 }
 
+/* =========================
+   영상 이동
+========================= */
+
+function nextVideo() {
+  currentIndex = (currentIndex + 1) % videos.length;
+  loadVideo();
 }
 
-document
-.querySelector(".video-container")
-.addEventListener("dblclick", toggleFullscreen);
+function prevVideo() {
+  currentIndex = (currentIndex - 1 + videos.length) % videos.length;
+  loadVideo();
+}
 
-document.addEventListener("keydown", function(e){
+/* =========================
+   키보드 제어
+========================= */
 
-if(e.key === "f" || e.key === "F")
-toggleFullscreen();
-
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight") nextVideo();
+  if (e.key === "ArrowLeft") prevVideo();
 });
 
 /* =========================
-   Hall 이동 (최종 안정 버전)
+   전체 화면
+========================= */
+
+function toggleFullscreen() {
+
+  const elem = document.querySelector(".video-container");
+  if (!elem) return;
+
+  if (!document.fullscreenElement) {
+    elem.requestFullscreen().catch(() => {});
+  } else {
+    document.exitFullscreen();
+  }
+
+}
+
+document.querySelector(".video-container")?.addEventListener("dblclick", toggleFullscreen);
+
+document.addEventListener("keydown", (e) => {
+  if (e.key.toLowerCase() === "f") toggleFullscreen();
+});
+
+/* =========================
+   Hall 이동
 ========================= */
 
 const backBtn = document.getElementById("backToHall");
@@ -225,54 +179,49 @@ if (backBtn) {
 
     const hall = params.get("hall");
 
-    if (!hall) {
-      // hall 없으면 홈
-      const BASE_PATH = location.pathname.includes('/archive/') 
-        || location.pathname.includes('/exhibition_pages/')
-        ? '../'
-        : '';
-
-      window.location.href = BASE_PATH + "index.html";
-      return;
-    }
-
     const BASE_PATH = location.pathname.includes('/archive/') 
       || location.pathname.includes('/exhibition_pages/')
       ? '../'
       : '';
 
-    window.location.href =
-      BASE_PATH + `hall.html?hall=${hall}`;
+    if (!hall) {
+      window.location.href = BASE_PATH + "index.html";
+      return;
+    }
+
+    window.location.href = BASE_PATH + `hall.html?hall=${hall}`;
 
   });
 
 }
 
-/* meta 자동 숨김 */
+/* =========================
+   UI (마우스 기반 표시)
+========================= */
 
-const meta = document.querySelector(".meta");
+const ui = document.getElementById("uiLayer");
 
-let metaTimer;
+let uiTimer;
 
-function showMeta(){
+function showUI() {
 
-meta.classList.remove("hide");
+  if (!ui) return;
 
-clearTimeout(metaTimer);
+  ui.classList.add("active");
 
-metaTimer = setTimeout(()=>{
-meta.classList.add("hide");
-},3000);
+  clearTimeout(uiTimer);
+
+  uiTimer = setTimeout(() => {
+    ui.classList.remove("active");
+  }, 2000);
 
 }
 
-document.addEventListener("mousemove", showMeta);
-document.addEventListener("touchstart", showMeta);
-
-showMeta();
+document.addEventListener("mousemove", showUI);
+document.addEventListener("touchstart", showUI);
 
 /* =========================
-   첫 클릭 시 음소거 해제
+   사운드 (첫 클릭 시 해제)
 ========================= */
 
 document.addEventListener("click", () => {
@@ -285,23 +234,18 @@ document.addEventListener("click", () => {
 }, { once: true });
 
 /* =========================
-   전시 흐름 (UI 사라짐)
+   초기 연출 (암전 → 등장)
 ========================= */
-
-setTimeout(() => {
-  document.querySelector(".meta")?.classList.add("hide");
-}, 4000);
 
 window.addEventListener("load", () => {
 
-  // 기존 코드 유지
   document.body.classList.add("page-ready");
 
-  // UI 잠깐 표시
   showUI();
 
-  // 암전 제거
   const fade = document.getElementById("fade-layer");
+
+  if (!fade) return;
 
   setTimeout(() => {
 
@@ -314,54 +258,3 @@ window.addEventListener("load", () => {
   }, 1000);
 
 });
-
-
-/* =========================
-   사운드 안내 (전시형 UX)
-========================= */
-
-const soundNotice = document.createElement("div");
-soundNotice.innerText = "화면 하단의 메뉴에서 음향을 조절하세요";
-soundNotice.style.position = "fixed";
-soundNotice.style.bottom = "40px";
-soundNotice.style.left = "50%";
-soundNotice.style.transform = "translateX(-50%)";
-soundNotice.style.padding = "10px 18px";
-soundNotice.style.background = "rgba(0,0,0,0.6)";
-soundNotice.style.color = "#ddd";
-soundNotice.style.fontSize = "12px";
-soundNotice.style.letterSpacing = "1px";
-soundNotice.style.borderRadius = "4px";
-soundNotice.style.zIndex = "999";
-
-document.body.appendChild(soundNotice);
-
-document.addEventListener("click", () => {
-
-  const iframe = document.getElementById("video-frame");
-  if (!iframe) return;
-
-  iframe.src = iframe.src.replace("mute=1", "mute=0");
-
-  soundNotice.remove();
-
-}, { once: true });
-
-
-const ui = document.getElementById("uiLayer");
-
-let timer;
-
-function showUI() {
-
-  ui.classList.add("active");
-
-  clearTimeout(timer);
-
-  timer = setTimeout(() => {
-    ui.classList.remove("active");
-  }, 2000);
-
-}
-
-document.addEventListener("mousemove", showUI);
