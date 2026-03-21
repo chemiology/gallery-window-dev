@@ -189,7 +189,8 @@ if (backBtn) {
       return;
     }
 
-    window.location.href = BASE_PATH + `hall.html?hall=${hall}`;
+    window.location.href =
+      BASE_PATH + `hall.html?hall=${hall}`;
 
   });
 
