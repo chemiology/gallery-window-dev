@@ -399,3 +399,8 @@ setTimeout(() => {
 #video-frame {
   z-index: 1;
 }
+
+body {
+  margin: 0;
+  background: #000;
+}
