@@ -13,7 +13,7 @@ let currentIndex = 0;
 
 /* 전시 제목 */
 
-fetch("/assets/config/gallery.json")
+fetch("https://chemiology.github.io/gallery-window-dev/assets/config/gallery.json")
 .then(r => r.json())
 .then(data => {
 
@@ -30,7 +30,7 @@ document.getElementById("videoTitle").innerText = ex.title;
 
 /* 영상 목록 */
 
-fetch("/assets/config/videos.json")
+fetch("https://chemiology.github.io/gallery-window-dev/assets/config/videos.json")
 .then(r => r.json())
 .then(data => {
 
@@ -190,7 +190,8 @@ backBtn.addEventListener("click", () => {
 
 const hall = params.get("hall") || "hall50";
 
-window.location.href = `/hall.html?hall=${hall}`;
+window.location.href =
+  "https://chemiology.github.io/gallery-window-dev/hall.html?hall=" + hall;
 
 });
 
