@@ -149,19 +149,6 @@ body {
   );
 }
 
-.video-caption {
-  letter-spacing: 1px;
-  font-size: 12px;
-  opacity: 0.6;
-}
-
-.video-caption {
-  font-size: 12px;
-  letter-spacing: 1.2px;
-  opacity: 0.5;
-  margin-top: 24px;
-}
-
 .video-container {
   opacity: 0;
   transition: opacity 1.8s ease;
@@ -270,10 +257,11 @@ setTimeout(() => {
   position: absolute;
   top: 40px;
   left: 40px;
-  z-index: 999;
+  z-index: 9999 !important;
   font-size: 22px !important;   /* ⭐ 전체 기준 크기 올림 */
   color: #fff;
   line-height: 1.4;
+  transform: translateZ(0);
 }
 
 .ui-layer button,
@@ -337,9 +325,9 @@ body {
 .video-protect-top {
   position: absolute;
   top: 0;
-  right: 0;
-  height: 60px;
-  width: 140px;
+  left: 0;
+  width: 100%;     /* ⭐ 전체 가로 */
+  height: 80px;    /* ⭐ 상단 UI 영역만 */
   z-index: 5;
   pointer-events: auto;
 }
@@ -349,8 +337,8 @@ body {
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 160px;   /* ⭐ 줄이기 */
-  height: 40px;   /* ⭐ 기존 120px → 축소 */
+  width: 70%;     /* ⭐ 넓게 확장 */
+  height: 50px;   /* ⭐ 타임라인은 살림 */
   z-index: 5;
   pointer-events: auto;
 }
@@ -384,4 +372,16 @@ body[data-theme="cool"] .video-container {
   font-size: 52px !important;   /* ⭐ 제목 확실히 크게 */
   font-weight: 500;
   letter-spacing: 0.06em;
+}
+
+.video-caption {
+  letter-spacing: 1px;
+  font-size: 18px !important;
+  opacity: 0.6;
+  margin-top: 24px;
+}
+
+.top-ui .video-title {
+  font-size: 56px !important;
+  font-weight: 600;
 }
