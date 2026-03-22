@@ -270,7 +270,7 @@ setTimeout(() => {
   position: absolute;
   top: 40px;
   left: 40px;
-  z-index: 40;
+  z-index: 999;
   font-size: 22px !important;   /* ⭐ 전체 기준 크기 올림 */
   color: #fff;
   line-height: 1.4;
@@ -338,8 +338,8 @@ body {
   position: absolute;
   top: 0;
   right: 0;
-  width: 160px;   /* ⭐ 줄이기 */
-  height: 80px;   /* ⭐ 줄이기 */
+  height: 60px;
+  width: 140px;
   z-index: 5;
   pointer-events: auto;
 }
@@ -350,7 +350,7 @@ body {
   bottom: 0;
   right: 0;
   width: 160px;   /* ⭐ 줄이기 */
-  height: 80px;   /* ⭐ 줄이기 */
+  height: 40px;   /* ⭐ 기존 120px → 축소 */
   z-index: 5;
   pointer-events: auto;
 }
