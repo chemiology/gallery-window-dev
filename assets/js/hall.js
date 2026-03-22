@@ -180,12 +180,14 @@ async function loadHallEntry(exhibition, hallId) {
 
       const target =
         hallId.startsWith("hall5")
-           ? `video.html?id=${exhibition.id}&hall=${hallId}`
-          : `exhibition.html?id=${exhibition.id}&hall=${hallId}`;
+          ? `video.html?id=${exhibition.id}&hall=${hallId}`   // ⭐ 핵심 수정
+          : BASE_PATH + `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
 
       window.location.href = target;
 
     };
+
+  }
 
   /* ---------- 작품보기 버튼 ---------- */
 
@@ -195,7 +197,7 @@ async function loadHallEntry(exhibition, hallId) {
 
     const target =
       hallId.startsWith("hall5")
-        ? BASE_PATH + `/video.html?id=${exhibition.id}`
+        ? `video.html?id=${exhibition.id}&hall=${hallId}`
         : BASE_PATH + `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
 
     enterBtn.href = target;
