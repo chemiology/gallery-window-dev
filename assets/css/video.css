@@ -434,8 +434,8 @@ body[data-theme="cool"] .video-container {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 70%;     /* ⭐ 기존보다 넓게 */
-  height: 100px;  /* ⭐ 높이 증가 (볼륨까지 포함) */
+  width: 75%;     /* ⭐ 기존보다 넓게 */
+  height: 110px;  /* ⭐ 높이 증가 (볼륨까지 포함) */
   pointer-events: none;
 }
 
