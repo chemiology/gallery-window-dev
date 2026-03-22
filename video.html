@@ -40,47 +40,44 @@ gtag('config', 'G-M2QQ5KME88');
 
 <body oncontextmenu="return false">
 
-<div class="video-container">
+<div class="video-stage">
 
+  <!-- 로딩 -->
   <div class="video-loading">Loading...</div>
 
-  <!-- ⭐ 영상 (JS에서 생성됨) -->
-
-  <!-- 상단 보호 -->
-  <div class="video-protect-top"></div>
-
-  <!-- ⭐ 추가 -->
-  <div class="video-protect-middle"></div>
-
-  <!-- ⭐ 추가 (하단 보호) -->
-  <div class="video-protect-bottom"></div>
-
-  <!-- ⭐ 영상 (JS에서 생성됨) -->
-  <div class="video-click-blocker"></div>
-
-</div>
-
-<!-- ✅ UI 통합 -->
-<div class="ui-layer" id="uiLayer">
-
-  <div class="top-ui">
-    <div class="video-title" id="videoTitle"></div>
-    <div class="video-caption" id="video-caption"></div>
+  <!-- 🔥 영상 구조 (핵심) -->
+  <div class="video-frame">
+    <iframe id="player" allow="autoplay"></iframe>
   </div>
 
-  <div class="bottom-ui">
+  <!-- 🔥 보호 (영상 밖만) -->
+  <div class="block-top"></div>
+  <div class="block-right"></div>
+  <div class="block-bottom-right"></div>
 
-    <div class="sound-guide">
-      화면 하단의 메뉴에서 음향을 조절하세요
+  <!-- 🔥 UI -->
+  <div class="ui-layer" id="uiLayer">
+
+    <div class="top-ui">
+      <div class="video-title" id="videoTitle"></div>
+      <div class="video-caption" id="video-caption"></div>
     </div>
 
-    <div class="controls">
-      <button onclick="prevVideo()">Prev</button>
-      <button onclick="nextVideo()">Next</button>
-    </div>
+    <div class="bottom-ui">
 
-    <div class="nav-back">
-      <a id="backToHall">← Hall</a>
+      <div class="sound-guide">
+        화면 하단의 메뉴에서 음향을 조절하세요
+      </div>
+
+      <div class="controls">
+        <button onclick="prevVideo()">Prev</button>
+        <button onclick="nextVideo()">Next</button>
+      </div>
+
+      <div class="nav-back">
+        <a id="backToHall">← Hall</a>
+      </div>
+
     </div>
 
   </div>
@@ -93,4 +90,3 @@ gtag('config', 'G-M2QQ5KME88');
 <div id="fade-layer"></div>
 
 </body>
-</html>
