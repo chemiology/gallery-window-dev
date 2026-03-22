@@ -68,70 +68,52 @@ fetch("assets/config/videos.json")
 
 function loadVideo() {
 
-  if (videoTimer) {
-    clearInterval(videoTimer);
-    videoTimer = null;
-  }
+  if (!videos.length) return;
 
-  const container = document.querySelector(".video-container");
+  const iframe = document.getElementById("player");
   const loading = document.querySelector(".video-loading");
-
-  if (!container || !videos.length) return;
+  const frame = document.querySelector(".video-frame");
 
   const video = videos[currentIndex];
 
-  if (loading) loading.style.display = "block";
+  fadeOut();
 
-  /* 기존 iframe 제거 */
-  const oldFrame = document.getElementById("video-frame");
-  if (oldFrame) {
-    oldFrame.style.opacity = 0;
-    setTimeout(() => oldFrame.remove(), 500);
-  }
-
-  /* 새 iframe 생성 */
-  const frame = document.createElement("iframe");
-
-  frame.id = "video-frame";
-  frame.style.border = "none";
-  frame.style.opacity = 0;
-  frame.loading = "lazy";
-
-  frame.allow =
-  "autoplay; fullscreen; encrypted-media; picture-in-picture";
-
-  frame.src =
-    "https://www.youtube.com/embed/" +
-    video.id +
-    "?autoplay=1" +
-    "&mute=1" +
-    "&controls=1" +
-    "&disablekb=1" +
-    "&rel=0" +
-    "&modestbranding=1" +
-    "&iv_load_policy=3" +
-    "&playsinline=1";
-
-  container.appendChild(frame);
-
-  frame.setAttribute("allowfullscreen", "");
-
-  /* 페이드 인 */
   setTimeout(() => {
-    frame.style.transition = "opacity 1s ease";
-    frame.style.opacity = 1;
-  }, 100);
 
-  /* 텍스트 */
-  const caption = document.getElementById("video-caption");
-  if (caption) caption.innerText = video.caption || "";
+    iframe.src =
+      "https://www.youtube.com/embed/" +
+      video.id +
+      "?autoplay=1" +
+      "&mute=1" +
+      "&controls=1" +
+      "&rel=0" +
+      "&modestbranding=1" +
+      "&playsinline=1" +
+      "&fs=0";
 
-  const title = document.getElementById("videoTitle");
-  if (title) title.innerText = video.title || "";
+    /* 텍스트 */
+    const caption = document.getElementById("video-caption");
+    if (caption) caption.innerText = video.caption || "";
 
-  if (loading) loading.style.display = "none";
+    const title = document.getElementById("videoTitle");
+    if (title) title.innerText = video.title || "";
 
-  /* 자동 전환 (중복 방지) */
+    if (loading) loading.style.display = "none";
+
+    /* 🔥 여기 넣는 것이 정답 */
+    if (frame) {
+      frame.classList.remove("active");
+
+      setTimeout(() => {
+        frame.classList.add("active");
+      }, 100);
+    }
+
+    fadeIn();
+
+  }, 400);
+
+  /* 타이머 */
   if (videos.length > 1) {
 
     if (videoTimer) clearInterval(videoTimer);
@@ -151,24 +133,9 @@ function nextVideo() {
 
   if (videos.length <= 1) return;
 
-  const fade = document.getElementById("fade-layer");
+  currentIndex = (currentIndex + 1) % videos.length;
 
-  if (fade) fade.style.opacity = 1;
-
-  setTimeout(() => {
-
-    currentIndex = (currentIndex + 1) % videos.length;
-
-    loadVideo();
-
-    if (fade) {
-      setTimeout(() => {
-        fade.style.opacity = 0;
-      }, 300);
-    }
-
-  }, 500);
-
+  loadVideo();
 }
 
 function prevVideo() {
@@ -225,7 +192,7 @@ function showUI() {
 
   uiTimer = setTimeout(() => {
     ui.classList.remove("active");
-  }, 2000);
+  }, 2500);
 }
 
 document.addEventListener("mousemove", showUI);
@@ -237,16 +204,27 @@ document.addEventListener("touchstart", showUI);
 
 let soundEnabled = false;
 
-document.addEventListener("click", () => {
+document.addEventListener("click", (e) => {
 
   if (soundEnabled) return;
 
-  const iframe = document.getElementById("video-frame");
+  /* 버튼 클릭은 제외 */
+  if (e.target.closest(".controls") || e.target.closest("#backToHall")) {
+    return;
+  }
+
+  const iframe = document.getElementById("player");
   if (!iframe) return;
 
   iframe.src = iframe.src.replace("mute=1", "mute=0");
 
   soundEnabled = true;
+
+  const guide = document.querySelector(".sound-guide");
+
+  if (guide) {
+    guide.style.opacity = 0;
+  }
 
 });
 
@@ -257,6 +235,12 @@ document.addEventListener("click", () => {
 window.addEventListener("load", () => {
 
   document.body.classList.add("page-ready");
+
+  const guide = document.querySelector(".sound-guide");
+
+  if (guide) {
+    guide.innerText = "클릭하여 사운드를 활성화하세요";
+  }
 
   setTimeout(() => {
     showUI();
@@ -279,10 +263,8 @@ window.addEventListener("load", () => {
     }, 800);
   }
 
-  /* 안내문 */
+  /* 안내문 애니메이션 */
   setTimeout(() => {
-
-    const guide = document.querySelector(".sound-guide");
 
     if (guide) {
 
@@ -303,11 +285,10 @@ window.addEventListener("load", () => {
 ========================= */
 
 document.addEventListener("contextmenu", e => e.preventDefault());
-
 document.addEventListener("dblclick", e => e.preventDefault());
 
-const vc = document.querySelector(".video-container");
-
-if (vc) {
-  vc.addEventListener("dblclick", e => e.preventDefault());
-}
+document.addEventListener("fullscreenchange", () => {
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  }
+});
