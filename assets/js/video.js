@@ -91,6 +91,7 @@ function loadVideo() {
     "?autoplay=1" +
     "&mute=1" +
     "&controls=1" +
+    "&disablekb=1" +   // ⭐ 키보드 조작 제한
     "&loop=1" +
     "&playlist=" + video.id +
     "&rel=0" +
