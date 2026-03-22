@@ -28,9 +28,17 @@ fetch("assets/config/gallery.json")
 
     if (!ex) return;
 
-    document.body.style.setProperty("--theme-color", ex.themeColor || "#ffffff");
-    document.body.setAttribute("data-theme", ex.themeMode || "neutral");
+    // ⭐ 테마 적용 (순서 중요)
+    document.body.setAttribute("data-theme", ex.themeMode || "warm");
 
+    document.body.style.setProperty(
+      "--theme-color",
+      ex.themeColor || "#ffffff"
+    );
+
+  })
+  .catch(err => {
+    console.warn("gallery.json 로드 실패:", err);
   });
 
 /* =========================
@@ -121,7 +129,13 @@ function loadVideo() {
 
     videoTimer = setInterval(() => {
       nextVideo();
-    }, 30000);
+   }, 32000);  // ⭐ 32초 (적당)
+
+    // ⭐ 전환 예고 (여기에 넣는다)
+    setInterval(() => {
+      const fade = document.getElementById("fade-layer");
+      if (fade) fade.style.opacity = 0.25;
+    }, 28000);
 
   }
 
@@ -132,8 +146,26 @@ function loadVideo() {
 ========================= */
 
 function nextVideo() {
-  currentIndex = (currentIndex + 1) % videos.length;
-  loadVideo();
+
+  const fade = document.getElementById("fade-layer");
+  if (!fade) return;
+
+  // 1️⃣ 어두워짐
+  fade.style.opacity = 1;
+
+  setTimeout(() => {
+
+    // 2️⃣ 영상 변경
+    currentIndex = (currentIndex + 1) % videos.length;
+    loadVideo();
+
+    // 3️⃣ 다시 밝아짐
+     setTimeout(() => {
+      fade.style.opacity = 0;
+    }, 600);
+
+  }, 1200);
+
 }
 
 function prevVideo() {
@@ -226,14 +258,27 @@ window.addEventListener("load", () => {
 
   if (!fade) return;
 
+  // 처음에는 완전히 어둡게 시작
+  fade.style.opacity = 1;
+
   setTimeout(() => {
 
-    fade.style.opacity = 0;
+  // 천천히 밝아짐
+  fade.style.opacity = 0;
 
-    setTimeout(() => {
-      fade.remove();
-    }, 1600);
+  setTimeout(() => {
+    fade.remove();
+  }, 2000);
 
-  }, 1000);
+}, 1200);
 
+});
+
+
+/* =========================
+   우클릭 방지
+========================= */
+
+document.addEventListener("contextmenu", function (e) {
+  e.preventDefault();
 });
