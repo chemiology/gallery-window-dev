@@ -67,6 +67,11 @@ letter-spacing:0.3px;
 }
 
 .nav-back{
+  position: fixed;
+  top: 50%;
+  left: 40px;
+  transform: translateY(-50%);
+  z-index: 40;
   margin-top: 35px;
   font-size: 15px; /* 기존보다 2단계 ↑ */
   opacity:.7;
@@ -210,13 +215,13 @@ body::before {
 
 .sound-guide {
   position: fixed;
-  bottom: 60px;
+  bottom: 80px; /* ⭐ 하단 UI 위에 위치 */
   left: 50%;
   transform: translateX(-50%);
-  font-size: 12px;
-  z-index: 20;
-  color: rgba(255,255,255,0.6);
-  letter-spacing: 0.05em;
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.08em;
+  z-index: 30;
   pointer-events: none;
 }
 
@@ -307,4 +312,18 @@ body {
   z-index: 1;
   transform: scale(1.015);
   transition: transform 30s ease;
+}
+
+.video-title {
+  font-size: 42px;   /* ⭐ 크게 */
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+#backToHall {
+  font-size: 20px;   /* ⭐ 키움 */
+  padding: 10px 14px;
+  background: rgba(0,0,0,0.4);
+  border-radius: 6px;
+  color: #fff;
 }
