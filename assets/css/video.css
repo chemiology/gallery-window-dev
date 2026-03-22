@@ -173,21 +173,10 @@ body {
   );
 }
 
-.video-container {
-  transform: scale(1.02);
-  transition: transform 6s ease;
-}
-
 .video-caption {
   letter-spacing: 1px;
   font-size: 12px;
   opacity: 0.6;
-}
-
-.video-container {
-  box-shadow:
-    0 0 120px rgba(0,0,0,0.95),
-    0 0 60px rgba(0,0,0,0.6);
 }
 
 .video-caption {
@@ -195,11 +184,6 @@ body {
   letter-spacing: 1.2px;
   opacity: 0.5;
   margin-top: 24px;
-}
-
-.video-container {
-  opacity: 0;
-  transition: opacity 2s ease;
 }
 
 body.page-ready .video-container {
@@ -232,9 +216,60 @@ body[data-theme="cool"] {
 }
 
 .video-container {
+  transform: scale(1.02);
+  transition: transform 6s ease;
+}
+
+
+.video-container {
+  box-shadow:
+    0 0 120px rgba(0,0,0,0.95),
+    0 0 60px rgba(0,0,0,0.6);
+}
+
+.video-container {
+  opacity: 0;
+  transition: opacity 2s ease;
   box-shadow:
     0 0 120px rgba(0,0,0,0.9),
     0 0 40px var(--theme-color);
+}
+
+
+.video-container {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  background: #000;
+}
+
+.video-container {
+  position: relative;
+  z-index: 1;
+}
+
+.video-container {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  overflow: hidden;
+}
+
+
+.video-container {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  overflow: hidden;
+}
+
+.video-container {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 body::before {
@@ -248,14 +283,6 @@ body::before {
     rgba(0,0,0,1) 100%
   );
   z-index: -1;
-}
-
-.video-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: #000;
 }
 
 iframe {
@@ -287,11 +314,6 @@ iframe {
 
 #fade-layer {
   z-index: 9999;
-}
-
-.video-container {
-  position: relative;
-  z-index: 1;
 }
 
 iframe {
@@ -346,13 +368,6 @@ setTimeout(() => {
   color: rgba(255,255,255,0.7);
 }
 
-.video-container {
-  position: fixed;
-  inset: 0;
-  background: #000;
-  overflow: hidden;
-}
-
 #video-frame {
   width: 100vw;
   height: 100vh;
@@ -362,13 +377,6 @@ setTimeout(() => {
 .ui-layer button,
 .ui-layer a {
   pointer-events: auto;
-}
-
-.video-container {
-  position: fixed;
-  inset: 0;
-  background: #000;
-  overflow: hidden;
 }
 
 #video-frame {
