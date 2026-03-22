@@ -257,7 +257,7 @@ body.page-ready .video-container {
   left: 0;
   width: 100%;
   z-index: 2;
-  pointer-events: auto;
+  pointer-events: none !important;
 }
 
 /* 하단 보호 (오른쪽만) */
@@ -327,4 +327,20 @@ body.page-ready .video-container {
 
 .video-container iframe {
   pointer-events: auto;
+}
+
+.video-protect-top,
+.video-protect-middle,
+.video-protect-bottom {
+  background: rgba(255,0,0,0.2);
+}
+
+.video-protect-top {
+  top: 0;
+  height: 15%;
+}
+
+.video-protect-bottom {
+  bottom: 0;
+  height: 15%;
 }
