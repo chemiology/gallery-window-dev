@@ -58,11 +58,12 @@ body::before {
 ===================================================== */
 
 .video-container {
-  position: relative;   /* ⭐ 반드시 추가 */
+  position: fixed;
   inset: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;      /* ⭐ 추가 */
   z-index: 1;
 
   opacity: 0;
@@ -83,15 +84,14 @@ body.page-ready .video-container {
 ===================================================== */
 
 #video-frame {
-  position: relative;   /* ⭐ 반드시 */
-  width: 70vw;
-  height: 39.375vw;
-  max-height: 70vh;
-  border: none;
+  position: relative;
   z-index: 1;
+  width: min(70vw, 1200px);
+  aspect-ratio: 16 / 9;   /* ⭐ 핵심 */
+  height: auto;
 
-  transform: scale(1.015);
-  transition: opacity 1s ease, transform 30s ease;
+  border: none;
+  display: block;
 }
 
 /* 세로 대응 */
@@ -245,7 +245,8 @@ body.page-ready .video-container {
   left: 0;
   width: 100%;
   height: 100px;
-  z-index: 20;
+  z-index: 2;
+  pointer-events: auto;
 }
 
 /* 중앙 보호 */
@@ -255,7 +256,8 @@ body.page-ready .video-container {
   bottom: 220px;   /* ⭐ 180 → 220으로 증가 */
   left: 0;
   width: 100%;
-  z-index: 20;
+  z-index: 2;
+  pointer-events: auto;
 }
 
 /* 하단 보호 (오른쪽만) */
@@ -265,7 +267,7 @@ body.page-ready .video-container {
   right: 0;
   width: 25%;
   height: 180px;
-  z-index: 20;
+  z-index: 2;
   pointer-events: auto;
 }
 
@@ -321,4 +323,8 @@ body.page-ready .video-container {
 
   box-shadow: 0 0 12px rgba(255,255,255,0.2);
 
+}
+
+.video-container iframe {
+  pointer-events: auto;
 }
