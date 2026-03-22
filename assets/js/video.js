@@ -68,6 +68,11 @@ fetch("assets/config/videos.json")
 
 function loadVideo() {
 
+  if (videoTimer) {
+    clearInterval(videoTimer);
+    videoTimer = null;
+  }
+
   const container = document.querySelector(".video-container");
   const loading = document.querySelector(".video-loading");
 
@@ -143,21 +148,26 @@ function loadVideo() {
 
 function nextVideo() {
 
-  const fade = document.getElementById("fade-layer");
-  if (!fade) return;
+  if (videos.length <= 1) return;
 
-  fade.style.opacity = 1;
+  const fade = document.getElementById("fade-layer");
+
+  if (fade) fade.style.opacity = 1;
 
   setTimeout(() => {
 
     currentIndex = (currentIndex + 1) % videos.length;
+
     loadVideo();
 
-    setTimeout(() => {
-      fade.style.opacity = 0;
-    }, 600);
+    if (fade) {
+      setTimeout(() => {
+        fade.style.opacity = 0;
+      }, 300);
+    }
 
-  }, 800);
+  }, 500);
+
 }
 
 function prevVideo() {
