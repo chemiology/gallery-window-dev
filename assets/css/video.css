@@ -216,54 +216,6 @@ body[data-theme="cool"] {
 }
 
 .video-container {
-  transform: scale(1.02);
-  transition: transform 6s ease;
-}
-
-
-.video-container {
-  box-shadow:
-    0 0 120px rgba(0,0,0,0.95),
-    0 0 60px rgba(0,0,0,0.6);
-}
-
-.video-container {
-  opacity: 0;
-  transition: opacity 2s ease;
-  box-shadow:
-    0 0 120px rgba(0,0,0,0.9),
-    0 0 40px var(--theme-color);
-}
-
-
-.video-container {
-  display: flex;
-  align-items: center;
-  height: 100vh;
-  background: #000;
-}
-
-.video-container {
-  position: relative;
-  z-index: 1;
-}
-
-.video-container {
-  position: fixed;
-  inset: 0;
-  background: #000;
-  overflow: hidden;
-}
-
-
-.video-container {
-  position: fixed;
-  inset: 0;
-  background: #000;
-  overflow: hidden;
-}
-
-.video-container {
   position: fixed;
   inset: 0;
   background: #000;
@@ -368,25 +320,9 @@ setTimeout(() => {
   color: rgba(255,255,255,0.7);
 }
 
-#video-frame {
-  width: 100vw;
-  height: 100vh;
-  border: none;
-}
-
 .ui-layer button,
 .ui-layer a {
   pointer-events: auto;
-}
-
-#video-frame {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100vw;
-  height: 56.25vw; /* 16:9 */
-  transform: translate(-50%, -50%);
-  border: none;
 }
 
 /* 화면이 세로로 길 때 대응 */
@@ -404,11 +340,15 @@ setTimeout(() => {
   pointer-events: none;
 }
 
-#video-frame {
-  z-index: 1;
-}
-
 body {
   margin: 0;
   background: #000;
+}
+
+#video-frame {
+  width: 70vw;
+  height: 39.375vw; /* 16:9 */
+  max-height: 70vh;
+  border: none;
+  z-index: 1;
 }
