@@ -183,7 +183,15 @@ async function loadHallEntry(exhibition, hallId) {
           ? `video.html?id=${exhibition.id}&hall=${hallId}`   // ⭐ 핵심 수정
           : BASE_PATH + `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
 
-      window.location.href = target;
+     const fade = document.getElementById("pageFade");
+
+     if (fade) {
+       fade.style.opacity = 1;
+     }
+
+     setTimeout(() => {
+       window.location.href = target;
+     }, 500);
 
     };
 

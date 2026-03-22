@@ -155,16 +155,16 @@ function nextVideo() {
 
   setTimeout(() => {
 
-    // 2️⃣ 영상 변경
+    // 2️⃣ 영상 변경 (어두운 상태에서)
     currentIndex = (currentIndex + 1) % videos.length;
     loadVideo();
 
     // 3️⃣ 다시 밝아짐
-     setTimeout(() => {
+    setTimeout(() => {
       fade.style.opacity = 0;
     }, 600);
 
-  }, 1200);
+  }, 800);  // ⭐ 핵심: 먼저 어두워지고 나서 변경
 
 }
 
@@ -276,15 +276,17 @@ window.addEventListener("load", () => {
   const guide = document.querySelector(".sound-guide");
 
   if (guide) {
+
     guide.classList.add("guide-strong");
 
     setTimeout(() => {
-      guide.classList.remove("guide-strong");
+      guide.classList.remove("guide-strong");  // ⭐ 반드시 필요
       guide.classList.add("guide-dim");
-    }, 5000);
+    }, 4000);
+
   }
 
-});
+}, 1500);
 
 /* =========================
    우클릭 방지
