@@ -1,147 +1,141 @@
 /* =====================================================
-   BASE RESET
+   BASE
 ===================================================== */
 
 html, body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background: #000;
+  background: #050505;
   font-family: system-ui, sans-serif;
   color: #ddd;
 }
 
 /* =====================================================
-   BACKGROUND / THEME
+   THEME
 ===================================================== */
 
 :root {
   --theme-color: #ffffff;
 }
 
-body {
-  background: radial-gradient(circle at center, #000 40%, #000 100%);
-}
-
 body[data-theme="warm"] {
-  background: radial-gradient(
-    circle at center,
-    #000 30%,
-    rgba(249, 239, 163, 0.12) 100%
-  );
+  background: radial-gradient(circle, #000 30%, rgba(249,239,163,0.12) 100%);
 }
 
 body[data-theme="cool"] {
-  background: radial-gradient(
-    circle at center,
-    #000 30%,
-    rgba(180, 210, 255, 0.12) 100%
-  );
+  background: radial-gradient(circle, #000 30%, rgba(180,210,255,0.12) 100%);
 }
 
-/* 깊이 */
+/* 공간 깊이 */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: radial-gradient(
-    circle at center,
-    rgba(0,0,0,0.2) 0%,
-    rgba(0,0,0,0.7) 60%,
-    rgba(0,0,0,1) 100%
-  );
+  background: radial-gradient(circle,
+    rgba(0,0,0,0.2),
+    rgba(0,0,0,0.8) 60%,
+    #000 100%);
   z-index: -1;
 }
 
 /* =====================================================
-   VIDEO CONTAINER
+   STAGE
 ===================================================== */
 
-.video-container {
-  position: fixed;
-  inset: 0;
+.video-stage {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;      /* ⭐ 추가 */
+
+  overflow: hidden;
+}
+
+/* 중앙 조명 */
+.video-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(circle at center,
+      rgba(255,255,255,0.06),
+      rgba(0,0,0,0.9) 70%
+    );
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =====================================================
+   VIDEO
+===================================================== */
+
+.video-frame {
+  position: relative;
+  width: min(90vw, 1200px);
+  aspect-ratio: 16 / 9;
   z-index: 1;
 
   opacity: 0;
-  transition: opacity 1.8s ease;
-
-  box-shadow:
-    0 0 120px rgba(0,0,0,0.95),
-    0 0 60px rgba(0,0,0,0.6),
-    0 0 40px var(--theme-color);
+  transform: scale(0.98);
+  transition: opacity 1.2s ease, transform 1.2s ease;
 }
 
-body.page-ready .video-container {
+.video-frame.active {
   opacity: 1;
+  transform: scale(1);
 }
 
-/* =====================================================
-   VIDEO FRAME
-===================================================== */
-
-#video-frame {
-  position: relative;
-  z-index: 1;
-  width: min(70vw, 1200px);
-  aspect-ratio: 16 / 9;   /* ⭐ 핵심 */
-  height: auto;
-
+.video-frame iframe {
+  width: 100%;
+  height: 100%;
   border: none;
-  display: block;
-}
-
-/* 세로 대응 */
-@media (max-aspect-ratio: 16/9) {
-  #video-frame {
-    width: 177.78vh;
-    height: 100vh;
-  }
 }
 
 /* =====================================================
-   UI LAYER
+   UI
 ===================================================== */
 
 .ui-layer {
   position: fixed;
   inset: 0;
   z-index: 30;
-  pointer-events: none;
+
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.6s ease;
 }
 
 .ui-layer.active {
   opacity: 1;
+  pointer-events: auto;
 }
 
-/* 클릭 가능 요소만 허용 */
 .ui-layer button,
 .ui-layer a {
   pointer-events: auto;
 }
 
 /* =====================================================
-   TOP UI (제목)
+   TOP UI
 ===================================================== */
 
 .top-ui {
   position: absolute;
   top: 40px;
   left: 40px;
-  z-index: 9999;
 }
 
-.top-ui .video-title {
+.video-title {
   font-size: 56px;
   font-weight: 600;
   letter-spacing: 0.06em;
   color: rgba(255,255,255,0.9);
-  text-shadow: 0 0 12px rgba(0,0,0,0.6);
 }
 
 /* =====================================================
@@ -149,11 +143,37 @@ body.page-ready .video-container {
 ===================================================== */
 
 .video-caption {
-  margin-top: 24px;
+  margin-top: 20px;
   font-size: 18px;
   opacity: 0.6;
-  letter-spacing: 1px;
-  text-align: center;
+}
+
+/* =====================================================
+   CONTROLS
+===================================================== */
+
+.controls {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.controls button {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(6px);
+
+  padding: 8px 14px;
+  color: white;
+
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.controls button:hover {
+  background: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
 }
 
 /* =====================================================
@@ -162,19 +182,23 @@ body.page-ready .video-container {
 
 .nav-back {
   position: fixed;
-  top: 50%;
   left: 40px;
+  top: 50%;
   transform: translateY(-50%);
-  z-index: 40;
 }
 
 #backToHall {
-  font-size: 20px;
   padding: 10px 14px;
   background: rgba(0,0,0,0.4);
   border-radius: 6px;
   color: #fff;
   text-decoration: none;
+
+  transition: all 0.25s ease;
+}
+
+#backToHall:hover {
+  background: rgba(255,255,255,0.2);
 }
 
 /* =====================================================
@@ -186,23 +210,19 @@ body.page-ready .video-container {
   bottom: 80px;
   left: 50%;
   transform: translateX(-50%);
+
   font-size: 16px;
-  color: rgba(255,255,255,0.95);
-  opacity: 0.6;
-  letter-spacing: 0.08em;
-  text-shadow: 0 0 10px rgba(0,0,0,0.8);
-  z-index: 30;
-  pointer-events: none;
-  transition: opacity 1.2s ease;
+  opacity: 0.7;
+
+  transition: opacity 1s ease;
 }
 
 .sound-guide.guide-strong {
-  font-size: 18px;
   opacity: 1;
 }
 
 .sound-guide.guide-dim {
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 /* =====================================================
@@ -214,61 +234,20 @@ body.page-ready .video-container {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 14px;
-  opacity: 0.7;
-  letter-spacing: 1px;
-  pointer-events: none;
 }
 
 /* =====================================================
-   FADE LAYER
+   FADE
 ===================================================== */
 
 #fade-layer {
   position: fixed;
   inset: 0;
-  background: #000;
+  background: radial-gradient(circle, #000 40%, #000 100%);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 1.4s ease;
   z-index: 9999;
-}
-
-/* =====================================================
-   PROTECTION LAYER (최종 핵심)
-===================================================== */
-
-/* 상단 보호 */
-.video-protect-top {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  z-index: 2;
-  pointer-events: auto;
-}
-
-/* 중앙 보호 */
-.video-protect-middle {
-  position: absolute;
-  top: 100px;
-  bottom: 220px;   /* ⭐ 180 → 220으로 증가 */
-  left: 0;
-  width: 100%;
-  z-index: 2;
-  pointer-events: none !important;
-}
-
-/* 하단 보호 (오른쪽만) */
-.video-protect-bottom {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 25%;
-  height: 180px;
-  z-index: 2;
-  pointer-events: auto;
+  transition: opacity 0.8s ease;
 }
 
 /* =====================================================
@@ -277,70 +256,12 @@ body.page-ready .video-container {
 
 @media (max-width: 700px) {
 
-  #video-frame {
+  .video-frame {
     width: 100vw;
-    height: 56.25vw;
   }
 
-  .top-ui .video-title {
+  .video-title {
     font-size: 28px;
   }
 
-  #backToHall {
-    font-size: 16px;
-  }
-
-}
-
-.controls {
-  position: fixed;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 30;
-  opacity: 1 !important;
-}
-
-.controls button {
-  pointer-events: auto;
-}
-
-#backToHall,
-.controls button {
-
-  transition: all 0.25s ease;
-  cursor: pointer;
-
-}
-
-#backToHall:hover,
-.controls button:hover {
-
-  background: rgba(255,255,255,0.15);
-  color: #fff;
-
-  transform: translateY(-2px) scale(1.05);
-
-  box-shadow: 0 0 12px rgba(255,255,255,0.2);
-
-}
-
-.video-container iframe {
-  pointer-events: auto;
-}
-
-.video-protect-top,
-.video-protect-middle,
-.video-protect-bottom {
-  background: rgba(255,0,0,0.2);
-}
-
-.video-protect-top {
-  top: 0;
-  height: 15%;
-}
-
-.video-protect-bottom {
-  bottom: 0;
-  height: 15%;
 }
