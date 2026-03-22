@@ -93,14 +93,12 @@ function loadVideo() {
   const frame = document.createElement("iframe");
 
   frame.id = "video-frame";
-  frame.style.width = "70vw";
-  frame.style.height = "39.375vw";
-  frame.style.maxHeight = "70vh";
   frame.style.border = "none";
   frame.style.opacity = 0;
   frame.loading = "lazy";
 
-  frame.allow = "autoplay; fullscreen";
+  frame.allow =
+  "autoplay; fullscreen; encrypted-media; picture-in-picture";
 
   frame.src =
     "https://www.youtube.com/embed/" +
@@ -115,6 +113,8 @@ function loadVideo() {
     "&playsinline=1";
 
   container.appendChild(frame);
+
+  frame.setAttribute("allowfullscreen", "");
 
   /* 페이드 인 */
   setTimeout(() => {
@@ -140,6 +140,7 @@ function loadVideo() {
       nextVideo();
     }, 32000);
   }
+
 }
 
 /* =========================
@@ -234,14 +235,20 @@ document.addEventListener("touchstart", showUI);
    사운드 (첫 클릭 시 활성화)
 ========================= */
 
+let soundEnabled = false;
+
 document.addEventListener("click", () => {
+
+  if (soundEnabled) return;
 
   const iframe = document.getElementById("video-frame");
   if (!iframe) return;
 
   iframe.src = iframe.src.replace("mute=1", "mute=0");
 
-}, { once: true });
+  soundEnabled = true;
+
+});
 
 /* =========================
    초기 연출 (입장)
