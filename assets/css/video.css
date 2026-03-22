@@ -219,6 +219,7 @@ body::before {
   letter-spacing: 0.12em;
   z-index: 30;
   pointer-events: none;
+  text-shadow: 0 0 8px rgba(0,0,0,0.6);
 }
 
 #fade-layer {
@@ -270,7 +271,7 @@ setTimeout(() => {
   top: 40px;
   left: 40px;
   z-index: 40;
-  font-size: 28px;  /* ⭐ 제목 크게 */
+  font-size: 22px !important;   /* ⭐ 전체 기준 크기 올림 */
   color: #fff;
   line-height: 1.4;
 }
@@ -337,8 +338,8 @@ body {
   position: absolute;
   top: 0;
   right: 0;
-  width: 220px;
-  height: 120px;
+  width: 160px;   /* ⭐ 줄이기 */
+  height: 80px;   /* ⭐ 줄이기 */
   z-index: 5;
   pointer-events: auto;
 }
@@ -348,8 +349,8 @@ body {
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 220px;
-  height: 120px;
+  width: 160px;   /* ⭐ 줄이기 */
+  height: 80px;   /* ⭐ 줄이기 */
   z-index: 5;
   pointer-events: auto;
 }
@@ -380,7 +381,7 @@ body[data-theme="cool"] .video-container {
 }
 
 .top-ui .video-title {
-  font-size: 52px !important;
+  font-size: 52px !important;   /* ⭐ 제목 확실히 크게 */
   font-weight: 500;
   letter-spacing: 0.06em;
 }
