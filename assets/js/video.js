@@ -14,6 +14,20 @@ let currentIndex = 0;
 let videoTimer = null;
 
 /* =========================
+   페이드 (필수 추가)
+========================= */
+
+function fadeOut() {
+  const fade = document.getElementById("fade-layer");
+  if (fade) fade.style.opacity = 1;
+}
+
+function fadeIn() {
+  const fade = document.getElementById("fade-layer");
+  if (fade) fade.style.opacity = 0;
+}
+
+/* =========================
    전시 테마 적용
 ========================= */
 
@@ -100,7 +114,7 @@ function loadVideo() {
 
     if (loading) loading.style.display = "none";
 
-    /* 🔥 여기 넣는 것이 정답 */
+    /* 등장 애니메이션 */
     if (frame) {
       frame.classList.remove("active");
 
@@ -130,11 +144,8 @@ function loadVideo() {
 ========================= */
 
 function nextVideo() {
-
   if (videos.length <= 1) return;
-
   currentIndex = (currentIndex + 1) % videos.length;
-
   loadVideo();
 }
 
@@ -144,7 +155,7 @@ function prevVideo() {
 }
 
 /* =========================
-   키보드 (전시용 최소 제어)
+   키보드
 ========================= */
 
 document.addEventListener("keydown", (e) => {
@@ -159,7 +170,6 @@ document.addEventListener("keydown", (e) => {
 const backBtn = document.getElementById("backToHall");
 
 if (backBtn) {
-
   backBtn.addEventListener("click", () => {
 
     const hall = params.get("hall");
@@ -172,11 +182,10 @@ if (backBtn) {
     window.location.href = `hall.html?hall=${hall}`;
 
   });
-
 }
 
 /* =========================
-   UI 표시 (마우스 반응)
+   UI 표시
 ========================= */
 
 const ui = document.getElementById("uiLayer");
@@ -199,7 +208,7 @@ document.addEventListener("mousemove", showUI);
 document.addEventListener("touchstart", showUI);
 
 /* =========================
-   사운드 (첫 클릭 시 활성화)
+   사운드
 ========================= */
 
 let soundEnabled = false;
@@ -208,7 +217,6 @@ document.addEventListener("click", (e) => {
 
   if (soundEnabled) return;
 
-  /* 버튼 클릭은 제외 */
   if (e.target.closest(".controls") || e.target.closest("#backToHall")) {
     return;
   }
@@ -222,14 +230,12 @@ document.addEventListener("click", (e) => {
 
   const guide = document.querySelector(".sound-guide");
 
-  if (guide) {
-    guide.style.opacity = 0;
-  }
+  if (guide) guide.style.opacity = 0;
 
 });
 
 /* =========================
-   초기 연출 (입장)
+   초기 연출
 ========================= */
 
 window.addEventListener("load", () => {
@@ -263,7 +269,6 @@ window.addEventListener("load", () => {
     }, 800);
   }
 
-  /* 안내문 애니메이션 */
   setTimeout(() => {
 
     if (guide) {
@@ -281,7 +286,7 @@ window.addEventListener("load", () => {
 });
 
 /* =========================
-   보호 (우클릭 / 더블클릭)
+   보호
 ========================= */
 
 document.addEventListener("contextmenu", e => e.preventDefault());
