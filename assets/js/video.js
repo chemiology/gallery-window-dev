@@ -77,8 +77,9 @@ function loadVideo() {
   const frame = document.createElement("iframe");
 
   frame.id = "video-frame";
-  frame.style.width = "100vw";     // ⭐ 추가
-  frame.style.height = "100vh";    // ⭐ 추가
+  frame.style.width = "70vw";
+  frame.style.height = "39.375vw"; // 16:9 비율
+  frame.style.maxHeight = "70vh";
   frame.style.border = "none";     // ⭐ 추가
   frame.loading = "lazy";
   frame.allow = "autoplay; fullscreen";
@@ -183,6 +184,7 @@ if (backBtn) {
     const hall = params.get("hall");
 
     if (!hall) {
+      alert("hall 정보 없음"); // 🔥 디버그용
       window.location.href = "index.html";
       return;
     }
