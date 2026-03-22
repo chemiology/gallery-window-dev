@@ -201,7 +201,7 @@ body::before {
   left: 50%;
   transform: translateX(-50%);
   font-size: 13px;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.9);   /* ⭐ Hall 버튼 수준 */
   opacity: 0.5;
   letter-spacing: 0.12em;
   z-index: 30;
@@ -213,10 +213,10 @@ body::before {
   position: fixed;
   inset: 0;
   background: #000;
-  z-index: 9999;
-  opacity: 1;
-  transition: opacity 1.6s ease;
+  opacity: 0;
   pointer-events: none;
+  transition: opacity 1.6s ease;
+  z-index: 50;
 }
 
 #fade-layer {
