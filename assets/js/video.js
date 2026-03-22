@@ -150,29 +150,6 @@ document.addEventListener("keydown", (e) => {
 });
 
 /* =========================
-   전체 화면
-========================= */
-
-function toggleFullscreen() {
-
-  const elem = document.querySelector(".video-container");
-  if (!elem) return;
-
-  if (!document.fullscreenElement) {
-    elem.requestFullscreen().catch(() => {});
-  } else {
-    document.exitFullscreen();
-  }
-
-}
-
-document.querySelector(".video-container")?.addEventListener("dblclick", toggleFullscreen);
-
-document.addEventListener("keydown", (e) => {
-  if (e.key.toLowerCase() === "f") toggleFullscreen();
-});
-
-/* =========================
    Hall 이동
 ========================= */
 
