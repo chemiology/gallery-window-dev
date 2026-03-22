@@ -251,7 +251,7 @@ body.page-ready .video-container {
 .video-protect-middle {
   position: absolute;
   top: 100px;
-  bottom: 180px;   /* ⭐ 핵심 (컨트롤 완전 확보) */
+  bottom: 240px;   /* ⭐ 180 → 220으로 증가 */
   left: 0;
   width: 100%;
   z-index: 5;
