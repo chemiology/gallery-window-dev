@@ -385,3 +385,22 @@ body[data-theme="cool"] .video-container {
   font-size: 56px !important;
   font-weight: 600;
 }
+
+.sound-guide {
+  font-size: 16px;                     /* ⭐ 키움 */
+  color: rgba(255,255,255,0.95);      /* ⭐ 충분히 밝게 */
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 10px rgba(0,0,0,0.8);
+  transition: opacity 1.2s ease;
+}
+
+/* ⭐ 입장 초기에 강조 */
+.sound-guide.guide-strong {
+  font-size: 18px;
+  opacity: 1;
+}
+
+/* ⭐ 이후 자연스럽게 톤 다운 */
+.sound-guide.guide-dim {
+  opacity: 0.6;
+}
