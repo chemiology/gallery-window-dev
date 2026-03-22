@@ -96,7 +96,8 @@ function loadVideo() {
     "&playlist=" + video.id +
     "&rel=0" +
     "&modestbranding=1" +
-    "&iv_load_policy=3";
+    "&iv_load_policy=3" +
+    "&showinfo=0";   // ⭐ 추가
 
   container.appendChild(frame);
 
