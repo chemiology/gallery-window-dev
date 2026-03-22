@@ -83,6 +83,7 @@ body.page-ready .video-container {
 ===================================================== */
 
 #video-frame {
+  position: relative;   /* ⭐ 반드시 */
   width: 70vw;
   height: 39.375vw;
   max-height: 70vh;
@@ -300,4 +301,24 @@ body.page-ready .video-container {
 
 .controls button {
   pointer-events: auto;
+}
+
+#backToHall,
+.controls button {
+
+  transition: all 0.25s ease;
+  cursor: pointer;
+
+}
+
+#backToHall:hover,
+.controls button:hover {
+
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+
+  transform: translateY(-2px) scale(1.05);
+
+  box-shadow: 0 0 12px rgba(255,255,255,0.2);
+
 }
