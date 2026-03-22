@@ -104,8 +104,6 @@ function loadVideo() {
     "&mute=1" +
     "&controls=1" +
     "&disablekb=1" +
-    "&loop=1" +
-    "&playlist=" + video.id +
     "&rel=0" +
     "&modestbranding=1" +
     "&iv_load_policy=3" +
