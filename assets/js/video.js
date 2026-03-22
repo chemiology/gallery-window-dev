@@ -256,24 +256,35 @@ window.addEventListener("load", () => {
 
   const fade = document.getElementById("fade-layer");
 
-  if (!fade) return;
+  if (fade) {
+    // 처음에는 완전히 어둡게 시작
+    fade.style.opacity = 1;
 
-  // 처음에는 완전히 어둡게 시작
-  fade.style.opacity = 1;
+    setTimeout(() => {
 
-  setTimeout(() => {
+      // 천천히 밝아짐
+      fade.style.opacity = 0;
 
-  // 천천히 밝아짐
-  fade.style.opacity = 0;
+      setTimeout(() => {
+        fade.remove();
+      }, 2000);
 
-  setTimeout(() => {
-    fade.remove();
-  }, 2000);
+    }, 1200);
+  }
 
-}, 1200);
+  // ⭐ 안내문 강조 → 약화
+  const guide = document.querySelector(".sound-guide");
+
+  if (guide) {
+    guide.classList.add("guide-strong");
+
+    setTimeout(() => {
+      guide.classList.remove("guide-strong");
+      guide.classList.add("guide-dim");
+    }, 5000);
+  }
 
 });
-
 
 /* =========================
    우클릭 방지
@@ -282,3 +293,20 @@ window.addEventListener("load", () => {
 document.addEventListener("contextmenu", function (e) {
   e.preventDefault();
 });
+
+
+// =========================
+// 전체화면 차단
+// =========================
+
+document.addEventListener("dblclick", function (e) {
+  e.preventDefault();
+});
+
+const vc = document.querySelector(".video-container");
+
+if (vc) {
+  vc.addEventListener("dblclick", function (e) {
+    e.preventDefault();
+  });
+}
