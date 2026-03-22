@@ -1,0 +1,450 @@
+/* video page override */
+
+body{
+margin:0;
+background:#000;
+color:#ddd;
+font-family:system-ui, sans-serif;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+min-height:100vh;
+}
+
+.video-title{
+margin-top:30px;
+font-size:18px;
+letter-spacing:1px;
+}
+
+.controls{
+margin-top:25px;
+opacity:0;
+transition:opacity .4s ease;
+}
+
+.controls.show{
+opacity:1;
+}
+
+button{
+background:rgba(255,255,255,0.08);
+color:#ddd;
+border:none;
+padding:10px 22px;
+margin:6px;
+font-size:13px;
+cursor:pointer;
+transition:all .25s ease;
+}
+
+button:hover{
+background:rgba(255,255,255,0.18);
+color:#fff;
+}
+
+@media (max-width:700px){
+
+.video-container{
+width:100%;
+}
+
+button{
+padding:10px 18px;
+font-size:13px;
+}
+
+}
+
+.video-caption{
+margin-top:18px;
+opacity:0.8;
+font-size:13px;
+color:#bbb;
+text-align:center;
+letter-spacing:0.3px;
+}
+
+.nav-back{
+  position: fixed;
+  top: 50%;
+  left: 40px;
+  transform: translateY(-50%);
+  z-index: 40;
+  margin-top: 35px;
+  font-size: 15px; /* 기존보다 2단계 ↑ */
+  opacity:.7;
+}
+
+.nav-back a{
+color:#ccc;
+text-decoration:none;
+cursor:pointer;
+padding:6px 10px;
+border-radius:4px;
+transition:all .25s ease;
+display:inline-block;
+}
+
+.nav-back a:hover{
+color:#fff;
+background:rgba(255,255,255,0.08);
+}
+
+.video-loading{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:14px;
+opacity:0.7;
+letter-spacing:1px;
+pointer-events:none;
+}
+
+#video-frame{
+opacity:0;
+transition:opacity .6s ease;
+}
+
+#video-frame.show{
+opacity:1;
+}
+
+.meta{
+transition:opacity .6s ease;
+}
+
+.meta.hide{
+opacity:0;
+}
+
+.viewer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    transparent 60%,
+    var(--theme-color) 140%
+  );
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+body {
+  background: radial-gradient(
+    circle at center,
+    #000 35%,
+    #000 70%,
+    #000 100%
+  );
+}
+
+.video-container {
+  opacity: 0;
+  transition: opacity 1.8s ease;
+}
+
+body.page-ready .video-container {
+  opacity: 1;
+}
+
+body.page-ready .video-container {
+  opacity: 1;
+}
+
+:root {
+  --theme-color: #ffffff;
+}
+
+body[data-theme="warm"] {
+  background: radial-gradient(
+    circle at center,
+    #000 30%,
+    rgba(249, 239, 163, 0.15) 100%
+  );
+}
+
+body[data-theme="cool"] {
+  background: radial-gradient(
+    circle at center,
+    #000 30%,
+    rgba(198, 212, 225, 0.15) 100%
+  );
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(0,0,0,0.2) 0%,
+    rgba(0,0,0,0.7) 60%,
+    rgba(0,0,0,1) 100%
+  );
+  z-index: -1;
+}
+
+.sound-guide {
+  position: fixed;
+  bottom: 80px; /* ⭐ 하단 UI 위에 위치 */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  color: rgba(255,255,255,0.9);   /* ⭐ Hall 버튼 수준 */
+  opacity: 0.5;
+  letter-spacing: 0.12em;
+  z-index: 30;
+  pointer-events: none;
+  text-shadow: 0 0 8px rgba(0,0,0,0.6);
+}
+
+#fade-layer {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.6s ease;
+  z-index: 50;
+}
+
+#fade-layer {
+  z-index: 9999;
+}
+
+setTimeout(() => {
+  frame.style.opacity = 1;
+}, 1200);
+
+.bottom-ui {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  z-index: 10;
+  color: rgba(255,255,255,0.8);
+  text-align: center;
+}
+
+.ui-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+/* 보일 때 */
+.ui-layer.active {
+  opacity: 1;
+  pointer-events: none;
+}
+
+.top-ui {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  z-index: 9999 !important;
+  font-size: 22px !important;   /* ⭐ 전체 기준 크기 올림 */
+  color: #fff;
+  line-height: 1.4;
+  transform: translateZ(0);
+}
+
+.ui-layer button,
+.ui-layer a {
+  pointer-events: auto;
+}
+
+/* 화면이 세로로 길 때 대응 */
+@media (max-aspect-ratio: 16/9) {
+  #video-frame {
+    width: 177.78vh;
+    height: 100vh;
+  }
+}
+
+.ui-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 30;   /* ⭐ 중요 */
+  pointer-events: none;
+}
+
+body {
+  margin: 0;
+  background: #000;
+}
+
+#video-frame {
+  width: 70vw;
+  height: 39.375vw; /* 16:9 */
+  max-height: 70vh;
+  border: none;
+  z-index: 1;
+  transform: scale(1.015);
+  transition: transform 30s ease;
+}
+
+.video-title {
+  font-size: 42px;   /* ⭐ 크게 */
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+#backToHall {
+  font-size: 20px;   /* ⭐ 키움 */
+  padding: 10px 14px;
+  background: rgba(0,0,0,0.4);
+  border-radius: 6px;
+  color: #fff;
+}
+
+.top-ui .video-title {
+  font-size: 48px !important;   /* ⭐ 강제 적용 */
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.9);
+  text-shadow: 0 0 12px rgba(0,0,0,0.6);
+}
+
+/* 상단 보호 */
+.video-protect-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;     /* ⭐ 전체 가로 */
+  height: 80px;    /* ⭐ 상단 UI 영역만 */
+  z-index: 5;
+  pointer-events: auto;
+}
+
+/* ⭐ 하단 보호 */
+.video-protect-bottom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 45%;     /* ⭐ 줄임 (70 → 45) */
+  height: 70px;   /* ⭐ 높이 약간 증가 */
+  z-index: 5;
+  pointer-events: auto;
+}
+
+.video-protect {
+  background: rgba(0,0,0,0.01); /* 거의 투명 */
+}
+
+.video-container {
+  box-shadow:
+    0 0 120px rgba(0,0,0,0.95),
+    0 0 60px rgba(0,0,0,0.6),
+    0 0 40px var(--theme-color);
+  transform: scale(1.01);
+  transition: transform 8s ease;
+}
+
+body[data-theme="warm"] .video-container {
+  box-shadow:
+    0 0 120px rgba(0,0,0,0.95),
+    0 0 40px rgba(255,180,80,0.15);
+}
+
+body[data-theme="cool"] .video-container {
+  box-shadow:
+    0 0 120px rgba(0,0,0,0.95),
+    0 0 40px rgba(80,160,255,0.15);
+}
+
+.top-ui .video-title {
+  font-size: 52px !important;   /* ⭐ 제목 확실히 크게 */
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+.video-caption {
+  letter-spacing: 1px;
+  font-size: 18px !important;
+  opacity: 0.6;
+  margin-top: 24px;
+}
+
+.top-ui .video-title {
+  font-size: 56px !important;
+  font-weight: 600;
+}
+
+.sound-guide {
+  font-size: 16px;                     /* ⭐ 키움 */
+  color: rgba(255,255,255,0.95);      /* ⭐ 충분히 밝게 */
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 10px rgba(0,0,0,0.8);
+  transition: opacity 1.2s ease;
+}
+
+/* ⭐ 입장 초기에 강조 */
+.sound-guide.guide-strong {
+  font-size: 18px;
+  opacity: 1;
+}
+
+/* ⭐ 이후 자연스럽게 톤 다운 */
+.sound-guide.guide-dim {
+  opacity: 0.6;
+}
+
+.video-click-blocker {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background: transparent;
+  pointer-events: auto;   /* ⭐ 핵심 */
+}
+
+.video-click-blocker {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+}
+
+/* ⭐ 중앙 영역 차단 */
+.video-click-blocker::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: auto;
+}
+
+/* ⭐ 하단 컨트롤 영역은 열어둠 */
+.video-click-blocker::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75%;     /* ⭐ 기존보다 넓게 */
+  height: 130px;  /* ⭐ 높이 증가 (볼륨까지 포함) */
+  pointer-events: none;
+}
+
+#pageFade {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+  z-index: 9999;
+}
