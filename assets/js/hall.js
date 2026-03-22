@@ -180,8 +180,8 @@ async function loadHallEntry(exhibition, hallId) {
 
       const target =
         hallId.startsWith("hall5")
-           ? BASE_PATH + `/video.html?id=${exhibition.id}&hall=${hallId}`
-          : BASE_PATH + `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
+           ? `video.html?id=${exhibition.id}&hall=${hallId}`
+          : `exhibition.html?id=${exhibition.id}&hall=${hallId}`;
 
       window.location.href = target;
 
