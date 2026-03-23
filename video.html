@@ -38,43 +38,55 @@ gtag('config', 'G-M2QQ5KME88');
 
 </head>
 
-<body>
+<body oncontextmenu="return false">
 
-<div class="video-container">
-  <div class="video-loading">Loading...</div>
-</div>
+<div class="video-stage">
 
-<!-- ✅ UI 통합 -->
-<div class="ui-layer" id="uiLayer">
+  <!-- 영상 -->
+  <div class="video-frame">
 
-  <div class="top-ui">
-    <div class="video-title" id="videoTitle"></div>
-    <div class="video-caption" id="video-caption"></div>
+    <iframe id="player" allow="autoplay"></iframe>
+
+    <!-- 🔴 큰 레이어 -->
+    <div class="video-mask main"></div>
+
+    <!-- 🟢 우측 하단 레이어 -->
+    <div class="video-mask corner"></div>
+
   </div>
 
-  <div class="bottom-ui">
+  <!-- UI 레이어 -->
+  <div class="ui-layer" id="uiLayer">
 
-    <div class="fullscreen-tip">
-      F : Fullscreen · ESC : Exit
+    <!-- 상단 (영상과 안 겹침) -->
+    <div class="top-ui">
+      <div class="video-title" id="videoTitle"></div>
+      <div class="video-caption" id="video-caption"></div>
     </div>
 
+    <!-- 좌측 (Hall 버튼) -->
+    <div class="nav-back">
+      <a id="backToHall">← Hall</a>
+    </div>
+
+    <!-- 하단 중앙 (버튼) -->
     <div class="controls">
       <button onclick="prevVideo()">Prev</button>
       <button onclick="nextVideo()">Next</button>
     </div>
 
-    <div class="nav-back">
-      <a id="backToHall">← Hall</a>
+    <!-- 하단 안내 -->
+    <div class="sound-guide">
+      클릭하여 사운드를 활성화하세요
     </div>
 
   </div>
 
 </div>
 
-<!-- Scripts -->
-<script src="assets/js/video.js"></script>
-
 <div id="fade-layer"></div>
+
+<script src="assets/js/video.js"></script>
 
 </body>
 </html>
