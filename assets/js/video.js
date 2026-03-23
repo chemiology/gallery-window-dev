@@ -1,5 +1,3 @@
-let player;
-
 /* =========================
    URL 파라미터
 ========================= */
@@ -87,62 +85,32 @@ function loadVideo() {
   if (!videos.length) return;
 
   const iframe = document.getElementById("player");
-  const loading = document.querySelector(".video-loading");
-  const frame = document.querySelector(".video-frame");
-
   const video = videos[currentIndex];
 
+  /* 🎨 ambient */
   const ambient = document.querySelector(".video-ambient");
-
   if (ambient && video.themeColor) {
     ambient.style.setProperty("--ambient-color", video.themeColor);
   }
 
-  /* 🔥 암전 시작 */
+  /* 🎬 fade */
   const fade = document.getElementById("fade-layer");
   if (fade) fade.style.opacity = 1;
 
   setTimeout(() => {
 
-    iframe.src =
-      "https://www.youtube.com/embed/" + video.id +
-      "?autoplay=1" +
-      "&mute=1" +
-      "&controls=1" +
-      "&rel=0" +
-      "&modestbranding=1" +
-      "&iv_load_policy=3" +
-      "&playsinline=1" +
-      "&fs=0" +
-      "&enablejsapi=1"
-      "&loop=1" +                     // 🔥 추가
-      "&playlist=" + video.id;        // 🔥 추가 (같은 줄로 연결!)
-
-
-if (window.YT && YT.Player) {
-
-  if (player) {
-    player.destroy();
-  }
-
-  player = new YT.Player("player", {
-    events: {
-      onStateChange: (e) => {
-
-        if (e.data === YT.PlayerState.ENDED) {
-
-          if (videos.length > 1) {
-            nextVideo();
-          } else {
-            player.playVideo(); // 🔁 1개일 때 루프
-          }
-
-        }
-      }
-    }
-  });
-
-}
+  iframe.src =
+    "https://www.youtube.com/embed/" + video.id +
+    "?autoplay=1" +
+    "&mute=1" +
+    "&controls=1" +
+    "&rel=0" +
+    "&modestbranding=1" +
+    "&iv_load_policy=3" +
+    "&playsinline=1" +
+    "&fs=0" +
+    "&loop=1" +
+    "&playlist=" + video.id;
 
     /* 텍스트 */
     const caption = document.getElementById("video-caption");
@@ -151,29 +119,39 @@ if (window.YT && YT.Player) {
     const title = document.getElementById("videoTitle");
     if (title) title.innerText = video.title || "";
 
-    if (loading) loading.style.display = "none";
-
-    /* 등장 애니메이션 */
-    if (frame) {
-      frame.classList.remove("active");
-
-      setTimeout(() => {
-        frame.classList.add("active");
-      }, 100);
-    }
-
+    /* 안내문구 복구 */
     const guide = document.querySelector(".sound-guide");
+    if (guide) guide.style.opacity = 1;
 
-    if (guide) {
-      guide.style.opacity = 1;
+    if (fade) {
+      setTimeout(() => {
+        fade.style.opacity = 0;
+      }, 800);
     }
-
-    /* 🔥 암전 해제 */
-    setTimeout(() => {
-      if (fade) fade.style.opacity = 0;
-    }, 300);
 
   }, 400);
+
+  /* 🔥 자동 전환 (다시 복구) */
+  if (videos.length > 1) {
+
+    if (videoTimer) clearInterval(videoTimer);
+
+    videoTimer = setInterval(() => {
+      nextVideo();
+    }, 32000); // 필요시 조정
+
+  }
+
+if (videos.length > 1) {
+
+  if (videoTimer) clearInterval(videoTimer);
+
+  videoTimer = setInterval(() => {
+    nextVideo();
+  }, 32000);
+
+}
+
 }
 
 /* =========================
@@ -262,10 +240,7 @@ document.addEventListener("click", (e) => {
   if (!iframe) return;
 
   /* 🔥 src 변경 금지 */
-  iframe.contentWindow.postMessage(
-    '{"event":"command","func":"unMute","args":""}',
-    "*"
-  );
+  iframe.src = iframe.src.replace("mute=1", "mute=0");
 
   soundEnabled = true;
 
