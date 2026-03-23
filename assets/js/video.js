@@ -91,7 +91,6 @@ function loadVideo() {
     if (isMobile) {
       extraParams =
         "&playsinline=1" +
-        "&mute=1" +
         "&autoplay=1";
     } else {
       extraParams =
