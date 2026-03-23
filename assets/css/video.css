@@ -82,7 +82,6 @@ body::before {
   max-width: 1200px;
   margin: 0 auto;
 
-  display: flex;
   align-items: center;
   justify-content: center;
 
@@ -95,6 +94,7 @@ body::before {
   aspect-ratio: 16 / 9;   /* 🔥 YouTube 기본 비율 */
 
   height: auto;
+  display: block;
 
   border: none;
 }
@@ -315,11 +315,15 @@ body::before {
 
 /* 🔴 큰 레이어 */
 .video-mask.main {
-  top: 0;
+  position: absolute;
   left: 0;
-  width: 100%;
+  right: 0;
 
-  height: calc(50% + 60px);   /* 🔥 핵심 */
+  top: -30%;      /* 🔥 위로 확장 */
+  bottom: -30%;   /* 🔥 아래로 확장 */
+
+  z-index: 20;
+  pointer-events: auto;
 }
 
 /* 🟢 우측 하단 */
