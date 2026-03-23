@@ -355,3 +355,20 @@ async function loadHeadlineNotice() {
 window.addEventListener("load", () => {
   document.body.classList.add("page-ready");
 });
+
+
+/* =========================
+   대표화면 포스터 효과
+========================= */
+
+const posters = document.querySelectorAll(".exhibition");
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    }
+  });
+}, { threshold: 0.2 });
+
+posters.forEach(p => observer.observe(p));
