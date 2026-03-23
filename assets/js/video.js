@@ -93,24 +93,25 @@ function loadVideo() {
     ambient.style.setProperty("--ambient-color", video.themeColor);
   }
 
-  /* 🎬 fade */
+  /* 🎬 fade out */
   const fade = document.getElementById("fade-layer");
   if (fade) fade.style.opacity = 1;
 
   setTimeout(() => {
 
-  iframe.src =
-    "https://www.youtube.com/embed/" + video.id +
-    "?autoplay=1" +
-    "&mute=1" +
-    "&controls=1" +
-    "&rel=0" +
-    "&modestbranding=1" +
-    "&iv_load_policy=3" +
-    "&playsinline=1" +
-    "&fs=0" +
-    "&loop=1" +
-    "&playlist=" + video.id;
+    /* 🎥 영상 교체 */
+    iframe.src =
+      "https://www.youtube.com/embed/" + video.id +
+      "?autoplay=1" +
+      "&mute=1" +
+      "&controls=1" +
+      "&rel=0" +
+      "&modestbranding=1" +
+      "&iv_load_policy=3" +
+      "&playsinline=1" +
+      "&fs=0" +
+      "&loop=1" +
+      "&playlist=" + video.id;
 
     /* 텍스트 */
     const caption = document.getElementById("video-caption");
@@ -123,34 +124,18 @@ function loadVideo() {
     const guide = document.querySelector(".sound-guide");
     if (guide) guide.style.opacity = 1;
 
-    if (fade) {
-      setTimeout(() => {
-        fade.style.opacity = 0;
-      }, 800);
-    }
+    /* 🎬 fade in (여기 핵심 수정) */
+    setTimeout(() => {
+      if (fade) fade.style.opacity = 0;
+    }, 600);
 
-  }, 400);
+  }, 700);
 
-  /* 🔥 자동 전환 (다시 복구) */
-  if (videos.length > 1) {
-
-    if (videoTimer) clearInterval(videoTimer);
-
-    videoTimer = setInterval(() => {
-      nextVideo();
-    }, 32000); // 필요시 조정
-
+  /* ❌ 자동 전환 제거 (중요) */
+  if (videoTimer) {
+    clearInterval(videoTimer);
+    videoTimer = null;
   }
-
-if (videos.length > 1) {
-
-  if (videoTimer) clearInterval(videoTimer);
-
-  videoTimer = setInterval(() => {
-    nextVideo();
-  }, 32000);
-
-}
 
 }
 
@@ -232,14 +217,16 @@ document.addEventListener("touchstart", showUI);
 
 let soundEnabled = false;
 
-document.addEventListener("click", (e) => {
+document.querySelector(".ui-layer")?.addEventListener("click", (e) => {
 
   if (soundEnabled) return;
+
+  /* 🔥 UI 영역만 허용 */
+  if (!e.target.closest(".ui-layer")) return;
 
   const iframe = document.getElementById("player");
   if (!iframe) return;
 
-  /* 🔥 src 변경 금지 */
   iframe.src = iframe.src.replace("mute=1", "mute=0");
 
   soundEnabled = true;
@@ -280,8 +267,6 @@ window.addEventListener("load", () => {
    }, 1200);   // 🔥 암전 유지 시간 (1.2초)
 
    setTimeout(() => {
-
-     fade.remove();
 
    }, 2400);   // 🔥 완전히 사라진 뒤 제거
 
