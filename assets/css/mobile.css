@@ -164,7 +164,7 @@ body.exhibition-detail .exhibition-support-image img{
 
 .nav-back{
   position:absolute;     /* 🔥 핵심 */
-  top:calc(50% + 120px);   /* 🔥 핵심 */
+  top:calc(50% + 150px);   /* 🔥 핵심 */
   left:16px;
   z-index:50;
 }
