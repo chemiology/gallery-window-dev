@@ -11,21 +11,7 @@ const exhibitionId = params.get("id");
 
 let videos = [];
 let currentIndex = 0;
-let videoTimer = null;
-
-/* =========================
-   페이드 (필수 추가)
-========================= */
-
-function fadeOut() {
-  const fade = document.getElementById("fade-layer");
-  if (fade) fade.style.opacity = 1;
-}
-
-function fadeIn() {
-  const fade = document.getElementById("fade-layer");
-  if (fade) fade.style.opacity = 0;
-}
+let videoTimer;
 
 /* =========================
    전시 테마 적용
@@ -42,16 +28,9 @@ fetch("assets/config/gallery.json")
 
     if (!ex) return;
 
-    document.body.setAttribute("data-theme", ex.themeMode || "warm");
+    document.body.style.setProperty("--theme-color", ex.themeColor || "#ffffff");
+    document.body.setAttribute("data-theme", ex.themeMode || "neutral");
 
-    document.body.style.setProperty(
-      "--theme-color",
-      ex.themeColor || "#ffffff"
-    );
-
-  })
-  .catch(err => {
-    console.warn("gallery.json 로드 실패:", err);
   });
 
 /* =========================
@@ -64,16 +43,10 @@ fetch("assets/config/videos.json")
 
     videos = data[exhibitionId] || [];
 
-    if (!videos.length) {
-      console.warn("영상 없음:", exhibitionId);
-      return;
-    }
+    if (!videos.length) return;
 
     loadVideo();
 
-  })
-  .catch(err => {
-    console.warn("videos.json 로드 실패:", err);
   });
 
 /* =========================
@@ -84,67 +57,78 @@ function loadVideo() {
 
   if (!videos.length) return;
 
-  const iframe = document.getElementById("player");
-  const loading = document.querySelector(".video-loading");
-  const frame = document.querySelector(".video-frame");
-
   const video = videos[currentIndex];
 
-  fadeOut();
+  const container = document.querySelector(".video-container");
+  const loading = document.querySelector(".video-loading");
 
+  if (!container) return;
+
+  if (loading) loading.style.display = "block";
+
+  /* 기존 iframe 제거 (페이드 아웃) */
+  const oldFrame = document.getElementById("video-frame");
+  if (oldFrame) {
+    oldFrame.style.opacity = 0;
+    setTimeout(() => oldFrame.remove(), 800);
+  }
+
+  /* 새 iframe 생성 */
+  const frame = document.createElement("iframe");
+
+  frame.id = "video-frame";
+  frame.style.width = "100vw";     // ⭐ 추가
+  frame.style.height = "100vh";    // ⭐ 추가
+  frame.style.border = "none";     // ⭐ 추가
+  frame.loading = "lazy";
+  frame.allow = "autoplay; fullscreen";
+  frame.style.opacity = 0;
+
+  frame.src =
+    "https://www.youtube.com/embed/" +
+    video.id +
+    "?autoplay=1" +
+    "&mute=1" +
+    "&controls=1" +
+    "&loop=1" +
+    "&playlist=" + video.id +
+    "&rel=0" +
+    "&modestbranding=1" +
+    "&iv_load_policy=3";
+
+  container.appendChild(frame);
+
+  /* 페이드 인 */
   setTimeout(() => {
+    frame.style.transition = "opacity 1.2s ease";
+    frame.style.opacity = 1;
+  }, 100);
 
-    iframe.src =
-      "https://www.youtube.com/embed/" +
-      video.id +
-      "?autoplay=1" +
-      "&mute=1" +
-      "&controls=1" +
-      "&rel=0" +
-      "&modestbranding=1" +
-      "&playsinline=1" +
-      "&fs=0";
+  /* 캡션 */
+  const caption = document.getElementById("video-caption");
+  if (caption) caption.innerText = video.caption || "";
 
-    /* 텍스트 */
-    const caption = document.getElementById("video-caption");
-    if (caption) caption.innerText = video.caption || "";
+  const title = document.getElementById("videoTitle");
+  if (title) title.innerText = video.title || "";
 
-    const title = document.getElementById("videoTitle");
-    if (title) title.innerText = video.title || "";
-
-    if (loading) loading.style.display = "none";
-
-    /* 등장 애니메이션 */
-    if (frame) {
-      frame.classList.remove("active");
-
-      setTimeout(() => {
-        frame.classList.add("active");
-      }, 100);
-    }
-
-    fadeIn();
-
-  }, 400);
-
-  /* 타이머 */
+  /* 자동 전환 */
   if (videos.length > 1) {
 
-    if (videoTimer) clearInterval(videoTimer);
+    clearInterval(videoTimer);
 
     videoTimer = setInterval(() => {
       nextVideo();
-    }, 32000);
+    }, 30000);
+
   }
 
 }
 
 /* =========================
-   영상 전환
+   영상 이동
 ========================= */
 
 function nextVideo() {
-  if (videos.length <= 1) return;
   currentIndex = (currentIndex + 1) % videos.length;
   loadVideo();
 }
@@ -155,12 +139,35 @@ function prevVideo() {
 }
 
 /* =========================
-   키보드
+   키보드 제어
 ========================= */
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowRight") nextVideo();
   if (e.key === "ArrowLeft") prevVideo();
+});
+
+/* =========================
+   전체 화면
+========================= */
+
+function toggleFullscreen() {
+
+  const elem = document.querySelector(".video-container");
+  if (!elem) return;
+
+  if (!document.fullscreenElement) {
+    elem.requestFullscreen().catch(() => {});
+  } else {
+    document.exitFullscreen();
+  }
+
+}
+
+document.querySelector(".video-container")?.addEventListener("dblclick", toggleFullscreen);
+
+document.addEventListener("keydown", (e) => {
+  if (e.key.toLowerCase() === "f") toggleFullscreen();
 });
 
 /* =========================
@@ -170,6 +177,7 @@ document.addEventListener("keydown", (e) => {
 const backBtn = document.getElementById("backToHall");
 
 if (backBtn) {
+
   backBtn.addEventListener("click", () => {
 
     const hall = params.get("hall");
@@ -182,13 +190,15 @@ if (backBtn) {
     window.location.href = `hall.html?hall=${hall}`;
 
   });
+
 }
 
 /* =========================
-   UI 표시
+   UI (마우스 기반 표시)
 ========================= */
 
 const ui = document.getElementById("uiLayer");
+
 let uiTimer;
 
 function showUI() {
@@ -201,119 +211,48 @@ function showUI() {
 
   uiTimer = setTimeout(() => {
     ui.classList.remove("active");
-  }, 2500);
-}
+  }, 2000);
 
-/* =========================
-   UI 표시 (마우스만 반응)
-========================= */
+}
 
 document.addEventListener("mousemove", showUI);
 document.addEventListener("touchstart", showUI);
 
 /* =========================
-   사운드
+   사운드 (첫 클릭 시 해제)
 ========================= */
 
-let soundEnabled = false;
+document.addEventListener("click", () => {
 
-document.addEventListener("click", (e) => {
-
-  /* 이미 사운드 켜졌으면 무시 */
-  if (soundEnabled) return;
-
-  const frame = document.querySelector(".video-frame");
-
-  /* 🔥 영상 영역 클릭은 완전히 무시 */
-  if (frame && frame.contains(e.target)) {
-    return;
-  }
-
-  /* 🔥 UI 버튼 클릭도 무시 */
-  if (
-    e.target.closest(".controls") ||
-    e.target.closest("#backToHall")
-  ) {
-    return;
-  }
-
-  const iframe = document.getElementById("player");
+  const iframe = document.getElementById("video-frame");
   if (!iframe) return;
 
-  /* 🔥 사운드 활성화 */
   iframe.src = iframe.src.replace("mute=1", "mute=0");
 
-  soundEnabled = true;
-
-  /* 🔥 안내문은 '사운드 켜졌을 때만' 사라짐 */
-  const guide = document.querySelector(".sound-guide");
-
-  if (guide && soundEnabled) {
-    guide.style.opacity = 0;
-  }
-
-});
+}, { once: true });
 
 /* =========================
-   초기 연출
+   초기 연출 (암전 → 등장)
 ========================= */
 
 window.addEventListener("load", () => {
 
   document.body.classList.add("page-ready");
 
-  const guide = document.querySelector(".sound-guide");
-
-  if (guide) {
-    guide.innerText = "클릭하여 사운드를 활성화하세요";
-  }
-
-  setTimeout(() => {
-    showUI();
-  }, 1200);
+  showUI();
 
   const fade = document.getElementById("fade-layer");
 
-  if (fade) {
-
-    fade.style.opacity = 1;
-
-    setTimeout(() => {
-
-      fade.style.opacity = 0;
-
-      setTimeout(() => {
-        fade.remove();
-      }, 1500);
-
-    }, 800);
-  }
+  if (!fade) return;
 
   setTimeout(() => {
 
-    if (guide) {
+    fade.style.opacity = 0;
 
-      guide.classList.add("guide-strong");
+    setTimeout(() => {
+      fade.remove();
+    }, 1600);
 
-      setTimeout(() => {
-        guide.classList.remove("guide-strong");
-        guide.classList.add("guide-dim");
-      }, 4000);
-    }
+  }, 1000);
 
-  }, 1500);
-
-});
-
-/* =========================
-   보호
-========================= */
-
-document.addEventListener("contextmenu", e => e.preventDefault());
-document.addEventListener("dblclick", e => e.preventDefault());
-
-document.addEventListener("fullscreenchange", () => {
-  if (document.fullscreenElement) {
-    document.exitFullscreen();
-  }
 });
