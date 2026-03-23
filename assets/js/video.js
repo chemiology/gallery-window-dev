@@ -1,22 +1,23 @@
 /* =========================
+   디바이스 체크
+========================= */
+const isMobile = window.innerWidth <= 768;
+
+/* =========================
    URL 파라미터
 ========================= */
-
 const params = new URLSearchParams(location.search);
 const exhibitionId = params.get("id");
 
 /* =========================
    상태
 ========================= */
-
 let videos = [];
 let currentIndex = 0;
-let videoTimer = null;
 
 /* =========================
-   페이드 (필수 추가)
+   페이드
 ========================= */
-
 function fadeOut() {
   const fade = document.getElementById("fade-layer");
   if (fade) fade.style.opacity = 1;
@@ -28,9 +29,8 @@ function fadeIn() {
 }
 
 /* =========================
-   전시 테마 적용
+   전시 테마
 ========================= */
-
 fetch("assets/config/gallery.json")
   .then(r => r.json())
   .then(data => {
@@ -39,7 +39,6 @@ fetch("assets/config/gallery.json")
       data.currentExhibitions || data.exhibitions || [];
 
     const ex = exhibitions.find(e => e.id === exhibitionId);
-
     if (!ex) return;
 
     document.body.setAttribute("data-theme", ex.themeMode || "warm");
@@ -49,37 +48,26 @@ fetch("assets/config/gallery.json")
       ex.themeColor || "#ffffff"
     );
 
-  })
-  .catch(err => {
-    console.warn("gallery.json 로드 실패:", err);
   });
 
 /* =========================
-   영상 목록 로드
+   영상 목록
 ========================= */
-
 fetch("assets/config/videos.json")
   .then(r => r.json())
   .then(data => {
 
     videos = data[exhibitionId] || [];
 
-    if (!videos.length) {
-      console.warn("영상 없음:", exhibitionId);
-      return;
-    }
+    if (!videos.length) return;
 
     loadVideo();
 
-  })
-  .catch(err => {
-    console.warn("videos.json 로드 실패:", err);
   });
 
 /* =========================
-   영상 로드
+   🎬 영상 로드 (핵심)
 ========================= */
-
 function loadVideo() {
 
   if (!videos.length) return;
@@ -93,25 +81,34 @@ function loadVideo() {
     ambient.style.setProperty("--ambient-color", video.themeColor);
   }
 
-  /* 🎬 fade out */
-  const fade = document.getElementById("fade-layer");
-  if (fade) fade.style.opacity = 1;
+  fadeOut();
 
   setTimeout(() => {
 
-    /* 🎥 영상 교체 */
+    /* 🔥 모바일/PC 완전 분리 */
+    let extraParams = "";
+
+    if (isMobile) {
+      extraParams =
+        "&playsinline=1" +
+        "&mute=1" +
+        "&autoplay=1";
+    } else {
+      extraParams =
+        "&autoplay=1" +
+        "&mute=1";
+    }
+
     iframe.src =
       "https://www.youtube.com/embed/" + video.id +
-      "?autoplay=1" +
-      "&mute=1" +
-      "&controls=1" +
+      "?controls=1" +
       "&rel=0" +
       "&modestbranding=1" +
       "&iv_load_policy=3" +
-      "&playsinline=1" +
       "&fs=0" +
       "&loop=1" +
-      "&playlist=" + video.id;
+      "&playlist=" + video.id +
+      extraParams;
 
     /* 텍스트 */
     const caption = document.getElementById("video-caption");
@@ -120,29 +117,22 @@ function loadVideo() {
     const title = document.getElementById("videoTitle");
     if (title) title.innerText = video.title || "";
 
-    /* 안내문구 복구 */
+    /* 안내문구 */
     const guide = document.querySelector(".sound-guide");
     if (guide) guide.style.opacity = 1;
 
-    /* 🎬 fade in (여기 핵심 수정) */
+    /* 🎬 fade in (길게) */
     setTimeout(() => {
-      if (fade) fade.style.opacity = 0;
-    }, 600);
+      fadeIn();
+    }, 900);
 
-  }, 700);
-
-  /* ❌ 자동 전환 제거 (중요) */
-  if (videoTimer) {
-    clearInterval(videoTimer);
-    videoTimer = null;
-  }
+  }, 800);
 
 }
 
 /* =========================
    영상 전환
 ========================= */
-
 function nextVideo() {
   if (videos.length <= 1) return;
   currentIndex = (currentIndex + 1) % videos.length;
@@ -157,7 +147,6 @@ function prevVideo() {
 /* =========================
    키보드
 ========================= */
-
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowRight") nextVideo();
   if (e.key === "ArrowLeft") prevVideo();
@@ -166,28 +155,21 @@ document.addEventListener("keydown", (e) => {
 /* =========================
    Hall 이동
 ========================= */
+document.getElementById("backToHall")?.addEventListener("click", () => {
 
-const backBtn = document.getElementById("backToHall");
+  const hall = params.get("hall");
 
-if (backBtn) {
-  backBtn.addEventListener("click", () => {
+  if (!hall) {
+    location.href = "index.html";
+    return;
+  }
 
-    const hall = params.get("hall");
-
-    if (!hall) {
-      window.location.href = "index.html";
-      return;
-    }
-
-    window.location.href = `hall.html?hall=${hall}`;
-
-  });
-}
+  location.href = `hall.html?hall=${hall}`;
+});
 
 /* =========================
-   UI 표시
+   UI
 ========================= */
-
 const ui = document.getElementById("uiLayer");
 let uiTimer;
 
@@ -204,25 +186,17 @@ function showUI() {
   }, 2500);
 }
 
-/* =========================
-   UI 표시 (마우스만 반응)
-========================= */
-
 document.addEventListener("mousemove", showUI);
 document.addEventListener("touchstart", showUI);
 
 /* =========================
-   사운드 (안정 버전)
+   🔊 사운드 (안정 버전)
 ========================= */
-
 let soundEnabled = false;
 
 document.querySelector(".ui-layer")?.addEventListener("click", (e) => {
 
   if (soundEnabled) return;
-
-  /* 🔥 UI 영역만 허용 */
-  if (!e.target.closest(".ui-layer")) return;
 
   const iframe = document.getElementById("player");
   if (!iframe) return;
@@ -239,7 +213,6 @@ document.querySelector(".ui-layer")?.addEventListener("click", (e) => {
 /* =========================
    초기 연출
 ========================= */
-
 window.addEventListener("load", () => {
 
   document.body.classList.add("page-ready");
@@ -250,48 +223,23 @@ window.addEventListener("load", () => {
     guide.innerText = "클릭하여 사운드를 활성화하세요";
   }
 
-  setTimeout(() => {
-    showUI();
-  }, 1200);
+  setTimeout(showUI, 1200);
 
- const fade = document.getElementById("fade-layer");
+  const fade = document.getElementById("fade-layer");
 
- if (fade) {
+  if (fade) {
+    fade.style.opacity = 1;
 
-   fade.style.opacity = 1;
-
-   setTimeout(() => {
-
-     fade.style.opacity = 0;
-
-   }, 1200);   // 🔥 암전 유지 시간 (1.2초)
-
-   setTimeout(() => {
-
-   }, 2400);   // 🔥 완전히 사라진 뒤 제거
-
- }
-
-  setTimeout(() => {
-
-    if (guide) {
-
-      guide.classList.add("guide-strong");
-
-      setTimeout(() => {
-        guide.classList.remove("guide-strong");
-        guide.classList.add("guide-dim");
-      }, 4000);
-    }
-
-  }, 1500);
+    setTimeout(() => {
+      fade.style.opacity = 0;
+    }, 1200);
+  }
 
 });
 
 /* =========================
    보호
 ========================= */
-
 document.addEventListener("contextmenu", e => e.preventDefault());
 document.addEventListener("dblclick", e => e.preventDefault());
 
@@ -300,3 +248,18 @@ document.addEventListener("fullscreenchange", () => {
     document.exitFullscreen();
   }
 });
+
+/* =========================
+   🔥 모바일 UI 버그 방지 핵심
+========================= */
+if (isMobile) {
+  document.addEventListener("touchstart", () => {
+
+    const iframe = document.getElementById("player");
+
+    if (iframe && iframe.src) {
+      iframe.src = iframe.src;
+    }
+
+  }, { once: true });
+}
