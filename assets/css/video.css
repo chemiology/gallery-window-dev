@@ -265,11 +265,15 @@ body::before {
 #fade-layer {
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle, #000 40%, #000 100%);
+
+  background: #000;   /* 🔥 단순화 (더 자연스러운 암전) */
+
   opacity: 0;
   pointer-events: none;
+
   z-index: 9999;
-  transition: opacity 0.8s ease;
+
+  transition: opacity 0.6s ease;  /* 🔥 약간 빠르게 (부드러움 유지) */
 }
 
 /* =====================================================
@@ -309,7 +313,7 @@ body::before {
   top: -6%;
   left: 0;
   width: 100%;
-  height: 75%;   /* 🔥 이거만 변경 */
+  height: 90vh;   /* 🔥 핵심: 이걸로 완전히 덮임 */
 }
 
 /* 🟢 우측 하단 */
