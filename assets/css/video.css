@@ -83,9 +83,6 @@ body::before {
   max-width: 1200px;
   margin: 0 auto;
 
-  align-items: center;
-  justify-content: center;
-
   background: #000;
 }
 
@@ -93,6 +90,7 @@ body::before {
 .video-frame iframe {
   width: 100%;
   aspect-ratio: 16 / 9;   /* 🔥 YouTube 기본 비율 */
+  pointer-events: auto;
 
   height: auto;
   display: block;
@@ -109,7 +107,11 @@ body::before {
   opacity: 0.35;
 }
 
-
+.video-mask,
+.video-mask.main,
+.video-mask.corner {
+  pointer-events: auto;
+}
 
 /* =====================================================
    UI
@@ -154,14 +156,6 @@ body::before {
   position: fixed;
   top: 40px;
   left: 40px;
-}
-
-/* 좌측 */
-.nav-back {
-  position: fixed;
-  left: 40px;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 /* =====================================================
@@ -307,10 +301,6 @@ body::before {
 /* =========================
    VIDEO MASK (복구 핵심)
 ========================= */
-
-.video-frame {
-  position: relative;
-}
 
 /* 공통 */
 .video-mask {
