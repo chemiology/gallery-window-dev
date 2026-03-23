@@ -171,6 +171,17 @@ body.exhibition-detail .exhibition-support-image img{
   transform: none;
 }
 
+  .video-mask.main {
+    height: 100%;   /* 🔥 그냥 꽉 채움 */
+  }
+
+.sound-guide {
+  text-align: center;
+  word-break: keep-all;
+  padding: 0 16px;
+}
+
+
 /* =========================
    TYPOGRAPHY
 ========================= */
