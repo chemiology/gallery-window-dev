@@ -35,7 +35,7 @@ body.home .exhibitions{
   display:grid;
   gap:12px; /* 간격도 줄임 */
   grid-template-columns:repeat(2,1fr); /* 🔥 2열로 고정 */
-  opacity:0;
+  opacity:1;
   transform:translateY(20px);
   transition:all 0.6s ease;
 }
@@ -74,10 +74,6 @@ body.home .exhibition img{
     0 2px 6px rgba(0,0,0,0.15);
 }
 
-body.home .exhibition{
-  backdrop-filter:blur(2px);
-}
-
 /* =========================
    ARCHIVE (핵심 안정 영역)
 ========================= */
@@ -90,6 +86,7 @@ body.archive-page .archive-grid{
   width:100%;
   margin:0 auto;
   padding:0 12px;
+  z-index:5;
 
   justify-items:center; /* 🔥 쏠림 방지 핵심 */
 }
@@ -164,7 +161,7 @@ body.exhibition-detail .exhibition-support-image img{
 
 .nav-back{
   position:absolute;     /* 🔥 핵심 */
-  top:calc(50% + 180px);   /* 🔥 핵심 */
+  top:calc(50% + 190px);   /* 🔥 핵심 */
   left:16px;
   z-index:50;
 }
@@ -292,9 +289,29 @@ body.exhibition-detail *{
     transform:none !important;
   }
 
+  /* 🔥 모든 배경 효과 제거 */
+  .archive::before,
+  .archive::after,
+  main::before,
+  main::after,
+  body::before,
+  body::after{
+    display:none !important;
+  }
+
 
 .sound-guide{
   display:none !important;
 }
+
+  .poster{
+    position:relative;
+    z-index:10 !important;
+  }
+
+.poster{
+  outline:3px solid red !important;
+}
+
 
 }
