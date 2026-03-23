@@ -275,20 +275,23 @@ body.exhibition-detail *{
     pointer-events:none;   /* 🔥 전부 해제 */
   }
 
-  /* 🔥 모든 효과 제거 */
+  /* 🔥 모든 시각 효과 제거 */
+  .poster::before,
+  .poster::after,
   .poster-overlay,
   .poster-effect,
-  .poster::before,
-  .poster::after{
+  .poster-mask{
     display:none !important;
   }
 
-  /* 🔥 포스터 정상 표시 */
+  /* 🔥 포스터 원본만 보이게 */
   .poster img{
     opacity:1 !important;
     filter:none !important;
+    mix-blend-mode:normal !important;
     transform:none !important;
   }
+
 
 .sound-guide{
   display:none !important;
