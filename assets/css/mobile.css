@@ -50,6 +50,8 @@ body.home .exhibition{
   width:100%;
   max-width:none; /* 🔥 추가 */
   margin:0 auto;
+  opacity:1;           /* 🔥 강제 표시 */
+  transform:none;
 }
 
 body.home main{
@@ -165,14 +167,22 @@ body.exhibition-detail .exhibition-support-image img{
   font-size: 16px;
 }
 
-.nav-back {
-  top: 20px;
-  left: 16px;
-  transform: none;
-}
+  .nav-back{
+    position:fixed;
+
+    top:70px;   /* 🔥 제목 아래 */
+    left:12px;
+
+    z-index:1000;
+  }
 
   .video-mask.main {
     height: 100%;   /* 🔥 그냥 꽉 채움 */
+    pointer-events:none;   /* 🔥 클릭 막지 않음 */
+  }
+
+  .video-mask.corner{
+    pointer-events:none;
   }
 
 .sound-guide {
@@ -253,5 +263,16 @@ a, button{
 body.exhibition-detail *{
   max-width:100%;
 }
+
+/* =========================
+   추가
+========================= */
+
+  .video-mask.main,
+  .video-mask.corner,
+  .ui-layer{
+    pointer-events:none;   /* 🔥 전부 해제 */
+  }
+
 
 }
