@@ -42,51 +42,39 @@ gtag('config', 'G-M2QQ5KME88');
 
 <div class="video-stage">
 
-  <!-- 로딩 -->
-  <div class="video-loading">Loading...</div>
-
-  <!-- 🔥 영상 구조 (핵심) -->
+  <!-- 영상 -->
   <div class="video-frame">
     <iframe id="player" allow="autoplay"></iframe>
   </div>
 
-  <!-- 🔥 보호 (영상 밖만) -->
-  <div class="block-top"></div>
-  <div class="block-right"></div>
-  <div class="block-bottom-right"></div>
-
-  <!-- 🔥 UI -->
+  <!-- UI 레이어 -->
   <div class="ui-layer" id="uiLayer">
 
+    <!-- 상단 (영상과 안 겹침) -->
     <div class="top-ui">
       <div class="video-title" id="videoTitle"></div>
       <div class="video-caption" id="video-caption"></div>
     </div>
 
-    <div class="bottom-ui">
+    <!-- 좌측 (Hall 버튼) -->
+    <div class="nav-back">
+      <a id="backToHall">← Hall</a>
+    </div>
 
-      <div class="sound-guide">
-        화면 하단의 메뉴에서 음향을 조절하세요
-      </div>
+    <!-- 하단 중앙 (버튼) -->
+    <div class="controls">
+      <button onclick="prevVideo()">Prev</button>
+      <button onclick="nextVideo()">Next</button>
+    </div>
 
-      <div class="controls">
-        <button onclick="prevVideo()">Prev</button>
-        <button onclick="nextVideo()">Next</button>
-      </div>
-
-      <div class="nav-back">
-        <a id="backToHall">← Hall</a>
-      </div>
-
+    <!-- 하단 안내 -->
+    <div class="sound-guide">
+      클릭하여 사운드를 활성화하세요
     </div>
 
   </div>
 
 </div>
 
-<!-- Scripts -->
-<script src="assets/js/video.js"></script>
-
 <div id="fade-layer"></div>
-
 </body>
