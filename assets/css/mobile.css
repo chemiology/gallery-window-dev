@@ -162,19 +162,20 @@ body.exhibition-detail .exhibition-support-image img{
   margin:20px auto 0;
 }
 
-#backToHall {
-  padding: 12px 16px;   /* 🔥 터치 편하게 */
-  font-size: 16px;
+.nav-back{
+  position:absolute;     /* 🔥 핵심 */
+  top:42vh;              /* 🔥 위치 */
+  left:16px;
+  z-index:50;
 }
 
-  .nav-back{
-    position:fixed;
+#backToHall{
+  padding:10px 14px;
+  font-size:14px;
 
-    top:70px;   /* 🔥 제목 아래 */
-    left:12px;
-
-    z-index:1000;
-  }
+  background:rgba(0,0,0,0.4);
+  border-radius:8px;
+}
 
   .video-mask.main {
     height: 100%;   /* 🔥 그냥 꽉 채움 */
@@ -273,6 +274,26 @@ body.exhibition-detail *{
   .ui-layer{
     pointer-events:none;   /* 🔥 전부 해제 */
   }
+
+@media (max-width:768px){
+
+  /* 🔥 모든 효과 제거 */
+  .poster-overlay,
+  .poster-effect,
+  .poster::before,
+  .poster::after{
+    display:none !important;
+  }
+
+  /* 🔥 포스터 정상 표시 */
+  .poster img{
+    opacity:1 !important;
+    filter:none !important;
+    transform:none !important;
+  }
+
+}
+
 
 
 }
