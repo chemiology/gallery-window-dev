@@ -1,3 +1,5 @@
+let player;
+
 /* =========================
    URL 파라미터
 ========================= */
@@ -90,6 +92,12 @@ function loadVideo() {
 
   const video = videos[currentIndex];
 
+  const ambient = document.querySelector(".video-ambient");
+
+  if (ambient && video.themeColor) {
+    ambient.style.setProperty("--ambient-color", video.themeColor);
+  }
+
   /* 🔥 암전 시작 */
   const fade = document.getElementById("fade-layer");
   if (fade) fade.style.opacity = 1;
@@ -110,6 +118,32 @@ function loadVideo() {
       "&loop=1" +                     // 🔥 추가
       "&playlist=" + video.id;        // 🔥 추가 (같은 줄로 연결!)
 
+
+if (window.YT && YT.Player) {
+
+  if (player) {
+    player.destroy();
+  }
+
+  player = new YT.Player("player", {
+    events: {
+      onStateChange: (e) => {
+
+        if (e.data === YT.PlayerState.ENDED) {
+
+          if (videos.length > 1) {
+            nextVideo();
+          } else {
+            player.playVideo(); // 🔁 1개일 때 루프
+          }
+
+        }
+      }
+    }
+  });
+
+}
+
     /* 텍스트 */
     const caption = document.getElementById("video-caption");
     if (caption) caption.innerText = video.caption || "";
@@ -126,6 +160,12 @@ function loadVideo() {
       setTimeout(() => {
         frame.classList.add("active");
       }, 100);
+    }
+
+    const guide = document.querySelector(".sound-guide");
+
+    if (guide) {
+      guide.style.opacity = 1;
     }
 
     /* 🔥 암전 해제 */
