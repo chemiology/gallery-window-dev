@@ -47,6 +47,7 @@ body::before {
   position: relative;
   width: 100%;
   height: 100vh;
+  background: radial-gradient(circle, #000 40%, #000 100%);
 
   display: flex;
   justify-content: center;
@@ -103,6 +104,12 @@ body::before {
   opacity: 1;
   transform: scale(1);
 }
+
+.video-frame.active ~ .video-ambient {
+  opacity: 0.35;
+}
+
+
 
 /* =====================================================
    UI
@@ -339,4 +346,22 @@ body::before {
 
   z-index: 20;
   pointer-events: auto;
+}
+
+.video-ambient {
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+  z-index: 1;
+
+  opacity: 0.18;
+
+  background: radial-gradient(
+    circle at center,
+    var(--ambient-color, #000) 0%,
+    transparent 70%
+  );
+
+  transition: background 0.8s ease, opacity 0.8s ease;
 }
