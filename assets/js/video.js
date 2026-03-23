@@ -90,20 +90,24 @@ function loadVideo() {
 
   const video = videos[currentIndex];
 
-  fadeOut();
+  /* 🔥 암전 시작 */
+  const fade = document.getElementById("fade-layer");
+  if (fade) fade.style.opacity = 1;
 
   setTimeout(() => {
 
     iframe.src =
-      "https://www.youtube.com/embed/" +
-      video.id +
+      "https://www.youtube.com/embed/" + video.id +
       "?autoplay=1" +
       "&mute=1" +
       "&controls=1" +
       "&rel=0" +
       "&modestbranding=1" +
+      "&iv_load_policy=3" +
       "&playsinline=1" +
-      "&fs=0";
+      "&fs=0" +
+      "&loop=1" +                     // 🔥 추가
+      "&playlist=" + video.id;        // 🔥 추가 (같은 줄로 연결!)
 
     /* 텍스트 */
     const caption = document.getElementById("video-caption");
@@ -123,7 +127,10 @@ function loadVideo() {
       }, 100);
     }
 
-    fadeIn();
+    /* 🔥 암전 해제 */
+    setTimeout(() => {
+      if (fade) fade.style.opacity = 0;
+    }, 300);
 
   }, 400);
 
