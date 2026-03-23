@@ -164,7 +164,7 @@ body.exhibition-detail .exhibition-support-image img{
 
 .nav-back{
   position:absolute;     /* 🔥 핵심 */
-  top:42vh;              /* 🔥 위치 */
+  top:calc(50% + 120px);   /* 🔥 핵심 */
   left:16px;
   z-index:50;
 }
@@ -275,8 +275,6 @@ body.exhibition-detail *{
     pointer-events:none;   /* 🔥 전부 해제 */
   }
 
-@media (max-width:768px){
-
   /* 🔥 모든 효과 제거 */
   .poster-overlay,
   .poster-effect,
@@ -292,8 +290,8 @@ body.exhibition-detail *{
     transform:none !important;
   }
 
+.sound-guide{
+  display:none !important;
 }
-
-
 
 }
