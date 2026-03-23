@@ -108,10 +108,7 @@ body::before {
   inset: 0;
   z-index: 30;
 
-  pointer-events: none; /* 전체 차단 */
-  opacity: 0;
-
-  transition: opacity 0.6s ease;
+  pointer-events: none;   /* 🔥 핵심 */
 }
 
 .ui-layer.active {
@@ -198,6 +195,12 @@ body::before {
   background: rgba(255,255,255,0.2);
   transform: translateY(-2px);
 }
+
+.controls,
+.nav-back {
+  pointer-events: auto;
+}
+
 
 /* =====================================================
    BACK BUTTON
@@ -296,21 +299,23 @@ body::before {
 /* 공통 */
 .video-mask {
   position: absolute;
-  z-index: 5;
+  z-index: 20;
+
+  pointer-events: auto;   /* 🔥 핵심 (이거 없어서 지금 안 막힘) */
 }
 
-/* 🔴 상단 + 중앙 일부 차단 */
+/* 🔴 큰 레이어 */
 .video-mask.main {
-  top: -6%;        /* 🔥 위로 올림 */
+  top: -6%;
   left: 0;
   width: 100%;
-  height: 56%;     /* 🔥 중앙 위까지 덮기 */
+  height: 65%;   /* 🔥 더 아래까지 확장 */
 }
 
-/* 🟢 우측 하단 차단 */
+/* 🟢 우측 하단 */
 .video-mask.corner {
-  bottom: 6%;      /* 🔥 위로 살짝 올림 */
-  right: 8%;
-  width: 30%;
-  height: 26%;
+  bottom: -2%;   /* 🔥 더 아래 */
+  right: -2%;    /* 🔥 더 오른쪽 */
+  width: 35%;
+  height: 32%;
 }
