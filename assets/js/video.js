@@ -133,17 +133,6 @@ function loadVideo() {
     }, 300);
 
   }, 400);
-
-  /* 타이머 */
-  if (videos.length > 1) {
-
-    if (videoTimer) clearInterval(videoTimer);
-
-    videoTimer = setInterval(() => {
-      nextVideo();
-    }, 32000);
-  }
-
 }
 
 /* =========================
