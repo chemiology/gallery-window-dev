@@ -320,7 +320,7 @@ body::before {
   right: 0;
 
   top: 0;
-  height: 95%;
+  height: 95%;   /* 🔥 이 값으로 위쪽 확장 조절 */
 
   z-index: 20;
   pointer-events: auto;
@@ -331,7 +331,7 @@ body::before {
   position: absolute;
 
   right: -2%;
-  left: 30%;   /* 🔥 이 값으로 왼쪽 확장 조절 */
+  left: 20%;   /* 🔥 이 값으로 왼쪽 확장 조절 */
 
   bottom: -12%;
 
