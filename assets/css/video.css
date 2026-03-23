@@ -320,7 +320,7 @@ body::before {
   right: 0;
 
   top: 0;
-  height: 96%;
+  height: 95%;
 
   z-index: 20;
   pointer-events: auto;
@@ -328,8 +328,15 @@ body::before {
 
 /* 🟢 우측 하단 */
 .video-mask.corner {
-  bottom: -2%;   /* 🔥 더 아래 */
-  right: -2%;    /* 🔥 더 오른쪽 */
-  width: 35%;
+  position: absolute;
+
+  right: -2%;
+  left: 45%;   /* 🔥 이 값으로 왼쪽 확장 조절 */
+
+  bottom: -12%;
+
   height: 32%;
+
+  z-index: 20;
+  pointer-events: auto;
 }
