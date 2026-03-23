@@ -278,7 +278,7 @@ body::before {
 
   z-index: 9999;
 
-  transition: opacity 0.6s ease;  /* 🔥 약간 빠르게 (부드러움 유지) */
+  transition: opacity 1.2s ease;  /* 🔥 약간 빠르게 (부드러움 유지) */
 }
 
 /* =====================================================
