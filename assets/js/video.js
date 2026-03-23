@@ -106,6 +106,7 @@ function loadVideo() {
       "&iv_load_policy=3" +
       "&playsinline=1" +
       "&fs=0" +
+      "&enablejsapi=1"
       "&loop=1" +                     // 🔥 추가
       "&playlist=" + video.id;        // 🔥 추가 (같은 줄로 연결!)
 
@@ -213,14 +214,18 @@ document.addEventListener("touchstart", showUI);
 
 let soundEnabled = false;
 
-document.addEventListener("click", () => {
+document.addEventListener("click", (e) => {
 
   if (soundEnabled) return;
 
   const iframe = document.getElementById("player");
   if (!iframe) return;
 
-  iframe.src = iframe.src.replace("mute=1", "mute=0");
+  /* 🔥 src 변경 금지 */
+  iframe.contentWindow.postMessage(
+    '{"event":"command","func":"unMute","args":""}',
+    "*"
+  );
 
   soundEnabled = true;
 
@@ -247,22 +252,25 @@ window.addEventListener("load", () => {
     showUI();
   }, 1200);
 
-  const fade = document.getElementById("fade-layer");
+ const fade = document.getElementById("fade-layer");
 
-  if (fade) {
+ if (fade) {
 
-    fade.style.opacity = 1;
+   fade.style.opacity = 1;
 
-    setTimeout(() => {
+   setTimeout(() => {
 
-      fade.style.opacity = 0;
+     fade.style.opacity = 0;
 
-      setTimeout(() => {
-        fade.remove();
-      }, 1500);
+   }, 1200);   // 🔥 암전 유지 시간 (1.2초)
 
-    }, 800);
-  }
+   setTimeout(() => {
+
+     fade.remove();
+
+   }, 2400);   // 🔥 완전히 사라진 뒤 제거
+
+ }
 
   setTimeout(() => {
 
