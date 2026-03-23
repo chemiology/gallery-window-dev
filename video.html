@@ -38,47 +38,43 @@ gtag('config', 'G-M2QQ5KME88');
 
 </head>
 
-<body oncontextmenu="return false">
+<body>
 
-<div class="video-stage">
+<div class="video-container">
+  <div class="video-loading">Loading...</div>
+</div>
 
-  <!-- 영상 -->
-  <div class="video-frame">
-    <iframe id="player" allow="autoplay"></iframe>
+<!-- ✅ UI 통합 -->
+<div class="ui-layer" id="uiLayer">
+
+  <div class="top-ui">
+    <div class="video-title" id="videoTitle"></div>
+    <div class="video-caption" id="video-caption"></div>
   </div>
 
-  <!-- UI 레이어 -->
-  <div class="ui-layer" id="uiLayer">
+  <div class="bottom-ui">
 
-    <!-- 상단 (영상과 안 겹침) -->
-    <div class="top-ui">
-      <div class="video-title" id="videoTitle"></div>
-      <div class="video-caption" id="video-caption"></div>
+    <div class="fullscreen-tip">
+      F : Fullscreen · ESC : Exit
     </div>
 
-    <!-- 좌측 (Hall 버튼) -->
-    <div class="nav-back">
-      <a id="backToHall">← Hall</a>
-    </div>
-
-    <!-- 하단 중앙 (버튼) -->
     <div class="controls">
       <button onclick="prevVideo()">Prev</button>
       <button onclick="nextVideo()">Next</button>
     </div>
 
-    <!-- 하단 안내 -->
-    <div class="sound-guide">
-      클릭하여 사운드를 활성화하세요
+    <div class="nav-back">
+      <a id="backToHall">← Hall</a>
     </div>
 
   </div>
 
 </div>
 
-<div id="fade-layer"></div>
-
+<!-- Scripts -->
 <script src="assets/js/video.js"></script>
+
+<div id="fade-layer"></div>
 
 </body>
 </html>
