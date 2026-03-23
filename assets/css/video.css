@@ -319,8 +319,8 @@ body::before {
   left: 0;
   right: 0;
 
-  top: -30%;      /* 🔥 위로 확장 */
-  bottom: -30%;   /* 🔥 아래로 확장 */
+  top: 0;
+  height: 68%;
 
   z-index: 20;
   pointer-events: auto;
