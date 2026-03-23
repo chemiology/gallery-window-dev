@@ -204,6 +204,10 @@ function showUI() {
   }, 2500);
 }
 
+/* =========================
+   UI 표시 (마우스만 반응)
+========================= */
+
 document.addEventListener("mousemove", showUI);
 document.addEventListener("touchstart", showUI);
 
@@ -215,22 +219,38 @@ let soundEnabled = false;
 
 document.addEventListener("click", (e) => {
 
+  /* 이미 사운드 켜졌으면 무시 */
   if (soundEnabled) return;
 
-  if (e.target.closest(".controls") || e.target.closest("#backToHall")) {
+  const frame = document.querySelector(".video-frame");
+
+  /* 🔥 영상 영역 클릭은 완전히 무시 */
+  if (frame && frame.contains(e.target)) {
+    return;
+  }
+
+  /* 🔥 UI 버튼 클릭도 무시 */
+  if (
+    e.target.closest(".controls") ||
+    e.target.closest("#backToHall")
+  ) {
     return;
   }
 
   const iframe = document.getElementById("player");
   if (!iframe) return;
 
+  /* 🔥 사운드 활성화 */
   iframe.src = iframe.src.replace("mute=1", "mute=0");
 
   soundEnabled = true;
 
+  /* 🔥 안내문은 '사운드 켜졌을 때만' 사라짐 */
   const guide = document.querySelector(".sound-guide");
 
-  if (guide) guide.style.opacity = 0;
+  if (guide && soundEnabled) {
+    guide.style.opacity = 0;
+  }
 
 });
 
