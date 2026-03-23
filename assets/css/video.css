@@ -356,6 +356,7 @@ body::before {
   z-index: 1;
 
   opacity: 0.18;
+  filter: blur(60px);
 
   background: radial-gradient(
     circle at center,
