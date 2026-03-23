@@ -320,7 +320,7 @@ body::before {
   right: 0;
 
   top: 0;
-  height: 80%;
+  height: 90%;
 
   z-index: 20;
   pointer-events: auto;
