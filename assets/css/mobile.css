@@ -30,13 +30,13 @@ img{
 ========================= */
 
 body.home main{
-  padding:0 4px;   /* 🔥 좌우 여백 줄이기 */
+  padding:0 2px !important;   /* 🔥 좌우 여백 거의 제거 */
 }
 
 body.home .exhibitions{
   display:grid;
   grid-template-columns:repeat(2, 1fr);
-  gap:30px;
+  gap:32px !important;        /* 🔥 확실히 크게 */
 }
 
 .poster{
@@ -61,13 +61,12 @@ body.home .exhibition:active{
 }
 
 .nav-back{
-  position:fixed;   /* 🔥 핵심 변경 */
+  position:fixed !important;   /* 🔥 핵심 변경 */
   top:auto;
-  bottom:90px;      /* 🔥 영상 아래 고정 */
-  bottom: calc(20px + env(safe-area-inset-bottom));
+  bottom:110px !important;   /* 🔥 충분히 위로 */
   left:16px;
 
-  z-index:100;
+  z-index:999 !important;
 }
 
 /* =========================
