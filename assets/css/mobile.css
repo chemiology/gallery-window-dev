@@ -36,7 +36,7 @@ body.home main{
 body.home .exhibitions{
   display:grid;
   grid-template-columns:repeat(2, 1fr);
-  gap:22px;
+  gap:30px;
 }
 
 .poster{
@@ -63,7 +63,7 @@ body.home .exhibition:active{
 .nav-back{
   position:fixed;   /* 🔥 핵심 변경 */
   top:auto;
-  bottom:20px;      /* 🔥 영상 아래 고정 */
+  bottom:60px;      /* 🔥 영상 아래 고정 */
   bottom: calc(20px + env(safe-area-inset-bottom));
   left:16px;
 
