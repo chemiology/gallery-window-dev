@@ -30,7 +30,7 @@ img{
 ========================= */
 
 body.home main{
-  padding:0 6px;   /* 🔥 좌우 여백 줄이기 */
+  padding:0 4px;   /* 🔥 좌우 여백 줄이기 */
 }
 
 body.home .exhibitions{
@@ -51,7 +51,7 @@ body.home .exhibitions{
 }
 
 .poster img{
-  border-radius:14px;
+  border-radius:16px;
 }
 
 /* 터치 피드백만 유지 */
@@ -63,7 +63,7 @@ body.home .exhibition:active{
 .nav-back{
   position:fixed;   /* 🔥 핵심 변경 */
   top:auto;
-  bottom:60px;      /* 🔥 영상 아래 고정 */
+  bottom:90px;      /* 🔥 영상 아래 고정 */
   bottom: calc(20px + env(safe-area-inset-bottom));
   left:16px;
 
