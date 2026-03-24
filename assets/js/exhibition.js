@@ -90,6 +90,15 @@ async function loadExhibition(id) {
     const exhibition =
       data.currentExhibitions?.find(e => e.id === id);
 
+/* 🔥 추가 강제 테스트 (여기) */
+console.log("📌 URL에서 받은 id:", id);
+
+
+/* 🔥 디버그 로그 추가 */
+console.log("URL id:", id);
+console.log("찾은 exhibition:", exhibition?.id);
+console.log("captions:", exhibition?.captions);
+
     if (!exhibition) {
       console.warn("전시 없음:", id);
       return;
@@ -215,6 +224,11 @@ function showImage(index) {
     (currentIndex === images.length - 1 && index === 0);
 
   currentIndex = (index + images.length) % images.length;
+
+/* 🔥 디버그 로그 (여기) */
+console.log("현재 index:", currentIndex);
+console.log("captions 배열:", captions);
+console.log("현재 caption 값:", captions[currentIndex]);
 
   /* analytics */
 
