@@ -78,6 +78,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function loadExhibition(id) {
 
+  images = [];        // 🔥 추가
+  captions = [];      // 🔥 추가
+  currentIndex = 0;   // 🔥 추가
+
   try {
 
     const res = await fetch(BASE_PATH + "/assets/config/gallery.json");
@@ -118,6 +122,7 @@ async function loadExhibition(id) {
     images = (exhibition.images || [])
       .map(name => imgBase + name);
 
+    captions = [];   // 🔥 이 줄 추가
     captions = exhibition.captions || [];
 
     slideSeconds = exhibition.slideSeconds || 10;
@@ -243,7 +248,7 @@ function showImage(index) {
     caption.classList.add("fade");
 
     setTimeout(() => {
-      caption.innerText = captions[currentIndex] || "";
+      caption.innerText = captions[currentIndex] ?? "";
       caption.classList.remove("fade");
     }, 180);
   }
