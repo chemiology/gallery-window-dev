@@ -133,6 +133,9 @@ async function loadExhibition(id) {
       firstImg.src = images[0];
 
       firstImg.onload = () => {
+
+        currentIndex = 0;   // 🔥 이 줄 반드시 추가
+
         showImage(0);
         startAuto();
         preloadInitialImages();
