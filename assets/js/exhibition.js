@@ -1,3 +1,7 @@
+if (!window.location || !window.location.search) {
+  console.warn("location 아직 준비 안됨");
+}
+
 /* =====================================================
    Gallery Window – Exhibition JS (FINAL STABLE)
    ✔ BASE_PATH 완전 대응
@@ -46,10 +50,6 @@ function getDeviceType() {
    URL Parameters
 ----------------------------------------------------- */
 
-const params = new URLSearchParams(window.location.search);
-
-const exhibitionId = params.get("id");
-
 if (!exhibitionId) {
   window.location.href = BASE_PATH + "/";
 }
@@ -66,6 +66,12 @@ if (input) input.value = exhibitionId;
 ----------------------------------------------------- */
 
 document.addEventListener("DOMContentLoaded", () => {
+
+  const params = new URLSearchParams(window.location.search);
+  exhibitionId = params.get("id");
+
+  console.log("exhibitionId:", exhibitionId);
+
   if (!exhibitionId) return;
 
   loadExhibition(exhibitionId);
