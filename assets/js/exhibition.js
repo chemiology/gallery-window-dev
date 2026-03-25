@@ -72,10 +72,15 @@ if (input) input.value = exhibitionId;
 ----------------------------------------------------- */
 
 document.addEventListener("DOMContentLoaded", () => {
-  if (!exhibitionId) return;
 
-  loadExhibition(exhibitionId);
-  setupControls();
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+
+  console.log("🔥 runtime id:", id);
+
+  if (!id) return;
+
+  loadExhibition(id);
 });
 
 /* -----------------------------------------------------
@@ -83,6 +88,9 @@ document.addEventListener("DOMContentLoaded", () => {
 ----------------------------------------------------- */
 
 async function loadExhibition(id) {
+
+console.log("🔥 loadExhibition 호출 ID:", id);
+console.log("🔥 captions 데이터:", exhibition.captions);
 
   try {
 
@@ -149,6 +157,14 @@ async function loadExhibition(id) {
     console.error("Exhibition load failed:", err);
 
   }
+
+setTimeout(() => {
+  const captionEl = document.getElementById("caption");
+  if (captionEl) {
+    captionEl.innerText = captions[0] || "";
+  }
+}, 50);
+
 }
 
 /* -----------------------------------------------------
@@ -204,7 +220,11 @@ function stopAuto() {
 function showImage(index) {
 
   const img = document.getElementById("exhibition-image");
-  const caption = document.getElementById("caption")
+
+  const caption = 
+    document.getElementById("caption") ||
+    document.getElementById("exhibition-caption");
+
   const counter = document.getElementById("artwork-counter");
 
   if (!img || images.length === 0) return;
@@ -246,10 +266,11 @@ function showImage(index) {
 
   if (caption) {
 
+    caption.innerText = captions[currentIndex] || "";  // 🔥 먼저 실행
+
     caption.classList.add("fade");
 
     setTimeout(() => {
-      caption.innerText = captions[currentIndex] || "";
       caption.classList.remove("fade");
     }, 180);
   }
@@ -403,3 +424,15 @@ window.addEventListener("load", () => {
 setInterval(() => {
   console.log("현재 caption:", document.getElementById("caption")?.innerText);
 }, 1000);
+
+
+/* -----------------------------------------------------
+   강제 차단 테스트
+----------------------------------------------------- */
+
+setTimeout(() => {
+  const captionEl = document.getElementById("caption");
+  if (captionEl) {
+    captionEl.innerText = captions[currentIndex] || "";
+  }
+}, 300);
