@@ -81,10 +81,13 @@ async function loadExhibition(id) {
 images = [];
 captions = [];
 currentIndex = 0;
+console.log("exhibition 객체:", exhibition);
 
   try {
 
-    const res = await fetch(BASE_PATH + "/assets/config/gallery.json");
+    const res = await fetch(
+      BASE_PATH + "/assets/config/gallery.json?v=" + Date.now()
+    );
     const data = await res.json();
 
     const exhibition =
@@ -123,7 +126,10 @@ currentIndex = 0;
     images = (exhibition.images || [])
       .map(name => imgBase + name);
 
-    captions = exhibition.captions || [];
+    captions = Array.isArray(exhibition.captions)
+      ? exhibition.captions
+      : [];
+    /*  captions = exhibition.captions || []; */
 
     console.log("현재 captions:", captions);
 
