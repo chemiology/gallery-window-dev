@@ -114,8 +114,8 @@ body {
 /* ---------- Caption ---------- */
 
 .caption {
-  position: static;
-  margin-top: 12px;
+  position: fixed;
+  bottom: 64px; /* 방명록과 겹치지 않도록 */
   left: 50%;
   transform: translateX(-50%);
   font-size: 13px;
