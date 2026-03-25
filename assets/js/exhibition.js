@@ -78,13 +78,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function loadExhibition(id) {
 
+console.log("현재 전시 ID:", id);
+
   try {
 
     const res = await fetch(BASE_PATH + "/assets/config/gallery.json");
     const data = await res.json();
 
     const exhibition =
-      data.currentExhibitions?.find(e => e.id === id);
+      data.currentExhibitions?.find(e => e.id === id)
+      || data.currentExhibitions?.[0];
 
     if (!exhibition) {
       console.warn("전시 없음:", id);
