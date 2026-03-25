@@ -94,9 +94,6 @@ async function loadExhibition(id) {
       data.currentExhibitions?.find(e => e.id === id)
       || data.currentExhibitions?.[0];
 
-    /* 🔥 여기서부터 exhibition 사용 가능 */
-    console.log("exhibition 객체:", exhibition);
-
     if (!exhibition) {
       console.warn("전시 없음:", id);
       return;
@@ -133,8 +130,6 @@ async function loadExhibition(id) {
     captions = Array.isArray(exhibition.captions)
       ? exhibition.captions
       : [];
-
-    console.log("현재 captions:", captions);
 
     slideSeconds = exhibition.slideSeconds || 10;
 
@@ -256,13 +251,13 @@ function showImage(index) {
 
   if (caption) {
 
+    caption.innerText = captions[currentIndex] || "";
+
     caption.classList.add("fade");
 
     setTimeout(() => {
-      caption.innerText = captions[currentIndex] || "";
       caption.classList.remove("fade");
     }, 180);
-  }
 
   if (counter) {
     counter.textContent =
