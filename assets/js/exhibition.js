@@ -259,6 +259,8 @@ function showImage(index) {
       caption.classList.remove("fade");
     }, 180);
 
+  }
+
   if (counter) {
     counter.textContent =
       (currentIndex + 1) + " / " + images.length;
