@@ -78,7 +78,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function loadExhibition(id) {
 
-console.log("현재 전시 ID:", id);
+images = [];
+captions = [];
+currentIndex = 0;
 
   try {
 
@@ -122,6 +124,8 @@ console.log("현재 전시 ID:", id);
       .map(name => imgBase + name);
 
     captions = exhibition.captions || [];
+
+    console.log("현재 captions:", captions);
 
     slideSeconds = exhibition.slideSeconds || 10;
 
