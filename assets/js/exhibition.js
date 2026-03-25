@@ -1,7 +1,3 @@
-if (!window.location || !window.location.search) {
-  console.warn("location 아직 준비 안됨");
-}
-
 /* =====================================================
    Gallery Window – Exhibition JS (FINAL STABLE)
    ✔ BASE_PATH 완전 대응
@@ -50,6 +46,14 @@ function getDeviceType() {
    URL Parameters
 ----------------------------------------------------- */
 
+const params = new URLSearchParams(window.location.search);
+
+const exhibitionId = params.get("id");
+
+console.log("URL:", window.location.href);
+console.log("search:", window.location.search);
+console.log("exhibitionId:", exhibitionId);
+
 if (!exhibitionId) {
   window.location.href = BASE_PATH + "/";
 }
@@ -66,12 +70,6 @@ if (input) input.value = exhibitionId;
 ----------------------------------------------------- */
 
 document.addEventListener("DOMContentLoaded", () => {
-
-  const params = new URLSearchParams(window.location.search);
-  exhibitionId = params.get("id");
-
-  console.log("exhibitionId:", exhibitionId);
-
   if (!exhibitionId) return;
 
   loadExhibition(exhibitionId);
@@ -84,10 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function loadExhibition(id) {
 
-  images = [];        // 🔥 추가
-  captions = [];      // 🔥 추가
-  currentIndex = 0;   // 🔥 추가
-
   try {
 
     const res = await fetch(BASE_PATH + "/assets/config/gallery.json");
@@ -95,15 +89,6 @@ async function loadExhibition(id) {
 
     const exhibition =
       data.currentExhibitions?.find(e => e.id === id);
-
-/* 🔥 추가 강제 테스트 (여기) */
-console.log("📌 URL에서 받은 id:", id);
-
-
-/* 🔥 디버그 로그 추가 */
-console.log("URL id:", id);
-console.log("찾은 exhibition:", exhibition?.id);
-console.log("captions:", exhibition?.captions);
 
     if (!exhibition) {
       console.warn("전시 없음:", id);
@@ -137,7 +122,6 @@ console.log("captions:", exhibition?.captions);
     images = (exhibition.images || [])
       .map(name => imgBase + name);
 
-    captions = [];   // 🔥 이 줄 추가
     captions = exhibition.captions || [];
 
     slideSeconds = exhibition.slideSeconds || 10;
@@ -148,9 +132,6 @@ console.log("captions:", exhibition?.captions);
       firstImg.src = images[0];
 
       firstImg.onload = () => {
-
-        currentIndex = 0;   // 🔥 이 줄 반드시 추가
-
         showImage(0);
         startAuto();
         preloadInitialImages();
@@ -231,11 +212,6 @@ function showImage(index) {
 
   currentIndex = (index + images.length) % images.length;
 
-/* 🔥 디버그 로그 (여기) */
-console.log("현재 index:", currentIndex);
-console.log("captions 배열:", captions);
-console.log("현재 caption 값:", captions[currentIndex]);
-
   /* analytics */
 
   if (typeof gtag !== "undefined") {
@@ -271,7 +247,7 @@ console.log("현재 caption 값:", captions[currentIndex]);
     caption.classList.add("fade");
 
     setTimeout(() => {
-      caption.innerText = captions[currentIndex] ?? "";
+      caption.innerText = captions[currentIndex] || "";
       caption.classList.remove("fade");
     }, 180);
   }
