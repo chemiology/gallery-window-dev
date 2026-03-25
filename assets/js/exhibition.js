@@ -1,12 +1,11 @@
 /* =====================================================
-   Gallery Window – Exhibition JS (FINAL PRO VERSION)
-   ✔ 기존 기능 100% 유지
-   ✔ caption 오류 완전 해결
-   ✔ 실행 타이밍 안정화
+   Gallery Window – Exhibition JS (FINAL STABLE)
+   ✔ BASE_PATH 완전 대응
+   ✔ dev / 운영 / GitHub Pages 모두 안정
 ===================================================== */
 
 /* =========================
-   BASE PATH
+   BASE PATH (🔥 핵심)
 ========================= */
 
 const BASE_PATH = (() => {
@@ -34,11 +33,8 @@ let currentIndex = 0;
 let timer = null;
 let slideSeconds = 10;
 let autoMode = true;
-let audio = null;
 
-/* =========================
-   DEVICE
-========================= */
+let audio = null;
 
 function getDeviceType() {
   return window.matchMedia("(pointer: coarse)").matches
@@ -46,11 +42,12 @@ function getDeviceType() {
     : "desktop";
 }
 
-/* =========================
-   URL PARAMETERS
-========================= */
+/* -----------------------------------------------------
+   URL Parameters
+----------------------------------------------------- */
 
 const params = new URLSearchParams(window.location.search);
+
 const exhibitionId = params.get("id");
 
 if (!exhibitionId) {
@@ -59,23 +56,25 @@ if (!exhibitionId) {
 
 const hallId = params.get("hall") || "hall01";
 
-/* 방명록 */
+/* 방명록 ID */
 
 const input = document.querySelector('input[name="exhibition_id"]');
 if (input) input.value = exhibitionId;
 
-/* =========================
+/* -----------------------------------------------------
    INIT
-========================= */
+----------------------------------------------------- */
 
 document.addEventListener("DOMContentLoaded", () => {
+  if (!exhibitionId) return;
+
   loadExhibition(exhibitionId);
   setupControls();
 });
 
-/* =========================
-   LOAD EXHIBITION
-========================= */
+/* -----------------------------------------------------
+   Load Exhibition Data
+----------------------------------------------------- */
 
 async function loadExhibition(id) {
 
@@ -123,8 +122,6 @@ async function loadExhibition(id) {
 
     slideSeconds = exhibition.slideSeconds || 10;
 
-    currentIndex = 0;
-
     if (images.length > 0) {
 
       const firstImg = new Image();
@@ -148,9 +145,55 @@ async function loadExhibition(id) {
   }
 }
 
-/* =========================
-   IMAGE DISPLAY
-========================= */
+/* -----------------------------------------------------
+   Auto Slide Notice
+----------------------------------------------------- */
+
+window.addEventListener("load", () => {
+
+  const notice = document.getElementById("slideshow-notice");
+  if (!notice) return;
+
+  setTimeout(() => {
+    notice.style.opacity = "0";
+  }, 5000);
+
+});
+
+/* -----------------------------------------------------
+   Auto Slide
+----------------------------------------------------- */
+
+function startAuto() {
+
+  stopAuto();
+  autoMode = true;
+
+  timer = setTimeout(() => {
+
+    nextImage();
+
+    timer = setInterval(nextImage, slideSeconds * 1000);
+
+  }, 6000);
+
+}
+
+function stopAuto() {
+
+  if (timer) {
+    clearTimeout(timer);
+    clearInterval(timer);
+    timer = null;
+  }
+
+  autoMode = false;
+
+}
+
+/* -----------------------------------------------------
+   Image Display
+----------------------------------------------------- */
 
 function showImage(index) {
 
@@ -165,7 +208,7 @@ function showImage(index) {
 
   currentIndex = (index + images.length) % images.length;
 
-  /* analytics 유지 */
+  /* analytics */
 
   if (typeof gtag !== "undefined") {
 
@@ -195,15 +238,12 @@ function showImage(index) {
 
   img.src = images[currentIndex];
 
-  /* 🔥 핵심: caption 즉시 적용 */
-
   if (caption) {
-
-    caption.innerText = captions[currentIndex] || "";
 
     caption.classList.add("fade");
 
     setTimeout(() => {
+      caption.innerText = captions[currentIndex] || "";
       caption.classList.remove("fade");
     }, 180);
   }
@@ -226,43 +266,10 @@ function showImage(index) {
   }
 }
 
-/* =========================
-   PRELOAD
-========================= */
-
 function preloadInitialImages() {
   for (let i = 1; i < Math.min(3, images.length); i++) {
     new Image().src = images[i];
   }
-}
-
-/* =========================
-   AUTO SLIDE
-========================= */
-
-function startAuto() {
-
-  stopAuto();
-  autoMode = true;
-
-  timer = setTimeout(() => {
-
-    nextImage();
-
-    timer = setInterval(nextImage, slideSeconds * 1000);
-
-  }, 6000);
-}
-
-function stopAuto() {
-
-  if (timer) {
-    clearTimeout(timer);
-    clearInterval(timer);
-    timer = null;
-  }
-
-  autoMode = false;
 }
 
 function nextImage() {
@@ -273,9 +280,19 @@ function prevImage() {
   showImage(currentIndex - 1);
 }
 
-/* =========================
-   AUDIO
-========================= */
+/* -----------------------------------------------------
+   Image protection
+----------------------------------------------------- */
+
+document.addEventListener("DOMContentLoaded", () => {
+  document
+    .getElementById("exhibition-image")
+    ?.addEventListener("dragstart", e => e.preventDefault());
+});
+
+/* -----------------------------------------------------
+   Audio
+----------------------------------------------------- */
 
 function setupAudio(src) {
 
@@ -288,6 +305,7 @@ function setupAudio(src) {
   audio.play().catch(() => {});
 
   const enableAudio = () => {
+    if (!audio) return;
     audio.muted = false;
     audio.play().catch(() => {});
   };
@@ -295,9 +313,9 @@ function setupAudio(src) {
   window.addEventListener("pointerdown", enableAudio, { once: true });
 }
 
-/* =========================
-   CONTROLS
-========================= */
+/* -----------------------------------------------------
+   Controls
+----------------------------------------------------- */
 
 function setupControls() {
 
@@ -346,9 +364,9 @@ function setupControls() {
   });
 }
 
-/* =========================
-   BACK BUTTON
-========================= */
+/* -----------------------------------------------------
+   Back Button
+----------------------------------------------------- */
 
 const backBtn = document.getElementById("backHome");
 
@@ -368,9 +386,9 @@ if (backBtn) {
   });
 }
 
-/* =========================
+/* -----------------------------------------------------
    PAGE READY
-========================= */
+----------------------------------------------------- */
 
 window.addEventListener("load", () => {
   document.body.classList.add("page-ready");
