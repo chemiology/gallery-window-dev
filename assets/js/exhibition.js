@@ -202,7 +202,11 @@ function stopAuto() {
 function showImage(index) {
 
   const img = document.getElementById("exhibition-image");
-  const caption = document.getElementById("exhibition-caption");
+
+  const caption =
+  document.getElementById("caption") ||
+  document.getElementById("exhibition-caption");
+
   const counter = document.getElementById("artwork-counter");
 
   if (!img || images.length === 0) return;
