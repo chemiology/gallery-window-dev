@@ -1,3 +1,5 @@
+alert("exhibition.js 실행됨");
+
 /* =====================================================
    Gallery Window – Exhibition JS (FINAL STABLE)
    ✔ BASE_PATH 완전 대응
@@ -202,11 +204,7 @@ function stopAuto() {
 function showImage(index) {
 
   const img = document.getElementById("exhibition-image");
-
-  const caption =
-  document.getElementById("caption") ||
-  document.getElementById("exhibition-caption");
-
+  const caption = document.getElementById("caption")
   const counter = document.getElementById("artwork-counter");
 
   if (!img || images.length === 0) return;
@@ -401,3 +399,7 @@ if (backBtn) {
 window.addEventListener("load", () => {
   document.body.classList.add("page-ready");
 });
+
+setInterval(() => {
+  console.log("현재 caption:", document.getElementById("caption")?.innerText);
+}, 1000);
