@@ -78,10 +78,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function loadExhibition(id) {
 
-images = [];
-captions = [];
-currentIndex = 0;
-console.log("exhibition 객체:", exhibition);
+  /* 🔥 상태 초기화 (정상) */
+  images = [];
+  captions = [];
+  currentIndex = 0;
 
   try {
 
@@ -93,6 +93,9 @@ console.log("exhibition 객체:", exhibition);
     const exhibition =
       data.currentExhibitions?.find(e => e.id === id)
       || data.currentExhibitions?.[0];
+
+    /* 🔥 여기서부터 exhibition 사용 가능 */
+    console.log("exhibition 객체:", exhibition);
 
     if (!exhibition) {
       console.warn("전시 없음:", id);
@@ -126,10 +129,10 @@ console.log("exhibition 객체:", exhibition);
     images = (exhibition.images || [])
       .map(name => imgBase + name);
 
+    /* 🔥 핵심 안정 코드 */
     captions = Array.isArray(exhibition.captions)
       ? exhibition.captions
       : [];
-    /*  captions = exhibition.captions || []; */
 
     console.log("현재 captions:", captions);
 
