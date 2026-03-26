@@ -243,12 +243,19 @@ figure.exhibition-support-image img{
 
 }
 
+body.exhibition-detail figure.exhibition-poster img {
+    width: 55% !important;
+    max-width: 520px !important;
+    height: auto !important;
+}
+
+
 /* ===== POSTER (FINAL CLEAN) ===== */
 
 .exhibition-poster{
   display:flex;
   justify-content:center;
-  margin-top:60px;   /* 🔥 여백 */
+  margin-top:60px !important;
 }
 
 .exhibition-poster img{
