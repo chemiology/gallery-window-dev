@@ -409,3 +409,15 @@ body.home .exhibition-body{
   from { opacity: 0; transform: scale(0.96); }
   to { opacity: 1; transform: scale(1); }
 }
+
+.home .exhibitions{
+  gap: 24px;
+}
+
+.home .exhibition-poster img{
+  width: 92%;
+}
+
+.home .exhibition-poster img{
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
