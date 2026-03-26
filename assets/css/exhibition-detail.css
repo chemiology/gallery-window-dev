@@ -31,7 +31,6 @@ body.archive-detail-page{
 
 .exhibition-poster{
   text-align:center;
-  display:block; 
   display:flex;
   justify-content:center;
 }
@@ -244,22 +243,17 @@ figure.exhibition-support-image img{
 
 }
 
-body.exhibition-detail figure.exhibition-poster img {
-    width: 70% !important;     /* ← 여기서 크기 조절 */
-    max-width: 520px !important;
-    height: auto !important;
+/* ===== POSTER (FINAL CLEAN) ===== */
+
+.exhibition-poster{
+  display:flex;
+  justify-content:center;
+  margin-top:60px;   /* 🔥 여백 */
 }
 
-/* ===== POSTER LAYOUT FIX ===== */
-
-.exhibition-poster {
-  margin-top: 50px;   /* 상단 여백 */
-  display: flex;
-  justify-content: center;
-}
-
-.exhibition-poster img {
-  width: 70%;         /* 30% 축소 */
-  max-width: 500px;   /* 너무 커지는 것 방지 */
-  height: auto;
+.exhibition-poster img{
+  width:42%;
+  max-width:500px;
+  height:auto;
+  object-fit:contain;
 }
