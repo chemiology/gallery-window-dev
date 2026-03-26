@@ -421,3 +421,39 @@ body.home .exhibition-body{
 .home .exhibition-poster img{
   box-shadow: 0 10px 30px rgba(0,0,0,0.25);
 }
+
+/* ===== 버튼 기본 ===== */
+.bottom-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+
+  padding:10px 16px;
+
+  border:1px solid rgba(255,255,255,0.4);
+  background:rgba(0,0,0,0.25);
+
+  color:#fff;
+  text-decoration:none;
+
+  backdrop-filter:blur(6px);
+
+  transition:all .3s ease;
+}
+
+/* 아이콘 */
+.bottom-btn .icon{
+  font-size:10px;
+  opacity:0.7;
+}
+
+/* hover 효과 */
+.bottom-btn:hover{
+  background:rgba(0,0,0,0.6);
+  transform:translateY(-2px);
+}
+
+/* 클릭 느낌 */
+.bottom-btn:active{
+  transform:translateY(0);
+}

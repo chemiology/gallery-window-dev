@@ -251,7 +251,7 @@ main::after{
 
   .home .bottom-btn{
     font-size:11px;
-    padding:8px 12px;
+    padding:8px 10px;
 
     border:1px solid rgba(255,255,255,0.5);
     background:rgba(0,0,0,0.3);
@@ -267,8 +267,24 @@ main::after{
     transform:scale(1.05);
   }
 
+  .bottom-btn .ko{
+    display:none;
+  }
+
+  .bottom-btn .en{
+    display:inline;
+  }
+
+  .bottom-btn .icon{
+    font-size:9px;
+  }
+
+
+}
 
 
 
 
+.bottom-btn .en{
+  display:none;
 }
