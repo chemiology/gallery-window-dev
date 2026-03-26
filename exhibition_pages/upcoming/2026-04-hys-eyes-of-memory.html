@@ -6,7 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index,follow">
 
-<!-- ===== 전시 정보 ===== -->
+<!-- ===== 전시 정보 (여기만 수정) ===== -->
+<script>
 <script>
 const EXHIBITION = {
   id: "2026-04-hys-eyes-of-memory",
@@ -34,7 +35,7 @@ const EXHIBITION = {
 <meta property="og:site_name" content="Gallery Window">
 <meta property="og:locale" content="ko_KR">
 
-<!-- Twitter -->
+<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="">
 <meta name="twitter:description" content="">
@@ -45,11 +46,13 @@ const EXHIBITION = {
 <meta name="author" id="meta-author">
 <meta name="keywords" id="meta-keywords">
 
-<!-- ===== CSS (핵심 수정) ===== -->
-<link rel="stylesheet" href="../assets/css/style.css">
-<link rel="stylesheet" href="../assets/css/exhibition.css">
-<link rel="stylesheet" href="../assets/css/exhibition-detail.css">
-<link rel="stylesheet" href="../assets/css/mobile.css" media="(max-width:768px)">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/exhibition.css">
+  <link rel="stylesheet" href="../../assets/css/exhibition-detail.css">
+  <link rel="stylesheet" href="../../assets/css/mobile.css" media="(max-width:768px)">
+
+<!-- Structured Data -->
+<script type="application/ld+json" id="structured-data"></script>
 
 <!-- Structured Data -->
 <script type="application/ld+json" id="structured-data"></script>
@@ -86,8 +89,8 @@ const EXHIBITION = {
 
 </main>
 
-<!-- JS (핵심 수정) -->
-<script src="../assets/js/exhibition-detail.js"></script>
+<script src="../../assets/js/exhibition-detail.js"></script>
+
 
 </body>
 </html>
