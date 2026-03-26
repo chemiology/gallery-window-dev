@@ -457,3 +457,34 @@ body.home .exhibition-body{
 .bottom-btn:active{
   transform:translateY(0);
 }
+
+
+/* ===== 언어 표시 (기본 = PC) ===== */
+
+.bottom-btn .ko{
+  display:inline;
+}
+
+.bottom-btn .en{
+  display:inline;
+}
+
+/* ===== 모바일 ===== */
+@media (max-width:768px){
+
+  .bottom-btn .ko{
+    display:none;
+  }
+
+  .bottom-btn .en{
+    display:inline;
+  }
+
+  .bottom-btn .en{
+    display:inline;
+  }
+
+  .bottom-btn .icon{
+    font-size:9px;
+  }
+}

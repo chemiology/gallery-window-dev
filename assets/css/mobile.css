@@ -267,24 +267,7 @@ main::after{
     transform:scale(1.05);
   }
 
-  .bottom-btn .ko{
-    display:none;
-  }
-
-  .bottom-btn .en{
-    display:inline;
-  }
-
-  .bottom-btn .icon{
-    font-size:9px;
-  }
 
 
 }
 
-
-
-
-.bottom-btn .en{
-  display:none;
-}
