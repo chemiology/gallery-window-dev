@@ -238,4 +238,37 @@ main::after{
   display:none !important;
 }
 
+  .home .exhibitions{
+    gap:16px; /* 포스터 간격 줄여서 공간 확보 */
+  }
+
+  .home .bottom-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+  }
+
+  .home .bottom-btn{
+    font-size:11px;
+    padding:8px 12px;
+
+    border:1px solid rgba(255,255,255,0.5);
+    background:rgba(0,0,0,0.3);
+
+    white-space:nowrap;
+    backdrop-filter:blur(4px);
+
+    transition:all .25s ease;
+  }
+
+  .home .bottom-btn:hover{
+    background:rgba(0,0,0,0.6);
+    transform:scale(1.05);
+  }
+
+
+
+
+
 }
