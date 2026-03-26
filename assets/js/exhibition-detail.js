@@ -258,3 +258,39 @@ async function loadNoteProfile() {
   }
 
 }
+
+
+(function(){
+
+if(typeof EXHIBITION === "undefined") return;
+
+const ex = EXHIBITION;
+
+const title =
+`${ex.titleKR} | ${ex.artist} | Gallery Window`;
+
+const desc =
+`${ex.artist} 작가의 전시 '${ex.titleKR}'`;
+
+document.title = title;
+
+/* description */
+const metaDesc = document.querySelector('meta[name="description"]');
+if(metaDesc) metaDesc.setAttribute("content", desc);
+
+/* og:title */
+const ogTitle = document.querySelector('meta[property="og:title"]');
+if(ogTitle) ogTitle.setAttribute("content", title);
+
+/* og:description */
+const ogDesc = document.querySelector('meta[property="og:description"]');
+if(ogDesc) ogDesc.setAttribute("content", desc);
+
+/* og:image */
+const ogImage = document.querySelector('meta[property="og:image"]');
+if(ogImage) ogImage.setAttribute(
+"content",
+location.origin + ex.poster
+);
+
+})();

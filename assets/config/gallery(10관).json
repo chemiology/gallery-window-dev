@@ -1,0 +1,148 @@
+{
+  "site": {
+    "name": "갤러리 창 Gallery Window",
+    "subtitle": "A window for contemporary photography",
+    "language": "ko",
+    "theme": "dark",
+    "footer": "© Gallery Window"
+  },
+
+  "headlineNotice": {
+    "text": "<p>갤러리 창은 누구에게나 열려 있는, 함께 바라보고 머무를 수 있는 상상의 공간입니다. 각자의 시선이 모여 하나의 장소가 됩니다.</p> <p>해당 전시관의 포스트를 클릭하시면 전시장으로 입장하실 수 있습니다.</p>"
+  },
+
+  "currentExhibitions": [
+    {
+      "id": "avatar_ii",
+      "title": "Avatar II",
+      "hall": "hall01",
+      "hallTitle": "1관",
+      "order": 1,
+      "artist": "Kyoungsoo Kim",
+      "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg","014.jpg","015.jpg","016.jpg","017.jpg","018.jpg","019.jpg"],
+      "themeColor": "#c6d4e1",
+      "slideSeconds": 10,
+      "startDate": "2026-02-15",
+      "endDate": "2026-03-31"
+    },
+
+    {
+      "id": "becoming_tree_01",
+      "title": "Becoming Tree",
+      "hall": "hall02",
+      "order": 2,
+      "artist": "Kyoungsoo Kim",
+      "images": ["001.jpg","002.jpg","003.jpg"],
+      "themeColor": "#e1c6cf",
+      "slideSeconds": 10,
+      "startDate": "2026-02-20",
+      "endDate": "2026-03-31"
+    },
+
+    {
+      "id": "becoming_tree_02",
+      "title": "Becoming Tree",
+      "hall": "hall03",
+      "order": 3,
+      "artist": "Kyoungsoo Kim",
+      "images": ["001.jpg","002.jpg","003.jpg"],
+      "themeColor": "#e1c6cf",
+      "slideSeconds": 10,
+      "startDate": "2026-02-20",
+      "endDate": "2026-03-31"
+    },
+
+    {
+      "id": "becoming_tree_03",
+      "title": "Becoming Tree",
+      "hall": "hall04",
+      "order": 4,
+      "artist": "Kyoungsoo Kim",
+      "images": ["001.jpg","002.jpg","003.jpg"],
+      "themeColor": "#e1c6cf",
+      "slideSeconds": 10,
+      "startDate": "2026-02-20",
+      "endDate": "2026-03-31"
+    },
+
+    {
+      "id": "becoming_tree_04",
+      "title": "Becoming Tree",
+      "hall": "hall05",
+      "order": 5,
+      "artist": "Kyoungsoo Kim",
+      "images": ["001.jpg","002.jpg","003.jpg"],
+      "themeColor": "#e1c6cf",
+      "slideSeconds": 10,
+      "startDate": "2026-02-20",
+      "endDate": "2026-03-31"
+    },
+
+    {
+      "id": "becoming_tree_05",
+      "title": "Becoming Tree",
+      "hall": "hall06",
+      "order": 6,
+      "artist": "Kyoungsoo Kim",
+      "images": ["001.jpg","002.jpg","003.jpg"],
+      "themeColor": "#e1c6cf",
+      "slideSeconds": 10,
+      "startDate": "2026-02-20",
+      "endDate": "2026-03-31"
+    },
+
+    {
+      "id": "becoming_tree_06",
+      "title": "Becoming Tree",
+      "hall": "hall07",
+      "order": 7,
+      "artist": "Kyoungsoo Kim",
+      "images": ["001.jpg","002.jpg","003.jpg"],
+      "themeColor": "#e1c6cf",
+      "slideSeconds": 10,
+      "startDate": "2026-02-20",
+      "endDate": "2026-03-31"
+    },
+
+    {
+      "id": "becoming_tree_07",
+      "title": "Becoming Tree",
+      "hall": "hall08",
+      "order": 8,
+      "artist": "Kyoungsoo Kim",
+      "images": ["001.jpg","002.jpg","003.jpg"],
+      "themeColor": "#e1c6cf",
+      "slideSeconds": 10,
+      "startDate": "2026-02-20",
+      "endDate": "2026-03-31"
+    },
+
+    {
+      "id": "becoming_tree_08",
+      "title": "Becoming Tree",
+      "hall": "hall09",
+      "order": 9,
+      "artist": "Kyoungsoo Kim",
+      "images": ["001.jpg","002.jpg","003.jpg"],
+      "themeColor": "#e1c6cf",
+      "slideSeconds": 10,
+      "startDate": "2026-02-25",
+      "endDate": "2026-03-31"
+    },
+
+    {
+      "id": "becoming_tree_09",
+      "title": "Becoming Tree",
+      "hall": "hall10",
+      "order": 10,
+      "artist": "Kyoungsoo Kim",
+      "images": ["001.jpg","002.jpg","003.jpg"],
+      "themeColor": "#e1c6cf",
+      "slideSeconds": 10,
+      "startDate": "2026-02-20",
+      "endDate": "2026-02-21"
+    }
+
+     ]
+
+}
