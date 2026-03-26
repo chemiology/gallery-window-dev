@@ -1,6 +1,194 @@
 <!DOCTYPE html>
 <html lang="ko">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Video Exhibition | Gallery Window</title>
+
+<!-- favicon (상대경로) -->
+<link rel="icon" href="favicon.ico">
+<link rel="icon" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<meta name="theme-color" content="#111111">
+
+<style>
+
+/* ===== 기본 ===== */
+body{
+  margin:0;
+  background:#000;
+  color:#ddd;
+  font-family:system-ui, sans-serif;
+  overflow:hidden;
+}
+
+/* ===== 플레이어 ===== */
+.video-container{
+  position:relative;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+}
+
+#player{
+  width:100%;
+  height:100%;
+  border:none;
+}
+
+/* ===== 보호 레이어 (핵심) ===== */
+.video-overlay{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+/* 👉 좌측/상단 차단 */
+.overlay-block{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+}
+
+/* 👉 우측 하단만 허용 */
+.overlay-allow{
+  position:absolute;
+  bottom:0;
+  right:0;
+  width:160px;
+  height:120px;
+  pointer-events:auto;
+}
+
+/* ===== UI ===== */
+.ui-layer{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:20px;
+  opacity:0;
+  transition:opacity .4s ease;
+}
+
+.ui-layer.active{
+  opacity:1;
+}
+
+/* 제목 */
+.video-title{
+  font-size:16px;
+  letter-spacing:1px;
+}
+
+/* 캡션 */
+.video-caption{
+  font-size:13px;
+  opacity:.8;
+  text-align:center;
+}
+
+/* 하단 */
+.ui-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+/* 버튼 */
+.controls button{
+  background:rgba(255,255,255,0.08);
+  border:none;
+  color:#ddd;
+  padding:8px 18px;
+  cursor:pointer;
+}
+
+.controls button:hover{
+  background:rgba(255,255,255,0.2);
+}
+
+/* ===== fade ===== */
+#fade-layer{
+  position:absolute;
+  inset:0;
+  background:#000;
+  opacity:0;
+  transition:opacity 1s ease;
+  pointer-events:none;
+}
+
+/* ===== 사운드 안내 ===== */
+.sound-guide{
+  position:absolute;
+  bottom:80px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:13px;
+  opacity:.7;
+  transition:opacity .4s;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ===== 플레이어 ===== -->
+<div class="video-container">
+
+  <iframe id="player" allow="autoplay"></iframe>
+
+  <!-- 보호 레이어 -->
+  <div class="video-overlay">
+    <div class="overlay-block"></div>
+    <div class="overlay-allow"></div>
+  </div>
+
+  <!-- fade -->
+  <div id="fade-layer"></div>
+
+</div>
+
+<!-- ===== UI ===== -->
+<div class="ui-layer" id="uiLayer">
+
+  <div class="video-title" id="videoTitle"></div>
+
+  <div class="ui-bottom">
+
+    <div class="controls">
+      <button onclick="prevVideo()">Prev</button>
+      <button onclick="nextVideo()">Next</button>
+    </div>
+
+    <div class="nav-back">
+      <a id="backToHall">← Hall</a>
+    </div>
+
+  </div>
+
+  <div class="video-caption" id="video-caption"></div>
+
+</div>
+
+<!-- 사운드 안내 -->
+<div class="sound-guide"></div>
+
+<!-- JS 연결 -->
+<script src="assets/js/video.js"></script>
+
+</body>
+</html>
 <head>
 
 <meta charset="UTF-8">
