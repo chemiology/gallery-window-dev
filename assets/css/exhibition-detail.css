@@ -244,7 +244,7 @@ figure.exhibition-support-image img{
 }
 
 body.exhibition-detail figure.exhibition-poster img {
-    width: 55% !important;
+    width: 65% !important;
     max-width: 520px !important;
     height: auto !important;
 }
@@ -263,4 +263,12 @@ body.exhibition-detail figure.exhibition-poster img {
   max-width:500px;
   height:auto;
   object-fit:contain;
+}
+
+.exhibition-poster img {
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+}
+
+.sub-image img {
+  opacity: 0.95;
 }
