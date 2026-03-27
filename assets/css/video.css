@@ -452,3 +452,7 @@ body.page-ready .controls {
 .video-mask{
   display:none !important;
 }
+
+.sound-button {
+  opacity: 1 !important;
+}
