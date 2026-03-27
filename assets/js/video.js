@@ -108,7 +108,8 @@ function loadVideo() {
       "&loop=1" +
       "&playlist=" + video.id +
       extraParams;
-      frame.allow = "autoplay; fullscreen; picture-in-picture";
+
+    frame.allow = "autoplay; fullscreen; picture-in-picture";
 
     /* 텍스트 */
     const caption = document.getElementById("video-caption");
