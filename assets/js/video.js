@@ -68,6 +68,7 @@ fetch("assets/config/videos.json")
 /* =========================
    🎬 영상 로드 (핵심)
 ========================= */
+
 function loadVideo() {
 
   if (!videos.length) return;
@@ -76,38 +77,72 @@ function loadVideo() {
   const video = videos[currentIndex];
 
   /* 🎨 ambient */
-  const ambient = document.querySelector(".video-ambient");
-  if (ambient && video.themeColor) {
-    ambient.style.setProperty("--ambient-color", video.themeColor);
-  }
+const ambient = document.querySelector(".video-ambient");
+
+const themeColor = getComputedStyle(document.body)
+  .getPropertyValue("--theme-color")
+  .trim();
+
+if (ambient && themeColor) {
+  ambient.style.setProperty("--ambient-color", themeColor);
+}
 
   fadeOut();
 
   setTimeout(() => {
 
-    /* 🔥 모바일/PC 완전 분리 */
-    let extraParams = "";
+    let src = "";
 
-    if (isMobile) {
-      extraParams =
-        "&playsinline=1" +
-        "&autoplay=1";
+    /* =========================
+       🎬 플랫폼 분기
+    ========================= */
+
+    if (video.platform === "vimeo") {
+
+      /* 🔥 Vimeo (전시 최적화) */
+      src =
+        "https://player.vimeo.com/video/" + video.id +
+        "?autoplay=1" +
+        "&muted=1" +
+        "&background=1" +
+        "&title=0" +
+        "&byline=0" +
+        "&portrait=0";
+
     } else {
-      extraParams =
-        "&autoplay=1" +
-        "&mute=1";
+
+      /* 🔴 YouTube (기존 유지) */
+
+      let extraParams = "";
+
+      if (isMobile) {
+        extraParams =
+          "&playsinline=1" +
+          "&autoplay=1";
+      } else {
+        extraParams =
+          "&autoplay=1" +
+          "&mute=1";
+      }
+
+      src =
+        "https://www.youtube.com/embed/" + video.id +
+        "?controls=1" +
+        "&rel=0" +
+        "&modestbranding=1" +
+        "&iv_load_policy=3" +
+        "&fs=0" +
+        "&loop=1" +
+        "&playlist=" + video.id +
+        extraParams;
+
     }
 
-    iframe.src =
-      "https://www.youtube.com/embed/" + video.id +
-      "?controls=1" +
-      "&rel=0" +
-      "&modestbranding=1" +
-      "&iv_load_policy=3" +
-      "&fs=0" +
-      "&loop=1" +
-      "&playlist=" + video.id +
-      extraParams;
+    /* 🎬 iframe 적용 */
+    iframe.src = src;
+
+    /* 🔥 중요: autoplay 허용 */
+    iframe.allow = "autoplay; fullscreen; picture-in-picture";
 
     /* 텍스트 */
     const caption = document.getElementById("video-caption");
@@ -120,7 +155,7 @@ function loadVideo() {
     const guide = document.querySelector(".sound-guide");
     if (guide) guide.style.opacity = 1;
 
-    /* 🎬 fade in (길게) */
+    /* 🎬 fade in */
     setTimeout(() => {
       fadeIn();
     }, 900);
