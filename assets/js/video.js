@@ -163,15 +163,11 @@ if (ambient && themeColor) {
 
 const btn = document.querySelector(".sound-button");
 
-if (btn) {
-  btn.classList.remove("show");
-  btn.style.opacity = 0;
-  btn.style.pointerEvents = "auto";
+const btn = document.querySelector(".sound-button");
 
-  setTimeout(() => {
-    btn.classList.add("show");
-  }, 300);
-}
+  if (btn) {
+    btn.style.display = "none";
+  }
 
 }
 
@@ -266,8 +262,7 @@ function enableSound() {
   const btn = document.querySelector(".sound-button");
 
   if (btn) {
-    btn.style.opacity = 0;
-    btn.style.pointerEvents = "none";
+    btn.style.display = "block";
   }
 
 } 
