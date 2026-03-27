@@ -270,13 +270,10 @@ document.querySelector(".sound-button")?.addEventListener("click", enableSound);
 /* =========================
    초기 연출
 ========================= */
+
 window.addEventListener("load", () => {
 
   document.body.classList.add("page-ready");
-
-  if (guide) {
-    guide.innerText = "화면을 클릭하면 사운드가 활성화됩니다";
-  }
 
   setTimeout(showUI, 1200);
 
