@@ -154,16 +154,24 @@ if (ambient && themeColor) {
     const title = document.getElementById("videoTitle");
     if (title) title.innerText = video.title || "";
 
-    /* 안내문구 */
-    const guide = document.querySelector(".sound-guide");
-    if (guide) guide.style.opacity = 1;
-
     /* 🎬 fade in */
     setTimeout(() => {
       fadeIn();
     }, 900);
 
   }, 800);
+
+const btn = document.querySelector(".sound-button");
+
+if (btn) {
+  btn.classList.remove("show");
+  btn.style.opacity = 0;
+  btn.style.pointerEvents = "auto";
+
+  setTimeout(() => {
+    btn.classList.add("show");
+  }, 300);
+}
 
 }
 
@@ -258,16 +266,11 @@ function enableSound() {
   const btn = document.querySelector(".sound-button");
 
   if (btn) {
-    // 완전 초기화
-    btn.classList.remove("show");
     btn.style.opacity = 0;
-    btn.style.pointerEvents = "auto";
-
-    // 강제 재등장
-    setTimeout(() => {
-      btn.classList.add("show");
-    }, 300);
+    btn.style.pointerEvents = "none";
   }
+
+} 
 
 /* 🔥 버튼 클릭 연결 (밖에 있어야 함) */
 document.querySelector(".sound-button")?.addEventListener("click", enableSound);
