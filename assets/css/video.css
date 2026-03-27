@@ -191,18 +191,17 @@ body::before {
 /* 하단 버튼 */
 .controls {
   position: fixed;
-
   bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
+
+  left: 0;
+  width: 100%;
 
   display: flex;
-  gap: 12px;
-
   justify-content: center;
   align-items: center;
+  gap: 12px;
 
-  z-index: 999;
+  z-index: 1000;
 }
 
 .controls button {
@@ -210,8 +209,8 @@ body::before {
   border-radius: 18px;
 
   background: transparent;
-  border: 1px solid var(--theme-color);
-  color: var(--theme-color);
+  border: 1px solid rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.7);
 
   cursor: pointer;
   transition: all 0.25s ease;
@@ -315,12 +314,13 @@ body.page-ready .controls {
 
 .sound-button {
   position: fixed;
-
-  bottom: 110px;              /* 🔥 controls 위에 위치 */
+  bottom: 110px;
   left: 50%;
   transform: translateX(-50%);
 
+  pointer-events: auto;
   z-index: 9999;
+  isolation: isolate;   /* 🔥 추가 */
 
   padding: 10px 18px;
   border-radius: 20px;
@@ -328,23 +328,24 @@ body.page-ready .controls {
   font-size: 13px;
   letter-spacing: 0.5px;
 
-  border: 1px solid var(--theme-color);
-  color: var(--theme-color);
+  border: 1px solid rgba(255,255,255,0.4);   /* 🔥 수정 */
+  color: rgba(255,255,255,0.75);             /* 🔥 수정 */
 
   background: rgba(0,0,0,0.45);
   backdrop-filter: blur(6px);
 
-  cursor: pointer;            /* 🔥 손모양 */
+  cursor: pointer;
 
   opacity: 1;
   transition: all 0.3s ease;
 }
 
-/* 🔥 hover 반응 */
 .sound-button:hover {
   background: var(--theme-color);
   color: #000;
-  transform: translateX(-50%) scale(1.05);
+  border-color: var(--theme-color);
+
+  box-shadow: 0 0 12px rgba(255,255,255,0.2);
 }
 
 .sound-button.show {
@@ -423,7 +424,7 @@ body.page-ready .controls {
   position: absolute;
   z-index: 20;
 
-  pointer-events: auto;   /* 🔥 핵심 (이거 없어서 지금 안 막힘) */
+  pointer-events: none;
 }
 
 /* 🔴 큰 레이어 */
@@ -436,7 +437,7 @@ body.page-ready .controls {
   height: 94%;   /* 🔥 이 값으로 위쪽 확장 조절 */
 
   z-index: 20;
-  pointer-events: auto;
+  pointer-events: none;
 }
 
 /* 🟢 우측 하단 */
@@ -451,7 +452,7 @@ body.page-ready .controls {
   height: 32%;
 
   z-index: 20;
-  pointer-events: auto;
+  pointer-events: none;
 }
 
 .video-ambient {
