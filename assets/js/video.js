@@ -104,6 +104,7 @@ if (ambient && themeColor) {
       /* 🔥 Vimeo (전시 최적화) */
       src =
         "https://player.vimeo.com/video/" + video.id +
+        "?h=" + video.hash +
         "?autoplay=1" +
         "&muted=1" +
         "&background=1" +
