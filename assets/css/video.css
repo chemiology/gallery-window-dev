@@ -312,6 +312,7 @@ body.page-ready .controls {
   border-radius: 20px;
 
   font-size: 13px;
+  pointer-events: auto;
 
   border: 1px solid var(--theme-color);
   color: var(--theme-color);
@@ -324,7 +325,7 @@ body.page-ready .controls {
   transform: translate(-50%, 10px);
 
   transition: all 0.3s ease;
-  z-index: 50;
+  z-index: 999;
 }
 
 .sound-button:hover {
