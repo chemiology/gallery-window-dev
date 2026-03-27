@@ -163,10 +163,8 @@ if (ambient && themeColor) {
 
 const btn = document.querySelector(".sound-button");
 
-const btn = document.querySelector(".sound-button");
-
   if (btn) {
-    btn.style.display = "none";
+  btn.style.display = "block";   // 🔥 영상 바뀌면 버튼 다시 등장
   }
 
 }
@@ -262,7 +260,7 @@ function enableSound() {
   const btn = document.querySelector(".sound-button");
 
   if (btn) {
-    btn.style.display = "block";
+  btn.style.display = "none";   // 🔥 클릭하면 사라짐
   }
 
 } 
