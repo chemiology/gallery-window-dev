@@ -105,7 +105,7 @@ if (ambient && themeColor) {
       src =
         "https://player.vimeo.com/video/" + video.id +
         "?h=" + video.hash +
-        "?autoplay=1" +
+        "&autoplay=1" +
         "&muted=1" +
         "&background=1" +
         "&title=0" +
@@ -229,38 +229,43 @@ document.addEventListener("touchstart", showUI);
 document.addEventListener("click", showUI);
 
 /* =========================
-   🔊 사운드 (안정 버전)
+   🔊 사운드 (버튼 방식)
 ========================= */
+
 let soundEnabled = false;
 
-document.addEventListener("click", () => {
+function enableSound() {
 
   if (soundEnabled) return;
 
   const iframe = document.getElementById("player");
-  if (!iframe) return;
-
   const video = videos[currentIndex];
 
   if (video.platform === "youtube") {
 
     iframe.src = iframe.src.replace("mute=1", "mute=0");
 
-  } else if (video.platform === "vimeo") {
+  } else {
 
     iframe.contentWindow.postMessage(
       JSON.stringify({ method: "setVolume", value: 1 }),
       "*"
     );
-
   }
 
   soundEnabled = true;
 
-  const guide = document.querySelector(".sound-guide");
-  if (guide) guide.style.opacity = 0;
+  const btn = document.querySelector(".sound-button");
 
-});
+  if (btn) {
+    btn.style.opacity = 0;
+    btn.style.pointerEvents = "none";
+  }
+}
+
+/* 🔥 버튼 클릭 연결 (밖에 있어야 함) */
+document.querySelector(".sound-button")?.addEventListener("click", enableSound);
+
 
 /* =========================
    초기 연출
@@ -268,8 +273,6 @@ document.addEventListener("click", () => {
 window.addEventListener("load", () => {
 
   document.body.classList.add("page-ready");
-
-  const guide = document.querySelector(".sound-guide");
 
   if (guide) {
     guide.innerText = "화면을 클릭하면 사운드가 활성화됩니다";
@@ -320,10 +323,6 @@ if (isMobile) {
 /* =========================
    🚫 우클릭 / 선택 / 드래그 방지
 ========================= */
-
-document.addEventListener("contextmenu", (e) => {
-  e.preventDefault();
-});
 
 document.addEventListener("selectstart", (e) => {
   e.preventDefault();
