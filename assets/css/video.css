@@ -113,6 +113,20 @@ body::before {
   pointer-events: auto;
 }
 
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;   /* 너무 커지는 것 방지 */
+  margin: 0 auto;
+}
+
+.video-wrapper iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+}
+
 /* =====================================================
    UI
 ===================================================== */
