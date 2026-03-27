@@ -228,19 +228,25 @@ document.addEventListener("touchstart", showUI);
 ========================= */
 let soundEnabled = false;
 
-document.querySelector(".ui-layer")?.addEventListener("click", (e) => {
-
-  if (soundEnabled) return;
+document.querySelector(".ui-layer")?.addEventListener("click", () => {
 
   const iframe = document.getElementById("player");
   if (!iframe) return;
 
-  iframe.src = iframe.src.replace("mute=1", "mute=0");
+  const video = videos[currentIndex];
 
-  soundEnabled = true;
+  if (video.platform === "youtube") {
 
-  const guide = document.querySelector(".sound-guide");
-  if (guide) guide.style.opacity = 0;
+    iframe.src = iframe.src.replace("mute=1", "mute=0");
+
+  } else if (video.platform === "vimeo") {
+
+    iframe.contentWindow.postMessage(
+      JSON.stringify({ method: "setVolume", value: 1 }),
+      "*"
+    );
+
+  }
 
 });
 
