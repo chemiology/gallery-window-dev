@@ -73,6 +73,8 @@ function loadVideo() {
 
   if (!videos.length) return;
 
+  soundEnabled = false;   // 🔥 이 줄 추가
+
   const iframe = document.getElementById("player");
   const video = videos[currentIndex];
 
@@ -220,8 +222,10 @@ function showUI() {
   }, 2500);
 }
 
+/* 마우스 / 터치 / 클릭 모두 대응 */
 document.addEventListener("mousemove", showUI);
 document.addEventListener("touchstart", showUI);
+document.addEventListener("click", showUI);
 
 /* =========================
    🔊 사운드 (안정 버전)
@@ -310,3 +314,24 @@ if (isMobile) {
 
   }, { once: true });
 }
+
+
+/* =========================
+   🚫 우클릭 / 선택 / 드래그 방지
+========================= */
+
+document.addEventListener("contextmenu", (e) => {
+  e.preventDefault();
+});
+
+document.addEventListener("selectstart", (e) => {
+  e.preventDefault();
+});
+
+document.addEventListener("dragstart", (e) => {
+  e.preventDefault();
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "F12") e.preventDefault();
+});
