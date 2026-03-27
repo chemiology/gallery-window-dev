@@ -11,13 +11,15 @@
 
   "video_avatar_ii": [
     {
-      "id": "IYRbB-b2I7Y",
-      "platform": "youtube",
+      "id": "1177633919",
+      "platform": "vimeo",
+      "hash": "8170d046ee",
       "title": "Avatar II Video, 2024"
     },
     {
       "id": "CeXmqnsT2mU",
-      "platform": "youtube",
+      "platform": "vimeo",
+      "hash": "dc50fadafe",
       "title": "Avatar Reload Video, 2024"
     }
   ]
