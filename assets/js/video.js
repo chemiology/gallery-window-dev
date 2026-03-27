@@ -258,10 +258,16 @@ function enableSound() {
   const btn = document.querySelector(".sound-button");
 
   if (btn) {
+    // 완전 초기화
+    btn.classList.remove("show");
     btn.style.opacity = 0;
-    btn.style.pointerEvents = "none";
+    btn.style.pointerEvents = "auto";
+
+    // 강제 재등장
+    setTimeout(() => {
+      btn.classList.add("show");
+    }, 300);
   }
-}
 
 /* 🔥 버튼 클릭 연결 (밖에 있어야 함) */
 document.querySelector(".sound-button")?.addEventListener("click", enableSound);
