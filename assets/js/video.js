@@ -228,7 +228,9 @@ document.addEventListener("touchstart", showUI);
 ========================= */
 let soundEnabled = false;
 
-document.querySelector(".ui-layer")?.addEventListener("click", () => {
+document.addEventListener("click", () => {
+
+  if (soundEnabled) return;
 
   const iframe = document.getElementById("player");
   if (!iframe) return;
@@ -248,6 +250,11 @@ document.querySelector(".ui-layer")?.addEventListener("click", () => {
 
   }
 
+  soundEnabled = true;
+
+  const guide = document.querySelector(".sound-guide");
+  if (guide) guide.style.opacity = 0;
+
 });
 
 /* =========================
@@ -260,7 +267,7 @@ window.addEventListener("load", () => {
   const guide = document.querySelector(".sound-guide");
 
   if (guide) {
-    guide.innerText = "클릭하여 사운드를 활성화하세요";
+    guide.innerText = "화면을 클릭하면 사운드가 활성화됩니다";
   }
 
   setTimeout(showUI, 1200);
