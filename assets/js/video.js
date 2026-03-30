@@ -245,14 +245,19 @@ function enableSound() {
 
   if (video.platform === "youtube") {
 
+    // ✔ 기존 유지 (문제 없음)
     iframe.src = iframe.src.replace("mute=1", "mute=0");
 
   } else {
 
-    iframe.contentWindow.postMessage(
-      JSON.stringify({ method: "setVolume", value: 1 }),
-      "*"
-    );
+    // 🔥 Vimeo만 변경 (핵심)
+    iframe.src =
+      "https://player.vimeo.com/video/" + video.id +
+      "?h=" + video.hash +
+      "&autoplay=1" +
+      "&muted=0" +
+      "&background=1" +
+      "&title=0&byline=0&portrait=0";
   }
 
   soundEnabled = true;
@@ -260,10 +265,9 @@ function enableSound() {
   const btn = document.querySelector(".sound-button");
 
   if (btn) {
-  btn.style.display = "none";   // 🔥 클릭하면 사라짐
+    btn.style.display = "none";
   }
-
-} 
+}
 
 /* 🔥 버튼 클릭 연결 (밖에 있어야 함) */
 document.querySelector(".sound-button")?.addEventListener("click", enableSound);
