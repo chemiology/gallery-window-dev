@@ -45,6 +45,7 @@
       "themeColor": "#c6d4e1",
       "themeMode": "cool",
       "slideSeconds": 10,
+      "volume": 0.5,
       "startDate": "2026-02-15",
       "endDate": "2026-05-31"
     },
@@ -84,6 +85,7 @@
       "themeColor": "#f9efa3",
       "themeMode": "warm",
       "slideSeconds": 10,
+      "volume": 0.5,
       "startDate": "2026-03-01",
       "endDate": "2026-06-30"
     },
@@ -153,6 +155,7 @@
       "themeColor": "#eeb953",
       "themeMode": "warm",
       "slideSeconds": 10,
+      "volume": 0.5,
       "startDate": "2026-03-01",
       "endDate": "2026-06-30"
     }
