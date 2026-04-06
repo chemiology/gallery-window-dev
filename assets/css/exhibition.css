@@ -599,10 +599,36 @@ body.exhibition-detail figure.exhibition-poster img {
 .image-shield {
   position: absolute;
   inset: 0;
-  z-index: 5;
+  z-index: 2;
   background: transparent;
 
   pointer-events: auto;
+}
+
+.capture-guard {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+
+  pointer-events: none;
+
+  /* 아주 미세한 패턴 (눈에는 거의 안 보임) */
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255,255,255,0.02) 0px,
+    rgba(255,255,255,0.02) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+}
+
+.capture-guard::after {
+  content: "Gallery Window";
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.05);
 }
 
 /* =========================
