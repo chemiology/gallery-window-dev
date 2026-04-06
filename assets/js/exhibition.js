@@ -85,7 +85,10 @@ function protectImage(img) {
   img.addEventListener("dragstart", e => e.preventDefault());
 
   // 우클릭 방지
-  img.addEventListener("contextmenu", e => e.preventDefault());
+    img.addEventListener("contextmenu", e => {
+      e.preventDefault();
+      return false;
+    });
 
   // 더블클릭 방지
   img.addEventListener("dblclick", e => e.preventDefault());
