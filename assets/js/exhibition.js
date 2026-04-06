@@ -313,20 +313,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function setupAudio(src, volume) {
 
+  if (audio) {
+    audio.pause();
+    audio.src = "";
+    audio = null;
+  }
+
   audio = new Audio(src);
   audio.loop = true;
 
-  // 🔥 핵심 안전 처리
-  const safeVolume = Number.isFinite(volume) ? volume : 0.5;
+  const safeVolume =
+    typeof volume === "number" && isFinite(volume)
+      ? volume
+      : 0.5;
 
   audio.volume = safeVolume;
-
   audio.preload = "auto";
   audio.muted = true;
 
-  audio.play().catch(() => {});
+  audio.play()
+    .then(() => console.log("🎧 초기 play 성공"))
+    .catch(err => console.error("❌ 초기 play 실패:", err));
 
-  window.addEventListener("pointerdown", enableAudio, { once: true });
+  document.addEventListener("click", () => {
+    audio.muted = false;
+
+    audio.play().catch(err => {
+      console.error("❌ 클릭 후 play 실패:", err);
+    });
+
+  }, { once: true });
 }
 
 /* -----------------------------------------------------
