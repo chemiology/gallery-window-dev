@@ -154,6 +154,7 @@ async function loadExhibition(id) {
 
   } catch (err) {
 
+    console.log("exhibition.volume:", exhibition.volume);
     console.error("Exhibition load failed:", err);
 
   }
@@ -310,22 +311,20 @@ document.addEventListener("DOMContentLoaded", () => {
    Audio
 ----------------------------------------------------- */
 
-function setupAudio(src) {
+function setupAudio(src, volume) {
 
   audio = new Audio(src);
   audio.loop = true;
-  audio.volume = volume ?? 0.5;   // 🔥 핵심 추가
+
+  // 🔥 핵심 안전 처리
+  const safeVolume = Number.isFinite(volume) ? volume : 0.5;
+
+  audio.volume = safeVolume;
 
   audio.preload = "auto";
   audio.muted = true;
 
   audio.play().catch(() => {});
-
-  const enableAudio = () => {
-    if (!audio) return;
-    audio.muted = false;
-    audio.play().catch(() => {});
-  };
 
   window.addEventListener("pointerdown", enableAudio, { once: true });
 }
