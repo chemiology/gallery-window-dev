@@ -147,7 +147,10 @@ async function loadExhibition(id) {
 
     /* ---------- 음악 ---------- */
 
-    setupAudio(basePath + "music.mp3");
+    setupAudio(
+      basePath + "music.mp3",
+      exhibition.volume
+    );
 
   } catch (err) {
 
@@ -311,7 +314,8 @@ function setupAudio(src) {
 
   audio = new Audio(src);
   audio.loop = true;
-  audio.volume = 0.5;
+  audio.volume = volume ?? 0.5;   // 🔥 핵심 추가
+
   audio.preload = "auto";
   audio.muted = true;
 
