@@ -625,9 +625,18 @@ body.exhibition-detail figure.exhibition-poster img {
 .capture-guard::after {
   content: "Gallery Window";
   position: absolute;
-  center;
-  font-size: 40px;
-  color: rgba(255,255,255,0.08);
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 60px;
+  font-weight: 600;
+
+  color: rgba(255,255,255,0.015);  /* 🔥 핵심 */
+
+  pointer-events: none;
 }
 
 /* =========================
