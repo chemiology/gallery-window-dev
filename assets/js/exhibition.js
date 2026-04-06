@@ -324,7 +324,7 @@ function setupAudio(src, volume) {
 
   const safeVolume =
     typeof volume === "number" && isFinite(volume)
-      ? volume
+      ? Math.max(0, Math.min(1, volume))
       : 0.5;
 
   audio.volume = safeVolume;
