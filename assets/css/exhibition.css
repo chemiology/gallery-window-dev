@@ -615,10 +615,10 @@ body.exhibition-detail figure.exhibition-poster img {
   /* 아주 미세한 패턴 (눈에는 거의 안 보임) */
   background-image: repeating-linear-gradient(
     45deg,
-    rgba(255,255,255,0.02) 0px,
-    rgba(255,255,255,0.02) 2px,
+    rgba(255,255,255,0.025) 0px,
+    rgba(255,255,255,0.025) 2px,
     transparent 2px,
-    transparent 4px
+    transparent 6px
   );
 }
 
@@ -631,10 +631,10 @@ body.exhibition-detail figure.exhibition-poster img {
   align-items: center;
   justify-content: center;
 
-  font-size: 60px;
-  font-weight: 600;
+  font-size: 48px;
+  letter-spacing: 2px;
 
-  color: rgba(255,255,255,0.015);  /* 🔥 핵심 */
+  color: rgba(255,255,255,0.03);
 
   pointer-events: none;
 }
