@@ -15,12 +15,37 @@
       "platform": "vimeo",
       "hash": "8170d046ee",
       "title": "Avatar II Video, 2024"
-    },
+    }
+  ],
+
+  "video_avatar": [
+    {
+      "id": "1177633466",
+      "platform": "vimeo",
+      "hash": "8771c59346",
+      "title": "Avatar Video, 2024"
+    }
+  ],
+
+  "video_avatar_reload": [
     {
       "id": "1177634318",
       "platform": "vimeo",
       "hash": "dc50fadafe",
       "title": "Avatar Reload Video, 2024"
     }
+  ],
+
+  "video_yeonwoos_new_song_released": [
+    {
+      "id": "1177634719",
+      "platform": "vimeo",
+      "hash": "d3482c18c2",
+      "title": "Yeonwoo's New Song Released Video, 2024"
+    }
   ]
+
+
+
+
 }
