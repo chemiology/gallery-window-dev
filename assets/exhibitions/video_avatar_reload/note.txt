@@ -1,0 +1,14 @@
+전작인 아바타II에서 이더버스에 태어난 아바타였던 연우는 본체의 몸을 얻어 현실세계로 탈출을 했다. 이번에는 연우가 다시 가상세계인 이더버스로 돌아가는 이야기로 아바타II와 아바타III 사이에 존재하는 짧은 인터퀄로 만들어졌다. 대재앙이후 국가정부의 위상은 크게 추락하고, 지하도시를 건설하고 운영하고 있는 기업들이 실질적으로 작은 정부의 역할을 하게 된다. 이 과정에서 국가정부와 기업들 간에 알력이 발생하고 국가정부는 기업들이 가상세계에 보관하고 있는 컨트롤키를 탈취하기 위해 가상세계에서 탈출한 연우와 접촉한다. 
+
+In the previous work, Avatar II, Yeon-woo, who was an avatar born in the Etherverse, acquired the original body and escaped to the real world. This time, it is the story of Yeon-woo returning to the virtual world, Etherverse. After the catastrophe, the status of the national government fell significantly, and the companies that built and operated the underground city effectively took on the role of a small government. In this process, conflict arises between the national government and companies, and the national government contacts Yeon-woo to steal the control keys that companies keep in the virtual world.
+
+
+Directed and Produced by KyoungSoo Kim
+
+Image generation: Stable Diffusion SDXL, FLUX, Adobe Firefly, DALLE3
+Video generation: LUMA, SadTalker, Viggle
+Video upscaling: DaVinci Resolve Studio
+Voice generation: iMyFone VoxBox
+Sound effect generation: IlElevenLabs
+Theme song & BGM: SUNO
+
