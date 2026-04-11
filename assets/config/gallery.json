@@ -161,6 +161,39 @@
     },
 
     {
+      "id": "fragments_of_memory",
+      "title": "Fragments of Memory",
+      "hall": "hall04",
+      "hallTitle": "4관",
+      "order": 5,
+      "status": "current",
+      "artist": "배경희",
+      "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg"],
+      "captions": [
+        "기억의 편린 #01",
+        "기억의 편린 #02",
+        "기억의 편린 #03",
+        "기억의 편린 #04",
+        "기억의 편린 #05",
+        "기억의 편린 #06",
+        "기억의 편린 #07",
+        "기억의 편린 #08",
+        "기억의 편린 #09",
+        "기억의 편린 #10",
+        "기억의 편린 #11",
+        "기억의 편린 #12",
+        "기억의 편린 #13"
+      ],
+      "themeColor": "#c08e77",
+      "themeMode": "warm",
+      "slideSeconds": 10,
+      "volume": 0.5,
+      "startDate": "2026-04-01",
+      "endDate": "2026-12-31"
+    },
+
+
+    {
       "id": "avatar",
       "title": "Avatar",
       "hall": "hall20",
@@ -505,7 +538,7 @@
       "themeColor": "#c7e5e7",
       "themeMode": "warm",
       "slideSeconds": 10,
-      "volume": 0.5,
+      "volume": 0.4,
       "startDate": "2026-04-01",
       "endDate": "2026-12-31"
     },
