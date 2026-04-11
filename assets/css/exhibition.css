@@ -613,7 +613,7 @@ body.exhibition-detail figure.exhibition-poster img {
   pointer-events: none;
 
   /* 아주 미세한 패턴 (눈에는 거의 안 보임) */
-  background-image: repeating-linear-gradient(
+  background-image: none !important;
     45deg,
     rgba(255,255,255,0.025) 0px,
     rgba(255,255,255,0.025) 2px,
@@ -623,7 +623,7 @@ body.exhibition-detail figure.exhibition-poster img {
 }
 
 .capture-guard::after {
-  content: "Gallery Window";
+  content: none !important;
   position: absolute;
   inset: 0;
 
