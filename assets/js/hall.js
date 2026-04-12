@@ -238,14 +238,15 @@ async function loadHallEntry(exhibition, hallId) {
 
   try {
 
-    const note = await fetch(basePath + "note.txt");
-    const noteText = await note.text();
+    const res = await fetch(basePath + "note.txt");
+
+    const noteText = res.ok ? await res.text() : "";
 
     document.getElementById("artistNote").innerText = noteText;
 
   } catch {
 
-    console.warn("Artist note missing");
+    document.getElementById("artistNote").innerText = "";
 
   }
 
@@ -253,8 +254,14 @@ async function loadHallEntry(exhibition, hallId) {
 
   try {
 
-    const profile = await fetch(basePath + "profile.txt");
-    const text = await profile.text();
+    const res = await fetch(basePath + "profile.txt");
+
+    const text = res.ok ? await res.text() : "";
+
+    if (!text) {
+      document.getElementById("artistProfile").innerHTML = "";
+      return;
+    }
 
     const lines = text.split("\n");
 
@@ -291,7 +298,7 @@ async function loadHallEntry(exhibition, hallId) {
 
   } catch {
 
-    console.warn("Artist profile missing");
+    document.getElementById("artistProfile").innerHTML = "";
 
   }
 
