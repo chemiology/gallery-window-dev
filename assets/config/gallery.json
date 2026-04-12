@@ -149,11 +149,25 @@
       "endDate": "2026-06-30"
     },
 
+   {
+      "id": "video_avatar",
+      "title": "Avatar (Video)",
+      "hall": "hall51",
+      "hallTitle": "영상2관",
+      "order": 7,
+      "status": "current",
+      "artist": "김경수",
+      "themeColor": "#c6d4e1",
+      "themeMode": "cool",
+      "startDate": "2026-05-01",
+      "endDate": "2026-07-31"
+    },
+
     {
       "id": "fragments_of_memory",
       "title": "Fragments of Memory",
-      "hall": "hall04",
-      "hallTitle": "4관",
+      "hall": "hall05",
+      "hallTitle": "5관",
       "order": 6,
       "status": "current",
       "artist": "백경희",
@@ -178,24 +192,9 @@
       "themeMode": "warm",
       "slideSeconds": 10,
       "volume": 0.5,
-      "startDate": "2026-04-01",
-      "endDate": "2026-12-31"
-    },
-
-   {
-      "id": "video_avatar",
-      "title": "Avatar (Video)",
-      "hall": "hall51",
-      "hallTitle": "영상2관",
-      "order": 6,
-      "status": "current",
-      "artist": "김경수",
-      "themeColor": "#c6d4e1",
-      "themeMode": "cool",
-      "startDate": "2026-03-01",
-      "endDate": "2026-12-31"
+      "startDate": "2026-06-01",
+      "endDate": "2026-08-31"
     }
-
 
 
 
