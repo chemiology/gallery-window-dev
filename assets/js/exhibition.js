@@ -181,10 +181,14 @@ async function loadExhibition(id) {
 
     /* ---------- 음악 ---------- */
 
-    setupAudio(
-      basePath + "music.mp3",
-      exhibition.volume
-    );
+  const musicFile = exhibition.music
+    ? BASE_PATH + "/assets/audio/" + exhibition.music + ".mp3"
+    : basePath + "music.mp3"; // 기존 fallback 유지
+
+  setupAudio(
+    musicFile,
+    exhibition.volume
+  );
 
   } catch (err) {
 
