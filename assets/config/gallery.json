@@ -159,7 +159,7 @@
       "artist": "김경수",
       "themeColor": "#c6d4e1",
       "themeMode": "cool",
-      "startDate": "2026-05-01",
+      "startDate": "2026-04-01",
       "endDate": "2026-07-31"
     },
 
@@ -192,7 +192,7 @@
       "themeMode": "warm",
       "slideSeconds": 10,
       "volume": 0.5,
-      "startDate": "2026-06-01",
+      "startDate": "2026-04-01",
       "endDate": "2026-08-31"
     }
 
