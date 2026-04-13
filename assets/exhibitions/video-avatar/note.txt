@@ -1,0 +1,24 @@
+이 영상작품은 나의 사진작품인 아바타II 의 영상 버전이다. 
+이더버스라는 가상세계의 개발에 참여했던 김지훈은 수지라는 여성 아바타로 이더버스에 접속했다가 총격으로 사망하면서 아바타만 가상세계에 남게 된다. 이후에 가상세계 전문가였던 수지는 미주라는 아바타와 자신의 인식테그를 몰래 교체함으로써 현실세계에서 미주의 본체인 오혜령으로 깨어나지만 결국 사고로 죽게 되고 자신의 죽음에 대한 미스테리도 풀리게 된다.
+
+This video work is a cinematic version of my photographic piece Avatar II.
+
+Kim Ji-hoon, who participated in the development of a virtual world called “Etherverse,” logs into the system using a female avatar named Suji. After being killed in a shooting, only his avatar remains within the virtual world. Later, Suji—who had been an expert in virtual environments—secretly swaps her recognition tag with that of another avatar named Miju. As a result, she awakens in the real world as Oh Hye-ryeong, Miju’s physical counterpart. However, she eventually dies in an accident, and through this process, the mystery surrounding her death is finally revealed.
+
+
+Directed and Produced by KyoungSoo Kim
+
+Image generation: Stable Diffusion SDXL, Adobe Firefly, DALLE3
+Video generation: LUMA, Heygen, ToonCrafter
+Video Upscaling: DaVinci Resolve Studio
+
+Voice generation: iMyFone VoxBox
+Sound effect generation: IlElevenLabs
+
+Theme song: Digital Dreams
+    Lyrics: GPT-4
+    Composed by: SUNO
+
+BGM: Virtual Love
+    Composed by: SUNO
+
