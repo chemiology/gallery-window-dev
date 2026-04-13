@@ -13,7 +13,7 @@
 
   "currentExhibitions": [
     {
-      "id": "avatar_ii",
+      "id": "avatar-ii",
       "title": "Avatar II",
       "hall": "hall03",
       "hallTitle": "3관",
@@ -150,7 +150,7 @@
     },
 
    {
-      "id": "video_avatar",
+      "id": "video-avatar",
       "title": "Avatar (Video)",
       "hall": "hall51",
       "hallTitle": "영상2관",
@@ -164,7 +164,7 @@
     },
 
     {
-      "id": "fragments_of_memory",
+      "id": "fragments-of-memory",
       "title": "Fragments of Memory",
       "hall": "hall05",
       "hallTitle": "5관",

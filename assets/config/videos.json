@@ -9,7 +9,7 @@
     }
   ],
 
-  "video_avatar_ii": [
+  "video-avatar-ii": [
     {
       "id": "1177633919",
       "platform": "vimeo",
@@ -18,7 +18,7 @@
     }
   ],
 
-  "video_avatar": [
+  "video-avatar": [
     {
       "id": "1177633466",
       "platform": "vimeo",
@@ -27,7 +27,7 @@
     }
   ],
 
-  "video_avatar_reload": [
+  "video-avatar-reload": [
     {
       "id": "1177634318",
       "platform": "vimeo",
@@ -36,7 +36,7 @@
     }
   ],
 
-  "video_yeonwoos_new_song_released": [
+  "video-yeonwoos-new-song-released": [
     {
       "id": "1177634719",
       "platform": "vimeo",
