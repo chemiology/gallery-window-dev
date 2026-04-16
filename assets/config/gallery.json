@@ -13,7 +13,7 @@
 
   "currentExhibitions": [
     {
-      "id": "avatar-ii",
+      "id": "E0001",
       "title": "Avatar II",
       "hall": "hall03",
       "hallTitle": "3관",
@@ -52,7 +52,7 @@
     },
 
     {
-      "id": "eyes-of-memory",
+      "id": "E0003",
       "title": "Eyes of Memory",
       "hall": "hall01",
       "hallTitle": "1관 초대전",
@@ -93,7 +93,7 @@
     },
 
     {
-      "id": "being-beyond-time",
+      "id": "E0002",
       "title": "Being Beyond Time",
       "hall": "hall50",
       "hallTitle": "영상1관",
@@ -107,7 +107,7 @@
     },
 
     {
-      "id": "another-dream",
+      "id": "E0004",
       "title": "Another Dream",
       "hall": "hall02",
       "hallTitle": "2관 초대전",
@@ -150,7 +150,7 @@
     },
 
    {
-      "id": "video-avatar",
+      "id": "E0005",
       "title": "Avatar (Video)",
       "hall": "hall51",
       "hallTitle": "영상2관",
@@ -164,7 +164,7 @@
     },
 
     {
-      "id": "fragments-of-memory",
+      "id": "E0006",
       "title": "Fragments of Memory",
       "hall": "hall05",
       "hallTitle": "5관",
