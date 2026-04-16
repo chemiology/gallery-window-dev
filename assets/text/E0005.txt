@@ -1,0 +1,104 @@
+[작가노트]
+
+이 영상작품은 나의 사진작품인 아바타II 의 영상 버전이다. 
+이더버스라는 가상세계의 개발에 참여했던 김지훈은 수지라는 여성 아바타로 이더버스에 접속했다가 총격으로 사망하면서 아바타만 가상세계에 남게 된다. 이후에 가상세계 전문가였던 수지는 미주라는 아바타와 자신의 인식테그를 몰래 교체함으로써 현실세계에서 미주의 본체인 오혜령으로 깨어나지만 결국 사고로 죽게 되고 자신의 죽음에 대한 미스테리도 풀리게 된다.
+
+This video work is a cinematic version of my photographic piece Avatar II.
+
+Kim Ji-hoon, who participated in the development of a virtual world called “Etherverse,” logs into the system using a female avatar named Suji. After being killed in a shooting, only his avatar remains within the virtual world. Later, Suji—who had been an expert in virtual environments—secretly swaps her recognition tag with that of another avatar named Miju. As a result, she awakens in the real world as Oh Hye-ryeong, Miju’s physical counterpart. However, she eventually dies in an accident, and through this process, the mystery surrounding her death is finally revealed.
+
+
+Directed and Produced by KyoungSoo Kim
+
+Image generation: Stable Diffusion SDXL, Adobe Firefly, DALLE3
+Video generation: LUMA, Heygen, ToonCrafter
+Video Upscaling: DaVinci Resolve Studio
+
+Voice generation: iMyFone VoxBox
+Sound effect generation: IlElevenLabs
+
+Theme song: Digital Dreams
+    Lyrics: GPT-4
+    Composed by: SUNO
+
+BGM: Virtual Love
+    Composed by: SUNO
+
+
+[작가 프로필]
+
+[개인전]
+
+2026 『아바타II』 갤러리 창 (온라인)
+2024 『아바타II』 갤러리 공간미끌 (서울)
+2019 『아바타: 환상 꿈』 한국카메라박물관 (과천)
+2019 『아바타』 갤러리 나우 (서울)
+2017 『꼭두각시』 갤러리 이즈 (서울)
+2015 『별이 빛나는 밤』 핑야오국제사진축전 초대전, 핑야오전시장 (중국)
+2015 『별이 빛나는 밤』 가나아트스페이스 (서울)
+
+[주요 그룹전]
+
+2025 『2025 인천국제현대사진기획전』 인천문화예술회관 (인천)
+2025 『2025 여주국제사진전』 강변유원지길 (여주)
+2025 『부산국제사진제: International Open Call_혼이 있는 바다』 스페이스 원지 (부산)
+2025 『찢고 삐져나온 것들』 이스트아뜰리에 갤러리 서울 (서울)
+2024 『현대사진가 특별전_형태의 탐구』 Born star Rocks gallery (미국)
+2024 『Lishui Photography Festival』 리수이 사진박물관 (중국)
+2024 『빛과 그림자의 춤』 유누프 루벨스키 사진박물관 (폴란드)
+2023 『Listen, Sound of The photo』 랑그레오 시립미술관 (스페인)
+2023 『뉴 웨이브 - 대한민국국제포토페스티벌』 초대전, 예술의전당 한가람미술관 (서울)
+2023 『우크라이나 리브네 국제사진전: HOPE』 Rivne Museum (우크라이나)
+2023 『스페인 아스투리아스 국제사진전: HOPE』 abba playa Gijon Hotel (스페인)
+2023 『판단중지』 선광미술관 (인천)
+2021 『선의 경계: 사진으로 읽기』 갤러리89 (프랑스)
+2021 『로마국제사진전』 메디나로마 갤러리 (이탈리아)
+2018 『몽테 소사이어티: 오늘을 그리다』 백학미술관 (광주)
+2018 『제3회 PASA FESTIVAL – 젊은 시각』 수원미술전시관 (수원)
+2018 『피렌체국제사진전』 Galleria Mentana (이탈리아)
+2016 『동강국제사진제 Growing Up IV』 영월문화예술회관 (영월)
+
+[필모그라피]
+
+- 『아바타』 2024, 7분34초
+	2025 AI FilmFest Serbia (세르비아) 공식선정
+	2025 Neuro Masters AI Film Festival (러시아) 공식선정
+	2025 서울국제AI영화제 공식선정
+- 『아바타II』 2024, 9분59초
+	2026 Sofia World Film Festival (불가리아) 공식선정
+	2026 Black Owl Film Festival (튀르키예) 공식선정
+	2026 Tulip International Film Festival (네덜란드) 공식선정
+	2025 MIAMI ART TECH SUMMIT (미국) 공식선정
+	2025 Palma Film Festival (스페인) 공식선정
+	2025 Beyond The Screen Festival (벨기에) Honorable mention 선정
+	2025 Neuro Masters AI Film Festival (러시아) 공식선정 
+	2025 서울국제AI영화제 Finalist 선정
+	2024 CineTech Future Fest 폴란드 독립영화제 공식선정
+- 『아바타 리로드』 2024, 2분59초
+	2025 Neuro Masters AI Film Festival (러시아) 공식선정
+	2024 SF스토리 공모전 AI영상부문 대상 수상
+- 『연우의 신곡발표』 2024, 5분55초
+	2025 Neuro Masters AI Film Festival 공식선정 (러시아)
+	2025 서울국제AI영화제 공식선정
+
+[사진집]
+
+2019 Avatar, 도서출판 하얀나무 (ISBN 979-11-85154-46-6)
+2017 Marionette, 도서출판 하얀나무 (ISBN 979-11-85154-27-5)
+2015 The Starry Night, 도서출판 하얀나무 (ISBN 979-11-85154-09-1)
+
+[수상/선정]
+
+2025 Beyond The Screen Festival, Honorable mention (벨기에)
+2024 SF스토리 공모전 AI영상부문 대상 (동아사이언스)
+2019 한국카메라박물관, 올해의 사진가 선정
+2018 제9회 갤러리 나우 작가상(NoW Advance Exhibition)
+2017 제4회 대한민국국제포토페스티벌 우수작가상
+
+[연락처]
+
+E-mail : chemiology@naver.com
+Homepage : https://www.kimkyoungsoo.com
+Blog : https://blog.naver.com/chemiology
+Facebook : http://www.facebook.com/chemiology
+Instagram : https://www.instagram.com/kskimpc
