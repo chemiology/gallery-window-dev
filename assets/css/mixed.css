@@ -73,3 +73,13 @@
 .video-wrapper.layer-hidden{
   pointer-events:none;
 }
+
+.video-wrapper.layer-hidden{
+  opacity:0;
+  pointer-events:none;
+  z-index:0;   /* 🔥 추가 (핵심) */
+}
+
+.image-wrapper.layer-visible{
+  z-index:2;   /* 🔥 이미지가 위로 올라오게 */
+}
