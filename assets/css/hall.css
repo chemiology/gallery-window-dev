@@ -326,11 +326,12 @@ body.hall .enter-exhibition{
 
 .guestbook-section{
   margin:20px 0 28px 0;
-
   width:100%;
   max-width:100%;
-
   text-align:left;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding-bottom: 18px;
+  margin-bottom: 22px;
 }
 
 /* =====================================================
@@ -435,7 +436,8 @@ color:#fff;
 }
 
 .guestbook li{
-  font-size:13.5px;
+  font-size:13px;
+  opacity:0.85;
   color:#b5bac0;
 }
 
@@ -704,4 +706,25 @@ body.hall .guestbook input:focus,
 body.hall .guestbook textarea:focus{
   border-color: var(--theme-color);
   box-shadow: 0 0 6px var(--theme-color);
+}
+
+/* ========================================
+   GUESTBOOK THEME ENHANCEMENT
+======================================== */
+
+/* 제목 색 */
+.guestbook-section .guestbook-title{
+  color: var(--theme-color);
+}
+
+/* 입력창 포커스 */
+.guestbook-section input:focus{
+  border-color: var(--theme-color);
+  box-shadow: 0 0 6px var(--theme-color);
+}
+
+/* 리스트 포인트 */
+.guestbook-section li::marker{
+  color: var(--theme-color);
+  opacity:0.6;
 }
