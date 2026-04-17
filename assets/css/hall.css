@@ -634,58 +634,39 @@ body.hall .hall-entry a:hover{
 
 
 /* =====================================
-   GUESTBOOK CLEAN (FINAL)
+   GUESTBOOK TONE ADJUST (FINAL)
 ===================================== */
 
-/* 제목 */
+/* 제목 (한줄 감상 + 최근 감상글) */
 body.hall .guestbook-title,
 body.hall .recent-guestbook-title{
-  font-size:15px;
-  font-weight:500;
-  color:var(--theme-color);
-  margin-bottom:10px;
+  color: rgba(var(--theme-color-rgb), 0.85);
 }
 
 /* 입력창 */
 body.hall .guestbook-form input{
-  border:1px solid rgba(255,255,255,0.25);
-  background:rgba(255,255,255,0.05);
-  color:#fff;
-  padding:6px 10px;
+  border:1px solid rgba(255,255,255,0.2);
 }
 
-/* 포커스 */
+/* 입력창 focus (조금 더 부드럽게) */
 body.hall .guestbook-form input:focus{
-  border-color:var(--theme-color);
-  box-shadow:0 0 6px var(--theme-color);
-  outline:none;
+  border-color: rgba(var(--theme-color-rgb), 0.7);
+  box-shadow: 0 0 6px rgba(var(--theme-color-rgb), 0.35);
 }
 
-/* 버튼 */
-body.hall .guestbook-form button{
-  padding:6px 12px;
-  background:rgba(255,255,255,0.1);
-  border:1px solid rgba(255,255,255,0.3);
-  color:#fff;
-  cursor:pointer;
-}
-
+/* 버튼 hover */
 body.hall .guestbook-form button:hover{
-  border-color:var(--theme-color);
-  color:var(--theme-color);
+  color: rgba(var(--theme-color-rgb), 0.85);
+  border-color: rgba(var(--theme-color-rgb), 0.6);
 }
 
-/* 최근 방명록 리스트 */
+/* 최근 감상글 내용 */
 body.hall .guestbook li{
-  font-size:13px;
-  line-height:1.6;
-  color:#cfd5db;
-  opacity:0.85;
-  margin-bottom:4px;
+  font-size:13px;   /* 🔥 한 단계 축소 */
+  color: rgba(220,225,230,0.75);  /* 🔥 톤 다운 */
 }
 
 /* 리스트 포인트 */
 body.hall .guestbook li::marker{
-  color:var(--theme-color);
-  opacity:0.6;
+  color: rgba(var(--theme-color-rgb), 0.5);
 }
