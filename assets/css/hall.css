@@ -325,13 +325,13 @@ body.hall .enter-exhibition{
 ===================================================== */
 
 .guestbook-section{
-  margin-top:40px;
-  text-align:center;
-  max-width:520px;
-  margin-left:auto;
-  margin-right:auto;
-}
+  margin:20px 0 28px 0;
 
+  width:100%;
+  max-width:100%;
+
+  text-align:left;
+}
 
 /* =====================================================
    RESPONSIVE
@@ -476,7 +476,7 @@ body.hall .guestbook-form textarea{
 
 body.hall .guestbook-form input{
   width:100%;
-  max-width:720px;
+  max-width:100%;
 }
 
 /* =========================
