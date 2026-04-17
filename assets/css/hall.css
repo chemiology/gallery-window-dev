@@ -91,22 +91,6 @@
    ARTIST PROFILE / NOTE
 ===================================================== */
 
-body.hall .artist-profile,
-body.hall .artist-note{
-  text-align:justify;
-  text-align-last:left;
-  line-height:1.7;
-  color:#e6e7e9;
-}
-
-body.hall .artist-profile{
-  text-align:justify;
-  white-space:normal;
-  line-height:1.7;
-  margin-top:40px;
-  font-size:16px;
-}
-
 .artist-profile p{
 margin-bottom:1em;
 }
@@ -391,22 +375,6 @@ color:#fff;
   margin-bottom:6px;
 }
 
-.profile-subtitle{
-  margin-top:32px;
-  margin-bottom:14px;
-
-  font-weight:500;
-  letter-spacing:.05em;
-}
-
-.profile-subtitle{
-  margin-top:28px;
-  margin-bottom:12px;
-
-  font-weight:500;
-  letter-spacing:.04em;
-}
-
 .poster-caption{
 
   position:absolute;
@@ -490,23 +458,6 @@ body.hall .guestbook-form button{
 /* =========================
    HALL TEXT (FINAL CLEAN)
 ========================= */
-
-/* 작가 프로필 */
-body.hall .artist-profile{
-  color:#e6eaee;
-  opacity:0.9;
-}
-
-/* 작가 노트 */
-body.hall .artist-note{
-  color:#f0f3f6;
-  opacity:0.92;
-}
-
-/* 문단 */
-body.hall .artist-note p{
-  line-height:1.65;
-}
 
 /* 강조 */
 body.hall .artist-note strong{
@@ -754,4 +705,80 @@ body.hall .guestbook li::marker{
   opacity:0.75;
 
   margin-bottom:4px;
+}
+
+/* =====================================
+   ARTIST PROFILE / NOTE CLEAN
+===================================== */
+
+/* 프로필 내부 줄 */
+body.hall .artist-profile span{
+  display:block;
+  margin-bottom:6px;
+}
+
+/* 프로필 소제목 */
+body.hall .profile-subtitle{
+  margin-top:26px;
+  margin-bottom:10px;
+
+  font-size:14px;
+  letter-spacing:.04em;
+
+  color:var(--theme-color);
+  opacity:0.7;
+}
+
+/* 작가노트 문단 */
+body.hall .artist-note p{
+  margin-bottom:12px;
+}
+
+/* 첫 문단 강조 */
+body.hall .artist-note p:first-of-type{
+  font-size:15px;
+  opacity:1;
+  letter-spacing:.01em;
+}
+
+/* 강조 텍스트 */
+body.hall .artist-note strong{
+  color:#f0f2f4;
+}
+
+/* =====================================
+   ARTIST PROFILE
+===================================== */
+
+body.hall .artist-profile{
+  text-align:justify;
+  text-align-last:left;
+  white-space:normal;
+
+  margin-top:40px;
+
+  font-size:15px;
+  line-height:1.7;
+
+  color:#e2e6eb;
+  opacity:0.92;
+}
+
+/* =====================================
+   ARTIST NOTE
+===================================== */
+
+body.hall .artist-note{
+  margin-top:12px;
+
+  font-size:14px;
+  line-height:1.7;
+
+  color:#f1f4f7;
+  opacity:0.96;
+}
+
+/* 문단 */
+body.hall .artist-note p{
+  line-height:1.65;
 }
