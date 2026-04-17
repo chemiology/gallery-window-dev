@@ -429,18 +429,6 @@ color:#fff;
   opacity:1;
 }
 
-.guestbook-title,
-.recent-guestbook-title{
-  font-size:14px;
-  color:#c3c7cc;
-}
-
-.guestbook li{
-  font-size:13px;
-  opacity:0.85;
-  color:#b5bac0;
-}
-
 @media (max-width:768px){
 
   body.archive-page .archive-grid{
@@ -527,27 +515,6 @@ body.hall .artist-note strong{
 
 
 /* =========================
-   GUESTBOOK (FINAL)
-========================= */
-
-/* 제목 */
-.guestbook-title,
-.recent-guestbook-title{
-  color:#dbe0e6;
-}
-
-/* 내용 통일 */
-.guestbook li,
-.guestbook.poetic li{
-  font-size:14px;
-  line-height:1.65;
-  color:#dbe0e6;
-  opacity:0.95;
-  letter-spacing:0.02em;
-}
-
-
-/* =========================
    HALL THEME COLOR (FINAL)
 ========================= */
 
@@ -620,28 +587,6 @@ body.hall .guestbook textarea:focus{
   color:var(--theme-color);
 }
 
-/* ===== FINAL GUESTBOOK UNIFY (HALL ONLY) ===== */
-
-.guestbook li,
-.guestbook.poetic li{
-
-  font-size:14px;
-  line-height:1.65;
-
-  color:#dbe0e6;
-  opacity:0.95;
-
-  letter-spacing:0.02em;
-}
-
-/* ===== FINAL FORCE GUESTBOOK TITLE ===== */
-
-body.hall .guestbook-title,
-body.hall .recent-guestbook-title{
-  font-size:16px !important;
-  color:#dbe0e6 !important;
-}
-
 body.theme-cool::before{
   content:"";
   position:fixed;
@@ -687,44 +632,60 @@ body.hall .hall-entry a:hover{
   opacity:1 !important;    /* 🔥 흐려짐 방지 */
 }
 
-/* ===== GUESTBOOK THEME ===== */
+
+/* =====================================
+   GUESTBOOK CLEAN (FINAL)
+===================================== */
 
 /* 제목 */
 body.hall .guestbook-title,
 body.hall .recent-guestbook-title{
-  color: var(--theme-color);
+  font-size:15px;
+  font-weight:500;
+  color:var(--theme-color);
+  margin-bottom:10px;
 }
 
 /* 입력창 */
-body.hall .guestbook input,
-body.hall .guestbook textarea{
-  border: 1px solid rgba(255,255,255,0.2);
+body.hall .guestbook-form input{
+  border:1px solid rgba(255,255,255,0.25);
+  background:rgba(255,255,255,0.05);
+  color:#fff;
+  padding:6px 10px;
 }
 
-/* focus 시 */
-body.hall .guestbook input:focus,
-body.hall .guestbook textarea:focus{
-  border-color: var(--theme-color);
-  box-shadow: 0 0 6px var(--theme-color);
+/* 포커스 */
+body.hall .guestbook-form input:focus{
+  border-color:var(--theme-color);
+  box-shadow:0 0 6px var(--theme-color);
+  outline:none;
 }
 
-/* ========================================
-   GUESTBOOK THEME ENHANCEMENT
-======================================== */
-
-/* 제목 색 */
-.guestbook-section .guestbook-title{
-  color: var(--theme-color) !important;
+/* 버튼 */
+body.hall .guestbook-form button{
+  padding:6px 12px;
+  background:rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.3);
+  color:#fff;
+  cursor:pointer;
 }
 
-/* 입력창 포커스 */
-.guestbook-section input:focus{
-  border-color: var(--theme-color) !important;
-  box-shadow: 0 0 6px var(--theme-color) !important;
+body.hall .guestbook-form button:hover{
+  border-color:var(--theme-color);
+  color:var(--theme-color);
+}
+
+/* 최근 방명록 리스트 */
+body.hall .guestbook li{
+  font-size:13px;
+  line-height:1.6;
+  color:#cfd5db;
+  opacity:0.85;
+  margin-bottom:4px;
 }
 
 /* 리스트 포인트 */
-.guestbook-section li::marker{
-  color: var(--theme-color) !important;
+body.hall .guestbook li::marker{
+  color:var(--theme-color);
   opacity:0.6;
 }
