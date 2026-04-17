@@ -634,39 +634,95 @@ body.hall .hall-entry a:hover{
 
 
 /* =====================================
-   GUESTBOOK TONE ADJUST (FINAL)
+   GUESTBOOK FINAL CLEAN (REPLACE)
 ===================================== */
+
+/* 영역 */
+.guestbook-section{
+  margin:20px 0 28px 0;
+  width:100%;
+  max-width:100%;
+  text-align:left;
+
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  padding-bottom:18px;
+  margin-bottom:22px;
+}
 
 /* 제목 (한줄 감상 + 최근 감상글) */
 body.hall .guestbook-title,
 body.hall .recent-guestbook-title{
-  color: rgba(var(--theme-color-rgb), 0.85);
+  font-size:15px;
+  font-weight:500;
+
+  color:var(--theme-color);
+  opacity:0.75;   /* 🔥 강도 낮춤 */
+
+  margin-bottom:10px;
+}
+
+/* 입력폼 */
+body.hall .guestbook-form{
+  display:flex;
+  gap:10px;
+  align-items:center;
 }
 
 /* 입력창 */
 body.hall .guestbook-form input{
+  width:100%;
+  max-width:100%;
+
   border:1px solid rgba(255,255,255,0.2);
+  background:rgba(255,255,255,0.05);
+
+  color:#fff;
+  padding:6px 10px;
 }
 
-/* 입력창 focus (조금 더 부드럽게) */
+/* 입력창 focus */
 body.hall .guestbook-form input:focus{
-  border-color: rgba(var(--theme-color-rgb), 0.7);
-  box-shadow: 0 0 6px rgba(var(--theme-color-rgb), 0.35);
+  border-color:var(--theme-color);
+  box-shadow:0 0 6px var(--theme-color);
+  outline:none;
+
+  opacity:0.85;   /* 🔥 강도 완화 */
+}
+
+/* 버튼 */
+body.hall .guestbook-form button{
+  padding:6px 12px;
+
+  background:rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.3);
+
+  color:#fff;
+  cursor:pointer;
+
+  transition:all .25s ease;
 }
 
 /* 버튼 hover */
 body.hall .guestbook-form button:hover{
-  color: rgba(var(--theme-color-rgb), 0.85);
-  border-color: rgba(var(--theme-color-rgb), 0.6);
+  border-color:var(--theme-color);
+  color:var(--theme-color);
+
+  opacity:0.85;   /* 🔥 강도 완화 */
 }
 
-/* 최근 감상글 내용 */
+/* 최근 감상글 리스트 */
 body.hall .guestbook li{
   font-size:13px;   /* 🔥 한 단계 축소 */
-  color: rgba(220,225,230,0.75);  /* 🔥 톤 다운 */
+  line-height:1.6;
+
+  color:#cfd5db;
+  opacity:0.75;     /* 🔥 톤 낮춤 */
+
+  margin-bottom:4px;
 }
 
 /* 리스트 포인트 */
 body.hall .guestbook li::marker{
-  color: rgba(var(--theme-color-rgb), 0.5);
+  color:var(--theme-color);
+  opacity:0.4;   /* 🔥 아주 은은하게 */
 }
