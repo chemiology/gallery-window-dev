@@ -211,12 +211,16 @@ function renderExhibitions(exhibitions) {
 
       const isVideoHall = exhibition.hall.startsWith("hall5");
       const hasImages = exhibition.images && exhibition.images.length;
+      const isMixed = exhibition.type === "mixed";
 
-      // 🔥 영상관은 예외 (무조건 통과)
-      if (!isVideoHall && !hasImages) {
+      // 🔥 mixed 추가
+      if (!isVideoHall && !hasImages && !isMixed) {
         alert("이 전시는 아직 준비 중입니다.");
         return;
       }
+
+  location.href = BASE_PATH + `/hall.html?hall=${exhibition.hall}`;
+};
 
       location.href = BASE_PATH + `/hall.html?hall=${exhibition.hall}`;
     };
