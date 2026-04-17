@@ -714,17 +714,17 @@ body.hall .guestbook textarea:focus{
 
 /* 제목 색 */
 .guestbook-section .guestbook-title{
-  color: var(--theme-color);
+  color: var(--theme-color) !important;
 }
 
 /* 입력창 포커스 */
 .guestbook-section input:focus{
-  border-color: var(--theme-color);
-  box-shadow: 0 0 6px var(--theme-color);
+  border-color: var(--theme-color) !important;
+  box-shadow: 0 0 6px var(--theme-color) !important;
 }
 
 /* 리스트 포인트 */
 .guestbook-section li::marker{
-  color: var(--theme-color);
+  color: var(--theme-color) !important;
   opacity:0.6;
 }
