@@ -8,8 +8,28 @@
 
 let userInteracted = false;
 
-document.addEventListener("touchstart", () => {
+document.addEventListener("touchstart", async () => {
+
   userInteracted = true;
+
+  if (userActivatedSound) return;
+  userActivatedSound = true;
+
+  // 🔥 배경음 활성화
+  if (audio) {
+    audio.muted = false;
+    audio.volume = exhibition.volume ?? 0.5;
+    audio.play().catch(() => {});
+  }
+
+  // 🔥 Vimeo 영상 소리 ON
+  if (vimeoPlayer) {
+    try {
+      await vimeoPlayer.setMuted(false);
+      await vimeoPlayer.setVolume(1);
+    } catch (e) {}
+  }
+
 }, { once: true });
 
 /* =========================
@@ -46,6 +66,7 @@ let slideSeconds = 10;
 let autoMode = true;
 
 let audio = null;
+let userActivatedSound = false;
 
 /* =========================
    PARAMS
@@ -261,6 +282,12 @@ function showItem(index) {
       }
 
       vimeoPlayer = new Vimeo.Player(iframe);
+
+      // 🔥 이미 터치된 상태면 바로 소리 ON
+      if (userActivatedSound) {
+        vimeoPlayer.setMuted(false);
+        vimeoPlayer.setVolume(1);
+      }
 
       vimeoPlayer.on('ended', () => {
 
