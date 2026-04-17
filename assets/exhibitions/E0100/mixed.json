@@ -1,0 +1,52 @@
+{
+  "slideSeconds": 10,
+
+  "items": [
+    {
+      "type": "image",
+      "src": "010.jpg",
+      "caption": "Avatar #010"
+    },
+
+    {
+      "type": "image",
+      "src": "011.jpg",
+      "caption": "Avatar #011"
+    },
+
+    {
+      "type": "image",
+      "src": "002.jpg",
+      "caption": "Avatar #012"
+    },
+
+    {
+      "type": "video",
+      "platform": "vimeo",
+      "id": "1177634318",
+      "hash": "dc50fadafe",
+      "title": "Avatar Reload, 2024"
+    },
+
+    {
+      "type": "image",
+      "src": "016.jpg",
+      "caption": "Avatar #016"
+    },
+
+    {
+      "type": "image",
+      "src": "017.jpg",
+      "caption": "Avatar #017"
+    },
+
+    {
+      "type": "image",
+      "src": "021.jpg",
+      "caption": "Avatar #021"
+    }
+
+
+
+  ]
+}
