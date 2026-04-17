@@ -179,9 +179,11 @@ async function loadHallEntry(exhibition, hallId) {
     poster.onclick = () => {
 
       const target =
-        hallId.startsWith("hall5")
-          ? `video.html?id=${exhibition.id}&hall=${hallId}`   // ⭐ 핵심 수정
-          : BASE_PATH + `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
+        exhibition.type === "mixed"
+          ? BASE_PATH + `/mixed.html?id=${exhibition.id}&hall=${hallId}`
+          : hallId.startsWith("hall5")
+            ? `video.html?id=${exhibition.id}&hall=${hallId}`
+            : BASE_PATH + `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
 
      const fade = document.getElementById("pageFade");
 
@@ -204,9 +206,11 @@ async function loadHallEntry(exhibition, hallId) {
   if (enterBtn) {
 
     const target =
-      hallId.startsWith("hall5")
-        ? `video.html?id=${exhibition.id}&hall=${hallId}`
-        : BASE_PATH + `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
+      exhibition.type === "mixed"
+        ? BASE_PATH + `/mixed.html?id=${exhibition.id}&hall=${hallId}`
+        : hallId.startsWith("hall5")
+          ? `video.html?id=${exhibition.id}&hall=${hallId}`
+          : BASE_PATH + `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
 
     enterBtn.href = target;
 
