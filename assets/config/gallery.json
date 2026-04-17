@@ -171,6 +171,8 @@
       "order": 20,
       "status": "current",
       "artist": "김경수",
+      "music": "M01",
+      "volume": 0.4,
       "themeColor": "#c6d4e1",
       "themeMode": "cool",
       "startDate": "2026-04-01",
