@@ -164,6 +164,21 @@
     },
 
     {
+      "id": "E0100",
+      "title": "Avatar Relad",
+      "hall": "hall61",
+      "hallTitle": "특별관",
+      "order": 20,
+      "status": "current",
+      "artist": "김경수",
+      "themeColor": "#c6d4e1",
+      "themeMode": "cool",
+      "startDate": "2026-04-01",
+      "endDate": "2026-12-31",
+      "type": "mixed" 
+    },
+
+    {
       "id": "E0006",
       "title": "Fragments of Memory",
       "hall": "hall05",
