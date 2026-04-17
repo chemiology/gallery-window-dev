@@ -219,9 +219,6 @@ function renderExhibitions(exhibitions) {
         return;
       }
 
-  location.href = BASE_PATH + `/hall.html?hall=${exhibition.hall}`;
-};
-
       location.href = BASE_PATH + `/hall.html?hall=${exhibition.hall}`;
     };
 
