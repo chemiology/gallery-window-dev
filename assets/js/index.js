@@ -42,23 +42,6 @@ function getExhibitionStatus(ex) {
 }
 
 /* =========================
-   EXHIBITION STATUS
-========================= */
-
-function getExhibitionStatus(ex) {
-  const today = new Date();
-  today.setHours(0,0,0,0);
-
-  const start = ex.startDate ? new Date(ex.startDate) : null;
-  const end = ex.endDate ? new Date(ex.endDate) : null;
-
-  if (start && today < start) return "coming";
-  if (end && today > end) return "past";
-
-  return "current";
-}
-
-/* =========================
    COUNTDOWN (🔥 추가)
 ========================= */
 
@@ -209,12 +192,11 @@ function renderExhibitions(exhibitions) {
 
     img.onclick = () => {
 
-      const isVideoHall = exhibition.hall.startsWith("hall5");
-      const hasImages = exhibition.images && exhibition.images.length;
+      const isVideo = exhibition.type === "video";
       const isMixed = exhibition.type === "mixed";
+      const hasImages = exhibition.images && exhibition.images.length;
 
-      // 🔥 mixed 추가
-      if (!isVideoHall && !hasImages && !isMixed) {
+      if (!isVideo && !hasImages && !isMixed) {
         alert("이 전시는 아직 준비 중입니다.");
         return;
       }
