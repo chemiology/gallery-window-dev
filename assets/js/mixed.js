@@ -68,6 +68,7 @@ let autoMode = true;
 let audio = null;
 let userActivatedSound = false;
 let currentExhibition = null;
+let soundUnlocked = false;
 
 /* =========================
    PARAMS
@@ -132,7 +133,7 @@ async function loadMixed(id) {
       );
 
       audio.loop = true;
-      audio.volume = 0.5;
+      audio.volume = currentExhibition?.volume ?? 0.5;
 
       audio.play().catch(() => {});
     }
@@ -399,9 +400,254 @@ document.addEventListener("touchend", () => {
 });
 
 /* =========================
+   클릭 이벤트
+========================= */
+
+document.addEventListener("click", async () => {
+
+  if (soundUnlocked) return;
+  soundUnlocked = true;
+
+  // 🔥 Vimeo 소리 ON
+  if (vimeoPlayer) {
+    try {
+      await vimeoPlayer.setMuted(false);
+      await vimeoPlayer.setVolume(1);
+    } catch (e) {}
+  }
+
+  // 🔥 배경음도 같이
+  if (audio) {
+    audio.muted = false;
+    audio.play().catch(()=>{});
+  }
+
+});
+
+
+/* =========================
    PAGE READY
 ========================= */
 
 window.addEventListener("load", () => {
   document.body.classList.add("page-ready");
+
+  // 이미지 드래그 방지 (추가 안전)
+  document.querySelectorAll("img").forEach(img => {
+    img.setAttribute("draggable", "false");
+  });
+
 });
+
+
+/* =========================
+   🔥 UI CONTROL (추가)
+========================= */
+
+// 🔥 Control Panel Toggle
+document.querySelector(".control-toggle")?.addEventListener("click", () => {
+
+  const box = document.querySelector(".control-box");
+  if (!box) return;
+
+  box.style.display =
+    box.style.display === "none" ? "block" : "none";
+
+});
+
+// 🔥 Hall 버튼 이동
+const paramsHall = new URLSearchParams(location.search);
+const hallId = paramsHall.get("hall");
+
+document.getElementById("backHome")?.addEventListener("click", () => {
+
+  if (hallId) {
+    location.href = `hall.html?hall=${hallId}`;
+  } else {
+    window.history.back();
+  }
+
+});
+
+// 🔥 Volume Control
+document.getElementById("volume")?.addEventListener("input", (e) => {
+
+  if (audio) {
+    audio.volume = parseFloat(e.target.value);
+  }
+
+});
+
+
+/* =========================
+   CONTROL PANEL (FULL)
+========================= */
+
+// 🔥 Control Panel Toggle
+document.querySelector(".control-toggle")?.addEventListener("click", () => {
+
+  const box = document.querySelector(".control-box");
+  if (!box) return;
+
+  box.style.display =
+    box.style.display === "none" ? "block" : "none";
+
+});
+
+
+// 🔥 Viewing Mode (Auto / Manual)
+document.querySelectorAll('input[name="mode"]').forEach(radio => {
+
+  radio.addEventListener("change", (e) => {
+
+    if (e.target.value === "manual") {
+      autoMode = false;
+      stopAuto();
+    } else {
+      autoMode = true;
+      startAuto();
+    }
+
+  });
+
+});
+
+
+// 🔥 Slide Speed
+document.getElementById("speed")?.addEventListener("input", (e) => {
+
+  slideSeconds = parseInt(e.target.value);
+
+  if (autoMode) {
+    startAuto(); // 속도 변경 즉시 반영
+  }
+
+});
+
+
+// 🔥 Volume
+document.getElementById("volume")?.addEventListener("input", (e) => {
+
+  const vol = parseFloat(e.target.value);
+
+  if (audio) {
+    audio.volume = vol;
+  }
+
+});
+
+
+// 🔥 Mute
+let isMuted = false;
+
+document.getElementById("mute")?.addEventListener("click", () => {
+
+  isMuted = !isMuted;
+
+  if (audio) {
+    audio.muted = isMuted;
+  }
+
+  const btn = document.getElementById("mute");
+  if (btn) {
+    btn.innerText = isMuted ? "Unmute" : "Mute";
+  }
+
+});
+
+
+/* =========================
+   HALL NAV
+========================= */
+
+const paramsHall = new URLSearchParams(location.search);
+const hallId = paramsHall.get("hall");
+
+document.getElementById("backHome")?.addEventListener("click", () => {
+
+  if (hallId) {
+    location.href = `hall.html?hall=${hallId}`;
+  } else {
+    window.history.back();
+  }
+
+});
+
+
+/* =========================
+   BASIC PROTECTION
+========================= */
+
+// 우클릭 방지
+document.addEventListener("contextmenu", e => e.preventDefault());
+
+// 드래그 방지
+document.addEventListener("dragstart", e => e.preventDefault());
+
+// 텍스트 선택 방지
+document.addEventListener("selectstart", e => e.preventDefault());
+
+/* =========================
+   DEVTOOLS DETECTION
+========================= */
+
+let devtoolsOpen = false;
+
+setInterval(() => {
+
+  const threshold = 160;
+
+  if (
+    window.outerWidth - window.innerWidth > threshold ||
+    window.outerHeight - window.innerHeight > threshold
+  ) {
+
+    if (!devtoolsOpen) {
+      devtoolsOpen = true;
+
+      console.clear();
+
+      // alert 제거 또는 1회만
+      console.warn("DevTools detected");
+
+      // 선택 1: 화면 블러
+      document.body.style.filter = "blur(8px)";
+
+      // 선택 2 (강력): 페이지 이동
+      // location.href = "/";
+    }
+
+  } else {
+    devtoolsOpen = false;
+    document.body.style.filter = "none";
+  }
+
+}, 1000);
+
+
+/* =========================
+   KEY BLOCK
+========================= */
+
+document.addEventListener("keydown", e => {
+
+  // F12
+  if (e.key === "F12") {
+    e.preventDefault();
+  }
+
+  // Ctrl+Shift+I / J / C
+  if (e.ctrlKey && e.shiftKey && (
+    e.key === "I" || e.key === "J" || e.key === "C"
+  )) {
+    e.preventDefault();
+  }
+
+  // Ctrl+U (소스보기)
+  if (e.ctrlKey && e.key === "u") {
+    e.preventDefault();
+  }
+
+});
+
+
