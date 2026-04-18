@@ -441,45 +441,6 @@ window.addEventListener("load", () => {
 
 
 /* =========================
-   🔥 UI CONTROL (추가)
-========================= */
-
-// 🔥 Control Panel Toggle
-document.querySelector(".control-toggle")?.addEventListener("click", () => {
-
-  const box = document.querySelector(".control-box");
-  if (!box) return;
-
-  box.style.display =
-    box.style.display === "none" ? "block" : "none";
-
-});
-
-// 🔥 Hall 버튼 이동
-const paramsHall = new URLSearchParams(location.search);
-const hallId = paramsHall.get("hall");
-
-document.getElementById("backHome")?.addEventListener("click", () => {
-
-  if (hallId) {
-    location.href = `hall.html?hall=${hallId}`;
-  } else {
-    window.history.back();
-  }
-
-});
-
-// 🔥 Volume Control
-document.getElementById("volume")?.addEventListener("input", (e) => {
-
-  if (audio) {
-    audio.volume = parseFloat(e.target.value);
-  }
-
-});
-
-
-/* =========================
    CONTROL PANEL (FULL)
 ========================= */
 
