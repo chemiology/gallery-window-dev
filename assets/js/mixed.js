@@ -233,6 +233,8 @@ function showItem(index) {
 
   if (item.type === "image") {
 
+    if (soundBtn) soundBtn.style.display = "none";
+
     const notice = document.getElementById("slideshow-notice");
     if (notice) notice.style.display = "block";
 
@@ -260,6 +262,8 @@ function showItem(index) {
   ========================= */
 
   if (item.type === "video") {
+
+    if (soundBtn) soundBtn.style.display = "block";
 
     // 🔥 여기 추가
     const notice = document.getElementById("slideshow-notice");
@@ -405,18 +409,13 @@ document.addEventListener("touchend", () => {
 
 document.addEventListener("click", async () => {
 
-  if (soundUnlocked) return;
-  soundUnlocked = true;
-
-  // 🔥 Vimeo 소리 ON
   if (vimeoPlayer) {
     try {
       await vimeoPlayer.setMuted(false);
       await vimeoPlayer.setVolume(1);
-    } catch (e) {}
+    } catch(e){}
   }
 
-  // 🔥 배경음도 같이
   if (audio) {
     audio.muted = false;
     audio.play().catch(()=>{});
@@ -436,6 +435,31 @@ window.addEventListener("load", () => {
   document.querySelectorAll("img").forEach(img => {
     img.setAttribute("draggable", "false");
   });
+
+});
+
+
+/* =========================
+   SOUND BUTTON
+========================= */
+
+const soundBtn = document.getElementById("sound-overlay");
+
+soundBtn?.addEventListener("click", async () => {
+
+  if (vimeoPlayer) {
+    try {
+      await vimeoPlayer.setMuted(false);
+      await vimeoPlayer.setVolume(1);
+    } catch(e){}
+  }
+
+  if (audio) {
+    audio.muted = false;
+    audio.play().catch(()=>{});
+  }
+
+  soundBtn.style.display = "none";
 
 });
 
