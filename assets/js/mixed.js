@@ -69,6 +69,8 @@ let audio = null;
 let userActivatedSound = false;
 let currentExhibition = null;
 let soundUnlocked = false;
+let noticeShown = false;
+let noticeTimer = null;
 
 /* =========================
    PARAMS
@@ -236,11 +238,19 @@ function showItem(index) {
     if (soundBtn) soundBtn.style.display = "none";
 
     const notice = document.getElementById("slideshow-notice");
-    if (notice) notice.style.display = "block";
 
-    setTimeout(() => {
-      notice.style.display = "none";
-    }, 5000);   // 🔥 5초 후 사라짐
+    if (notice && !noticeShown) {
+
+      notice.style.display = "block";
+
+      clearTimeout(noticeTimer);
+
+      noticeTimer = setTimeout(() => {
+        notice.style.display = "none";
+      }, 5000);
+
+      noticeShown = true;
+    }
 
 
     if (audio) {
