@@ -560,8 +560,7 @@ document.getElementById("mute")?.addEventListener("click", () => {
    HALL NAV
 ========================= */
 
-const paramsHall = new URLSearchParams(location.search);
-const hallId = paramsHall.get("hall");
+const hallId = params.get("hall");
 
 document.getElementById("backHome")?.addEventListener("click", () => {
 
