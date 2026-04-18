@@ -125,3 +125,23 @@ body{
 .back-home-exhibition{
   cursor:pointer;   /* 🔥 핵심 */
 }
+
+.image-wrapper{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* 🔥 exhibition.css 영향 차단 */
+.image-wrapper img{
+  max-width:90% !important;
+  max-height:85vh !important;
+
+  width:auto !important;
+  height:auto !important;
+
+  object-fit:contain;
+
+  margin:auto;          /* 🔥 핵심 */
+}
+
