@@ -238,6 +238,11 @@ function showItem(index) {
     const notice = document.getElementById("slideshow-notice");
     if (notice) notice.style.display = "block";
 
+    setTimeout(() => {
+      notice.style.display = "none";
+    }, 5000);   // 🔥 5초 후 사라짐
+
+
     if (audio) {
       audio.volume = currentExhibition?.volume ?? 0.5;
       audio.play().catch(() => {});
@@ -279,7 +284,9 @@ function showItem(index) {
     iframe.src =
       "https://player.vimeo.com/video/" + item.id +
       "?h=" + item.hash +
-      "&autoplay=1&muted=1" +
+      "&autoplay=1" +
+      "&muted=1" +
+      "&controls=0" +        // 🔥 추가
       "&title=0&byline=0&portrait=0";
 
     if (window.matchMedia("(pointer: coarse)").matches) {
@@ -420,6 +427,9 @@ document.addEventListener("click", async () => {
     audio.muted = false;
     audio.play().catch(()=>{});
   }
+
+  const btn = document.getElementById("sound-overlay");
+  if (btn) btn.style.display = "none";
 
 });
 
