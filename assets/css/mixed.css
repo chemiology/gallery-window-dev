@@ -103,3 +103,7 @@ body{
   object-fit:contain;   /* 🔥 핵심 */
   display:block;
 }
+
+#image-layer img{
+  opacity:1 !important;
+}
