@@ -725,12 +725,11 @@ body.hall .profile-subtitle{
   font-size:14px;
   letter-spacing:.04em;
 
-  color:#d0d5db;
-
-  border-left:2px solid var(--theme-color);
-  padding-left:8px;
-
+  color:#cfd4da;              /* 🔥 기본 텍스트 색 */
   opacity:0.85;
+
+  /* 🔥 아주 미세한 테마 느낌 */
+  text-shadow:0 0 5px var(--theme-color);
 }
 
 /* 작가노트 문단 */
