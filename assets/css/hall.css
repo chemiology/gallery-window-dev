@@ -725,8 +725,12 @@ body.hall .profile-subtitle{
   font-size:14px;
   letter-spacing:.04em;
 
-  color:var(--theme-color);
-  opacity:0.7;
+  color:#d0d5db;
+
+  border-left:2px solid var(--theme-color);
+  padding-left:8px;
+
+  opacity:0.85;
 }
 
 /* 작가노트 문단 */
