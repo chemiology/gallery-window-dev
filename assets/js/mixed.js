@@ -18,7 +18,7 @@ document.addEventListener("touchstart", async () => {
   // 🔥 배경음 활성화
   if (audio) {
     audio.muted = false;
-    audio.volume = exhibition.volume ?? 0.5;
+    audio.volume = currentExhibition?.volume ?? 0.5;
     audio.play().catch(() => {});
   }
 
@@ -67,6 +67,7 @@ let autoMode = true;
 
 let audio = null;
 let userActivatedSound = false;
+let currentExhibition = null;
 
 /* =========================
    PARAMS
@@ -102,6 +103,8 @@ async function loadMixed(id) {
 
     const exhibition =
       gallery.currentExhibitions?.find(e => e.id === id);
+
+    currentExhibition = exhibition;
 
     if (!exhibition) return;
 
@@ -229,15 +232,11 @@ function showItem(index) {
 
   if (item.type === "image") {
 
-    // 🔥 여기 추가
     const notice = document.getElementById("slideshow-notice");
     if (notice) notice.style.display = "block";
 
-  ...
-}
-
     if (audio) {
-      audio.volume = 0.5;
+      audio.volume = currentExhibition?.volume ?? 0.5;
       audio.play().catch(() => {});
     }
 
