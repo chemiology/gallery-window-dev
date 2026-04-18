@@ -18,6 +18,7 @@
       "hall": "hall03",
       "hallTitle": "3관",
       "order": 4,
+      "type": "photo",
       "status": "current",
       "artist": "김경수",
       "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg","014.jpg","015.jpg","016.jpg","017.jpg","018.jpg","019.jpg"],
@@ -42,10 +43,10 @@
         "Avatar II #144, 2023",
         "Avatar II #184, 2023"
       ],
-      "music": "M01",
       "themeColor": "#c6d4e1",
       "themeMode": "cool",
       "slideSeconds": 10,
+      "music": "M01",
       "volume": 0.5,
       "startDate": "2026-02-15",
       "endDate": "2026-05-31"
@@ -57,6 +58,7 @@
       "hall": "hall01",
       "hallTitle": "1관 초대전",
       "order": 1,
+      "type": "photo",
       "status": "current",
       "artist": "한영숙",
       "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg","014.jpg","015.jpg","016.jpg","017.jpg","018.jpg","019.jpg","020.jpg","021.jpg"],
@@ -83,10 +85,10 @@
         "가상변주 #20",
         "작품 컨셉"
       ],
-      "music": "M04",
       "themeColor": "#f9efa3",
       "themeMode": "warm",
       "slideSeconds": 10,
+      "music": "M04",
       "volume": 0.5,
       "startDate": "2026-03-01",
       "endDate": "2026-06-30"
@@ -98,6 +100,7 @@
       "hall": "hall50",
       "hallTitle": "영상1관",
       "order": 2,
+      "type": "video",
       "status": "current",
       "artist": "한영숙",
       "themeColor": "#f9efa3",
@@ -112,6 +115,7 @@
       "hall": "hall02",
       "hallTitle": "2관 초대전",
       "order": 3,
+      "type": "photo",
       "status": "current",
       "artist": "이춘희",
       "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg","014.jpg","015.jpg","016.jpg","017.jpg","018.jpg","019.jpg","020.jpg","021.jpg","022.jpg","023.jpg"],
@@ -140,10 +144,10 @@
         "World Peace 3",
         "World Peace 4"
       ],
-      "music": "M11",
       "themeColor": "#eeb953",
       "themeMode": "warm",
       "slideSeconds": 10,
+      "music": "M11",
       "volume": 0.5,
       "startDate": "2026-03-01",
       "endDate": "2026-06-30"
@@ -155,6 +159,7 @@
       "hall": "hall51",
       "hallTitle": "영상2관",
       "order": 6,
+      "type": "video",
       "status": "current",
       "artist": "김경수",
       "themeColor": "#c6d4e1",
@@ -165,19 +170,19 @@
 
     {
       "id": "E0100",
-      "title": "Avatar Relad",
+      "title": "Avatar Reload",
       "hall": "hall61",
       "hallTitle": "특별관",
       "order": 20,
+      "type": "mixed",
       "status": "current",
       "artist": "김경수",
-      "music": "M01",
-      "volume": 0.4,
       "themeColor": "#c6d4e1",
       "themeMode": "cool",
+      "music": "M01",
+      "volume": 0.4,
       "startDate": "2026-04-01",
-      "endDate": "2026-12-31",
-      "type": "mixed" 
+      "endDate": "2026-12-31"
     },
 
     {
@@ -186,6 +191,7 @@
       "hall": "hall05",
       "hallTitle": "5관",
       "order": 7,
+      "type": "photo",
       "status": "current",
       "artist": "백경희",
       "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg","014.jpg","015.jpg","016.jpg","017.jpg","018.jpg"],
@@ -209,10 +215,10 @@
         "기억의 편린 #13",
         "기억의 편린"
       ],
-      "music": "M04",
       "themeColor": "#b0b0b2",
       "themeMode": "warm",
       "slideSeconds": 10,
+      "music": "M04",
       "volume": 0.5,
       "startDate": "2026-04-01",
       "endDate": "2026-08-31"
