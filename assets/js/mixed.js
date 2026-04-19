@@ -147,7 +147,10 @@ async function loadMixed(id) {
     const data = await res.json();
 
     items = data.items || [];
-    slideSeconds = data.slideSeconds || 10;
+    slideSeconds =
+      currentExhibition?.slideSeconds ??
+      data.slideSeconds ??
+      10;
 
     if (!items.length) return;
 
@@ -568,6 +571,13 @@ document.getElementById("mute")?.addEventListener("click", () => {
 const hallId = params.get("hall");
 
 document.getElementById("backHome")?.addEventListener("click", () => {
+
+  const from = params.get("from");
+
+  if (from === "hall2") {
+    location.href = "/assets/event/hall2.html";
+    return;
+  }
 
   if (hallId) {
     location.href = `hall.html?hall=${hallId}`;

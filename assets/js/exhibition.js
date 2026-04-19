@@ -454,7 +454,13 @@ const backBtn = document.getElementById("backHome");
 
 if (backBtn) {
 
-  backBtn.href = BASE_PATH + `/hall.html?hall=${hallId}`;
+  const from = params.get("from");
+
+  if (from === "hall2") {
+    backBtn.href = BASE_PATH + "/assets/event/hall2.html";
+  } else {
+    backBtn.href = BASE_PATH + `/hall.html?hall=${hallId}`;
+  }
 
   backBtn.addEventListener("click", e => {
     e.preventDefault();
