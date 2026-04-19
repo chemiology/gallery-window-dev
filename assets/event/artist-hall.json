@@ -1,0 +1,29 @@
+{
+  "id": "kim-retrospective",
+  "title": "김경수 전체 작품전",
+  "subtitle": "10년의 흐름을 따라가는 이미지의 진화",
+
+  "items": [
+    {
+      "id": "E0101",
+      "type": "photo",
+      "title": "아바타",
+      "year": "2023",
+      "desc": "존재의 분열과 자아의 확장"
+    },
+    {
+      "id": "E0102",
+      "type": "photo",
+      "title": "아바타 II",
+      "year": "2023",
+      "desc": "경계의 붕괴"
+    },
+    {
+      "id": "E0201",
+      "type": "video",
+      "title": "아바타의 꿈",
+      "year": "2023",
+      "desc": "이미지와 시간의 결합"
+    }
+  ]
+}
