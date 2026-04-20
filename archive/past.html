@@ -84,33 +84,67 @@ alt="Avatar II conceptual photography exhibition by Kyoungsoo Kim">
 
 <script>
 
-document.querySelectorAll(".year-divider").forEach(year => {
+window.addEventListener("load", () => {
 
-const grid = year.nextElementSibling;
-if(!grid) return;
+  function updateGridHeight(grid){
+    grid.style.maxHeight = "none"; // 🔥 핵심 (초기화)
+    grid.style.maxHeight = grid.scrollHeight + "px";
+  }
 
-const posters = grid.querySelectorAll(".poster-item");
-const count = posters.length;
+  document.querySelectorAll(".year-divider").forEach(year => {
 
-year.textContent = year.textContent + " (" + count + ")";
+    const grid = year.nextElementSibling;
+    if(!grid) return;
 
-year.addEventListener("click", () => {
+    const posters = grid.querySelectorAll(".poster-item");
+    const count = posters.length;
 
-const isClosed = year.classList.toggle("closed");
+    year.textContent = year.textContent + " (" + count + ")";
 
-if(isClosed){
-grid.style.maxHeight = "0px";
-grid.style.overflow = "hidden";
-}else{
-grid.style.maxHeight = grid.scrollHeight + "px";
-}
+    year.addEventListener("click", () => {
+
+      const isClosed = year.classList.toggle("closed");
+
+      if(isClosed){
+        grid.style.maxHeight = "0px";
+        grid.style.overflow = "hidden";
+      }else{
+        updateGridHeight(grid); // 🔥 여기 변경
+      }
+
+    });
+
+    grid.style.transition = "max-height 0.35s ease";
+
+    // 🔥 초기 렌더 후 height 재계산
+    const images = grid.querySelectorAll("img");
+
+    let loadedCount = 0;
+
+    function tryUpdate() {
+      loadedCount++;
+      if (loadedCount === images.length) {
+        updateGridHeight(grid);
+      }
+    }
+
+    images.forEach(img => {
+      if (img.complete) {
+        tryUpdate();
+      } else {
+        img.addEventListener("load", tryUpdate);
+        img.addEventListener("error", tryUpdate);
+      }
+    });
+
+  });
 
 });
 
-grid.style.transition = "max-height 0.35s ease";
-grid.style.maxHeight = grid.scrollHeight + "px";
+  window.addEventListener("resize", () => {
+    allGrids.forEach(grid => updateGridHeight(grid));
+  });
 
-});
 
 </script>
 
