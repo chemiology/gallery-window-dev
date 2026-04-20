@@ -320,76 +320,74 @@ function showItem(index) {
     }, 300);
   }
 
-  /* =========================
-     VIDEO
-  ========================= */
+/* =========================
+   VIDEO
+========================= */
 
-  else if (item.type === "video") {
+else if (item.type === "video") {
 
-    fadeToBlack(400);
+  fadeToBlack(400);
+
+  setTimeout(() => {
+
+    if (soundBtn) soundBtn.style.display = "block";
+
+    const notice = document.getElementById("slideshow-notice");
+    if (notice) notice.style.display = "none";
+
+    if (audio) {
+      fadeAudio(0, 500);
+      setTimeout(() => audio.pause(), 600);
+    }
+
+    showVideoLayer();
+
+    iframe.style.opacity = 0;
+
+    iframe.src =
+      "https://player.vimeo.com/video/" + item.id +
+      "?h=" + item.hash +
+      "&autoplay=1&muted=1&controls=0&title=0&byline=0&portrait=0";
+
+    iframe.onload = () => {
+      iframe.style.opacity = 1;
+      fadeFromBlack(600);   // 🔥 여기서만 실행
+    };
+
+    stopAuto();
 
     setTimeout(() => {
 
-      if (soundBtn) soundBtn.style.display = "block";
-
-      const notice = document.getElementById("slideshow-notice");
-      if (notice) notice.style.display = "none";
-
-      if (audio) {
-        fadeAudio(0, 500);
-        setTimeout(() => audio.pause(), 600);
+      if (vimeoPlayer) {
+        vimeoPlayer.unload();
       }
 
-      showVideoLayer();
+      vimeoPlayer = new Vimeo.Player(iframe);
 
-      iframe.src =
-        "https://player.vimeo.com/video/" + item.id +
-        "?h=" + item.hash +
-        "&autoplay=1&muted=1&controls=0&title=0&byline=0&portrait=0";
+      if (userActivatedSound) {
+        vimeoPlayer.setMuted(false);
+        vimeoPlayer.setVolume(1);
+      }
 
-      if (window.matchMedia("(pointer: coarse)").matches) {
+      vimeoPlayer.on('ended', () => {
+
+        const videoLayer = document.getElementById("video-layer");
+        videoLayer.classList.add("fade-out");
+
         setTimeout(() => {
-          iframe.src = iframe.src;
+          videoLayer.classList.remove("fade-out");
+          nextItem();
+          startAuto();
         }, 300);
-      }
 
-      stopAuto();
+      });
 
-      setTimeout(() => {
+    }, 500);
 
-        if (vimeoPlayer) {
-          vimeoPlayer.unload();
-        }
+    updateCounter();
+    preloadNextItem();
 
-        vimeoPlayer = new Vimeo.Player(iframe);
-
-        if (userActivatedSound) {
-          vimeoPlayer.setMuted(false);
-          vimeoPlayer.setVolume(1);
-        }
-
-        vimeoPlayer.on('ended', () => {
-
-          const videoLayer = document.getElementById("video-layer");
-          videoLayer.classList.add("fade-out");
-
-          setTimeout(() => {
-            videoLayer.classList.remove("fade-out");
-            nextItem();
-            startAuto();
-          }, 300);
-
-        });
-
-      }, 500);
-
-      fadeFromBlack(600);
-
-      updateCounter();
-      preloadNextItem();
-
-    }, 300);
-  }
+  }, 300);
 }
 
 /* =========================
