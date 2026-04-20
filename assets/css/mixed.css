@@ -271,3 +271,11 @@ body{
   filter: blur(0px);
   transform: scale(1.0);
 }
+
+.image-inner{
+  transition: transform 6s ease;
+}
+
+.image-wrapper.layer-visible .image-inner{
+  transform: scale(1.02);   /* 🔥 자연스럽게 */
+}
