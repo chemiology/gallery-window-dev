@@ -196,14 +196,6 @@ body{
   pointer-events:auto;
 }
 
-
-/* 🔥 UI는 항상 위 */
-#slideshow-notice,
-.sound-overlay{
-  position:relative;
-  z-index:20;
-}
-
 /* =========================
    CINEMATIC FADE
 ========================= */
@@ -226,28 +218,36 @@ body{
   transition: transform 6s ease;
 }
 
-.layer-visible iframe,
-.layer-visible img{
+#mixed-image{
+  transition: transform 6s ease;
+}
+
+.image-wrapper.layer-visible #mixed-image{
   transform: scale(1.02);
 }
 
+#slideshow-notice{
+  position:absolute;
+  top:40px;
+  left:50%;
+  transform:translateX(-50%);
+  text-align:center;
+  z-index:30;
+}
 
 #exhibition-caption{
   position:absolute;
-  bottom:40px;
+  bottom:30px;
   left:50%;
   transform:translateX(-50%);
-
   text-align:center;
   z-index:30;
 }
 
 #artwork-counter{
   position:absolute;
-  top:40px;
+  top:30px;
   right:40px;
-
-  white-space:nowrap;   /* 🔥 줄바꿈 방지 */
-
+  white-space:nowrap;
   z-index:30;
 }
