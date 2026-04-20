@@ -308,6 +308,12 @@ window.addEventListener("load", () => {
 document.addEventListener("contextmenu", e => e.preventDefault());
 document.addEventListener("dblclick", e => e.preventDefault());
 
+  /* =========================
+   🔒 video-mask 우클릭 차단 (추가)
+  ========================= */
+document.querySelector(".video-mask.main")
+  ?.addEventListener("contextmenu", e => e.preventDefault());
+
 document.addEventListener("fullscreenchange", () => {
   if (document.fullscreenElement) {
     document.exitFullscreen();
