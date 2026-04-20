@@ -486,30 +486,6 @@ document.addEventListener("touchend", () => {
 });
 
 /* =========================
-   클릭 이벤트
-========================= */
-
-document.addEventListener("click", async () => {
-
-  if (vimeoPlayer) {
-    try {
-      await vimeoPlayer.setMuted(false);
-      await vimeoPlayer.setVolume(1);
-    } catch(e){}
-  }
-
-  if (audio) {
-    audio.muted = false;
-    audio.play().catch(()=>{});
-  }
-
-  const btn = document.getElementById("sound-overlay");
-  if (btn) btn.style.display = "none";
-
-});
-
-
-/* =========================
    PAGE READY
 ========================= */
 
