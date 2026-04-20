@@ -86,6 +86,8 @@ body.archive-page.past-page .archive-grid{
 }
 
 .poster-item img{
+  opacity:0;
+  transition:opacity 0.4s ease;
   width:100%;
   height:auto;
 
@@ -95,6 +97,10 @@ body.archive-page.past-page .archive-grid{
   max-width:100%;
 
   border-radius:6px;
+}
+
+.poster-item img.loaded{
+  opacity:1;
 }
 
 .poster-item figcaption{
