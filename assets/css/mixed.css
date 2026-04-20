@@ -108,7 +108,7 @@ body{
   color:#000;
   font-size:14px;
   cursor:pointer;
-  z-index:10;
+  z-index:20;
 }
 
 #mixed-image{
@@ -145,3 +145,19 @@ body{
   margin:auto;          /* 🔥 핵심 */
 }
 
+
+/* =========================
+   VIDEO MASK (mixed)
+========================= */
+
+.video-wrapper {
+  position: relative;   /* 🔥 반드시 필요 */
+}
+
+.video-mask.main {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+
+  pointer-events: auto;
+}
