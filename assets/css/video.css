@@ -433,6 +433,7 @@ body.page-ready .controls {
   inset: 0;              /* 🔥 핵심: iframe 전체 덮기 */
   z-index: 10;
   pointer-events: auto;  /* 🔥 우클릭 차단 */
+  background: rgba(255,0,0,0.2);
 }
 
 /* 🟢 우측 하단 */
