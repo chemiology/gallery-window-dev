@@ -540,8 +540,7 @@ soundBtn?.addEventListener("click", async () => {
   }
 
   if (audio) {
-    audio.muted = false;
-    audio.play().catch(()=>{});
+    audio.pause();   // 🔥 핵심
   }
 
   soundBtn.style.display = "none";
