@@ -238,12 +238,18 @@ function showVideoLayer() {
 
   const imageLayer = document.getElementById("image-layer");
   const videoLayer = document.getElementById("video-layer");
+  const frame = document.querySelector(".video-frame");
 
   videoLayer.classList.add("layer-visible");
   videoLayer.classList.remove("layer-hidden");
 
   imageLayer.classList.remove("layer-visible");
   imageLayer.classList.add("layer-hidden");
+
+  // 🔥 중요: 매번 초기화
+  if (frame) {
+    frame.classList.remove("active");
+  }
 }
 
 function showItem(index) {
@@ -350,8 +356,14 @@ else if (item.type === "video") {
       "&autoplay=1&muted=1&controls=0&title=0&byline=0&portrait=0";
 
     iframe.onload = () => {
-      iframe.style.opacity = 1;
-      fadeFromBlack(600);   // 🔥 여기서만 실행
+
+      const frame = iframe.closest(".video-frame");
+
+      if (frame) {
+        frame.classList.add("active");   // 🔥 핵심
+      }
+
+      fadeFromBlack(800);   // 살짝 더 길게
     };
 
     stopAuto();
