@@ -661,20 +661,3 @@ body.exhibition-detail figure.exhibition-poster img {
 .auto-notice{
   backdrop-filter:none;  /* 흐림 제거 */
 }
-
-/* =========================
-   Video-mask
-========================= */
-
-/* 🔴 큰 레이어 */
-.video-mask.main {
-  position: absolute;
-  left: 0;
-  right: 0;
-
-  top: 0;
-  height: 95%;   /* 🔥 이 값으로 위쪽 확장 조절 */
-
-  z-index: 20;
-  pointer-events: auto;
-}
