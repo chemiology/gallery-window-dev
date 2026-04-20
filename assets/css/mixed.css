@@ -221,10 +221,6 @@ body{
   transition: transform 6s ease;
 }
 
-.image-wrapper.layer-visible #mixed-image{
-  transform: scale(1.02);
-}
-
 #slideshow-notice{
   position:absolute;
   top:40px;
