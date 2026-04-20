@@ -469,7 +469,3 @@ body.page-ready .controls {
 
   transition: background 0.8s ease, opacity 0.8s ease;
 }
-
-.video-mask{
-  display:none !important;
-}
