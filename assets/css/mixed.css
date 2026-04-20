@@ -112,6 +112,11 @@ body{
 }
 
 #mixed-image{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+
   max-width:90%;
   max-height:85vh;
   width:auto;
@@ -129,9 +134,9 @@ body{
 }
 
 .image-wrapper{
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  position:absolute;
+  inset:0;
+  text-align:center;
 }
 
 /* 🔥 exhibition.css 영향 차단 */
