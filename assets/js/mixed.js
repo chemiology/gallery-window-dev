@@ -355,16 +355,18 @@ else if (item.type === "video") {
       "?h=" + item.hash +
       "&autoplay=1&muted=1&controls=0&title=0&byline=0&portrait=0";
 
-    iframe.onload = () => {
+    setTimeout(() => {
 
       const frame = iframe.closest(".video-frame");
 
       if (frame) {
-        frame.classList.add("active");   // 🔥 핵심
+        frame.classList.add("active");
       }
 
-      fadeFromBlack(800);   // 살짝 더 길게
-    };
+      fadeFromBlack(800);
+
+    }, 500);   // 🔥 안정적인 타이밍
+
 
     stopAuto();
 
