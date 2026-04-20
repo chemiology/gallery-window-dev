@@ -184,7 +184,6 @@ body{
   aspect-ratio:16/9;   /* 🔥 핵심 */
   height:auto;
   border:none;
-  transform: scale(1.05);
 }
 
 /* 보호 레이어 */
