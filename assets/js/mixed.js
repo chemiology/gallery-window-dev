@@ -179,6 +179,45 @@ function stopAuto() {
   clearInterval(timer);
 }
 
+
+/* =========================
+   fade / audio 함수만 추가
+========================= */
+
+function fadeToBlack(duration = 500){
+  const f = document.getElementById("cinema-fade");
+  if(!f) return;
+  f.style.transition = `opacity ${duration}ms ease`;
+  f.style.opacity = 1;
+}
+
+function fadeFromBlack(duration = 500){
+  const f = document.getElementById("cinema-fade");
+  if(!f) return;
+  f.style.transition = `opacity ${duration}ms ease`;
+  f.style.opacity = 0;
+}
+
+function fadeAudio(target, duration = 500){
+  if(!audio) return;
+
+  const start = audio.volume;
+  const step = (target - start) / (duration / 50);
+
+  let v = start;
+
+  const interval = setInterval(() => {
+    v += step;
+    audio.volume = Math.max(0, Math.min(1, v));
+
+    if ((step > 0 && v >= target) || (step < 0 && v <= target)) {
+      audio.volume = target;
+      clearInterval(interval);
+    }
+  }, 50);
+}
+
+
 /* =========================
    LAYER CONTROL
 ========================= */
@@ -207,10 +246,6 @@ function showVideoLayer() {
   imageLayer.classList.add("layer-hidden");
 }
 
-/* =========================
-   SHOW ITEM
-========================= */
-
 function showItem(index) {
 
   const img = document.getElementById("mixed-image");
@@ -238,110 +273,123 @@ function showItem(index) {
 
   if (item.type === "image") {
 
-    if (soundBtn) soundBtn.style.display = "none";
+    fadeToBlack(400);
 
-    const notice = document.getElementById("slideshow-notice");
+    setTimeout(() => {
 
-    if (notice && !noticeShown) {
+      if (soundBtn) soundBtn.style.display = "none";
 
-      notice.style.display = "block";
+      const notice = document.getElementById("slideshow-notice");
 
-      clearTimeout(noticeTimer);
+      if (notice && !noticeShown) {
 
-      noticeTimer = setTimeout(() => {
-        notice.style.display = "none";
-      }, 5000);
+        notice.style.display = "block";
 
-      noticeShown = true;
-    }
+        clearTimeout(noticeTimer);
 
+        noticeTimer = setTimeout(() => {
+          notice.style.display = "none";
+        }, 5000);
 
-    if (audio) {
-      audio.volume = currentExhibition?.volume ?? 0.5;
-      audio.play().catch(() => {});
-    }
+        noticeShown = true;
+      }
 
-    iframe.src = "";
+      if (audio) {
+        fadeAudio(currentExhibition?.volume ?? 0.5, 800);
+        audio.play().catch(() => {});
+      }
 
-    if (vimeoPlayer) {
-      vimeoPlayer.unload();
-      vimeoPlayer = null;
-    }
+      iframe.src = "";
 
-    showImageLayer();
+      if (vimeoPlayer) {
+        vimeoPlayer.unload();
+        vimeoPlayer = null;
+      }
 
-    img.src = basePath + "images/" + item.src;
+      showImageLayer();
 
-    startAuto();
+      img.src = basePath + "images/" + item.src;
+
+      fadeFromBlack(600);
+
+      startAuto();
+
+      updateCounter();
+      preloadNextItem();
+
+    }, 300);
   }
 
   /* =========================
      VIDEO
   ========================= */
 
-  if (item.type === "video") {
+  else if (item.type === "video") {
 
-    if (soundBtn) soundBtn.style.display = "block";
-
-    // 🔥 여기 추가
-    const notice = document.getElementById("slideshow-notice");
-    if (notice) notice.style.display = "none";
-
-    if (audio) {
-      audio.volume = 0;
-      audio.pause();
-    }
-
-    showVideoLayer();
-
-    iframe.src =
-      "https://player.vimeo.com/video/" + item.id +
-      "?h=" + item.hash +
-      "&autoplay=1" +
-      "&muted=1" +
-      "&controls=0" +        // 🔥 추가
-      "&title=0&byline=0&portrait=0";
-
-    if (window.matchMedia("(pointer: coarse)").matches) {
-      setTimeout(() => {
-        iframe.src = iframe.src;
-      }, 300);
-    }
-
-    stopAuto();
+    fadeToBlack(400);
 
     setTimeout(() => {
 
-      if (vimeoPlayer) {
-        vimeoPlayer.unload();
+      if (soundBtn) soundBtn.style.display = "block";
+
+      const notice = document.getElementById("slideshow-notice");
+      if (notice) notice.style.display = "none";
+
+      if (audio) {
+        fadeAudio(0, 500);
+        setTimeout(() => audio.pause(), 600);
       }
 
-      vimeoPlayer = new Vimeo.Player(iframe);
+      showVideoLayer();
 
-      // 🔥 이미 터치된 상태면 바로 소리 ON
-      if (userActivatedSound) {
-        vimeoPlayer.setMuted(false);
-        vimeoPlayer.setVolume(1);
-      }
+      iframe.src =
+        "https://player.vimeo.com/video/" + item.id +
+        "?h=" + item.hash +
+        "&autoplay=1&muted=1&controls=0&title=0&byline=0&portrait=0";
 
-      vimeoPlayer.on('ended', () => {
-
-        const videoLayer = document.getElementById("video-layer");
-        videoLayer.classList.add("fade-out");
-
+      if (window.matchMedia("(pointer: coarse)").matches) {
         setTimeout(() => {
-          videoLayer.classList.remove("fade-out");
-          nextItem();
-          startAuto();
+          iframe.src = iframe.src;
         }, 300);
+      }
 
-      });
+      stopAuto();
 
-    }, 500);
+      setTimeout(() => {
+
+        if (vimeoPlayer) {
+          vimeoPlayer.unload();
+        }
+
+        vimeoPlayer = new Vimeo.Player(iframe);
+
+        if (userActivatedSound) {
+          vimeoPlayer.setMuted(false);
+          vimeoPlayer.setVolume(1);
+        }
+
+        vimeoPlayer.on('ended', () => {
+
+          const videoLayer = document.getElementById("video-layer");
+          videoLayer.classList.add("fade-out");
+
+          setTimeout(() => {
+            videoLayer.classList.remove("fade-out");
+            nextItem();
+            startAuto();
+          }, 300);
+
+        });
+
+      }, 500);
+
+      fadeFromBlack(600);
+
+      updateCounter();
+      preloadNextItem();
+
+    }, 300);
   }
-
-  updateCounter();
-  preloadNextItem();
 }
 
 /* =========================
@@ -669,3 +717,5 @@ document.addEventListener("keydown", e => {
 });
 
 
+document.querySelector(".video-mask.main")
+  ?.addEventListener("contextmenu", e => e.preventDefault());
