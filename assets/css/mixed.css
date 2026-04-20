@@ -266,7 +266,7 @@ body{
 
 /* 활성 상태 */
 .video-frame.active iframe{
-  opacity: 1;
+  opacity:1 !important;   /* 🔥 강제 */
   filter: blur(0px);
   transform: scale(1.0);
 }
