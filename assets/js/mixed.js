@@ -342,8 +342,11 @@ else if (item.type === "video") {
     if (notice) notice.style.display = "none";
 
     if (audio) {
-      fadeAudio(0, 500);
-      setTimeout(() => audio.pause(), 600);
+      fadeAudio(0.1, 2000);   // 🔥 더 부드럽게
+
+      setTimeout(() => {
+        audio.pause();
+      }, 1300);
     }
 
     showVideoLayer();
@@ -365,7 +368,7 @@ else if (item.type === "video") {
 
       fadeFromBlack(800);
 
-    }, 500);   // 🔥 안정적인 타이밍
+    }, 900);   // 🔥 여유 확보
 
 
     stopAuto();
@@ -516,7 +519,8 @@ soundBtn?.addEventListener("click", async () => {
   }
 
   if (audio) {
-    audio.pause();   // 🔥 핵심
+    fadeAudio(0, 800);   // 🔥 완전히 정리
+    setTimeout(()=>audio.pause(), 900);
   }
 
   soundBtn.style.display = "none";
