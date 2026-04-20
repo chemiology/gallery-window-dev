@@ -330,6 +330,8 @@ function showItem(index) {
    VIDEO
 ========================= */
 
+iframe.style.background = "#000";
+
 else if (item.type === "video") {
 
   fadeToBlack(400);
@@ -351,6 +353,8 @@ else if (item.type === "video") {
 
     showVideoLayer();
 
+    iframe.style.background = "#000";
+
     iframe.style.opacity = 0;
 
     iframe.src =
@@ -368,7 +372,7 @@ else if (item.type === "video") {
 
       fadeFromBlack(800);
 
-    }, 900);   // 🔥 여유 확보
+    }, 300);   // 🔥 여유 확보
 
 
     stopAuto();
@@ -395,7 +399,7 @@ else if (item.type === "video") {
           videoLayer.classList.remove("fade-out");
           nextItem();
           startAuto();
-        }, 300);
+        }, 250);
 
       });
 
