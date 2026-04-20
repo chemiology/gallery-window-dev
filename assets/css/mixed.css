@@ -40,18 +40,18 @@
 ========================= */
 
 #mixed-video{
+  position:absolute;
+  inset:0;
+
   width:100%;
-  max-width:1200px;     /* 🔥 크기 제한 */
+  height:100%;
 
-  aspect-ratio:16 / 9;  /* 🔥 핵심 */
-
-  height:auto;
   border:none;
-
   pointer-events:auto;  /* 🔥 클릭 가능 */
 
   box-shadow:0 20px 60px rgba(0,0,0,0.6);
 }
+
 
 /* =========================
    VISIBILITY CONTROL (핵심)
@@ -94,8 +94,6 @@ body{
   user-select:none;
   -webkit-user-select:none;
 }
-
-
 
 .sound-overlay{
   position:absolute;
@@ -150,14 +148,81 @@ body{
    VIDEO MASK (mixed)
 ========================= */
 
-.video-wrapper {
-  position: relative;   /* 🔥 반드시 필요 */
+.video-wrapper{
+  position:absolute;
+  inset:0;
 }
 
 .video-mask.main {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
+  position:absolute;
+  inset:0;
+  z-index:5;
+  pointer-events:auto;
+}
 
-  pointer-events: auto;
+
+/* =========================
+   VIDEO FRAME (통합 구조)
+========================= */
+
+.video-frame{
+  position:relative;
+  width:100%;
+  height:100%;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* 영상 */
+.video-frame iframe{
+  width:100%;
+  height:100%;
+  border:none;
+}
+
+/* 보호 레이어 */
+.video-mask.main{
+  position:absolute;
+  inset:0;
+  z-index:5;
+  pointer-events:auto;
+}
+
+
+/* 🔥 UI는 항상 위 */
+#exhibition-caption,
+#artwork-counter,
+#slideshow-notice,
+.sound-overlay{
+  position:relative;
+  z-index:20;
+}
+
+/* =========================
+   CINEMATIC FADE
+========================= */
+
+#cinema-fade{
+  position:fixed;
+  inset:0;
+  background:#000;
+
+  opacity:0;
+  pointer-events:none;
+
+  z-index:50;
+
+  transition: opacity 0.8s ease;
+}
+
+.video-frame iframe,
+#mixed-image{
+  transition: transform 6s ease;
+}
+
+.layer-visible iframe,
+.layer-visible img{
+  transform: scale(1.02);
 }
