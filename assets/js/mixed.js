@@ -330,8 +330,6 @@ function showItem(index) {
    VIDEO
 ========================= */
 
-iframe.style.background = "#000";
-
 else if (item.type === "video") {
 
   fadeToBlack(400);
