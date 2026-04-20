@@ -592,6 +592,10 @@ document.getElementById("backHome")?.addEventListener("click", () => {
    BASIC PROTECTION
 ========================= */
 
+// 🔒 video-mask 우클릭 차단 (mixed)
+document.querySelector(".video-mask.main")
+  ?.addEventListener("contextmenu", e => e.preventDefault());
+
 // 우클릭 방지
 document.addEventListener("contextmenu", e => e.preventDefault());
 
