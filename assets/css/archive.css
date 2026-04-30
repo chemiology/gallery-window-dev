@@ -86,7 +86,7 @@ body.archive-page.past-page .archive-grid{
 }
 
 .poster-item img{
-  opacity:0;
+  opacity:1;
   transition:opacity 0.4s ease;
   width:100%;
   height:auto;
