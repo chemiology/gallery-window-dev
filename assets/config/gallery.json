@@ -47,7 +47,7 @@
       "themeMode": "cool",
       "slideSeconds": 10,
       "music": "M01",
-      "volume": 0.5,
+      "volume": 0.45,
       "startDate": "2026-02-15",
       "endDate": "2026-05-31"
     },
@@ -89,7 +89,7 @@
       "themeMode": "warm",
       "slideSeconds": 10,
       "music": "M04",
-      "volume": 0.5,
+      "volume": 0.45,
       "startDate": "2026-03-01",
       "endDate": "2026-06-30"
     },
@@ -205,7 +205,7 @@
       "themeMode": "warm",
       "slideSeconds": 10,
       "music": "M11",
-      "volume": 0.5,
+      "volume": 0.45,
       "startDate": "2026-03-01",
       "endDate": "2026-06-30"
     },
@@ -259,7 +259,7 @@
       "themeMode": "warm",
       "slideSeconds": 10,
       "music": "M04",
-      "volume": 0.5,
+      "volume": 0.45,
       "startDate": "2026-04-01",
       "endDate": "2026-08-31"
     },
