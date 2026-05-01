@@ -118,10 +118,15 @@ body {
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 15px;
-  opacity: 0.6;
+
+  font-size: 16px;
+  color: #f2f2f2;                 /* 🔥 밝기 조정 */
+  opacity: 1;                     /* 🔥 흐림 제거 */
+
   letter-spacing: 0.02em;
   text-align: center;
+
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);  /* 🔥 핵심 */
 }
 
 /* ---------- Mobile ---------- */
@@ -482,8 +487,8 @@ body.exhibition-detail figure.exhibition-poster img {
   width: 100%;
 
   text-align: center;
-  font-size: 14px;
-  color: #e0e0e0;
+  font-size: 15px;
+  color: #f5f5f5;
 
   letter-spacing: 0.4px;
 
