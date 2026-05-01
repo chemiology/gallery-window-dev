@@ -142,7 +142,7 @@
         "온난한 시간"
 
       ],
-      "themeColor": "#3388a4",
+      "themeColor": "#52318b",
       "themeMode": "cool",
       "slideSeconds": 10,
       "music": "M24",
@@ -267,7 +267,7 @@
     {
       "id": "E0023",
       "title": "They look back at me",
-      "hall": "hall03",
+      "hall": "hall23",
       "hallTitle": "23관",
       "order": 23,
       "type": "photo",
