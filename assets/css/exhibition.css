@@ -120,7 +120,7 @@ body {
   transform: translateX(-50%);
 
   font-size: 16px;
-  color: #f2f2f2;                 /* 🔥 밝기 조정 */
+  color: #dcdcdc;                 /* 🔥 밝기 조정 */
   opacity: 1;                     /* 🔥 흐림 제거 */
 
   letter-spacing: 0.02em;
