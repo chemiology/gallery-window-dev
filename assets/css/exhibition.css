@@ -667,24 +667,12 @@ body.exhibition-detail figure.exhibition-poster img {
   backdrop-filter:none;  /* 흐림 제거 */
 }
 
-/* =========================
-   THEME MODE (SUBTLE)
-========================= */
-
-/* COOL: 아주 미세하게 차가운 톤 */
-body.theme-cool {
-  filter: hue-rotate(4deg) saturate(0.97);
-}
-
-/* WARM: 아주 미세하게 따뜻한 톤 */
-body.theme-warm {
-  filter: hue-rotate(-4deg) saturate(1.03);
-}
-
+/* COOL */
 body.theme-cool .caption {
-  letter-spacing: 0.025em;
+  color: #dfe7ee;
 }
 
+/* WARM */
 body.theme-warm .caption {
-  letter-spacing: 0.015em;
+  color: #efe2d8;
 }

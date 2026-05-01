@@ -295,23 +295,10 @@ body{
   transform: scale(1.02);   /* 🔥 자연스럽게 */
 }
 
-/* =========================
-   THEME MODE (VERY SUBTLE)
-========================= */
-
-/* 영상 색감 왜곡 방지용 - 더 약하게 */
-body.theme-cool {
-  filter: hue-rotate(2deg) saturate(0.98);
-}
-
-body.theme-warm {
-  filter: hue-rotate(-2deg) saturate(1.02);
-}
-
 body.theme-cool .caption {
-  letter-spacing: 0.025em;
+  color: #e3e9ef;
 }
 
 body.theme-warm .caption {
-  letter-spacing: 0.015em;
+  color: #f0e6dc;
 }
