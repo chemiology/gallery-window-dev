@@ -1,3 +1,8 @@
+const params = new URLSearchParams(window.location.search);
+const exhibitionId = params.get("id");
+
+const basePath = `/assets/poetry/${exhibitionId}/`;
+
 let data = [];
 let index = 0;
 let autoMode = false;
@@ -7,7 +12,7 @@ let isPlaying = false;
 const delays = [0.5, 1.5, 3];
 
 async function loadData() {
-  const res = await fetch('./poetry.json');
+  const res = await fetch(basePath + 'poetry.json');
   data = await res.json();
   showSlide();
 }
@@ -15,7 +20,7 @@ async function loadData() {
 function showSlide() {
   const item = data[index];
 
-  document.getElementById("image").src = item.image;
+  document.getElementById("image").src = basePath + item.image;
   document.getElementById("title").innerText = item.title;
 
   // 텍스트 애니메이션
@@ -30,7 +35,7 @@ function showSlide() {
   });
 
   const audio = document.getElementById("audio");
-  audio.src = item.audio;
+  audio.src = basePath + item.audio;
 
   // 음성 끝나면 자동 다음 (2초 대기)
   audio.onended = () => {
