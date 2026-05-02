@@ -212,7 +212,7 @@ async function loadHallEntry(exhibition, hallId) {
     const target =
       exhibition.type === "poetry"
         ? BASE_PATH + `/poetry/poetry.html?id=${exhibition.id}`
-          exhibition.type === "event"
+          : exhibition.type === "event"
             ? BASE_PATH + `/assets/event/hall2.html?id=${exhibition.id}`
             : exhibition.type === "mixed"
               ? BASE_PATH + `/mixed.html?id=${exhibition.id}&hall=${hallId}`

@@ -194,6 +194,7 @@ function renderExhibitions(exhibitions) {
 
       const isVideo = exhibition.type === "video";
       const isMixed = exhibition.type === "mixed";
+      const isPoetry = exhibition.type === "poetry";
       const hasImages = exhibition.images && exhibition.images.length;
 
       if (!isVideo && !hasImages && !isMixed) {
