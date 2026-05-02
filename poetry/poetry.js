@@ -21,7 +21,6 @@ const basePath = BASE_PATH + `/assets/poetry/${exhibitionId}/`;
 let data = [];
 let index = 0;
 let autoMode = false;
-let autoTimer = null;
 let isPlaying = false;
 
 const delays = [0.5, 1.5, 3];
@@ -38,7 +37,6 @@ function showSlide() {
   document.getElementById("image").src = basePath + item.image;
   document.getElementById("title").innerText = item.title;
 
-  // 텍스트 애니메이션
   const textEl = document.getElementById("text");
   textEl.innerHTML = "";
 
@@ -52,17 +50,17 @@ function showSlide() {
   const audio = document.getElementById("audio");
   audio.src = basePath + item.audio;
 
-  // 음성 끝나면 자동 다음 (2초 대기)
   audio.onended = () => {
     isPlaying = false;
 
     if (autoMode) {
       setTimeout(() => {
         nextSlide();
-        playAudio(); // 다음 작품 자동 재생
+        playAudio();
       }, 2000);
     }
   };
+}
 
 function nextSlide() {
   index = (index + 1) % data.length;
@@ -78,17 +76,14 @@ function prevSlide() {
 
 function playAudio() {
   const audio = document.getElementById("audio");
-  const btn = event.target;
 
   if (!isPlaying) {
     audio.play();
     isPlaying = true;
-    btn.innerText = "⏸";
   } else {
     audio.pause();
     audio.currentTime = 0;
     isPlaying = false;
-    btn.innerText = "🔊";
   }
 }
 
@@ -99,28 +94,21 @@ function stopAudio() {
   isPlaying = false;
 }
 
-// 자동 넘김
-function toggleAuto() {
+function toggleAuto(event) {
   autoMode = !autoMode;
 
+  if (event) {
+    event.target.style.background = autoMode ? "#fff" : "rgba(255,255,255,0.1)";
+    event.target.style.color = autoMode ? "#000" : "#fff";
+  }
+
   if (autoMode) {
-    playAudio(); // 시작 시 바로 낭송
+    playAudio();
   }
 }
-
-loadData();
-
 
 function goBack() {
   history.back();
 }
 
-function toggleAuto() {
-  autoMode = !autoMode;
-
-  const btn = event.target;
-  btn.style.background = autoMode ? "#fff" : "rgba(255,255,255,0.1)";
-  btn.style.color = autoMode ? "#000" : "#fff";
-
-  if (autoMode) playAudio();
-}
+loadData();
