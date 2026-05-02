@@ -322,9 +322,25 @@
       "volume": 0.4,
       "startDate": "2026-04-01",
       "endDate": "2026-11-30"
+    },
+
+
+    {
+      "id": "P0001",
+      "title": "당신이라는 온기",
+      "hall": "hall30",
+      "hallTitle": "11관",
+      "order": 11,
+      "type": "poetry",
+      "status": "current",
+      "artist": "김경수",
+      "themeColor": "#c6d4e1",
+      "themeMode": "warm",
+      "music": "M01",
+      "volume": 0.2,
+      "startDate": "2026-05-01",
+      "endDate": "2026-08-31"
     }
-
-
 
 
 
