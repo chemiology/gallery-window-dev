@@ -197,7 +197,7 @@ function renderExhibitions(exhibitions) {
       const isPoetry = exhibition.type === "poetry";
       const hasImages = exhibition.images && exhibition.images.length;
 
-      if (!isVideo && !hasImages && !isMixed) {
+      if (!isVideo && !hasImages && !isMixed && !isPoetry) {
         alert("이 전시는 아직 준비 중입니다.");
         return;
       }
