@@ -179,13 +179,15 @@ async function loadHallEntry(exhibition, hallId) {
     poster.onclick = () => {
 
     const target =
-      exhibition.type === "event"
-        ? BASE_PATH + `/assets/event/hall2.html?id=${exhibition.id}`
-        : exhibition.type === "mixed"
-          ? BASE_PATH + `/mixed.html?id=${exhibition.id}&hall=${hallId}`
-          : exhibition.type === "video"
-            ? `video.html?id=${exhibition.id}&hall=${hallId}`
-            : BASE_PATH + `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
+      exhibition.type === "poetry"
+        ? BASE_PATH + `/poetry/poetry.html?id=${exhibition.id}`
+        : exhibition.type === "event"
+          ? BASE_PATH + `/assets/event/hall2.html?id=${exhibition.id}`
+          : exhibition.type === "mixed"
+            ? BASE_PATH + `/mixed.html?id=${exhibition.id}&hall=${hallId}`
+            : exhibition.type === "video"
+              ? `video.html?id=${exhibition.id}&hall=${hallId}`
+              : BASE_PATH + `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
 
      const fade = document.getElementById("pageFade");
 
@@ -208,13 +210,15 @@ async function loadHallEntry(exhibition, hallId) {
   if (enterBtn) {
 
     const target =
-      exhibition.type === "event"
-        ? BASE_PATH + `/assets/event/hall2.html?id=${exhibition.id}`
-        : exhibition.type === "mixed"
-          ? BASE_PATH + `/mixed.html?id=${exhibition.id}&hall=${hallId}`
-          : exhibition.type === "video"
-            ? `video.html?id=${exhibition.id}&hall=${hallId}`
-            : BASE_PATH + `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
+      exhibition.type === "poetry"
+        ? BASE_PATH + `/poetry/poetry.html?id=${exhibition.id}`
+          exhibition.type === "event"
+            ? BASE_PATH + `/assets/event/hall2.html?id=${exhibition.id}`
+            : exhibition.type === "mixed"
+              ? BASE_PATH + `/mixed.html?id=${exhibition.id}&hall=${hallId}`
+              : exhibition.type === "video"
+                ? `video.html?id=${exhibition.id}&hall=${hallId}`
+                : BASE_PATH + `/exhibition.html?id=${exhibition.id}&hall=${hallId}`;
 
     enterBtn.href = target;
 
