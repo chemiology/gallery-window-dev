@@ -56,11 +56,13 @@ function showSlide() {
   audio.onended = () => {
     isPlaying = false;
 
-    setTimeout(() => {
-      if (autoMode) nextSlide();
-    }, 2000);
+    if (autoMode) {
+      setTimeout(() => {
+        nextSlide();
+        playAudio(); // 다음 작품 자동 재생
+      }, 2000);
+    }
   };
-}
 
 function nextSlide() {
   index = (index + 1) % data.length;
@@ -76,14 +78,17 @@ function prevSlide() {
 
 function playAudio() {
   const audio = document.getElementById("audio");
+  const btn = event.target;
 
   if (!isPlaying) {
     audio.play();
     isPlaying = true;
+    btn.innerText = "⏸";
   } else {
     audio.pause();
     audio.currentTime = 0;
     isPlaying = false;
+    btn.innerText = "🔊";
   }
 }
 
@@ -99,12 +104,23 @@ function toggleAuto() {
   autoMode = !autoMode;
 
   if (autoMode) {
-    autoTimer = setInterval(() => {
-      nextSlide();
-    }, 8000);
-  } else {
-    clearInterval(autoTimer);
+    playAudio(); // 시작 시 바로 낭송
   }
 }
 
 loadData();
+
+
+function goBack() {
+  history.back();
+}
+
+function toggleAuto() {
+  autoMode = !autoMode;
+
+  const btn = event.target;
+  btn.style.background = autoMode ? "#fff" : "rgba(255,255,255,0.1)";
+  btn.style.color = autoMode ? "#000" : "#fff";
+
+  if (autoMode) playAudio();
+}

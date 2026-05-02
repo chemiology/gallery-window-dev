@@ -11,9 +11,10 @@ body {
 }
 
 .main-image {
-  width:100%;
-  height:100%;
-  object-fit:cover;
+  width: 100%;
+  height: 100vh;
+  object-fit: contain;  /* cover → contain */
+  background: black;
 }
 
 .caption {
@@ -59,3 +60,51 @@ button {
     transparent
   );
 }
+
+.back-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+}
+
+.text {
+  font-size: 20px;
+  line-height: 1.8;
+  color: #f0f0f0;
+}
+
+.text span {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeUp 1s forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.caption {
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.7),
+    rgba(0,0,0,0.3),
+    transparent
+  );
+  padding: 30px;
+}
+
+.controls button {
+  background: rgba(255,255,255,0.1);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(5px);
+}
+
+
