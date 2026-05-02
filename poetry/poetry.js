@@ -1,7 +1,22 @@
+const BASE_PATH = (() => {
+  const path = location.pathname;
+
+  if (path.includes('/gallery-window-dev/')) {
+    return '/gallery-window-dev';
+  }
+
+  const segments = path.split('/').filter(Boolean);
+  if (location.hostname.includes('github.io') && segments.length > 0) {
+    return '/' + segments[0];
+  }
+
+  return '';
+})();
+
 const params = new URLSearchParams(window.location.search);
 const exhibitionId = params.get("id");
 
-const basePath = `/assets/poetry/${exhibitionId}/`;
+const basePath = BASE_PATH + `/assets/poetry/${exhibitionId}/`;
 
 let data = [];
 let index = 0;
