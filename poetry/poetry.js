@@ -43,9 +43,9 @@ if (themeMode) {
 }
 
 if (music) {
-  bgmAudio = new Audio(BASE_PATH + `/assets/music/${music}.mp3`);
+  bgmAudio = new Audio(BASE_PATH + `/assets/audio/${music}.mp3`);
   bgmAudio.loop = true;
-  bgmAudio.volume = bgmVolume;
+  bgmAudio.volume = 0;
 }
 
 function showSlide() {
@@ -67,11 +67,27 @@ function showSlide() {
   const audio = document.getElementById("audio");
   audio.src = basePath + item.audio;
 
+  setTimeout(() => {
+    audio.currentTime = 0;
+    audio.play();
+    isPlaying = true;
+  }, 500);
+
   audio.onended = () => {
     isPlaying = false;
 
     if (bgmAudio) {
       bgmAudio.volume = bgmVolume;
+    }
+
+    if (index === data.length - 1) {
+      autoMode = false;
+
+      setTimeout(() => {
+        showEndingMessage();
+      }, 3000);
+
+      return;
     }
 
     if (autoMode) {
@@ -100,6 +116,14 @@ function playAudio() {
 
   if (bgmAudio && bgmAudio.paused) {
     bgmAudio.play().catch(() => {});
+
+    let v = 0;
+    const fade = setInterval(() => {
+      v += 0.02;
+      bgmAudio.volume = Math.min(v, bgmVolume);
+
+      if (v >= bgmVolume) clearInterval(fade);
+    }, 100);
   }
 
   if (!isPlaying) {
@@ -150,6 +174,23 @@ function toggleAuto(event) {
 function goBack() {
   history.back();
 }
+
+function showEndingMessage() {
+  const el = document.createElement("div");
+  el.className = "ending";
+
+  el.innerHTML = `
+    <div>
+      <p>감상해 주셔서 감사합니다</p>
+      <p style="opacity:.7;margin-top:10px;">
+        다시 천천히 돌아보셔도 좋습니다
+      </p>
+    </div>
+  `;
+
+  document.body.appendChild(el);
+}
+
 
 loadData();
 
