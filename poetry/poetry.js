@@ -22,6 +22,8 @@ let data = [];
 let index = 0;
 let autoMode = false;
 let isPlaying = false;
+let bgmAudio = null;
+let bgmVolume = volumeParam ? parseFloat(volumeParam) : 0.2;
 
 const delays = [0.5, 1.5, 3];
 
@@ -29,6 +31,19 @@ async function loadData() {
   const res = await fetch(basePath + 'poetry.json');
   data = await res.json();
   showSlide();
+}
+
+const music = params.get("music");
+
+const themeMode = params.get("theme");
+if (themeMode) {
+  document.body.classList.add("theme-" + themeMode);
+}
+
+if (music) {
+  bgmAudio = new Audio(BASE_PATH + `/assets/music/${music}.mp3`);
+  bgmAudio.loop = true;
+  bgmAudio.volume = bgmVolume;
 }
 
 function showSlide() {
@@ -52,6 +67,10 @@ function showSlide() {
 
   audio.onended = () => {
     isPlaying = false;
+
+    if (bgmAudio) {
+      bgmAudio.volume = bgmVolume;
+    }
 
     if (autoMode) {
       setTimeout(() => {
@@ -77,13 +96,28 @@ function prevSlide() {
 function playAudio() {
   const audio = document.getElementById("audio");
 
+  if (bgmAudio && bgmAudio.paused) {
+    bgmAudio.play().catch(() => {});
+  }
+
   if (!isPlaying) {
+
+    if (bgmAudio) {
+      bgmAudio.volume = bgmVolume * 0.2;
+    }
+
     audio.play();
     isPlaying = true;
+
   } else {
+
     audio.pause();
     audio.currentTime = 0;
     isPlaying = false;
+
+    if (bgmAudio) {
+      bgmAudio.volume = bgmVolume;
+    }
   }
 }
 
@@ -92,6 +126,10 @@ function stopAudio() {
   audio.pause();
   audio.currentTime = 0;
   isPlaying = false;
+
+  if (bgmAudio) {
+    bgmAudio.volume = bgmVolume;
+  }
 }
 
 function toggleAuto(event) {
@@ -112,3 +150,12 @@ function goBack() {
 }
 
 loadData();
+
+
+window.addEventListener("load", () => {
+  const guide = document.getElementById("audioGuide");
+
+  setTimeout(() => {
+    guide.style.display = "none";
+  }, 3000);
+});
