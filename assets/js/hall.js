@@ -180,7 +180,7 @@ async function loadHallEntry(exhibition, hallId) {
 
     const target =
       exhibition.type === "poetry"
-        ? BASE_PATH + `/poetry/poetry.html?id=${exhibition.id}`
+        ? BASE_PATH + `/poetry/poetry.html?id=${exhibition.id}&music=${exhibition.music}&theme=${exhibition.themeMode}&volume=${exhibition.volume}`
         : exhibition.type === "event"
           ? BASE_PATH + `/assets/event/hall2.html?id=${exhibition.id}`
           : exhibition.type === "mixed"
@@ -211,7 +211,7 @@ async function loadHallEntry(exhibition, hallId) {
 
     const target =
       exhibition.type === "poetry"
-        ? BASE_PATH + `/poetry/poetry.html?id=${exhibition.id}`
+        ? BASE_PATH + `/poetry/poetry.html?id=${exhibition.id}&music=${exhibition.music}&theme=${exhibition.themeMode}&volume=${exhibition.volume}`
           : exhibition.type === "event"
             ? BASE_PATH + `/assets/event/hall2.html?id=${exhibition.id}`
             : exhibition.type === "mixed"
