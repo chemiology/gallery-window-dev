@@ -16,6 +16,9 @@ const BASE_PATH = (() => {
 const params = new URLSearchParams(window.location.search);
 const exhibitionId = params.get("id");
 
+const volumeParam = params.get("volume");
+let bgmVolume = volumeParam ? parseFloat(volumeParam) : 0.2;
+
 const basePath = BASE_PATH + `/assets/poetry/${exhibitionId}/`;
 
 let data = [];
@@ -23,7 +26,6 @@ let index = 0;
 let autoMode = false;
 let isPlaying = false;
 let bgmAudio = null;
-let bgmVolume = volumeParam ? parseFloat(volumeParam) : 0.2;
 
 const delays = [0.5, 1.5, 3];
 
@@ -157,5 +159,20 @@ window.addEventListener("load", () => {
 
   setTimeout(() => {
     guide.style.display = "none";
-  }, 3000);
+  }, 5000);
+});
+
+
+document.addEventListener("contextmenu", e => e.preventDefault());
+
+document.addEventListener("dragstart", e => e.preventDefault());
+
+document.addEventListener("keydown", e => {
+  if (
+    e.key === "F12" ||
+    (e.ctrlKey && e.shiftKey && e.key === "I") ||
+    (e.ctrlKey && e.key === "U")
+  ) {
+    e.preventDefault();
+  }
 });
