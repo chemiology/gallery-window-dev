@@ -49,6 +49,10 @@ if (music) {
 }
 
 function showSlide() {
+
+  const existing = document.querySelector(".ending");
+  if (existing) existing.remove();
+
   const item = data[index];
 
   document.getElementById("image").src = basePath + item.image;
@@ -67,21 +71,15 @@ function showSlide() {
   const audio = document.getElementById("audio");
   audio.src = basePath + item.audio;
 
-  setTimeout(() => {
-    audio.currentTime = 0;
-    audio.play();
-    isPlaying = true;
-  }, 500);
-
   audio.onended = () => {
     isPlaying = false;
+
+    if (index === data.length - 1) {
+      autoMode = false;
 
     if (bgmAudio) {
       bgmAudio.volume = bgmVolume;
     }
-
-    if (index === data.length - 1) {
-      autoMode = false;
 
       setTimeout(() => {
         showEndingMessage();
@@ -111,10 +109,14 @@ function prevSlide() {
   showSlide();
 }
 
+let bgmStarted = false;
+
 function playAudio() {
   const audio = document.getElementById("audio");
 
-  if (bgmAudio && bgmAudio.paused) {
+  if (bgmAudio && !bgmStarted) {
+    bgmStarted = true;
+
     bgmAudio.play().catch(() => {});
 
     let v = 0;
@@ -129,9 +131,10 @@ function playAudio() {
   if (!isPlaying) {
 
     if (bgmAudio) {
-      bgmAudio.volume = bgmVolume * 0.2;
+      bgmAudio.volume = bgmVolume * 0.3;
     }
 
+    audio.currentTime = 0;
     audio.play();
     isPlaying = true;
 
@@ -156,7 +159,16 @@ function stopAudio() {
   if (bgmAudio) {
     bgmAudio.volume = bgmVolume;
   }
-}
+
+  if (index === data.length - 1) {
+    autoMode = false;
+
+    setTimeout(() => {
+      showEndingMessage();
+    }, 3000);
+
+    return;
+  }
 
 function toggleAuto(event) {
   autoMode = !autoMode;
@@ -166,7 +178,7 @@ function toggleAuto(event) {
     event.target.style.color = autoMode ? "#000" : "#fff";
   }
 
-  if (autoMode) {
+  if (autoMode && !isPlaying) {
     playAudio();
   }
 }
@@ -176,6 +188,10 @@ function goBack() {
 }
 
 function showEndingMessage() {
+
+  const existing = document.querySelector(".ending");
+  if (existing) existing.remove();
+
   const el = document.createElement("div");
   el.className = "ending";
 
