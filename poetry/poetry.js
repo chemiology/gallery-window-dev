@@ -141,9 +141,6 @@ function playAudio() {
     audio.currentTime = 0;
     isPlaying = false;
 
-    if (bgmAudio) {
-      bgmAudio.volume = bgmVolume;
-    }
   }
 }
 
