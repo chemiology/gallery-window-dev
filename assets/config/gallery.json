@@ -468,7 +468,7 @@
       "id": "kim-retrospective",
       "title": "김경수 전체 작품전",
       "type": "event",
-      "order": 5,
+      "order": 70,
       "status": "current"
       "artist": "김경수",
       "themeColor": "#c6d4e1",
@@ -487,7 +487,7 @@
       "type": "poetry",
       "status": "current",
       "artist": "김경수",
-      "themeColor": "f8cdc8",
+      "themeColor": "#c6d4e1",
       "themeMode": "warm",
       "music": "M31",
       "volume": 0.2,
