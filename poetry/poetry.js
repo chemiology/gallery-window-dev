@@ -124,13 +124,13 @@ function playAudio() {
     bgmStarted = true;
     bgmAudio.play().catch(() => {});
 
-    let v = 0;
-    const fade = setInterval(() => {
-      v += 0.02;
-      bgmAudio.volume = Math.min(v, bgmVolume);
-      if (v >= bgmVolume) clearInterval(fade);
-    }, 100);
-  }
+    if (bgmAudio && !bgmStarted) {
+  bgmStarted = true;
+  bgmAudio.play().catch(() => {});
+
+  // 🔥 fade-in 제거
+  bgmAudio.volume = bgmVolume;
+}
 
   // 🔥 낭송 시작 시 BGM 감소
   if (bgmAudio) {
