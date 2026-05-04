@@ -143,7 +143,7 @@ button:hover {
   border-radius: 8px;
 
   opacity: 0;
-  animation: fadeGuide 3s forwards;
+  animation: fadeGuide 5s forwards;
 }
 
 @keyframes fadeGuide {

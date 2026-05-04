@@ -75,22 +75,16 @@ function showSlide() {
   audio.onended = () => {
     isPlaying = false;
 
+    fadeBGM(bgmVolume);
+
     if (index === data.length - 1) {
       autoMode = false;
-
-      if (bgmAudio) {
-        bgmAudio.volume = bgmVolume;
-      }
 
       setTimeout(() => {
         showEndingMessage();
       }, 3000);
 
       return;
-    }
-
-    if (bgmAudio) {
-      bgmAudio.volume = bgmVolume;
     }
 
     if (autoMode) {
@@ -134,7 +128,7 @@ function playAudio() {
   if (!isPlaying) {
 
     if (bgmAudio) {
-      bgmAudio.volume = bgmVolume * 0.3;
+      fadeBGM(bgmVolume * 0.12);
     }
 
     audio.currentTime = 0;
@@ -160,9 +154,29 @@ function stopAudio() {
   isPlaying = false;
 
   if (bgmAudio) {
-    bgmAudio.volume = bgmVolume;
+    fadeBGM(bgmVolume);
   }
 }
+
+
+function fadeBGM(target) {
+  if (!bgmAudio) return;
+
+  let v = bgmAudio.volume;
+  const step = (target - v) / 10;
+
+  const fade = setInterval(() => {
+    v += step;
+    bgmAudio.volume = v;
+
+    if ((step > 0 && v >= target) || (step < 0 && v <= target)) {
+      bgmAudio.volume = target;
+      clearInterval(fade);
+    }
+  }, 50);
+}
+
+
 
 function toggleAuto(event) {
   autoMode = !autoMode;
