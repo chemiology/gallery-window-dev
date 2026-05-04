@@ -26,6 +26,7 @@ let index = 0;
 let autoMode = false;
 let isPlaying = false;
 let bgmAudio = null;
+let bgmStarted = false;
 
 const delays = [0.5, 1.5, 3];
 
@@ -77,15 +78,19 @@ function showSlide() {
     if (index === data.length - 1) {
       autoMode = false;
 
-    if (bgmAudio) {
-      bgmAudio.volume = bgmVolume;
-    }
+      if (bgmAudio) {
+        bgmAudio.volume = bgmVolume;
+      }
 
       setTimeout(() => {
         showEndingMessage();
       }, 3000);
 
       return;
+    }
+
+    if (bgmAudio) {
+      bgmAudio.volume = bgmVolume;
     }
 
     if (autoMode) {
@@ -108,8 +113,6 @@ function prevSlide() {
   stopAudio();
   showSlide();
 }
-
-let bgmStarted = false;
 
 function playAudio() {
   const audio = document.getElementById("audio");
@@ -159,16 +162,7 @@ function stopAudio() {
   if (bgmAudio) {
     bgmAudio.volume = bgmVolume;
   }
-
-  if (index === data.length - 1) {
-    autoMode = false;
-
-    setTimeout(() => {
-      showEndingMessage();
-    }, 3000);
-
-    return;
-  }
+}
 
 function toggleAuto(event) {
   autoMode = !autoMode;
@@ -188,7 +182,6 @@ function goBack() {
 }
 
 function showEndingMessage() {
-
   const existing = document.querySelector(".ending");
   if (existing) existing.remove();
 
@@ -207,9 +200,7 @@ function showEndingMessage() {
   document.body.appendChild(el);
 }
 
-
 loadData();
-
 
 window.addEventListener("load", () => {
   const guide = document.getElementById("audioGuide");
@@ -219,9 +210,7 @@ window.addEventListener("load", () => {
   }, 5000);
 });
 
-
 document.addEventListener("contextmenu", e => e.preventDefault());
-
 document.addEventListener("dragstart", e => e.preventDefault());
 
 document.addEventListener("keydown", e => {
