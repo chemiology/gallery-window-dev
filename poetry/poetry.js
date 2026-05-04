@@ -112,8 +112,6 @@ function prevSlide() {
 function playAudio() {
   const audio = document.getElementById("audio");
 
-  audio.onended = null;
-
   // 🔥 항상 초기화
   audio.pause();
   audio.currentTime = 0;
