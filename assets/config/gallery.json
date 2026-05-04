@@ -327,16 +327,16 @@
 
     {
       "id": "P0001",
-      "title": "당신이라는 온기",
+      "title": "시간의 결, 감정의 빛 Ⅰ",
       "hall": "hall30",
       "hallTitle": "30관",
       "order": 30,
       "type": "poetry",
       "status": "current",
       "artist": "김경수",
-      "themeColor": "#fab6af",
+      "themeColor": "f8cdc8",
       "themeMode": "warm",
-      "music": "M02",
+      "music": "M31",
       "volume": 0.2,
       "startDate": "2026-05-01",
       "endDate": "2026-08-31"
