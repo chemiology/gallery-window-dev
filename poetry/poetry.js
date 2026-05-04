@@ -112,38 +112,34 @@ function prevSlide() {
 function playAudio() {
   const audio = document.getElementById("audio");
 
+  // 🔥 항상 초기화
+  audio.pause();
+  audio.currentTime = 0;
+
+  // 🔥 상태 초기화
+  isPlaying = false;
+
+  // 🔥 BGM 최초 실행
   if (bgmAudio && !bgmStarted) {
     bgmStarted = true;
-
     bgmAudio.play().catch(() => {});
 
     let v = 0;
     const fade = setInterval(() => {
       v += 0.02;
       bgmAudio.volume = Math.min(v, bgmVolume);
-
       if (v >= bgmVolume) clearInterval(fade);
     }, 100);
   }
 
-    if (bgmAudio) {
-      fadeBGM(bgmVolume * 0.12);
-    }
-
-
-  if (!isPlaying) {
-
-    audio.currentTime = 0;
-    audio.play();
-    isPlaying = true;
-
-  } else {
-
-    audio.pause();
-    audio.currentTime = 0;
-    isPlaying = false;
-
+  // 🔥 낭송 시작 시 BGM 감소
+  if (bgmAudio) {
+    fadeBGM(bgmVolume * 0.12);
   }
+
+  // 🔥 항상 새로 재생
+  audio.play();
+  isPlaying = true;
 }
 
 function stopAudio() {
@@ -191,7 +187,7 @@ function toggleAuto(event) {
     event.target.style.color = autoMode ? "#000" : "#fff";
   }
 
-  if (autoMode && !isPlaying) {
+  if (autoMode) {
     playAudio();
   }
 }
