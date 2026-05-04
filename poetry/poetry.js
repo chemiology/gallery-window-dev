@@ -92,7 +92,7 @@ function showSlide() {
       setTimeout(() => {
         nextSlide();
         playAudio();
-      }, 2000);
+      }, 5000);
     }
   };
 }
