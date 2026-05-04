@@ -126,11 +126,12 @@ function playAudio() {
     }, 100);
   }
 
-  if (!isPlaying) {
-
     if (bgmAudio) {
       fadeBGM(bgmVolume * 0.12);
     }
+
+
+  if (!isPlaying) {
 
     audio.currentTime = 0;
     audio.play();
