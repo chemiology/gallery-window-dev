@@ -112,6 +112,8 @@ function prevSlide() {
 function playAudio() {
   const audio = document.getElementById("audio");
 
+  audio.onended = null;
+
   // 🔥 항상 초기화
   audio.pause();
   audio.currentTime = 0;
@@ -140,6 +142,8 @@ function playAudio() {
   // 🔥 항상 새로 재생
   audio.play();
   isPlaying = true;
+
+  console.log("🔊 fade start");
 }
 
 function stopAudio() {
@@ -190,6 +194,8 @@ function toggleAuto(event) {
   if (autoMode) {
     playAudio();
   }
+
+  console.log("AUTO fade start");
 }
 
 function goBack() {
