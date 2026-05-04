@@ -112,36 +112,22 @@ function prevSlide() {
 function playAudio() {
   const audio = document.getElementById("audio");
 
-  // 🔥 항상 초기화
   audio.pause();
   audio.currentTime = 0;
-
-  // 🔥 상태 초기화
   isPlaying = false;
 
-  // 🔥 BGM 최초 실행
   if (bgmAudio && !bgmStarted) {
     bgmStarted = true;
     bgmAudio.play().catch(() => {});
+    bgmAudio.volume = bgmVolume;
+  }
 
-    if (bgmAudio && !bgmStarted) {
-  bgmStarted = true;
-  bgmAudio.play().catch(() => {});
-
-  // 🔥 fade-in 제거
-  bgmAudio.volume = bgmVolume;
-}
-
-  // 🔥 낭송 시작 시 BGM 감소
   if (bgmAudio) {
     fadeBGM(bgmVolume * 0.12);
   }
 
-  // 🔥 항상 새로 재생
   audio.play();
   isPlaying = true;
-
-  console.log("🔊 fade start");
 }
 
 function stopAudio() {
@@ -155,11 +141,9 @@ function stopAudio() {
   }
 }
 
-
 function fadeBGM(target) {
   if (!bgmAudio) return;
 
-  // 🔥 기존 fade 제거 (중요)
   if (bgmFadeInterval) {
     clearInterval(bgmFadeInterval);
   }
@@ -179,8 +163,6 @@ function fadeBGM(target) {
   }, 50);
 }
 
-
-
 function toggleAuto(event) {
   autoMode = !autoMode;
 
@@ -192,8 +174,6 @@ function toggleAuto(event) {
   if (autoMode) {
     playAudio();
   }
-
-  console.log("AUTO fade start");
 }
 
 function goBack() {
