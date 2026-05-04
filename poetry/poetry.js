@@ -27,6 +27,7 @@ let autoMode = false;
 let isPlaying = false;
 let bgmAudio = null;
 let bgmStarted = false;
+let bgmFadeInterval = null;
 
 const delays = [0.5, 1.5, 3];
 
@@ -159,16 +160,22 @@ function stopAudio() {
 function fadeBGM(target) {
   if (!bgmAudio) return;
 
+  // 🔥 기존 fade 제거 (중요)
+  if (bgmFadeInterval) {
+    clearInterval(bgmFadeInterval);
+  }
+
   let v = bgmAudio.volume;
   const step = (target - v) / 10;
 
-  const fade = setInterval(() => {
+  bgmFadeInterval = setInterval(() => {
     v += step;
     bgmAudio.volume = v;
 
     if ((step > 0 && v >= target) || (step < 0 && v <= target)) {
       bgmAudio.volume = target;
-      clearInterval(fade);
+      clearInterval(bgmFadeInterval);
+      bgmFadeInterval = null;
     }
   }, 50);
 }
