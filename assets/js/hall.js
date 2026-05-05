@@ -69,9 +69,9 @@ async function loadHall() {
       return;
     }
 
-    if (!exhibition && exhibitions.length > 0) {
-      console.warn("조건 매칭 실패 → fallback 사용");
-      exhibition = exhibitions[0];
+    if (!exhibition) {
+      console.error("hall 매칭 실패:", hallId);
+      return;
     }
 
     /* ---------- Hall Title ---------- */
