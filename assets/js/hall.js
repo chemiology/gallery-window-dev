@@ -65,12 +65,6 @@ async function loadHall() {
       getExhibitionStatus(ex) !== "past"
     );
 
-    if (exhibition && exhibition.type === "event") {
-      window.location.href =
-        BASE_PATH + `/assets/event/hall2.html?id=${exhibition.id}`;
-      return;
-    }
-
     if (!exhibition) {
       console.error("hall 매칭 실패:", hallId);
       return;

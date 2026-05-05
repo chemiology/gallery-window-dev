@@ -192,6 +192,12 @@ function renderExhibitions(exhibitions) {
 
     img.onclick = () => {
 
+      if (exhibition.type === "event") {
+        location.href =
+          BASE_PATH + `/assets/event/hall2.html?id=${exhibition.id}`;
+        return;
+      }
+
       const isVideo = exhibition.type === "video";
       const isMixed = exhibition.type === "mixed";
       const isPoetry = exhibition.type === "poetry";
