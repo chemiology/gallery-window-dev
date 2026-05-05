@@ -89,15 +89,20 @@ function goToExhibition(item) {
   let url = "";
 
   if (item.type === "photo") {
-    url = `/exhibition.html?id=${item.id}&from=hall2`;
+    url = BASE_PATH + `/exhibition.html?id=${item.id}&from=hall2`;
   }
 
   if (item.type === "video") {
-    url = `/video.html?id=${item.id}&from=hall2`;
+    url = BASE_PATH + `/video.html?id=${item.id}&from=hall2`;
   }
 
   if (item.type === "mixed") {
-    url = `/mixed.html?id=${item.id}&from=hall2`;
+    url = BASE_PATH + `/mixed.html?id=${item.id}&from=hall2`;
+  }
+
+  if (!url) {
+    alert("이 전시는 아직 준비 중입니다.");
+    return;
   }
 
   location.href = url;
@@ -116,3 +121,4 @@ window.addEventListener("load", () => {
   });
 
 });
+
