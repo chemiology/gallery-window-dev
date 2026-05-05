@@ -45,7 +45,10 @@ async function init() {
       </div>
     `;
 
-    el.onclick = () => goToExhibition(item);
+    el.onclick = (e) => {
+      e.stopPropagation();   // 🔥 핵심
+      goToExhibition(item);
+    };
 
     container.appendChild(el);
 
@@ -86,18 +89,20 @@ window.addEventListener("scroll", () => {
 
 function goToExhibition(item) {
 
+  console.log("CLICK ITEM:", item);
+
   let url = "";
 
   if (item.type === "photo") {
-    url = BASE_PATH + `/exhibition.html?id=${item.id}&from=hall2`;
+    url = `${BASE_PATH}/exhibition.html?id=${item.id}&from=hall2`;
   }
 
   if (item.type === "video") {
-    url = BASE_PATH + `/video.html?id=${item.id}&from=hall2`;
+    url = `${BASE_PATH}/video.html?id=${item.id}&from=hall2`;
   }
 
   if (item.type === "mixed") {
-    url = BASE_PATH + `/mixed.html?id=${item.id}&from=hall2`;
+    url = `${BASE_PATH}/mixed.html?id=${item.id}&from=hall2`;
   }
 
   if (!url) {
@@ -105,8 +110,10 @@ function goToExhibition(item) {
     return;
   }
 
+  console.log("GO URL:", url);
+
   location.href = url;
-}
+} 
 
 /* =========================
    START
