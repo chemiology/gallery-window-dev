@@ -1,4 +1,7 @@
-const BASE = "/assets/event";
+const params = new URLSearchParams(location.search);
+const eventId = params.get("id") || "event01";
+
+const BASE = `/assets/event/${eventId}`;
 
 /* =========================
    INIT
