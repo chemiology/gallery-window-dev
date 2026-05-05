@@ -470,7 +470,11 @@
       "title": "김경수 전체 작품전",
       "hall": "hall99",
       "hallTitle": "99관",
-      "order": 99
+      "order": 99,
+      "themeColor": "#c6d4e1",
+      "themeMode": "cool",
+      "startDate": "2026-04-01",
+      "endDate": "2026-12-31"
     },
 
 
