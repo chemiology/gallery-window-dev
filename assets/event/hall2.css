@@ -357,3 +357,8 @@ body {
 body.page-ready {
   opacity: 1;
 }
+
+.hall2-note {
+  white-space: pre-line;
+}
+

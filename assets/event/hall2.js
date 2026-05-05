@@ -30,9 +30,27 @@ async function init() {
   document.getElementById("title").innerText = data.title || "";
   document.getElementById("subtitle").innerText = data.subtitle || "";
 
-  // 🔥 작가노트
-  document.getElementById("hall2-note").innerText =
-    data.note || "";
+/* =========================
+   LOAD NOTE (txt 파일)
+========================= */
+
+async function loadNote() {
+
+  const noteEl = document.getElementById("hall2-note");
+  if (!noteEl) return;
+
+  try {
+
+    const res = await fetch(`${BASE}/thumbs/${eventId}.txt`);
+    const text = res.ok ? await res.text() : "";
+
+    noteEl.innerText = text;
+
+  } catch {
+    noteEl.innerText = "";
+  }
+
+}
 
   // 🔥 방명록 ID 연결
   const guestbookInput =
@@ -162,7 +180,8 @@ window.addEventListener("load", () => {
 
   init().then(() => {
     revealItems();
-    loadGuestbook();   // 🔥 추가
+    loadNote();        // 🔥 추가
+    loadGuestbook();
   });
 
 });
