@@ -1,7 +1,22 @@
+const BASE_PATH = (() => {
+  const path = location.pathname;
+
+  if (path.includes('/gallery-window-dev/')) {
+    return '/gallery-window-dev';
+  }
+
+  const segments = path.split('/').filter(Boolean);
+  if (location.hostname.includes('github.io') && segments.length > 0) {
+    return '/' + segments[0];
+  }
+
+  return '';
+})();
+
 const params = new URLSearchParams(location.search);
 const eventId = params.get("id") || "event01";
 
-const BASE = `/assets/event/${eventId}`;
+const BASE = BASE_PATH + `/assets/event/${eventId}`;
 
 /* =========================
    INIT
