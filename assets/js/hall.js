@@ -63,6 +63,12 @@ async function loadHall() {
       getExhibitionStatus(ex) !== "past"
     );
 
+    if (exhibition && exhibition.type === "event") {
+      window.location.href =
+        BASE_PATH + `/assets/event/hall2.html?id=${exhibition.id}`;
+      return;
+    }
+
     if (!exhibition && exhibitions.length > 0) {
       console.warn("조건 매칭 실패 → fallback 사용");
       exhibition = exhibitions[0];
