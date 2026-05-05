@@ -145,3 +145,215 @@ body.page-ready {
     width: 100%;
   }
 }
+
+/* 전체 중앙 정렬 */
+.hall2-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 120px 20px 80px;
+}
+
+/* 제목 영역 */
+.hall2-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.hall2-header h1 {
+  font-size: 42px;
+  margin-bottom: 16px;
+}
+
+.hall2-header p {
+  opacity: 0.7;
+}
+
+/* 작가노트 */
+.hall2-note {
+  max-width: 720px;
+  margin: 0 auto 80px;
+  line-height: 1.8;
+  opacity: 0.85;
+}
+
+/* 작품 리스트 중앙 정렬 */
+.hall2-list {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* 아이템 중앙 정렬 */
+.hall2-item {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+/* 이미지 hover */
+.hall2-item img {
+  width: 180px;
+  transition: all 0.3s ease;
+}
+
+.hall2-item:hover img {
+  transform: scale(1.05);
+}
+
+/* 손가락 커서 */
+.hall2-item {
+  cursor: pointer;
+}
+
+.hall2-guide {
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.6;
+  margin-top: 10px;
+}
+
+.enter-btn {
+  margin-top: 10px;
+  padding: 6px 12px;
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.enter-btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+body.hall {
+  background-color: #0d0d0d;
+}
+
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
+
+.guestbook-section {
+  max-width: 700px;
+  margin: 80px auto;
+  text-align: center;
+}
+
+#guestbook-form input {
+  width: 70%;
+  padding: 10px;
+}
+
+#guestbook-form button {
+  padding: 10px 16px;
+}
+
+body.hall {
+  background: #0d0d0d;
+}
+
+/* 전체 레이아웃 */
+.hall2-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 120px 20px 80px;
+}
+
+/* 돌아가기 */
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  opacity: 0.7;
+}
+
+/* 헤더 */
+.hall2-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.hall2-header h1 {
+  font-size: 42px;
+}
+
+.hall2-guide {
+  margin-top: 10px;
+  opacity: 0.6;
+  font-size: 14px;
+}
+
+/* 작가노트 */
+.hall2-note {
+  max-width: 700px;
+  margin: 0 auto 80px;
+  line-height: 1.8;
+  opacity: 0.85;
+  text-align: center;
+}
+
+/* 리스트 */
+.hall2-list {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* 아이템 */
+.hall2-item {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.hall2-item img {
+  width: 180px;
+  transition: transform .3s ease;
+}
+
+.hall2-item:hover img {
+  transform: scale(1.05);
+}
+
+/* 버튼 */
+.enter-btn {
+  margin-top: 10px;
+  padding: 6px 12px;
+  border: 1px solid #fff;
+  background: transparent;
+  color: #fff;
+}
+
+.enter-btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* 방명록 */
+.guestbook-section {
+  max-width: 700px;
+  margin: 80px auto;
+  text-align: center;
+}
+
+#guestbook-form input {
+  width: 70%;
+  padding: 10px;
+}
+
+#guestbook-form button {
+  padding: 10px 14px;
+}
+
+body {
+  opacity: 0;
+  transition: opacity .8s ease;
+}
+
+body.page-ready {
+  opacity: 1;
+}

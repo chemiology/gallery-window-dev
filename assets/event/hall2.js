@@ -30,7 +30,22 @@ async function init() {
   document.getElementById("title").innerText = data.title || "";
   document.getElementById("subtitle").innerText = data.subtitle || "";
 
+  // 🔥 작가노트
+  document.getElementById("hall2-note").innerText =
+    data.note || "";
+
+  // 🔥 방명록 ID 연결
+  const guestbookInput =
+    document.querySelector('input[name="exhibition_id"]');
+
+  if (guestbookInput) {
+    guestbookInput.value = eventId;
+  }
+
   const container = document.getElementById("hall2-list");
+
+  // 🔥 중복 방지
+  container.innerHTML = "";
 
   data.items.forEach(item => {
 
@@ -42,18 +57,24 @@ async function init() {
       <div class="text">
         <h3>${item.title} <span class="year">${item.year || ""}</span></h3>
         <p>${item.desc || ""}</p>
+        <button class="enter-btn">전시 보기</button>
       </div>
     `;
 
+    // 전체 클릭
     el.onclick = (e) => {
-      e.stopPropagation();   // 🔥 핵심
+      e.stopPropagation();
+      goToExhibition(item);
+    };
+
+    // 버튼 클릭
+    el.querySelector(".enter-btn").onclick = (e) => {
+      e.stopPropagation();
       goToExhibition(item);
     };
 
     container.appendChild(el);
-
   });
-
 }
 
 /* =========================
@@ -71,17 +92,35 @@ function revealItems() {
 }
 
 /* =========================
-   SCROLL BACKGROUND
+   GUESTBOOK
 ========================= */
 
-window.addEventListener("scroll", () => {
-  const y = window.scrollY;
-  const bg = document.querySelector(".site-background");
+async function loadGuestbook() {
 
-  if (bg) {
-    bg.style.transform = `scale(${1 + y * 0.0002})`;
+  const area = document.getElementById("guestbook-list");
+  if (!area) return;
+
+  try {
+    const res = await fetch(window.GUESTBOOK_URL + "?mode=list");
+    const data = await res.json();
+
+    area.innerHTML = "";
+
+    if (!data || data.length === 0) {
+      area.innerHTML = "<p>아직 방명록이 없습니다.</p>";
+      return;
+    }
+
+    data.forEach(item => {
+      const div = document.createElement("div");
+      div.textContent = item.message;
+      area.appendChild(div);
+    });
+
+  } catch {
+    area.innerHTML = "<p>불러오기 실패</p>";
   }
-});
+}
 
 /* =========================
    NAVIGATION
@@ -89,7 +128,7 @@ window.addEventListener("scroll", () => {
 
 function goToExhibition(item) {
 
-  console.log("CLICK ITEM:", item);
+  if (!item || !item.id) return;
 
   let url = "";
 
@@ -110,10 +149,8 @@ function goToExhibition(item) {
     return;
   }
 
-  console.log("GO URL:", url);
-
   location.href = url;
-} 
+}
 
 /* =========================
    START
@@ -125,7 +162,7 @@ window.addEventListener("load", () => {
 
   init().then(() => {
     revealItems();
+    loadGuestbook();   // 🔥 추가
   });
 
 });
-
