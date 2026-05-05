@@ -182,7 +182,11 @@ function renderExhibitions(exhibitions) {
 
     const img = document.createElement("img");
 
-    img.src = BASE_PATH + `/assets/exhibitions/${exhibition.id}/poster.jpg`;
+    img.src =
+      exhibition.type === "event"
+        ? BASE_PATH + `/assets/event/${exhibition.id}/thumbs/${exhibition.id}.jpg`
+        : BASE_PATH + `/assets/exhibitions/${exhibition.id}/poster.jpg`;
+
     img.alt = exhibition.title;
     img.loading = "lazy";
 
