@@ -12,6 +12,22 @@
 },
 
   "currentExhibitions": [
+
+    {
+      "id": "event01",
+      "type": "event",
+      "title": "김경수 전체 작품전",
+      "hall": "hall99",
+      "hallTitle": "99관",
+      "order": 99,
+      "status": "current",
+      "artist": "김경수",
+      "themeColor": "#c6d4e1",
+      "themeMode": "cool",
+      "startDate": "2026-04-01",
+      "endDate": "2026-12-31"
+    },
+
     {
       "id": "E0001",
       "title": "Avatar II",
@@ -464,20 +480,6 @@
     },
 
 
-    {
-      "id": "event01",
-      "type": "event",
-      "title": "김경수 전체 작품전",
-      "hall": "hall99",
-      "hallTitle": "99관",
-      "order": 99,
-      "status": "current",
-      "artist": "김경수",
-      "themeColor": "#c6d4e1",
-      "themeMode": "cool",
-      "startDate": "2026-04-01",
-      "endDate": "2026-12-31"
-    },
 
 
     {
