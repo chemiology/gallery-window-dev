@@ -133,7 +133,9 @@ async function loadHall() {
 async function loadHallEntry(exhibition, hallId) {
 
   const basePath =
-    BASE_PATH + `/assets/exhibitions/${exhibition.id}/`;
+    exhibition.type === "event"
+      ? BASE_PATH + `/assets/event/`
+      : BASE_PATH + `/assets/exhibitions/${exhibition.id}/`;
 
   /* ---------- COMING 상태 ---------- */
 
@@ -170,7 +172,10 @@ async function loadHallEntry(exhibition, hallId) {
 
   if (poster) {
 
-    poster.src = basePath + "poster.jpg";
+    poster.src =
+      exhibition.type === "event"
+        ? BASE_PATH + "/assets/event/thumbs/event01.jpg"
+        : basePath + "poster.jpg";
 
     poster.onerror = () => {
       poster.src = BASE_PATH + "/assets/images/poster-placeholder.jpg";
