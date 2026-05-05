@@ -174,7 +174,7 @@ async function loadHallEntry(exhibition, hallId) {
 
     poster.src =
       exhibition.type === "event"
-        ? BASE_PATH + "/assets/event/thumbs/event01.jpg"
+        ? BASE_PATH + `/assets/event/${exhibition.id}/thumbs/${exhibition.id}.jpg`
         : basePath + "poster.jpg";
 
     poster.onerror = () => {
