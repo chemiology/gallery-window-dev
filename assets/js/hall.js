@@ -1,5 +1,7 @@
+console.log("hall.js version check");
+
 /* =====================================================
-   Gallery Window – HALL JS (FINAL STABLE)
+   Gallery Window – HALL JS (FINAL STABLE) 
    ✔ BASE_PATH 완전 대응
    ✔ dev / 운영 모두 안정
 ===================================================== */
