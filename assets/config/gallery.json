@@ -471,6 +471,7 @@
       "hall": "hall99",
       "hallTitle": "99관",
       "order": 99,
+      "status": "current",
       "themeColor": "#c6d4e1",
       "themeMode": "cool",
       "startDate": "2026-04-01",
