@@ -189,11 +189,15 @@ async function loadHallEntry(exhibition, hallId) {
 
     poster.onclick = () => {
 
-    const target =
-      exhibition.type === "poetry"
-        ? BASE_PATH + `/poetry/poetry.html?id=${exhibition.id}&music=${exhibition.music}&theme=${exhibition.themeMode}&volume=${exhibition.volume}`
-        : exhibition.type === "event"
-          ? BASE_PATH + `/assets/event/hall2.html?id=${exhibition.id}`
+      if (exhibition.type === "event") {
+        window.location.href =
+          BASE_PATH + `/assets/event/hall2.html?id=${exhibition.id}`;
+        return;
+      }
+
+      const target =
+        exhibition.type === "poetry"
+          ? BASE_PATH + `/poetry/poetry.html?id=${exhibition.id}`
           : exhibition.type === "mixed"
             ? BASE_PATH + `/mixed.html?id=${exhibition.id}&hall=${hallId}`
             : exhibition.type === "video"
