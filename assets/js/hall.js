@@ -116,6 +116,13 @@ async function loadHall() {
       );
     }
 
+    // 🔥 event는 hall2로 보내기
+    if (exhibition.type === "event") {
+      window.location.href =
+        BASE_PATH + `/assets/event/hall2.html?id=${exhibition.id}`;
+      return;
+    }
+
     loadHallEntry(exhibition, hallId);
 
   } catch (err) {
