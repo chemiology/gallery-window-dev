@@ -1,44 +1,45 @@
-<body class="hall">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<div class="site-background hall"></div>
+<title>Special Exhibition</title>
 
-<div class="hall2-container">
+<link rel="stylesheet" href="hall2.css">
+</head>
 
-  <!-- 🔙 돌아가기 -->
-  <button class="back-btn" onclick="history.back()">← 돌아가기</button>
+<body class="hall2-page">
 
-  <!-- 🎨 헤더 -->
-  <div class="hall2-header">
-    <h1 id="title"></h1>
-    <p id="subtitle"></p>
-    <p class="hall2-guide">이미지를 클릭하면 전시로 이동합니다</p>
+<div class="site-background hall2-bg"></div>
+
+<header class="hall2-header">
+
+  <a href="../../index.html" class="back-main">
+    ←대표화면
+  </a>
+
+  <h1 id="title"></h1>
+
+  <p id="subtitle"></p>
+
+  <div class="hall2-guide">
+    전시 포스터 또는 작품보기 버튼을 클릭하면 전시관으로 이동합니다.
   </div>
 
-  <!-- 📝 작가노트 -->
-  <div class="hall2-note" id="hall2-note"></div>
+</header>
 
-  <!-- 💬 방명록 -->
-  <div class="guestbook-section">
+<section class="hall2-note-wrap">
+  <div id="hall2-note" class="hall2-note"></div>
+</section>
 
-    <h2>방명록</h2>
-
-    <form id="guestbook-form">
-      <input type="hidden" name="exhibition_id" />
-      <input type="text" name="message" placeholder="감상을 남겨주세요" required />
-      <button type="submit">등록</button>
-    </form>
-
-    <div id="guestbook-list"></div>
-
-  </div>
-
-  <!-- 🖼 작품 리스트 -->
-  <div id="hall2-list" class="hall2-list"></div>
-
-</div>
+<main>
+  <section id="hall2-grid" class="hall2-grid"></section>
+</main>
 
 <div id="pageFade"></div>
 
 <script src="hall2.js"></script>
 
 </body>
+</html>
