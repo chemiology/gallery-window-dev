@@ -114,7 +114,7 @@ function renderGrid(items, galleryData) {
     card.style.animationDelay = `${index * 80}ms`;
 
     const poster = exhibition.poster ||
-      `/assets/exhibitions/${exhibition.id}/poster.jpg`;
+      `${BASE_PATH}/assets/exhibitions/${exhibition.id}/poster.jpg`;
 
     const hallLink = `${BASE_PATH}/hall.html?hall=${exhibition.hall}`;
 
