@@ -14,6 +14,7 @@ const exhibitionId = params.get("id");
 ========================= */
 let videos = [];
 let currentIndex = 0;
+let videoTimer;
 
 /* =========================
    페이드
@@ -104,14 +105,13 @@ if (ambient && themeColor) {
       /* 🔥 Vimeo (전시 최적화) */
       src =
         "https://player.vimeo.com/video/" + video.id +
-        "?h=" + video.hash +
-        "&autoplay=1" +
-        "&muted=1" +
-        "&background=1" +
-        "&title=0" +
-        "&byline=0" +
-        "&portrait=0";
-
+       "?h=" + video.hash +
+       "&autoplay=1" +
+       "&muted=1" +
+       "&controls=0" +
+       "&title=0" +
+       "&byline=0" +
+       "&portrait=0";
     } else {
 
       /* 🔴 YouTube (기존 유지) */
@@ -159,6 +159,8 @@ if (ambient && themeColor) {
       fadeIn();
     }, 900);
 
+    startVideoTimer();
+
   }, 800);
 
 const btn = document.querySelector(".sound-button");
@@ -166,6 +168,24 @@ const btn = document.querySelector(".sound-button");
   if (btn) {
   btn.style.display = "block";   // 🔥 영상 바뀌면 버튼 다시 등장
   }
+
+}
+
+/* =========================
+   🎬 자동 다음 영상
+========================= */
+
+function startVideoTimer() {
+
+  clearTimeout(videoTimer);
+
+  const current = videos[currentIndex];
+
+  if (!current.duration) return;
+
+  videoTimer = setTimeout(() => {
+    nextVideo();
+  }, current.duration * 1000);
 
 }
 
