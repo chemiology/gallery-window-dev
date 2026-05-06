@@ -107,6 +107,7 @@ if (ambient && themeColor) {
        "&autoplay=1" +
        "&muted=" + (soundEnabled ? "0" : "1") +
        "&controls=0" +
+       "&autopause=0" +
        "&title=0" +
        "&byline=0" +
        "&portrait=0";
@@ -283,8 +284,11 @@ function enableSound() {
       "?h=" + video.hash +
       "&autoplay=1" +
       "&muted=0" +
-      "&background=1" +
-      "&title=0&byline=0&portrait=0";
+      "&controls=0" +
+      "&autopause=0" +
+      "&title=0" +
+      "&byline=0" +
+      "&portrait=0";
   }
 
   soundEnabled = true;
