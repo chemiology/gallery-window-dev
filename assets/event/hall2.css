@@ -23,25 +23,51 @@ body.hall2-page {
 
 /* 배경 */
 .site-background.hall2-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -2;
 
-  background:
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  z-index: -10;
+
+  background-image:
+
     linear-gradient(
       rgba(0,0,0,.58),
-      rgba(0,0,0,.72)
+      rgba(0,0,0,.74)
     ),
 
     radial-gradient(
       circle at top center,
-      rgba(198,212,225,.08),
-      transparent 58%
+      rgba(198,212,225,.07),
+      transparent 60%
     ),
 
-    url('../images/bg_main.jpg') center center / cover no-repeat;
+    url('../images/bg_hall.jpg');
 
-  transform: scale(1.02);
+  background-size:
+    auto,
+    auto,
+    cover;
+
+  background-position:
+    center,
+    center,
+    center;
+
+  background-repeat:
+    no-repeat,
+    no-repeat,
+    no-repeat;
+
+  background-attachment: fixed;
+
+  transform: scale(1.03);
+
 }
 
 /* 헤더 */
