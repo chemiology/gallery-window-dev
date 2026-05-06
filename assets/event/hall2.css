@@ -39,7 +39,7 @@ body.hall2-page {
       transparent 58%
     ),
 
-    url('../assets/images/bg_main.jpg') center center / cover no-repeat;
+    url('../images/bg_main.jpg') center center / cover no-repeat;
 
   transform: scale(1.02);
 }
