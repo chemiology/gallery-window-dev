@@ -31,7 +31,7 @@ async function init() {
 
     const [hallRes, galleryRes] = await Promise.all([
       fetch(`${BASE}/artist-hall.json`),
-      fetch(`${BASE_PATH}/assets/data/gallery.json`)
+      fetch(`${BASE_PATH}/assets/config/gallery.json`)
     ]);
 
     const hallData = await hallRes.json();
