@@ -96,7 +96,7 @@ body.hall2-page {
 
 /* 작가노트 */
 .hall2-note-wrap {
-  width: min(760px, calc(100% - 60px));
+  width: min(620px, calc(100% - 60px));
 
   margin: 70px auto 90px;
 }
@@ -104,13 +104,13 @@ body.hall2-page {
 .hall2-note {
   color: rgba(255,255,255,.82);
 
-  line-height: 2.0;
+  line-height: 1.82;
 
   text-align: left;
 
   white-space: pre-line;
 
-  font-size: 16px;
+  font-size: 15px;
 }
 
 /* 포스터 그리드 */
