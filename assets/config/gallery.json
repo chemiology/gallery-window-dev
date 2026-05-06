@@ -14,21 +14,6 @@
   "currentExhibitions": [
 
     {
-      "id": "event01",
-      "type": "event",
-      "title": "김경수 전체 작품전",
-      "hall": "hall99",
-      "hallTitle": "99관",
-      "order": 99,
-      "status": "current",
-      "artist": "김경수",
-      "themeColor": "#c6d4e1",
-      "themeMode": "cool",
-      "startDate": "2026-04-01",
-      "endDate": "2026-12-31"
-    },
-
-    {
       "id": "E0001",
       "title": "Avatar II",
       "hall": "hall03",
@@ -348,6 +333,7 @@
       "order": 82,
       "type": "photo",
       "status": "current",
+      "hidden": true
       "artist": "김경수",
       "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg","014.jpg","015.jpg","016.jpg","017.jpg","018.jpg","019.jpg","020.jpg","021.jpg","022.jpg","023.jpg"],
       "captions": [
@@ -392,6 +378,7 @@
       "order": 81,
       "type": "photo",
       "status": "current",
+      "hidden": true
       "artist": "김경수",
       "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg","014.jpg","015.jpg","016.jpg","017.jpg","018.jpg","019.jpg","020.jpg","021.jpg","022.jpg","023.jpg","024.jpg","025.jpg","026.jpg"],
       "captions": [
@@ -439,6 +426,7 @@
       "order": 80,
       "type": "photo",
       "status": "current",
+      "hidden": true
       "artist": "김경수",
       "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg","014.jpg","015.jpg","016.jpg","017.jpg","018.jpg","019.jpg","020.jpg","021.jpg","022.jpg","023.jpg","024.jpg","025.jpg","026.jpg","027.jpg"],
       "captions": [
@@ -479,7 +467,20 @@
       "endDate": "2026-12-31"
     },
 
-
+    {
+      "id": "event01",
+      "type": "event",
+      "title": "김경수 전체 작품전",
+      "hall": "hall99",
+      "hallTitle": "99관",
+      "order": 99,
+      "status": "current",
+      "artist": "김경수",
+      "themeColor": "#c6d4e1",
+      "themeMode": "cool",
+      "startDate": "2026-04-01",
+      "endDate": "2026-12-31"
+    },
 
 
     {
