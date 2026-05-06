@@ -74,8 +74,6 @@ function loadVideo() {
 
   if (!videos.length) return;
 
-  soundEnabled = false;   // 🔥 이 줄 추가
-
   const iframe = document.getElementById("player");
   const video = videos[currentIndex];
 
@@ -107,7 +105,7 @@ if (ambient && themeColor) {
         "https://player.vimeo.com/video/" + video.id +
        "?h=" + video.hash +
        "&autoplay=1" +
-       "&muted=1" +
+       "&muted=" + (soundEnabled ? "0" : "1") +
        "&controls=0" +
        "&title=0" +
        "&byline=0" +
@@ -166,7 +164,9 @@ if (ambient && themeColor) {
 const btn = document.querySelector(".sound-button");
 
   if (btn) {
-  btn.style.display = "block";   // 🔥 영상 바뀌면 버튼 다시 등장
+    if (!soundEnabled) {
+      btn.style.display = "block";
+    }
   }
 
 }
