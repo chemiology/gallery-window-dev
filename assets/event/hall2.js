@@ -47,7 +47,10 @@ async function init() {
     loadNote();
 
     /* 그리드 */
-    renderGrid(hallData.items || [], galleryData);
+    renderGrid(
+      hallData.items || [],
+      galleryData.currentExhibitions || []
+    );
 
   } catch (err) {
 
