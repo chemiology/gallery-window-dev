@@ -15,10 +15,10 @@ body {
 }
 
 body.hall2-page {
-  background: #080808;
   color: var(--text-color);
   font-family: Pretendard, sans-serif;
   overflow-x: hidden;
+  background: transparent;
 }
 
 /* 배경 */
