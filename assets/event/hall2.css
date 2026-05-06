@@ -28,7 +28,17 @@ body.hall2-page {
   z-index: -2;
 
   background:
-    linear-gradient(rgba(0,0,0,.78), rgba(0,0,0,.82)),
+    linear-gradient(
+      rgba(0,0,0,.58),
+      rgba(0,0,0,.72)
+    ),
+
+    radial-gradient(
+      circle at top center,
+      rgba(198,212,225,.08),
+      transparent 58%
+    ),
+
     url('../images/bg_main.jpg') center center / cover no-repeat;
 
   transform: scale(1.02);
@@ -63,7 +73,7 @@ body.hall2-page {
 }
 
 .back-main:hover {
-  background: rgba(255,255,255,.92);
+  background: rgba(198,212,225,.92);
   color: #111;
   border-color: rgba(255,255,255,.92);
 }
@@ -96,9 +106,9 @@ body.hall2-page {
 
 /* 작가노트 */
 .hall2-note-wrap {
-  width: min(620px, calc(100% - 60px));
+  width: min(820px, calc(100% - 60px));
 
-  margin: 70px auto 90px;
+  margin: 55px auto 70px;
 }
 
 .hall2-note {
@@ -136,7 +146,7 @@ body.hall2-page {
   display: flex;
   flex-direction: column;
 
-  animation: fadeUp .8s ease both;
+  animation: fadeUp 1.05s ease both;
 }
 
 .poster-link {
@@ -167,7 +177,7 @@ body.hall2-page {
 }
 
 .poster-link:hover img {
-  transform: scale(1.045);
+  transform: scale(1.028);
   opacity: .95;
 }
 
@@ -183,6 +193,7 @@ body.hall2-page {
   line-height: 1.5;
 
   margin-bottom: 6px;
+  color: rgba(255,255,255,.92);
 }
 
 .poster-artist {

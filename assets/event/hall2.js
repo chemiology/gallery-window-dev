@@ -169,3 +169,20 @@ window.addEventListener('load', () => {
   init();
 
 });
+
+/* =========================
+   PARALLAX
+========================= */
+
+window.addEventListener('scroll', () => {
+
+  const bg = document.querySelector('.site-background');
+
+  if (!bg) return;
+
+  const y = window.scrollY * 0.08;
+
+  bg.style.transform =
+    `translateY(${y}px) scale(1.03)`;
+
+});
