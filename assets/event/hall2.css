@@ -29,7 +29,7 @@ body.hall2-page {
 
   background:
     linear-gradient(rgba(0,0,0,.78), rgba(0,0,0,.82)),
-    url('../../assets/backgrounds/main-bg.jpg') center center / cover no-repeat;
+    url('../images/bg_main.jpg') center center / cover no-repeat;
 
   transform: scale(1.02);
 }
