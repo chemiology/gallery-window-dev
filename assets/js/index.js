@@ -97,7 +97,11 @@ async function loadGallery() {
 
     const exhibitions =
       (data.currentExhibitions || [])
-        .filter(ex => ex && ex.status !== "hidden")
+        .filter(ex =>
+          ex &&
+          ex.status !== "hidden" &&
+          ex.hidden !== true
+        )
         .sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
 
     renderExhibitions(exhibitions);
