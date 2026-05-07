@@ -358,7 +358,7 @@ else if (item.type === "video") {
     iframe.src =
       "https://player.vimeo.com/video/" + item.id +
       "?h=" + item.hash +
-      "&autoplay=1&muted=1&controls=0&title=0&byline=0&portrait=0";
+      "&autoplay=1&muted=1&controls=0&autopause=0&title=0&byline=0&portrait=0";
 
     setTimeout(() => {
 
