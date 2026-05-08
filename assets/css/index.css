@@ -154,6 +154,17 @@
 
 }
 
+/* 전시 9개 이상 */
+
+.exhibitions.grid-5{
+
+  grid-template-columns:
+    repeat(5,minmax(0,240px));
+
+  gap:32px;
+
+}
+
 /* =====================================================
    EXHIBITION CARD
 ===================================================== */
@@ -197,6 +208,9 @@
 
 .exhibitions.grid-3 .hall-label{font-size:12px;}
 .exhibitions.grid-4 .hall-label{font-size:11px;}
+.exhibitions.grid-5 .hall-label{
+  font-size:10px;
+}
 
 
 /* =====================================================
@@ -216,6 +230,14 @@ body.home .meta{
   margin:4px 0 0;
   font-size:14px;
   opacity:.8;
+}
+
+.exhibitions.grid-5 .meta h3{
+  font-size:14px;
+}
+
+.exhibitions.grid-5 .meta p{
+  font-size:12px;
 }
 
 
