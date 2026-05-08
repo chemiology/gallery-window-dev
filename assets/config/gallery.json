@@ -525,8 +525,8 @@
       "artist": "김경수",
       "themeColor": "#c6d4e1",
       "themeMode": "warm",
-      "music": "M01",
-      "volume": 0.2,
+      "music": "M33",
+      "volume": 0.15,
       "startDate": "2026-05-01",
       "endDate": "2026-08-31"
     },
@@ -542,8 +542,8 @@
       "artist": "김경수",
       "themeColor": "#c6d4e1",
       "themeMode": "warm",
-      "music": "M04",
-      "volume": 0.2,
+      "music": "M36",
+      "volume": 0.1,
       "startDate": "2026-05-01",
       "endDate": "2026-08-31"
     },
@@ -559,8 +559,8 @@
       "artist": "김경수",
       "themeColor": "#c6d4e1",
       "themeMode": "warm",
-      "music": "M12",
-      "volume": 0.2,
+      "music": "M38",
+      "volume": 0.1,
       "startDate": "2026-05-01",
       "endDate": "2026-08-31"
     }
