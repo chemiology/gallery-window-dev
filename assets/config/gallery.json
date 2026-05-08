@@ -470,10 +470,10 @@
     {
       "id": "event01",
       "type": "event",
-      "title": "김경수 전체 작품전",
-      "hall": "hall99",
-      "hallTitle": "99관",
-      "order": 99,
+      "title": "김경수 아카이브",
+      "hall": "hall92",
+      "hallTitle": "90관",
+      "order": 90,
       "status": "current",
       "artist": "김경수",
       "themeColor": "#c6d4e1",
@@ -482,15 +482,29 @@
       "endDate": "2026-12-31"
     },
 
+    {
+      "id": "event02",
+      "type": "event",
+      "title": "김경수 아카이브",
+      "hall": "hall91",
+      "hallTitle": "91관",
+      "order": 91,
+      "status": "current",
+      "artist": "김경수",
+      "themeColor": "#c6d4e1",
+      "themeMode": "cool",
+      "startDate": "2026-04-01",
+      "endDate": "2026-12-31"
+    },
 
     {
       "id": "P0001",
-      "title": "시간의 결, 감정의 빛 Ⅰ",
-      "hall": "hall30",
-      "hallTitle": "30관",
-      "order": 30,
+      "title": "시간의 결, 감정의 빛 I",
+      "hall": "hall31",
+      "hallTitle": "31관",
+      "order": 31,
       "type": "poetry",
-      "status": "current",
+      "hidden": true,
       "artist": "김경수",
       "themeColor": "#c6d4e1",
       "themeMode": "warm",
@@ -498,7 +512,59 @@
       "volume": 0.2,
       "startDate": "2026-05-01",
       "endDate": "2026-08-31"
+    },
+
+    {
+      "id": "P0002",
+      "title": "시간의 결, 감정의 빛 II",
+      "hall": "hall32",
+      "hallTitle": "32관",
+      "order": 32,
+      "type": "poetry",
+      "hidden": true,
+      "artist": "김경수",
+      "themeColor": "#c6d4e1",
+      "themeMode": "warm",
+      "music": "M01",
+      "volume": 0.2,
+      "startDate": "2026-05-01",
+      "endDate": "2026-08-31"
+    },
+
+    {
+      "id": "P0003",
+      "title": "시간의 결, 감정의 빛 III",
+      "hall": "hall33",
+      "hallTitle": "33관",
+      "order": 33,
+      "type": "poetry",
+      "hidden": true,
+      "artist": "김경수",
+      "themeColor": "#c6d4e1",
+      "themeMode": "warm",
+      "music": "M04",
+      "volume": 0.2,
+      "startDate": "2026-05-01",
+      "endDate": "2026-08-31"
+    },
+
+    {
+      "id": "P0004",
+      "title": "시간의 결, 감정의 빛 IV",
+      "hall": "hall34",
+      "hallTitle": "34관",
+      "order": 34,
+      "type": "poetry",
+      "hidden": true,
+      "artist": "김경수",
+      "themeColor": "#c6d4e1",
+      "themeMode": "warm",
+      "music": "M12",
+      "volume": 0.2,
+      "startDate": "2026-05-01",
+      "endDate": "2026-08-31"
     }
+
 
 
 
