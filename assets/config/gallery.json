@@ -526,7 +526,7 @@
       "themeColor": "#c6d4e1",
       "themeMode": "warm",
       "music": "M33",
-      "volume": 0.15,
+      "volume": 0.2,
       "startDate": "2026-05-01",
       "endDate": "2026-08-31"
     },
@@ -543,7 +543,7 @@
       "themeColor": "#c6d4e1",
       "themeMode": "warm",
       "music": "M36",
-      "volume": 0.1,
+      "volume": 0.2,
       "startDate": "2026-05-01",
       "endDate": "2026-08-31"
     },
@@ -560,7 +560,7 @@
       "themeColor": "#c6d4e1",
       "themeMode": "warm",
       "music": "M38",
-      "volume": 0.1,
+      "volume": 0.2,
       "startDate": "2026-05-01",
       "endDate": "2026-08-31"
     }
