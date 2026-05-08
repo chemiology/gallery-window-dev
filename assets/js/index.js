@@ -148,14 +148,22 @@ function renderExhibitions(exhibitions) {
 
   const count = visible.length;
 
-  container.classList.remove("grid-2","grid-3","grid-4");
+  container.classList.remove(
+    "grid-2",
+    "grid-3",
+    "grid-4",
+    "grid-5"
+  );
 
   if (count <= 2) {
     container.classList.add("grid-2");
-  } else if (count === 3) {
+
+  } else if (count <= 4) {
     container.classList.add("grid-3");
-  } else {
+  } else if (count <= 8) {
     container.classList.add("grid-4");
+  } else {
+    container.classList.add("grid-5");
   }
 
   visible.forEach((exhibition, index) => {
