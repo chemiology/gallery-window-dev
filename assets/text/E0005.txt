@@ -1,29 +1,53 @@
 [작가노트]
 
-이 영상작품은 나의 사진작품인 아바타II 의 영상 버전이다. 
-이더버스라는 가상세계의 개발에 참여했던 김지훈은 수지라는 여성 아바타로 이더버스에 접속했다가 총격으로 사망하면서 아바타만 가상세계에 남게 된다. 이후에 가상세계 전문가였던 수지는 미주라는 아바타와 자신의 인식테그를 몰래 교체함으로써 현실세계에서 미주의 본체인 오혜령으로 깨어나지만 결국 사고로 죽게 되고 자신의 죽음에 대한 미스테리도 풀리게 된다.
+이 영상작업은 나의 사진 연작 〈아바타〉와 〈아바타 II〉의 세계관을 기반으로 확장된 영상 프로젝트이다. 사진 속에서 시작된 ‘또 다른 자아’의 이야기는, 인공지능 기술과 결합된 영상 매체를 통해 보다 직접적인 서사와 시간성을 획득하게 되었다.
 
-This video work is a cinematic version of my photographic piece Avatar II.
+나는 어린 시절부터 현실을 벗어나 상상의 세계를 여행하곤 했다. 특히 힘든 순간마다 이러한 내면의 여행은 하나의 도피이자 생존 방식이었다. 시간이 흐르며 그 상상은 가상세계와 디지털 존재에 대한 질문으로 이어졌고, 결국 〈아바타 II〉 사진작업과 이번 영상작업으로 연결되었다.
 
-Kim Ji-hoon, who participated in the development of a virtual world called “Etherverse,” logs into the system using a female avatar named Suji. After being killed in a shooting, only his avatar remains within the virtual world. Later, Suji—who had been an expert in virtual environments—secretly swaps her recognition tag with that of another avatar named Miju. As a result, she awakens in the real world as Oh Hye-ryeong, Miju’s physical counterpart. However, she eventually dies in an accident, and through this process, the mystery surrounding her death is finally revealed.
+이 작품의 주인공은 사진작업 속 여성 아바타와 동일한 존재이다. 나는 사진 속 인물 이미지를 기반으로 인공지능을 학습시켜, 사진 속 인물이 실제로 움직이고 살아가는 듯한 영상 세계를 구현하고자 했다. 이를 통해 사진과 영상, 현실과 가상, 인간과 아바타의 경계는 점차 흐려지게 된다.
 
+〈아바타〉는 내가 2024년에 처음 제작한 AI 영상작업으로, AI 영상 생성과 편집 기술을 처음부터 배우며 약 2~3주 동안 완성한 작업이다. 지금의 기준에서 보면 기술적으로 미완의 흔적이 남아 있을 수 있지만, 오히려 그 과정 자체가 새로운 매체와 감각을 탐험해 나가던 기록으로 남아 있다. 이 작품은 사진 연작 〈아바타 II〉의 세계를 보다 입체적으로 이해할 수 있는 또 하나의 통로가 되기를 바란다. 현재 〈아바타 II〉 사진작업 역시 온라인 전시장 ‘갤러리 창’에서 함께 전시되고 있다.
 
-Directed and Produced by KyoungSoo Kim
+This video work can be understood as an extension of my photographic series 〈Avatar〉 and 〈Avatar II〉 into moving images. More precisely, the video project 〈Avatar〉 and the photographic work 〈Avatar II〉 share the same fictional universe. The story of the “other self,” which first emerged through photography, expands through AI-generated moving images into a narrative with greater temporality and immersion.
 
-Image generation: Stable Diffusion SDXL, Adobe Firefly, DALLE3
-Video generation: LUMA, Heygen, ToonCrafter
-Video Upscaling: DaVinci Resolve Studio
+Since childhood, I often escaped into imaginary worlds. Especially during difficult periods of my life, these journeys of imagination became a form of refuge and survival. Over time, those inner journeys evolved into questions about virtual worlds and digital existence, eventually leading to both the photographic series 〈Avatar II〉 and this video work.
 
-Voice generation: iMyFone VoxBox
-Sound effect generation: IlElevenLabs
+The protagonist of this piece is the same female avatar that appears in the photographic series. By training AI on the character image created for the photographs, I attempted to bring the still figure into motion, as if the avatar had truly come alive within a virtual world. Through this process, the boundaries between photography and cinema, reality and simulation, human and avatar gradually begin to dissolve.
 
-Theme song: Digital Dreams
-    Lyrics: GPT-4
-    Composed by: SUNO
+〈Avatar〉 was my very first AI video project, created in 2024 while learning AI video generation and editing techniques from the ground up over the course of two to three weeks. From today’s perspective, the work may appear technically imperfect, yet those traces of experimentation remain important to me. They document the process of encountering a new medium and exploring unfamiliar possibilities. I hope this work can serve as another gateway into understanding the world of my photographic series 〈Avatar II〉, which is also currently exhibited in my online exhibition space, “Gallery Window.”
 
-BGM: Virtual Love
-    Composed by: SUNO
+[시놉시스]
 
+가상세계 ‘이더버스’ 개발에 참여했던 김지훈은 여성 아바타 ‘수지’의 모습으로 이더버스에 접속했다가 의문의 총격 사건으로 사망한다. 그러나 그의 아바타만은 가상세계 속에 남겨진다. 이후 수지는 또 다른 아바타 ‘미주’와 인식 태그를 몰래 교체하며 현실세계로 탈출하고, 미주의 본체였던 오혜령의 몸에서 깨어나게 된다. 하지만 그녀 역시 곧 의문의 사고로 죽음을 맞이하게 되고, 그 과정 속에서 자신의 죽음과 존재를 둘러싼 충격적인 진실과 마주하게 된다.
+
+Kim Ji-hoon, a developer involved in creating the virtual world “Etherverse,” enters the system through a female avatar named Suji. After being killed in a mysterious shooting incident, only his avatar remains trapped inside the virtual world. Later, Suji secretly swaps recognition tags with another avatar named Miju and escapes into reality, awakening in the body of Oh Hye-ryeong, Miju’s original human counterpart. However, she soon dies in a mysterious accident as well, eventually uncovering the shocking truth surrounding her own death and existence.
+
+[Production Credits]
+
+Directed & Produced by
+KyoungSoo Kim
+
+Image Generation
+Stable Diffusion SDXL, Adobe Firefly, DALL·E 3
+
+Video Generation
+LUMA, HeyGen, ToonCrafter
+
+Video Upscaling & Editing
+DaVinci Resolve Studio
+
+Voice Generation
+iMyFone VoxBox
+
+Sound Effect Generation
+ElevenLabs
+
+Theme Song – “Digital Dreams”
+Lyrics by GPT-4
+Music by SUNO
+
+Background Music – “Virtual Love”
+Music by SUNO
 
 [작가 프로필]
 
