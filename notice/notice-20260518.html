@@ -68,10 +68,20 @@ content="https://gallerywindow.com/assets/images/myportfolios_01.jpg">
     margin: 32px 0;
 }
 
+/* 기본 가로 이미지 */
 .notice-image-small img {
-    width: 50%;
-    max-width: 500px;
+    width: 70%;
+    max-width: 900px;
     border-radius: 10px;
+    display: inline-block;
+}
+
+/* 세로 이미지 전용 */
+.notice-image-vertical img {
+    width: 28%;
+    max-width: 320px;
+    border-radius: 10px;
+    display: inline-block;
 }
 
 .notice-code {
@@ -347,7 +357,7 @@ alt="권한 허용 화면">
 alt="폴더 선택 화면">
 </div>
 
-<div class="notice-image-small">
+<div class="notice-image-small notice-image-vertical">
 <img src="../assets/images/myportfolios_04.jpg"
 alt="폴더 권한 허용">
 </div>
@@ -375,7 +385,7 @@ My Portfolios 에서는 컴퓨터에서 만들어 놓은 포트폴리오 폴더 
 그러면 ZIP파일의 압축이 해지되면서 /Documents/My Portfolios 라는 폴더가 만들어지고 이 포트폴리오 폴더가 자동으로 선택되어 그 안에 포함되어 있던 포트폴리오들이 화면이 나타납니다.
 </p>
 
-<div class="notice-image-small">
+<div class="notice-image-small notice-image-vertical">
 <img src="../assets/images/myportfolios_05.jpg"
 alt="ZIP 가져오기">
 </div>
