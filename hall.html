@@ -53,10 +53,6 @@ gtag('config', 'G-M2QQ5KME88');
 
 <body class="hall">
 
-<script>
-function guestbookSaved(){}
-</script>
-
 <div class="site-background hall"></div>
 
 <h1 id="hallTitle"></h1>
@@ -100,9 +96,7 @@ function guestbookSaved(){}
   <h3 class="guestbook-title">한 줄 감상</h3>
 
   <form
-  action="https://script.google.com/macros/s/AKfycbyGN2wMafi8iYsOUPNDY9CkbgkyJ3snO6ac7_GIsyBA4R9FzxLWsbjvn9EdSsXH2TFwtw/exec"
-  method="GET"
-  target="hidden_iframe"
+  id="guestbookForm"
   class="guestbook-form">
 
   <input type="hidden" name="exhibition_id">
@@ -117,11 +111,6 @@ function guestbookSaved(){}
   <button type="submit">남기기</button>
 
   </form>
-
-  <iframe
-  name="hidden_iframe"
-  style="display:none"
-  onload="guestbookSaved()"></iframe>
 
   <div class="guestbook-list">
 
@@ -166,10 +155,6 @@ function guestbookSaved(){}
 
 <script>
 
-function guestbookSaved(){
-alert("감사합니다. 소중한 감상이 기록되었습니다.");
-}
-
 async function loadRecentGuestbook(){
 
 const url =
@@ -194,6 +179,67 @@ container.appendChild(div);
 }
 
 loadRecentGuestbook();
+
+const guestbookForm =
+  document.getElementById("guestbookForm");
+
+if (guestbookForm) {
+
+  guestbookForm.addEventListener(
+    "submit",
+    async (e) => {
+
+      e.preventDefault();
+
+      const exhibitionId =
+        guestbookForm.querySelector(
+          '[name="exhibition_id"]'
+        ).value;
+
+      const message =
+        guestbookForm.querySelector(
+          '[name="message"]'
+        ).value.trim();
+
+      if (!message) return;
+
+      try {
+
+        const url =
+          "https://script.google.com/macros/s/AKfycbyGN2wMafi8iYsOUPNDY9CkbgkyJ3snO6ac7_GIsyBA4R9FzxLWsbjvn9EdSsXH2TFwtw/exec"
+          + "?exhibition_id="
+          + encodeURIComponent(exhibitionId)
+          + "&message="
+          + encodeURIComponent(message);
+
+        const response =
+          await fetch(url);
+
+        const result =
+          await response.json();
+
+        if (result.success) {
+
+          alert("감사합니다. 소중한 감상이 기록되었습니다.");
+
+          guestbookForm.reset();
+
+          loadRecentGuestbook();
+
+        }
+
+      } catch (err) {
+
+        console.error(err);
+
+        alert("방명록 저장 실패");
+
+      }
+
+    }
+  );
+
+}
 
 </script>
 
