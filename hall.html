@@ -155,10 +155,14 @@ gtag('config', 'G-M2QQ5KME88');
 
 <script>
 
+
+const GUESTBOOK_URL =
+"https://script.google.com/macros/s/AKfycbyGN2wMafi8iYsOUPNDY9CkbgkyJ3snO6ac7_GIsyBA4R9FzxLWsbjvn9EdSsXH2TFwtw/exec";
+
 async function loadRecentGuestbook(){
 
 const url =
-"https://script.google.com/macros/s/AKfycbyGN2wMafi8iYsOUPNDY9CkbgkyJ3snO6ac7_GIsyBA4R9FzxLWsbjvn9EdSsXH2TFwtw/exec?mode=list";
+GUESTBOOK_URL + "?mode=list";
 
 const res = await fetch(url);
 const data = await res.json();
@@ -206,11 +210,11 @@ if (guestbookForm) {
       try {
 
         const url =
-          "https://script.google.com/macros/s/AKfycbyGN2wMafi8iYsOUPNDY9CkbgkyJ3snO6ac7_GIsyBA4R9FzxLWsbjvn9EdSsXH2TFwtw/exec"
-          + "?exhibition_id="
-          + encodeURIComponent(exhibitionId)
-          + "&message="
-          + encodeURIComponent(message);
+        GUESTBOOK_URL
+        + "?exhibition_id="
+        + encodeURIComponent(exhibitionId)
+        + "&message="
+        + encodeURIComponent(message);
 
         const response =
           await fetch(url);
