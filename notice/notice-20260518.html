@@ -100,6 +100,29 @@ content="https://gallerywindow.com/assets/images/myportfolios_01.jpg">
     margin: 40px 0;
 }
 
+.lang-switch{
+    text-align:right;
+    margin-bottom:20px;
+}
+
+.lang-switch button{
+    background:#222;
+    color:#fff;
+    border:1px solid #444;
+    padding:6px 14px;
+    border-radius:4px;
+    cursor:pointer;
+    margin-left:6px;
+}
+
+.lang-switch button:hover{
+    background:#444;
+}
+
+.lang-switch button.active{
+    background:#666;
+}
+
 </style>
 
 </head>
@@ -115,7 +138,8 @@ content="https://gallerywindow.com/assets/images/myportfolios_01.jpg">
 <p class="notice-date">2026.05.18</p>
 </header>
 
-<section class="notice-body">
+<section id="ko-content"
+         class="notice-body">
 
 <hr>
 
@@ -662,6 +686,616 @@ My Portfolios는 복잡한 관리 기능보다 “작품 감상”과 “전시 
 
 </section>
 
+<title>My Portfolios User Guide | Gallery Window</title>
+
+<meta property="og:title"
+      content="My Portfolios User Guide">
+
+<meta name="twitter:title"
+      content="My Portfolios User Guide">
+
+<section id="en-content"
+         class="notice-body"
+         style="display:none;">
+
+<section id="en-content" class="notice-body" style="display:none;">
+
+<hr>
+
+<h2>1. Introduction</h2>
+
+<p>
+My Portfolios is a digital portfolio and mobile exhibition platform designed for artwork presentation and viewing.
+It combines images and audio into immersive slideshow exhibitions that can be enjoyed on smartphones and tablets.
+The app supports ZIP-based portfolio import and can be used entirely offline.
+My Portfolios also became the foundation of the online gallery project, Gallery Window.
+</p>
+
+<p><strong>Main Features:</strong></p>
+
+<ul>
+<li>ZIP Portfolio Import</li>
+<li>Portfolio Folder Management</li>
+<li>Full-screen Exhibition Mode</li>
+<li>Image Slideshow Viewing</li>
+<li>Background Audio Support</li>
+<li>Korean / English User Interface</li>
+<li>SD Card Backup Support</li>
+<li>Tablet-Optimized Interface</li>
+</ul>
+
+<hr>
+
+<h2>2. Installation</h2>
+
+<p>
+Search for "My Portfolios" on Google Play Store and install the app.
+After installation, launch the app and select your portfolio folder to begin.
+</p>
+
+<hr>
+
+<h2>3. Basic Workflow</h2>
+
+<p>
+The basic workflow of the app is shown below.
+</p>
+
+<div class="notice-code">
+Home Screen
+→ Start My Portfolios
+→ Select Portfolio Folder
+→ Portfolio List
+→ View Portfolio
+</div>
+
+<hr>
+
+<h2>4. Home Screen</h2>
+
+<p>
+Three buttons are available on the home screen.
+</p>
+
+<p>
+"Start My Portfolios" launches the portfolio viewer.
+"Visit Gallery Window" opens the online gallery, Gallery Window.
+"Search PhotoBase" allows users to search photography exhibition information in Korea.
+</p>
+
+<ul>
+<li>Start My Portfolios</li>
+<li>Visit Gallery Window</li>
+<li>Search PhotoBase</li>
+</ul>
+
+<hr>
+
+<h2>5. Creating the My Portfolios Folder</h2>
+
+<p>
+Before using the app, create a folder for storing portfolio data on your device's internal storage or SD card.
+</p>
+
+<div class="notice-code">
+/My Portfolios
+</div>
+
+<p>
+There are two ways to transfer portfolios to your device.
+</p>
+
+<p>
+[1] Connect your phone to a computer using a USB cable and copy portfolio folders directly.
+With this method, you may use any folder name you prefer.
+</p>
+
+<p>
+[2] Compress a portfolio folder into a ZIP file and transfer it using email, cloud storage services, or messaging apps.
+In this case, the folder name must be exactly:
+</p>
+
+<div class="notice-code">
+/My Portfolios
+</div>
+
+<p>
+Both methods should follow the folder structure below.
+</p>
+
+<div class="notice-code">
+My Portfolios
+├ 01 Avatar Dream
+├ 02 Marionette
+├ 03 Avatar II
+└ 04 Becoming Tree
+</div>
+
+<p>
+Each folder represents one portfolio.
+</p>
+
+<hr>
+
+<h2>6. Portfolio Folder Structure</h2>
+
+<p>
+Each portfolio folder contains image files and optionally a music file.
+Images are displayed according to filename order.
+</p>
+
+<p><strong>Recommended Format:</strong></p>
+
+<div class="notice-code">
+000.jpg
+001.jpg
+002.jpg
+003.jpg
+</div>
+
+<p>
+Using three-digit numbering is recommended.
+</p>
+
+<p>
+Background music files should be named:
+</p>
+
+<div class="notice-code">
+music.mp3
+</div>
+
+<p>
+The app will continue to function normally even if no music file is provided.
+</p>
+
+<p>
+The app automatically:
+</p>
+
+<ul>
+<li>Loads images</li>
+<li>Plays background music</li>
+<li>Selects a thumbnail image</li>
+<li>Creates the portfolio presentation</li>
+</ul>
+
+<hr>
+
+<h2>7. Supported Image Formats</h2>
+
+<ul>
+<li>JPG</li>
+<li>JPEG</li>
+<li>PNG</li>
+<li>WEBP</li>
+</ul>
+
+<p>
+High-resolution images are supported.
+</p>
+
+<hr>
+
+<h2>8. Thumbnail Images</h2>
+
+<p>
+Each portfolio is displayed with a thumbnail image.
+If a file named poster.jpg exists, it will be used as the thumbnail.
+Otherwise, 001.jpg will be selected automatically.
+</p>
+
+<p>
+Recommended structure:
+</p>
+
+<div class="notice-code">
+000.jpg → Cover / Intro Image
+001.jpg → First Artwork Image
+</div>
+
+<p>
+This arrangement provides a cleaner portfolio presentation.
+</p>
+
+<hr>
+
+<h2>9. Starting My Portfolios</h2>
+
+<p>
+When launching My Portfolios for the first time, Android may ask for permission to access media files.
+Please allow access to photos, videos, and audio files.
+</p>
+
+<p>
+After permissions are granted, the portfolio selection screen will appear.
+</p>
+
+<hr>
+
+<h2>10. Selecting a Portfolio Folder</h2>
+
+<p>
+When using the app for the first time, you must select a portfolio folder.
+Tap the "Reselect Folder" button in the upper-right corner and choose your portfolio directory.
+</p>
+
+<p>
+Portfolio folders may be stored either in internal storage or on an SD card.
+</p>
+
+<p>
+After selecting a folder, tap "Use This Folder".
+Android may request permission to access the contents of that folder.
+Grant permission and the portfolio screen will appear.
+</p>
+
+<p>
+This setup is normally required only once.
+If you later change the portfolio folder, you will need to repeat this process.
+</p>
+
+<p>
+The app requires storage access permissions in order to read images and music files from the selected portfolio folder.
+</p>
+
+<hr>
+
+<h2>11. Importing ZIP Portfolios</h2>
+
+<p>
+My Portfolios supports importing an entire portfolio folder as a ZIP file.
+You can transfer ZIP files using email, cloud storage services, or messaging apps.
+</p>
+
+<p>
+For ZIP import, the folder name must be:
+</p>
+
+<div class="notice-code">
+/My Portfolios
+</div>
+
+<p>
+Tap the <strong>Import ZIP</strong> button in the upper-right corner of the portfolio selection screen.
+A file browser will appear, allowing you to locate the downloaded ZIP file.
+</p>
+
+<p>
+ZIP files downloaded from email are usually stored in the Download folder.
+Files downloaded from messaging apps are often stored in a subfolder within the Download directory.
+</p>
+
+<p>
+After selecting a ZIP file, the app will return to the portfolio selection screen and display a confirmation message.
+The ZIP file will be extracted automatically.
+</p>
+
+<p>
+A folder named:
+</p>
+
+<div class="notice-code">
+/Documents/My Portfolios
+</div>
+
+<p>
+will be created automatically, and the imported portfolios will appear in the portfolio list.
+</p>
+
+<hr>
+
+<h2>12. Copy to SD Card</h2>
+
+<p>
+The Copy to SD feature is designed for users who wish to store and manage portfolio data on an SD card.
+</p>
+
+<p>
+After importing a ZIP portfolio, tap the <strong>Copy to SD</strong> button.
+Select a destination folder on the SD card and then tap <strong>Use This Folder</strong>.
+</p>
+
+<p>
+The contents of:
+</p>
+
+<div class="notice-code">
+Documents/My Portfolios
+</div>
+
+<p>
+will be copied to:
+</p>
+
+<div class="notice-code">
+Selected SD Folder/My Portfolios
+</div>
+
+<p>
+The original files remain in internal storage after copying.
+For safety reasons, the app does not automatically delete the source data.
+</p>
+
+<p>
+Future versions may include optional automatic cleanup features.
+</p>
+
+<hr>
+
+<h2>13. Organizing Portfolio Order</h2>
+
+<p>
+If you want portfolios to appear in a specific order, adding numbers to folder names is recommended.
+</p>
+
+<div class="notice-code">
+01 Avatar Dream
+02 Marionette
+03 Avatar II
+04 Becoming Tree
+</div>
+
+<p>
+This method is:
+</p>
+
+<ul>
+<li>Simple and intuitive</li>
+<li>Easy to manage</li>
+<li>Compatible with the app's sorting functions</li>
+</ul>
+
+<p>
+Two-digit numbering is recommended.
+</p>
+
+<div class="notice-code">
+Recommended:
+01
+02
+03
+
+Not Recommended:
+1
+2
+10
+
+</div>
+
+<hr>
+
+<h2>14. Sorting Options</h2>
+
+<p>
+A sorting button is available in the upper-right corner of the portfolio screen.
+</p>
+
+<p><strong>Available Sorting Methods:</strong></p>
+
+<ul>
+<li>Sort by Modified Date</li>
+<li>Sort by Name</li>
+</ul>
+
+<p>
+<strong>Modified Date</strong> displays the most recently updated portfolios first.
+</p>
+
+<p>
+<strong>Name</strong> sorts portfolios alphabetically according to folder names.
+</p>
+
+<hr>
+
+<h2>15. Viewing Portfolios</h2>
+
+<p>
+Tap a portfolio thumbnail to enter full-screen viewing mode.
+</p>
+
+<p>
+The exhibition screen automatically starts a slideshow accompanied by background music.
+Images advance every 10 seconds by default.
+</p>
+
+<p>
+You can manually navigate through images by swiping left or right.
+</p>
+
+<p>
+Press and hold the screen to open the Control Panel.
+</p>
+
+<p>
+Available controls include:
+</p>
+
+<ul>
+<li>Background Music Volume</li>
+<li>Slideshow Speed</li>
+<li>Mute Audio</li>
+</ul>
+
+<p>
+Tap the screen again to hide the Control Panel.
+</p>
+
+<p>
+Use the Back button in the upper-left corner to return to the previous screen.
+</p>
+
+<hr>
+
+<h2>16. Recommended Folder Structure</h2>
+
+<div class="notice-code">
+My Portfolios
+├ 01 Avatar Dream
+│   ├ poster.jpg (optional)
+│   ├ music.mp3
+│   ├ 000.jpg
+│   ├ 001.jpg
+│   └ 002.jpg
+│
+├ 02 Marionette
+│   ├ poster.jpg (optional)
+│   ├ music.mp3
+│   ├ 000.jpg
+│   ├ 001.jpg
+│   └ 002.jpg
+│
+└ 03 Becoming Tree
+    ├ poster.jpg (optional)
+    ├ music.mp3
+    ├ 000.jpg
+    ├ 001.jpg
+    └ 002.jpg
+</div>
+
+<p>
+Each folder inside the My Portfolios directory represents a single portfolio.
+There is no practical limit to the number of portfolios you can create.
+</p>
+
+<hr>
+
+<h2>17. Recommended Uses</h2>
+
+<ul>
+<li>Personal Art Portfolios</li>
+<li>Exhibition Archives</li>
+<li>Photography Collections</li>
+<li>AI Art Collections</li>
+<li>Design Portfolios</li>
+<li>Visual Art Documentation</li>
+<li>Gallery Display Monitors</li>
+<li>Artist Presentation Materials</li>
+<li>Digital Photo Frames</li>
+</ul>
+
+<p>
+When connected to a TV or large monitor, My Portfolios can function as a digital exhibition system.
+</p>
+
+<p>
+Using a USB-C to HDMI cable, you can display your portfolios on larger screens for exhibitions, presentations, or personal viewing.
+</p>
+
+<hr>
+
+<h2>18. App Updates</h2>
+
+<p>
+The Play Store version supports automatic update notifications.
+</p>
+
+<p>
+Updates may include:
+</p>
+
+<ul>
+<li>Feature Improvements</li>
+<li>Bug Fixes</li>
+<li>User Interface Updates</li>
+</ul>
+
+<p>
+When updates are available, Google Play will notify users automatically.
+</p>
+
+<hr>
+
+<h2>19. Privacy & Data</h2>
+
+<p>
+My Portfolios is designed with privacy in mind.
+</p>
+
+<ul>
+<li>No User Registration</li>
+<li>No Server Storage</li>
+<li>No Cloud Synchronization</li>
+</ul>
+
+<p>
+All portfolio data remains stored locally on your own device.
+</p>
+
+<p>
+Your images, music files, and portfolio information are not uploaded to external servers.
+</p>
+
+<hr>
+
+<h2>20. Troubleshooting</h2>
+
+<h3>Images Do Not Appear</h3>
+
+<ul>
+<li>Verify that the image format is supported.</li>
+<li>Check whether the image file is corrupted.</li>
+<li>Confirm that image files exist in the selected folder.</li>
+</ul>
+
+<h3>Portfolio Does Not Appear</h3>
+
+<ul>
+<li>Confirm that the correct My Portfolios folder has been selected.</li>
+<li>Verify the folder structure.</li>
+<li>Ensure that all required permissions have been granted.</li>
+</ul>
+
+<h3>Buttons Stop Working After Reinstalling the App</h3>
+
+<ul>
+<li>Restart the device and launch the app again.</li>
+</ul>
+
+<h3>Slow Performance</h3>
+
+<p>
+Large numbers of high-resolution images may increase loading times.
+Appropriate image sizes are recommended.
+</p>
+
+<p>
+Recommended maximum long-edge resolutions:
+</p>
+
+<ul>
+<li>Smartphones: 1200 px</li>
+<li>Tablets: 1600 px</li>
+<li>Desktop Displays: 2200 px</li>
+</ul>
+
+<p>
+When saving JPG files in Photoshop, quality levels 9–10 are recommended.
+</p>
+
+<hr>
+
+<h2>21. Conclusion</h2>
+
+<p>
+My Portfolios focuses on artwork presentation and exhibition experiences rather than complex management features.
+</p>
+
+<p>
+It is designed to help anyone create a personal digital exhibition space using images and music.
+</p>
+
+<p>
+Whether you are a photographer, artist, designer, or simply someone who enjoys sharing memories, My Portfolios provides a simple and elegant way to present your work.
+</p>
+
+<p>
+Thank you for using My Portfolios.
+</p>
+
+</section>
+
+
 <nav class="notice-nav">
 <a href="../index.html"
 class="notice-back">← 공지 목록으로 돌아가기</a>
@@ -676,6 +1310,52 @@ class="notice-back">← 공지 목록으로 돌아가기</a>
 <script>
 window.addEventListener("load", function () {
 document.body.classList.add("page-ready");
+});
+
+function setLanguage(lang){
+
+    const ko = document.getElementById("ko-content");
+    const en = document.getElementById("en-content");
+
+    const titleKo = document.getElementById("title-ko");
+    const titleEn = document.getElementById("title-en");
+
+    const btnKo = document.getElementById("btn-ko");
+    const btnEn = document.getElementById("btn-en");
+
+    if(lang === "ko"){
+
+        ko.style.display = "block";
+        en.style.display = "none";
+
+        titleKo.style.display = "block";
+        titleEn.style.display = "none";
+
+        btnKo.classList.add("active");
+        btnEn.classList.remove("active");
+
+    }else{
+
+        ko.style.display = "none";
+        en.style.display = "block";
+
+        titleKo.style.display = "none";
+        titleEn.style.display = "block";
+
+        btnKo.classList.remove("active");
+        btnEn.classList.add("active");
+    }
+
+    localStorage.setItem("gw_lang", lang);
+}
+
+window.addEventListener("load", ()=>{
+
+    const saved =
+        localStorage.getItem("gw_lang") || "ko";
+
+    setLanguage(saved);
+
 });
 </script>
 
