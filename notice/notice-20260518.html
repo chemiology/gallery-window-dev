@@ -134,8 +134,39 @@ content="https://gallerywindow.com/assets/images/myportfolios_01.jpg">
 <article class="notice-detail">
 
 <header class="notice-header">
-<h1>My Portfolios 사용설명서</h1>
+
+<div class="lang-switch">
+    <button id="btn-ko"
+            onclick="setLanguage('ko')">
+        한국어
+    </button>
+
+    <button id="btn-en"
+            onclick="setLanguage('en')">
+        English
+    </button>
+</div>
+
+<h1 id="title-ko">
+    My Portfolios 사용설명서
+</h1>
+
+<h1 id="title-en"
+    style="display:none;">
+    My Portfolios User Guide
+</h1>
+
 <p class="notice-date">2026.05.18</p>
+
+<meta name="description"
+content="My Portfolios is a digital portfolio and mobile exhibition platform.">
+
+<meta property="og:title"
+      content="My Portfolios User Guide">
+
+<meta name="twitter:title"
+      content="My Portfolios User Guide">
+
 </header>
 
 <section id="ko-content"
@@ -686,19 +717,9 @@ My Portfolios는 복잡한 관리 기능보다 “작품 감상”과 “전시 
 
 </section>
 
-<title>My Portfolios User Guide | Gallery Window</title>
-
-<meta property="og:title"
-      content="My Portfolios User Guide">
-
-<meta name="twitter:title"
-      content="My Portfolios User Guide">
-
 <section id="en-content"
          class="notice-body"
          style="display:none;">
-
-<section id="en-content" class="notice-body" style="display:none;">
 
 <hr>
 
@@ -760,13 +781,13 @@ Three buttons are available on the home screen.
 <p>
 "Start My Portfolios" launches the portfolio viewer.
 "Visit Gallery Window" opens the online gallery, Gallery Window.
-"Search PhotoBase" allows users to search photography exhibition information in Korea.
+"Search PhotoBase Exhibition Database" allows users to search photography exhibition information in Korea.
 </p>
 
 <ul>
 <li>Start My Portfolios</li>
 <li>Visit Gallery Window</li>
-<li>Search PhotoBase</li>
+<li>Search PhotoBase Exhibition Database</li>
 </ul>
 
 <hr>
