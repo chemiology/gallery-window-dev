@@ -352,9 +352,50 @@
       "volume": 0.45,
       "startDate": "2026-05-01",
       "endDate": "2026-11-30"
+    },
+
+    {
+      "id": "E0027",
+      "title": "People at Rest",
+      "hall": "hall27",
+      "hallTitle": "27관",
+      "order": 27,
+      "type": "photo",
+      "status": "current",
+      "artist": "백경희",
+      "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","101.jpg","012.jpg","013.jpg","014.jpg","015.jpg","016.jpg","017.jpg","018.jpg","019.jpg","020.jpg","021.jpg","022.jpg"],
+      "captions": [
+        "People at Rest #01",
+        "People at Rest #02",
+        "People at Rest #03",
+        "People at Rest #04",
+        "People at Rest #05",
+        "People at Rest #06",
+        "People at Rest #07",
+        "People at Rest #08",
+        "People at Rest #09",
+        "People at Rest #10",
+        "People at Rest #11",
+        "People at Rest #12",
+        "People at Rest #13",
+        "People at Rest #14",
+        "People at Rest #15",
+        "People at Rest #16",
+        "People at Rest #17",
+        "People at Rest #18",
+        "People at Rest #19",
+        "People at Rest #20",
+        "People at Rest #21",
+        "People at Rest #22"
+      ],
+      "themeColor": "#e6e6e6",
+      "themeMode": "warm",
+      "slideSeconds": 10,
+      "music": "M07",
+      "volume": 0.4,
+      "startDate": "2026-06-01",
+      "endDate": "2027-02-28"
     }
-
-
 
 
 
