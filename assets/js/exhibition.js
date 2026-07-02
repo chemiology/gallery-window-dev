@@ -434,6 +434,18 @@ function setupControls() {
     if (e.key === "ArrowRight") nextImage();
     if (e.key === "ArrowLeft") prevImage();
   });
+
+/* 작품 이동 버튼 */
+
+  document.getElementById("nextArtwork")
+  ?.addEventListener("click", () => {
+
+      nextImage();
+      if(autoMode){
+          startAuto();
+      }
+  });
+
 }
 
 document.addEventListener("keydown", e => {
