@@ -76,6 +76,40 @@ gtag('config', 'G-M2QQ5KME88');
       </div>
     </div>
 
+    <!-- ======================
+       Guestbook
+    ====================== -->
+
+    <div class="guestbook-section">
+
+    <h3 class="guestbook-title">이 전시에 대한 한 줄 감상</h3>
+
+    <form
+    id="guestbookForm"
+    class="guestbook-form">
+
+    <input type="hidden" name="exhibition_id">
+
+    <input
+    type="text"
+    name="message"
+    placeholder="작품을 보기 전이나 본 후의 느낌을 남겨주세요."
+    maxlength="80"
+    required>
+
+    <button type="submit">남기기</button>
+
+    </form>
+
+    <div class="guestbook-list">
+
+    <h4>최근 감상글</h4>
+    <div id="guestbook-area"></div>
+
+    </div>
+
+  </div>
+
     <div id="artistProfile" class="artist-profile"></div>
 
   </div>
@@ -86,38 +120,6 @@ gtag('config', 'G-M2QQ5KME88');
       전시 포스터 또는 포스터 상단의 <strong>작품보기</strong> 버튼을 클릭하면 전시가 시작됩니다.<br>
       <span>Click the poster or the <strong>View Exhibition</strong> button at the top of the poster to enter the exhibition.</span>
     </p>
-
-  <!-- ======================
-       Guestbook
-  ====================== -->
-
-  <div class="guestbook-section">
-
-  <h3 class="guestbook-title">한 줄 감상</h3>
-
-  <form
-  id="guestbookForm"
-  class="guestbook-form">
-
-  <input type="hidden" name="exhibition_id">
-
-  <input
-  type="text"
-  name="message"
-  placeholder="이 전시에 대한 한 줄 감상"
-  maxlength="80"
-  required>
-
-  <button type="submit">남기기</button>
-
-  </form>
-
-  <div class="guestbook-list">
-
-  <h4>최근 감상글</h4>
-  <div id="guestbook-area"></div>
-
-  </div>
 
   </div>
 
@@ -172,7 +174,7 @@ if(!container) return;
 
 container.innerHTML = "";
 
-data.slice(0,5).forEach(item => {
+data.slice(0,3).forEach(item => {
 
 const div = document.createElement("div");
 div.textContent = "• " + item.message;
