@@ -436,7 +436,7 @@ async function setupAudio(
 
                     notice?.classList.remove("show");
 
-                },2500);
+                },3500);
 
                 await narration.play();
                 narration.onended=()=>{

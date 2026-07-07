@@ -63,6 +63,27 @@ function getCountdownText(startDate){
 }
 
 /* =========================
+   NEW BADGE (20일)
+========================= */
+
+function isNewExhibition(ex){
+
+  if(!ex.startDate) return false;
+
+  const today = new Date();
+  today.setHours(0,0,0,0);
+
+  const start = new Date(ex.startDate);
+  start.setHours(0,0,0,0);
+
+  const diff =
+    (today - start) / (1000*60*60*24);
+
+  return diff >= 0 && diff <= 20;
+
+}
+
+/* =========================
    INIT
 ========================= */
 
@@ -192,6 +213,8 @@ function renderExhibitions(exhibitions) {
 
     const posterWrap = document.createElement("div");
 
+    posterWrap.className = "poster-wrap";
+
     const img = document.createElement("img");
 
     img.src =
@@ -233,6 +256,37 @@ function renderExhibitions(exhibitions) {
 
     posterWrap.appendChild(img);
     posterWrap.appendChild(meta);
+
+    /* ===== NEW 표시 ===== */
+
+    if (
+        status === "current" &&
+        isNewExhibition(exhibition)
+    ){
+
+        const badge =
+            document.createElement("div");
+
+        badge.className = "new-badge";
+
+        const start =
+            new Date(exhibition.startDate);
+
+        const month =
+            start.getMonth()+1;
+
+        const day =
+            start.getDate();
+
+        badge.innerHTML = `
+            <div>NEW</div>
+            <div class="new-date">
+                ${month}.${day}
+            </div>
+        `;
+
+        posterWrap.appendChild(badge);
+    }
 
     /* ===== COMING 표시 ===== */
 

@@ -43,6 +43,27 @@ function getExhibitionStatus(ex) {
   return "current";
 }
 
+/* =========================
+   NEW BADGE (20일)
+========================= */
+
+function isNewExhibition(ex){
+
+  if(!ex.startDate) return false;
+
+  const today = new Date();
+  today.setHours(0,0,0,0);
+
+  const start = new Date(ex.startDate);
+  start.setHours(0,0,0,0);
+
+  const diff =
+    (today - start) / (1000*60*60*24);
+
+  return diff >= 0 && diff <= 20;
+
+}
+
 /* ======================================
    LOAD HALL
 ====================================== */
@@ -172,12 +193,35 @@ async function loadHallEntry(exhibition, hallId) {
 
   const poster = document.getElementById("hallPoster");
 
+  const posterContainer =
+    poster?.parentElement;
+
   if (poster) {
 
     poster.src =
       exhibition.type === "event"
         ? BASE_PATH + `/assets/event/${exhibition.id}/thumbs/${exhibition.id}.jpg`
         : basePath + "poster.jpg";
+
+    poster.onload = () => {
+
+      if(!posterContainer) return;
+
+      posterContainer
+        .querySelector(".new-badge")
+        ?.remove();
+
+      if(!isNewExhibition(exhibition))
+        return;
+
+      const badge =
+        document.createElement("div");
+
+      badge.className = "new-badge";
+      badge.textContent = "NEW";
+      posterContainer.appendChild(badge);
+
+    };
 
     poster.onerror = () => {
       poster.src = BASE_PATH + "/assets/images/poster-placeholder.jpg";
