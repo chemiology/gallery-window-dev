@@ -785,3 +785,25 @@ body.hall .artist-note{
 body.hall .artist-note p{
   line-height:1.65;
 }
+
+/* =====================================
+   New Badge
+===================================== */
+
+.new-badge{
+
+    position:absolute;
+    top:12px;
+    right:12px;
+    background:#c59a3d;
+    color:#fff;
+    font-size:13px;
+    font-weight:bold;
+
+    padding:5px 10px;
+    border-radius:999px;
+    letter-spacing:.8px;
+    z-index:30;
+    pointer-events:none;
+    box-shadow:0 2px 8px rgba(0,0,0,.35);
+}

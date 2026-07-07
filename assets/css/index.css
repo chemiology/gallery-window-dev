@@ -510,3 +510,40 @@ body.home .exhibition-body{
     font-size:9px;
   }
 }
+
+/* =====================================
+   New Badge
+===================================== */
+
+.poster-wrap{
+    position:relative;
+}
+
+.new-badge{
+
+    position:absolute;
+    top:12px;
+    right:12px;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:#c59a3d;
+
+    color:white;
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+    align-items:center;
+
+    font-weight:bold;
+    line-height:1.1;
+    z-index:20;
+    box-shadow:0 4px 12px rgba(0,0,0,.35);
+}
+
+.new-date{
+    font-size:12px;
+    margin-top:3px;
+    font-weight:400;
+}
