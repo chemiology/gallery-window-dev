@@ -802,17 +802,18 @@ body.theme-warm .caption {
 
 .end-buttons{
     display:flex;
-    gap:20px;
+    gap:28px;
     margin-top:35px;
     flex-wrap:wrap;
     justify-content:center;
 }
 
 .end-buttons button{
-    min-width:180px;
-    padding:12px 26px;
+    width:240px;
+    height:52px;
     font-size:16px;
     cursor:pointer;
+
 }
 
 .end-screen.active{
