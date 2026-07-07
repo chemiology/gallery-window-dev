@@ -330,6 +330,14 @@ function preloadInitialImages() {
 }
 
 function nextImage() {
+  if(currentIndex >= images.length-1){
+      stopAuto();
+      document
+        .getElementById("endScreen")
+        ?.classList.add("active");
+
+      return;
+  }
   showImage(currentIndex + 1);
 }
 
@@ -485,6 +493,28 @@ if (backBtn) {
     }, 500);
   });
 }
+
+document
+.getElementById("restartExhibition")
+?.addEventListener("click",()=>{
+
+    document
+      .getElementById("endScreen")
+      ?.classList.remove("active");
+
+    showImage(0);
+
+    startAuto();
+});
+
+document
+.getElementById("goHallButton")
+?.addEventListener("click",()=>{
+
+    window.location.href =
+      backBtn.href;
+
+});
 
 /* -----------------------------------------------------
    PAGE READY
