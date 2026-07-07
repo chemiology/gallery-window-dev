@@ -520,30 +520,33 @@ body.home .exhibition-body{
 }
 
 .new-badge{
-
     position:absolute;
-    top:12px;
-    right:12px;
-    width:60px;
-    height:60px;
+    top:8px;
+    right:8px;
+    width:42px;
+    height:42px;
+
     border-radius:50%;
     background:#c59a3d;
+    color:#fff;
 
-    color:white;
     display:flex;
     flex-direction:column;
-
     justify-content:center;
     align-items:center;
 
-    font-weight:bold;
-    line-height:1.1;
+    font-size:11px;
+    font-weight:700;
+    line-height:1;
+
     z-index:20;
-    box-shadow:0 4px 12px rgba(0,0,0,.35);
+    box-shadow:0 2px 6px rgba(0,0,0,.3);
+    pointer-events:none;
 }
 
 .new-date{
-    font-size:12px;
-    margin-top:3px;
+    font-size:9px;
+    margin-top:2px;
     font-weight:400;
+    line-height:1;
 }
