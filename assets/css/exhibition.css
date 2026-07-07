@@ -802,18 +802,54 @@ body.theme-warm .caption {
 
 .end-buttons{
     display:flex;
-    gap:28px;
+    flex-direction:column;
+    align-items:center;
+    gap:16px;
     margin-top:35px;
-    flex-wrap:wrap;
-    justify-content:center;
 }
 
 .end-buttons button{
+
     width:240px;
     height:52px;
-    font-size:16px;
-    cursor:pointer;
 
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:0;
+    margin:0;
+
+    box-sizing:border-box;
+
+    font-size:16px;
+    border-radius:5px;
+    cursor:pointer;
+    transition:all .25s ease;
+}
+
+.end-buttons button:hover{
+    filter:brightness(92%);
+}
+
+#goHallButton{
+    background:#ffffff;
+    color:#111;
+    border:none;
+}
+
+#goHallButton:hover{
+    background:#efefef;
+}
+
+#restartExhibition{
+    background:transparent;
+    color:white;
+    border:1px solid rgba(255,255,255,.65);
+}
+
+#restartExhibition:hover{
+    background:rgba(255,255,255,.12);
 }
 
 .end-screen.active{
