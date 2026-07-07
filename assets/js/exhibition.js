@@ -35,6 +35,8 @@ let slideSeconds = 10;
 let autoMode = true;
 
 let audio = null;
+let narration = null;
+let narrationPlayed = false;
 
 function getDeviceType() {
   return window.matchMedia("(pointer: coarse)").matches
@@ -174,7 +176,6 @@ async function loadExhibition(id) {
 
       firstImg.onload = () => {
         showImage(0);
-        startAuto();
         preloadInitialImages();
       };
     }
@@ -185,9 +186,13 @@ async function loadExhibition(id) {
     ? BASE_PATH + "/assets/audio/" + exhibition.music + ".mp3"
     : basePath + "music.mp3"; // 기존 fallback 유지
 
+  const narrationFile =
+      basePath + "curation.mp3";
+
   setupAudio(
-    musicFile,
-    exhibition.volume
+      musicFile,
+      narrationFile,
+      exhibition.volume
   );
 
   } catch (err) {
@@ -223,6 +228,16 @@ function startAuto() {
   autoMode = true;
 
   timer = setTimeout(() => {
+
+    if (narration && !narration.paused) {
+
+        narration.pause();
+        narration.currentTime = 0;
+
+        audio.muted = false;
+        audio.play();
+        startAuto();
+    }
 
     nextImage();
 
@@ -359,38 +374,88 @@ document.addEventListener("DOMContentLoaded", () => {
    Audio
 ----------------------------------------------------- */
 
-function setupAudio(src, volume) {
+async function setupAudio(
+    src,
+    narrationSrc,
+    volume
+){
 
-  if (audio) {
-    audio.pause();
-    audio.src = "";
-    audio = null;
-  }
+    if(audio){
 
-  audio = new Audio(src);
-  audio.loop = true;
+        audio.pause();
+        audio.src="";
+        audio=null;
+    }
 
-  const safeVolume =
-    typeof volume === "number" && isFinite(volume)
-      ? Math.max(0, Math.min(1, volume))
-      : 0.5;
+    audio=new Audio(src);
+    audio.loop=true;
 
-  audio.volume = safeVolume;
-  audio.preload = "auto";
-  audio.muted = true;
+    const safeVolume=
+        typeof volume==="number" && isFinite(volume)
+        ? Math.max(0,Math.min(1,volume))
+        :0.5;
 
-  audio.play()
-    .then(() => console.log("🎧 초기 play 성공"))
-    .catch(err => console.error("❌ 초기 play 실패:", err));
+    audio.volume=safeVolume;
+    audio.preload="auto";
+    audio.muted=true;
 
-  document.addEventListener("click", () => {
-    audio.muted = false;
+    let narrationExists=false;
 
-    audio.play().catch(err => {
-      console.error("❌ 클릭 후 play 실패:", err);
-    });
+    try{
 
-  }, { once: true });
+        const res=await fetch(
+            narrationSrc,
+            {
+                method:"HEAD",
+                cache:"no-cache"
+            }
+        );
+
+        narrationExists=res.ok;
+
+    }catch{
+        narrationExists=false;
+    }
+
+    if(narrationExists){
+        narration=new Audio(narrationSrc);
+    }else{
+        narration=null;
+    }
+
+    document.addEventListener("click",async()=>{
+        if(narration){
+            try{
+
+                const notice =
+                document.getElementById("curationNotice");
+
+                notice?.classList.add("show");
+
+                setTimeout(()=>{
+
+                    notice?.classList.remove("show");
+
+                },2500);
+
+                await narration.play();
+                narration.onended=()=>{
+                    audio.muted=false;
+                    audio.play();
+
+		    startAuto();
+                };
+
+                return;
+            }catch(err){
+
+                console.log("큐레이터 음성 없음");
+            }
+        }
+
+        audio.muted=false;
+        audio.play();
+    },{once:true});
 }
 
 /* -----------------------------------------------------
@@ -444,6 +509,13 @@ function setupControls() {
   });
 
 /* 작품 이동 버튼 */
+
+  if(narration && !narration.paused){
+      narration.pause();
+      narration.currentTime=0;
+      audio.muted=false;
+      audio.play();
+  }
 
   document.getElementById("nextArtwork")
   ?.addEventListener("click", () => {
