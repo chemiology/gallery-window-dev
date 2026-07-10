@@ -29,13 +29,24 @@ const BASE_PATH = (() => {
    EXHIBITION STATUS
 ========================= */
 
+function parseLocalDate(dateStr){
+
+    if(!dateStr) return null;
+
+    const [y,m,d] =
+        dateStr.split("-").map(Number);
+
+    return new Date(y,m-1,d);
+
+}
+
 function getExhibitionStatus(ex) {
 
   const today = new Date();
   today.setHours(0,0,0,0);
 
-  const start = ex.startDate ? new Date(ex.startDate) : null;
-  const end = ex.endDate ? new Date(ex.endDate) : null;
+  const start = ex.startDate ? parseLocalDate(ex.startDate) : null;
+  const end = ex.endDate ? parseLocalDate(ex.endDate) : null;
 
   if (start && today < start) return "coming";
   if (end && today > end) return "past";
@@ -54,7 +65,7 @@ function isNewExhibition(ex){
   const today = new Date();
   today.setHours(0,0,0,0);
 
-  const start = new Date(ex.startDate);
+  const start = parseLocalDate(ex.startDate);
   start.setHours(0,0,0,0);
 
   const diff =

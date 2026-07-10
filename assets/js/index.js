@@ -27,13 +27,28 @@ const BASE_PATH = (() => {
    EXHIBITION STATUS
 ========================= */
 
+/* =========================
+   LOCAL DATE PARSER
+========================= */
+
+function parseLocalDate(dateStr){
+
+    if(!dateStr) return null;
+
+    const [y,m,d] =
+        dateStr.split("-").map(Number);
+
+    return new Date(y,m-1,d);
+
+}
+
 function getExhibitionStatus(ex) {
 
   const today = new Date();
   today.setHours(0,0,0,0);
 
-  const start = ex.startDate ? new Date(ex.startDate) : null;
-  const end = ex.endDate ? new Date(ex.endDate) : null;
+  const start = ex.startDate ? parseLocalDate(ex.startDate) : null;
+  const end = ex.endDate ? parseLocalDate(ex.endDate) : null;
 
   if (start && today < start) return "coming";
   if (end && today > end) return "past";
@@ -50,7 +65,7 @@ function getCountdownText(startDate){
   if(!startDate) return "";
 
   const today = new Date();
-  const start = new Date(startDate);
+  const start = parseLocalDate(startDate);
 
   const diff = Math.ceil((start - today) / (1000*60*60*24));
 
@@ -73,7 +88,7 @@ function isNewExhibition(ex){
   const today = new Date();
   today.setHours(0,0,0,0);
 
-  const start = new Date(ex.startDate);
+  const start = parseLocalDate(ex.startDate);
   start.setHours(0,0,0,0);
 
   const diff =
@@ -270,7 +285,7 @@ function renderExhibitions(exhibitions) {
         badge.className = "new-badge";
 
         const start =
-            new Date(exhibition.startDate);
+            parseLocalDate(exhibition.startDate);
 
         const month =
             start.getMonth()+1;
@@ -328,7 +343,7 @@ setInterval(() => {
     const startDate = block.dataset.start;
     if (!startDate) return;
 
-    const start = new Date(startDate);
+    const start = parseLocalDate(startDate);
 
     if (now >= start && block.classList.contains("coming")) {
 
