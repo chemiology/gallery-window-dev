@@ -442,7 +442,40 @@
       "volume": 0.4,
       "startDate": "2026-07-01",
       "endDate": "2027-02-28"
+    },
+
+    {
+      "id": "E0029",
+      "title": "White Memory",
+      "hall": "hall29",
+      "hallTitle": "29관",
+      "order": 29,
+      "type": "photo",
+      "status": "current",
+      "artist": "김경수",
+      "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg"],
+      "captions": [
+        "하얀기억 #01_Digital C-Print_40x60cm_2019",
+        "하얀기억 #02_Digital C-Print_40x60cm_2019",
+        "하얀기억 #03_Digital C-Print_40x60cm_2019",
+        "하얀기억 #04_Digital C-Print_40x60cm_2019",
+        "하얀기억 #05_Digital C-Print_40x60cm_2019",
+        "하얀기억 #06_Digital C-Print_40x60cm_2019",
+        "하얀기억 #07_Digital C-Print_40x60cm_2019",
+        "하얀기억 #08_Digital C-Print_40x60cm_2019",
+        "하얀기억 #09_Digital C-Print_40x60cm_2019"
+      ],
+      "themeColor": "#bdcee7",
+      "themeMode": "warm",
+      "slideSeconds": 10,
+      "music": "M33",
+      "volume": 0.4,
+      "startDate": "2026-07-01",
+      "endDate": "2027-02-28"
     }
+
+
+
 
 
 
