@@ -35,7 +35,6 @@ let slideSeconds = 10;
 let autoMode = true;
 
 let audio = null;
-let audioVolume = 0.5;
 let narration = null;
 let narrationPlayed = false;
 
@@ -236,7 +235,6 @@ function startAuto() {
         narration.currentTime = 0;
 
         audio.muted = false;
-        audio.volume = audioVolume;
         audio.play();
         startAuto();
     }
@@ -397,8 +395,7 @@ async function setupAudio(
         ? Math.max(0,Math.min(1,volume))
         :0.5;
 
-    audioVolume = safeVolume;
-    audio.volume = audioVolume;
+    audio.volume=safeVolume;
     audio.preload="auto";
     audio.muted=true;
 
@@ -444,7 +441,6 @@ async function setupAudio(
                 await narration.play();
                 narration.onended=()=>{
                     audio.muted=false;
-                    audio.volume = audioVolume;
                     audio.play();
 
 		    startAuto();
@@ -458,7 +454,6 @@ async function setupAudio(
         }
 
         audio.muted=false;
-        audio.volume = audioVolume;
         audio.play();
     },{once:true});
 }
@@ -489,11 +484,7 @@ function setupControls() {
   });
 
   document.getElementById("volume")?.addEventListener("input", e => {
-      audioVolume = Number(e.target.value);
-
-      if(audio){
-          audio.volume = audioVolume;
-      }
+    if (audio) audio.volume = Number(e.target.value);
   });
 
   document.getElementById("mute")?.addEventListener("click", e => {
@@ -501,7 +492,6 @@ function setupControls() {
     if (!audio) return;
 
     if (audio.paused) {
-      audio.volume = audioVolume;
       audio.play();
       audio.muted = false;
       e.target.textContent = "Mute";
@@ -520,27 +510,23 @@ function setupControls() {
 
 /* 작품 이동 버튼 */
 
-document.getElementById("nextArtwork")
-?.addEventListener("click", () => {
+  if(narration && !narration.paused){
+      narration.pause();
+      narration.currentTime=0;
+      audio.muted=false;
+      audio.play();
+  }
 
-    if(narration && !narration.paused){
+  document.getElementById("nextArtwork")
+  ?.addEventListener("click", () => {
 
-        narration.pause();
-        narration.currentTime = 0;
+      nextImage();
+      if(autoMode){
+          startAuto();
+      }
+  });
 
-        audio.muted = false;
-        audio.volume = audioVolume;
-        audio.play();
-
-    }
-
-    nextImage();
-
-    if(autoMode){
-        startAuto();
-    }
-
-});
+}
 
 document.addEventListener("keydown", e => {
 
