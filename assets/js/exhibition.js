@@ -196,7 +196,6 @@ async function loadExhibition(id) {
 
   } catch (err) {
 
-    console.log("exhibition.volume:", exhibition.volume);
     console.error("Exhibition load failed:", err);
 
   }
@@ -414,9 +413,6 @@ function setupControls() {
           AudioManager.unmute();
           btn.textContent = "Mute";
       }
-  });
-
-    e.target.textContent = audio.muted ? "Unmute" : "Mute";
   });
 
   window.addEventListener("keydown", e => {
