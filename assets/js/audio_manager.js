@@ -174,10 +174,6 @@ window.AudioManager = (()=>{
                                   console.warn("Music play:", err);
                             });
 
-                            if(onNarrationEnd){
-                                onNarrationEnd();
-                            }
-
                             fadeMusic(audioVolume);
 
                             if(onNarrationEnd){
@@ -207,6 +203,10 @@ window.AudioManager = (()=>{
                 audio.play().catch(err=>{
                       console.warn("Music play:", err);
                 });
+
+                if(onNarrationEnd){
+                    onNarrationEnd();
+                }
 
             },
 
