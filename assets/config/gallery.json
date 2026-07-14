@@ -397,6 +397,7 @@
       "slideSeconds": 10,
       "music": "M05",
       "volume": 0.4,
+      "curationVolume":1.00,
       "startDate": "2026-07-01",
       "endDate": "2026-10-19"
     },
@@ -469,7 +470,9 @@
       "themeMode": "warm",
       "slideSeconds": 10,
       "music": "M33",
-      "volume": 0.1,
+      "volume": 0.2,
+      "curationVolume":1.20,
+      "fadeDuration":800
       "startDate": "2026-07-01",
       "endDate": "2027-02-28"
     }
