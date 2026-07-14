@@ -71,9 +71,8 @@ window.AudioManager = (()=>{
 
         audioVolume = safeVolume;
 
-        musicGain.gain.value = audioVolume;
+        applyMusicVolume();
 
-        audio.volume = Math.min(audioVolume, 1);
         audio.preload = "auto";
         audio.muted = true;
 
@@ -123,11 +122,7 @@ window.AudioManager = (()=>{
                 ? Math.max(0,Math.min(2,curationVolume))
                 :1.0;
 
-            narration.volume =
-                Math.min(narrationVolume,1);
-
-            narrationGain.gain.value =
-                narrationVolume;
+            applyNarrationVolume();
 
         }else{
 
@@ -168,7 +163,7 @@ window.AudioManager = (()=>{
 
                             audio.muted = false;
 
-                            audio.volume = Math.min(audioVolume, 1);
+                            applyMusicVolume();
 
                             audio.play().catch(err=>{
                                   console.warn("Music play:", err);
@@ -196,7 +191,7 @@ window.AudioManager = (()=>{
 
                 audio.muted = false;
 
-                audio.volume = Math.min(audioVolume, 1);
+                applyMusicVolume();
 
                 fadeMusic(audioVolume);
 
@@ -226,7 +221,7 @@ window.AudioManager = (()=>{
 
         audio.muted = false;
 
-        audio.volume = Math.min(audioVolume, 1);
+        applyMusicVolume();
 
         audio.play().catch(err=>{
               console.warn("Music play:", err);
@@ -290,23 +285,39 @@ window.AudioManager = (()=>{
        Volume
     -------------------------------------------------- */
 
+    function applyMusicVolume(){
+
+        if(audio){
+
+            // HTML Audio는 최대 1.0
+            audio.volume = Math.min(audioVolume, 1);
+        }
+
+        if(musicGain){
+
+            // GainNode는 2.0까지 허용
+            musicGain.gain.value = audioVolume;
+        }
+
+    }
+
+    function applyNarrationVolume(){
+
+        if(narration){
+            narration.volume = Math.min(narrationVolume, 1);
+        }
+
+        if(narrationGain){
+            narrationGain.gain.value = narrationVolume;
+        }
+    }
+
     function setMusicVolume(v){
 
         audioVolume =
             Math.max(0,Math.min(2,v));
 
-        if(audio){
-            if(musicGain){
-
-                musicGain.gain.value = audioVolume;
-
-            }else if(audio){
-
-                audio.volume =
-                    Math.min(audioVolume,1);
-
-            }
-        }
+        applyMusicVolume();
 
     }
 
@@ -315,22 +326,7 @@ window.AudioManager = (()=>{
         narrationVolume =
             Math.max(0,Math.min(2,v));
 
-        if(narration){
-            if(narrationGain){
-
-                narrationGain.gain.value =
-                    narrationVolume;
-
-            }else if(narration){
-
-                narration.volume =
-                    Math.min(
-                        narrationVolume,
-                        1
-                    );
-
-            }
-        }
+        applyNarrationVolume();
     }
 
     /* --------------------------------------------------
@@ -358,7 +354,6 @@ window.AudioManager = (()=>{
             narration.muted = false;
         }
     }
-
 
     /* --------------------------------------------------
        fade 함수
