@@ -73,7 +73,7 @@ window.AudioManager = (()=>{
 
         musicGain.gain.value = audioVolume;
 
-        audio.volume = audioVolume;
+        audio.volume = Math.min(audioVolume, 1);
         audio.preload = "auto";
         audio.muted = true;
 
@@ -168,7 +168,7 @@ window.AudioManager = (()=>{
 
                             audio.muted = false;
 
-                            audio.volume = audioVolume;
+                            audio.volume = Math.min(audioVolume, 1);
 
                             audio.play().catch(err=>{
                                   console.warn("Music play:", err);
@@ -196,7 +196,7 @@ window.AudioManager = (()=>{
 
                 audio.muted = false;
 
-                audio.volume = audioVolume;
+                audio.volume = Math.min(audioVolume, 1);
 
                 fadeMusic(audioVolume);
 
@@ -226,7 +226,7 @@ window.AudioManager = (()=>{
 
         audio.muted = false;
 
-        audio.volume = audioVolume;
+        audio.volume = Math.min(audioVolume, 1);
 
         audio.play().catch(err=>{
               console.warn("Music play:", err);
