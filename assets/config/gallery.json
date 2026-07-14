@@ -472,7 +472,7 @@
       "music": "M33",
       "volume": 0.2,
       "curationVolume":1.20,
-      "fadeDuration":800
+      "fadeDuration":800,
       "startDate": "2026-07-01",
       "endDate": "2027-02-28"
     }
