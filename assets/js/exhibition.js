@@ -222,6 +222,8 @@ window.addEventListener("load", () => {
 
 function startAuto() {
 
+  console.log("★★★★★ startAuto 호출");
+
   stopAuto();
   autoMode = true;
 
