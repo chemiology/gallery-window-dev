@@ -34,11 +34,6 @@ let timer = null;
 let slideSeconds = 10;
 let autoMode = true;
 
-let audio = null;
-let audioVolume = 0.5;
-let narration = null;
-let narrationPlayed = false;
-
 function getDeviceType() {
   return window.matchMedia("(pointer: coarse)").matches
     ? "mobile"
@@ -190,10 +185,13 @@ async function loadExhibition(id) {
   const narrationFile =
       basePath + "curation.mp3";
 
-  setupAudio(
+  AudioManager.setupAudio(
       musicFile,
       narrationFile,
-      exhibition.volume
+      exhibition.volume,
+      exhibition.curationVolume ?? 1.0,
+      startAuto,
+      exhibition.fadeDuration ?? 500
   );
 
   } catch (err) {
@@ -230,15 +228,13 @@ function startAuto() {
 
   timer = setTimeout(() => {
 
-    if (narration && !narration.paused) {
+    if (AudioManager.hasNarration()
+        && AudioManager.isNarrationPlaying()) {
 
-        narration.pause();
-        narration.currentTime = 0;
-
-        audio.muted = false;
-        audio.play();
+        AudioManager.stopNarration();
+        AudioManager.playMusic();
         startAuto();
-    }
+}
 
     nextImage();
 
@@ -372,97 +368,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* -----------------------------------------------------
-   Audio
------------------------------------------------------ */
-
-async function setupAudio(
-    src,
-    narrationSrc,
-    volume
-){
-
-    if(audio){
-
-        audio.pause();
-        audio.src="";
-        audio=null;
-    }
-
-    audio=new Audio(src);
-    audio.loop=true;
-
-    const safeVolume=
-        typeof volume==="number" && isFinite(volume)
-        ? Math.max(0,Math.min(1,volume))
-        :0.5;
-
-    audioVolume = safeVolume;
-    audio.volume = audioVolume;
-    audio.preload="auto";
-    audio.muted=true;
-
-    let narrationExists=false;
-
-    try{
-
-        const res=await fetch(
-            narrationSrc,
-            {
-                method:"HEAD",
-                cache:"no-cache"
-            }
-        );
-
-        narrationExists=res.ok;
-
-    }catch{
-        narrationExists=false;
-    }
-
-    if(narrationExists){
-        narration=new Audio(narrationSrc);
-    }else{
-        narration=null;
-    }
-
-    document.addEventListener("click",async()=>{
-        if(narration){
-            try{
-
-                const notice =
-                document.getElementById("curationNotice");
-
-                notice?.classList.add("show");
-
-                setTimeout(()=>{
-
-                    notice?.classList.remove("show");
-
-                },3500);
-
-                await narration.play();
-                narration.onended=()=>{
-                    audio.muted=false;
-             	    audio.volume = audioVolume;
-                    audio.play();
-
-		    startAuto();
-                };
-
-                return;
-            }catch(err){
-
-                console.log("큐레이터 음성 없음");
-            }
-        }
-
-        audio.muted=false;
-	audio.volume = audioVolume;
-        audio.play();
-    },{once:true});
-}
-
-/* -----------------------------------------------------
    Controls
 ----------------------------------------------------- */
 
@@ -489,26 +394,28 @@ function setupControls() {
 
   document.getElementById("volume")?.addEventListener("input", e => {
 
-      audioVolume = Number(e.target.value);
+      AudioManager.setMusicVolume(
+            Number(e.target.value)
+      );
+  });
 
-      if(audio){
-          audio.volume = audioVolume;
+  document.getElementById("mute")
+  ?.addEventListener("click", e => {
+
+      const btn = e.target;
+
+      if(btn.textContent === "Mute"){
+
+          AudioManager.mute();
+          btn.textContent = "Unmute";
+
+      }else{
+
+          AudioManager.unmute();
+          btn.textContent = "Mute";
       }
   });
 
-  document.getElementById("mute")?.addEventListener("click", e => {
-
-    if (!audio) return;
-
-    if (audio.paused) {
-      audio.volume = audioVolume;	
-      audio.play();
-      audio.muted = false;
-      e.target.textContent = "Mute";
-      return;
-    }
-
-    audio.muted = !audio.muted;
     e.target.textContent = audio.muted ? "Unmute" : "Mute";
   });
 
@@ -520,11 +427,11 @@ function setupControls() {
 
 /* 작품 이동 버튼 */
 
-  if(narration && !narration.paused){
-      narration.pause();
-      narration.currentTime=0;
-      audio.muted=false;
-      audio.play();
+  if (AudioManager.hasNarration()
+      && AudioManager.isNarrationPlaying()) {
+
+      AudioManager.stopNarration();
+      AudioManager.playMusic();
   }
 
   document.getElementById("nextArtwork")
