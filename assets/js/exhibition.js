@@ -35,6 +35,7 @@ let slideSeconds = 10;
 let autoMode = true;
 
 let audio = null;
+let audioVolume = 0.5;
 let narration = null;
 let narrationPlayed = false;
 
@@ -395,7 +396,8 @@ async function setupAudio(
         ? Math.max(0,Math.min(1,volume))
         :0.5;
 
-    audio.volume=safeVolume;
+    audioVolume = safeVolume;
+    audio.volume = audioVolume;
     audio.preload="auto";
     audio.muted=true;
 
@@ -441,6 +443,7 @@ async function setupAudio(
                 await narration.play();
                 narration.onended=()=>{
                     audio.muted=false;
+             	    audio.volume = audioVolume;
                     audio.play();
 
 		    startAuto();
@@ -454,6 +457,7 @@ async function setupAudio(
         }
 
         audio.muted=false;
+	audio.volume = audioVolume;
         audio.play();
     },{once:true});
 }
@@ -484,7 +488,12 @@ function setupControls() {
   });
 
   document.getElementById("volume")?.addEventListener("input", e => {
-    if (audio) audio.volume = Number(e.target.value);
+
+      audioVolume = Number(e.target.value);
+
+      if(audio){
+          audio.volume = audioVolume;
+      }
   });
 
   document.getElementById("mute")?.addEventListener("click", e => {
@@ -492,6 +501,7 @@ function setupControls() {
     if (!audio) return;
 
     if (audio.paused) {
+      audio.volume = audioVolume;	
       audio.play();
       audio.muted = false;
       e.target.textContent = "Mute";
