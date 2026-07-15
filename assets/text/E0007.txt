@@ -1,0 +1,126 @@
+[작가노트]
+
+아바타II 라는 나의 사진작업과 동일한 제목의 AI 영상 작업이다. 그러나 이 영상 작업은 나의 사진작업인 아바타II 가 아니라 아바타II 이후에 발표를 준비 중인 ‘아바타의 꿈’이라는 사진작업의 영상 버전이라고 할 수 있다. 
+
+지난 아바타 사진작업 시리즈를 통해, 나는 가상의 존재가 나의 대리인으로서 여러 세상과 관계를 탐험하는 모습을 기록했다. 이번 영상 작품에서는 그 연장을 넘어서, 아바타가 스스로 의식과 꿈을 형성하며 진정한 자율적 존재로 거듭나는 여정을 그려내고자 한다. 아바타는 이제 단순한 도구가 아니라, 독자적인 시각과 새로운 갈망을 품고 현실과 멀티버스에 대한 질문을 던진다. 이러한 변화는 인공지능 발전에 따른 자아 형성 과정을 연상시키며, 인간의 정체성과 존재 본질에 대한 근본적 의문을 제기한다. 이를 통해 작품은 기술변화와 그에 따른 철학적 성찰을 함축한다.
+
+이 작업에서는 아바타가 스스로 생각하고 꿈꾸며 창조하는 이야기를 통해, 새로운 시각과 주체적 경험을 담아내고자 한다. 이를 통해 관람객들이 현실과 디지털의 경계를 넘나들며 다양한 의미를 재발견할 수 있기를 기대한다.
+
+시놉시스
+
+20세의 대학생인 연우는 어느 날 갑자기 멀티버스로 통하는 웜홀을 만들 수 있는 능력을 얻게 된다. 의도치 않게 멀티버스 이동을 한 연우는 항상 새롭게 설정된 자신의 모습에 직면하게 된다. 그리고 이때부터 정체불명인 괴한의 추격을 받게 된다. 그녀는 11번째 이동한 멀티버스에서 더 이상의 이동이 가능하지 않다는 것을 깨닫게 되고, 괴한을 역으로 급습하기에 이른다. 이후 통제실에서 그녀는 자신의 모습과 거의 비슷한 여성에게 총을 쏘고, 그녀에게서 얻은 시계로 다시 이동을 할 수 있었지만 그곳은 멀티버스가 아닌 현실세계였다. 그리고 그녀는 충격적인 진실을 마주하게 된다. 
+
+
+This AI film shares the same title as my photographic project, Avatar II. However, rather than being a direct adaptation of that series, it serves as the cinematic counterpart to my forthcoming photographic project, The Dream of the Avatar, which continues the narrative beyond Avatar II.
+
+Through my previous Avatar photographic series, I explored a virtual being acting as my surrogate, traversing different worlds and forging relationships across multiple realities. This new film extends that journey further, imagining an avatar that gradually develops its own consciousness and dreams, ultimately becoming an autonomous existence. No longer a mere tool, the avatar begins to perceive the world through its own eyes, driven by new desires and compelled to question both reality and the multiverse. This transformation echoes the emergence of self-awareness in artificial intelligence, raising fundamental questions about human identity and the nature of existence itself. In this sense, the work reflects not only technological evolution but also the philosophical inquiries that accompany it.
+
+Through the story of an avatar that thinks, dreams, and creates on its own, this work seeks to present a new perspective and an independent mode of experience. It invites viewers to move beyond the boundaries between physical reality and the digital realm, discovering new layers of meaning along the way.
+
+Synopsis
+
+Yeon-woo, a twenty-year-old university student, suddenly acquires the extraordinary ability to create wormholes leading to parallel universes.
+After an accidental journey into the multiverse, she discovers that every new world presents her with a different version of herself. From that moment on, she becomes the target of a mysterious pursuer whose identity remains unknown.
+Upon reaching the eleventh universe, Yeon-woo realizes that she can travel no further. Instead of continuing to flee, she turns the tables and confronts her pursuer.
+Inside a hidden control room, she encounters a woman who looks almost identical to herself. After shooting the woman, Yeon-woo takes the mysterious watch she carries, enabling one final leap through space and time.
+But her destination is no longer another universe.
+It is the real world.
+And there, she is confronted with a truth more shocking than anything she had imagined.
+
+Directed and Produced by KyoungSoo Kim
+
+Image generation: Stable Diffusion SDXL, Adobe Firefly, DALLE3
+Video generation: LUMA, Heygen, Viggle
+Video Upscaling: DaVinci Resolve Studio
+
+Voice generation: iMyFone VoxBox
+Sound effect generation: IlElevenLabs
+
+Translation: DeepL
+
+Theme song: Multiverse Adventures
+Composed by: SUNO
+
+BGM: Multiverse
+Composed by: SUNO
+
+[작가 프로필]
+
+[개인전]
+
+2026 『아바타II』 갤러리 창 (온라인)
+2024 『아바타II』 갤러리 공간미끌 (서울)
+2019 『아바타: 환상 꿈』 한국카메라박물관 (과천)
+2019 『아바타』 갤러리 나우 (서울)
+2017 『꼭두각시』 갤러리 이즈 (서울)
+2015 『별이 빛나는 밤』 핑야오국제사진축전 초대전, 핑야오전시장 (중국)
+2015 『별이 빛나는 밤』 가나아트스페이스 (서울)
+
+[주요 그룹전]
+
+2025 『2025 인천국제현대사진기획전』 인천문화예술회관 (인천)
+2025 『2025 여주국제사진전』 강변유원지길 (여주)
+2025 『부산국제사진제: International Open Call_혼이 있는 바다』 스페이스 원지 (부산)
+2025 『찢고 삐져나온 것들』 이스트아뜰리에 갤러리 서울 (서울)
+2024 『현대사진가 특별전_형태의 탐구』 Born star Rocks gallery (미국)
+2024 『Lishui Photography Festival』 리수이 사진박물관 (중국)
+2024 『빛과 그림자의 춤』 유누프 루벨스키 사진박물관 (폴란드)
+2023 『Listen, Sound of The photo』 랑그레오 시립미술관 (스페인)
+2023 『뉴 웨이브 - 대한민국국제포토페스티벌』 초대전, 예술의전당 한가람미술관 (서울)
+2023 『우크라이나 리브네 국제사진전: HOPE』 Rivne Museum (우크라이나)
+2023 『스페인 아스투리아스 국제사진전: HOPE』 abba playa Gijon Hotel (스페인)
+2023 『판단중지』 선광미술관 (인천)
+2021 『선의 경계: 사진으로 읽기』 갤러리89 (프랑스)
+2021 『로마국제사진전』 메디나로마 갤러리 (이탈리아)
+2018 『몽테 소사이어티: 오늘을 그리다』 백학미술관 (광주)
+2018 『제3회 PASA FESTIVAL – 젊은 시각』 수원미술전시관 (수원)
+2018 『피렌체국제사진전』 Galleria Mentana (이탈리아)
+2016 『동강국제사진제 Growing Up IV』 영월문화예술회관 (영월)
+
+[필모그라피]
+
+- 『아바타』 2024, 7분34초
+	2025 AI FilmFest Serbia (세르비아) 공식선정
+	2025 Neuro Masters AI Film Festival (러시아) 공식선정
+	2025 서울국제AI영화제 공식선정
+- 『아바타II』 2024, 9분59초
+	2026 Open Horizon Film Festival (불가리아) 공식선정
+	2026 Dialog Film Festival (독일) 공식선정
+	2026 Southern Light Festival (스페인) 공식선정
+	2026 Sofia World Film Festival (불가리아) 공식선정
+	2026 Black Owl Film Festival (튀르키예) 공식선정
+	2026 Tulip International Film Festival (네덜란드) 공식선정
+	2025 MIAMI ART TECH SUMMIT (미국) 공식선정
+	2025 Palma Film Festival (스페인) 공식선정
+	2025 Beyond The Screen Festival (벨기에) Honorable mention 선정
+	2025 Neuro Masters AI Film Festival (러시아) 공식선정 
+	2025 서울국제AI영화제 Finalist 선정
+	2024 CineTech Future Fest 폴란드 독립영화제 공식선정
+- 『아바타 리로드』 2024, 2분59초
+	2025 Neuro Masters AI Film Festival (러시아) 공식선정
+	2024 SF스토리 공모전 AI영상부문 대상 수상
+- 『연우의 신곡발표』 2024, 5분55초
+	2025 Neuro Masters AI Film Festival 공식선정 (러시아)
+	2025 서울국제AI영화제 공식선정
+
+[사진집]
+
+2019 Avatar, 도서출판 하얀나무 (ISBN 979-11-85154-46-6)
+2017 Marionette, 도서출판 하얀나무 (ISBN 979-11-85154-27-5)
+2015 The Starry Night, 도서출판 하얀나무 (ISBN 979-11-85154-09-1)
+
+[수상/선정]
+
+2025 Beyond The Screen Festival, Honorable mention (벨기에)
+2024 SF스토리 공모전 AI영상부문 대상 (동아사이언스)
+2019 한국카메라박물관, 올해의 사진가 선정
+2018 제9회 갤러리 나우 작가상(NoW Advance Exhibition)
+2017 제4회 대한민국국제포토페스티벌 우수작가상
+
+[연락처]
+
+E-mail : chemiology@naver.com
+Homepage : https://www.kimkyoungsoo.com
+Blog : https://blog.naver.com/chemiology
+Facebook : http://www.facebook.com/chemiology
+Instagram : https://www.instagram.com/kskimpc
