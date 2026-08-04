@@ -447,6 +447,48 @@
       "endDate": "2027-02-28"
     },
 
+
+    {
+      "id": "E0030",
+      "title": "Landscapes left by Time",
+      "hall": "hall30",
+      "hallTitle": "30관",
+      "order": 30,
+      "type": "photo",
+      "status": "current",
+      "artist": "김영균",
+      "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","101.jpg","012.jpg","013.jpg","014.jpg","015.jpg","016.jpg","017.jpg"],
+      "captions": [
+        "삶의 향기 I",
+        "삶의 향기 II",
+        "공감(Sympathetic)-I",
+        "공감(Sympathetic)-II",
+        "비공감(Unsympathetic)-I",
+        "비공감(Unsympathetic)-II",
+        "삶의 행로 I",
+        "삶의 행로 II",
+        "모정(慕情) I",
+        "모정(慕情) II",
+        "그리움 모정 I",
+        "그리움 모정 II",
+        "그리움 모정 III",
+        "백 년을 잇는 가업(家業)의 꿈 I",
+        "백 년을 잇는 가업(家業)의 꿈 II",
+        "시간의 스케치 I",
+        "시간의 스케치 II"
+      ],
+      "themeColor": "#b9b7b5",
+      "themeMode": "cool",
+      "slideSeconds": 10,
+      "music": "M36",
+      "volume": 0.4,
+      "curationVolume":1.0,
+      "fadeDuration":800,
+      "startDate": "2026-04-01",
+      "endDate": "2027-01-19"
+    },
+
+
     {
       "id": "E0029",
       "title": "White Memory",
