@@ -223,7 +223,7 @@
       "hall": "hall90",
       "hallTitle": "90관",
       "order": 90,
-      "status": "hidden",
+      "status": "current",
       "artist": "김경수",
       "themeColor": "#c6d4e1",
       "themeMode": "cool",
