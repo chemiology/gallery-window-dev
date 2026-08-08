@@ -13,6 +13,14 @@ window.AudioManager = (()=>{
 
     let fadeDuration = 500;
 
+    /* Artwork Narration */
+
+    let artworkNarration = null;
+    let artworkNarrationSource = null;
+    let artworkNarrationGain = null;
+
+    let artworkNarrationVolume = 1.0;
+
     /* Web Audio */
 
     let audioContext = null;
@@ -22,6 +30,8 @@ window.AudioManager = (()=>{
 
     let musicGain = null;
     let narrationGain = null;
+
+    
 
     /* --------------------------------------------------
        Setup
@@ -261,6 +271,104 @@ window.AudioManager = (()=>{
 
     }
 
+    /* --------------------------------------------------
+    Artwork Narration
+    -------------------------------------------------- */
+
+    async function playArtworkNarration(src, onEnded = null){
+
+        stopArtworkNarration();
+
+        if(!src) return false;
+
+        if(!audioContext){
+            return false;
+        }
+
+        try{
+
+            artworkNarration = new Audio(src);
+
+            artworkNarration.preload = "auto";
+
+            artworkNarrationSource =
+                audioContext.createMediaElementSource(
+                    artworkNarration
+                );
+
+            artworkNarrationGain =
+                audioContext.createGain();
+
+            artworkNarrationSource.connect(
+                artworkNarrationGain
+            );
+
+            artworkNarrationGain.connect(
+                audioContext.destination
+            );
+
+            applyArtworkNarrationVolume();
+
+            artworkNarration.onended = ()=>{
+
+                if(onEnded){
+                    onEnded();
+                }
+
+            };
+
+            await artworkNarration.play();
+
+            return true;
+
+        }catch(err){
+
+            console.warn(
+                "Artwork narration unavailable:",
+                src
+            );
+
+            stopArtworkNarration();
+
+            return false;
+        }
+    }
+
+
+    function stopArtworkNarration(){
+
+        if(!artworkNarration) return;
+
+        artworkNarration.pause();
+
+        artworkNarration.currentTime = 0;
+
+        artworkNarration.src = "";
+
+        artworkNarration.load();
+
+        artworkNarration = null;
+
+        artworkNarrationSource = null;
+        artworkNarrationGain = null;
+    }
+
+
+    function hasArtworkNarration(){
+
+        return artworkNarration !== null;
+
+    }
+
+
+    function isArtworkNarrationPlaying(){
+
+        return artworkNarration
+            ? !artworkNarration.paused
+            : false;
+
+    }
+
     function stopNarration(){
 
         if(!narration) return;
@@ -312,6 +420,40 @@ window.AudioManager = (()=>{
         }
     }
 
+    function applyArtworkNarrationVolume(){
+
+        if(artworkNarration){
+
+            artworkNarration.volume =
+                Math.min(
+                    artworkNarrationVolume,
+                    1
+                );
+
+        }
+
+        if(artworkNarrationGain){
+
+            artworkNarrationGain.gain.value =
+                artworkNarrationVolume;
+
+        }
+
+    }
+
+
+    function setArtworkNarrationVolume(v){
+
+        artworkNarrationVolume =
+            Math.max(
+                0,
+                Math.min(2, v)
+            );
+
+        applyArtworkNarrationVolume();
+
+    }
+
     function setMusicVolume(v){
 
         audioVolume =
@@ -342,6 +484,10 @@ window.AudioManager = (()=>{
         if(narration){
             narration.muted = true;
         }
+
+        if(artworkNarration){
+            artworkNarration.muted = true;
+        }
     }
 
     function unmute(){
@@ -352,6 +498,10 @@ window.AudioManager = (()=>{
 
         if(narration){
             narration.muted = false;
+        }
+
+        if(artworkNarration){
+            artworkNarration.muted = false;
         }
     }
 
@@ -408,11 +558,22 @@ window.AudioManager = (()=>{
             narration=null;
         }
 
+        if(artworkNarration){
+
+            artworkNarration.pause();
+            artworkNarration.src="";
+            artworkNarration.load();
+            artworkNarration=null;
+        }
+
         musicSource = null;
         musicGain = null;
 
         narrationSource = null;
         narrationGain = null;
+
+        artworkNarrationSource = null;
+        artworkNarrationGain = null;
 
     }
 
@@ -426,24 +587,26 @@ window.AudioManager = (()=>{
 
         resumeMusic,
 
+        /* Curation */
         playNarration,
-
         stopNarration,
-
         hasNarration,
-
         isNarrationPlaying,
 
-        setMusicVolume,
+        /* Artwork Narration */
+        playArtworkNarration,
+        stopArtworkNarration,
+        hasArtworkNarration,
+        isArtworkNarrationPlaying,
 
+        setMusicVolume,
         setNarrationVolume,
+        setArtworkNarrationVolume,
 
         mute,
-
         unmute,
 
         destroy
-
     };
 
 })();
