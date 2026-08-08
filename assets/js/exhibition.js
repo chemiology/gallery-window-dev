@@ -34,6 +34,9 @@ let timer = null;
 let slideSeconds = 10;
 let autoMode = true;
 
+let artworkNarrationTimer = null;
+let artworkNarrationDelay = 2000;
+
 function getDeviceType() {
   return window.matchMedia("(pointer: coarse)").matches
     ? "mobile"
@@ -227,19 +230,64 @@ function startAuto() {
   stopAuto();
   autoMode = true;
 
-  timer = setTimeout(() => {
+  timer = setTimeout(async () => {
 
-    if (AudioManager.hasNarration()
-        && AudioManager.isNarrationPlaying()) {
+    /*
+     * Curation이 아직 재생 중이라면
+     * Curation 종료를 기다립니다.
+     */
+    if (
+      AudioManager.hasNarration() &&
+      AudioManager.isNarrationPlaying()
+    ) {
 
-        AudioManager.stopNarration();
-        AudioManager.playMusic();
-        startAuto();
-}
+      AudioManager.stopNarration();
+      AudioManager.playMusic();
 
-    nextImage();
+      /*
+       * Curation 종료 후에는
+       * 현재 작품의 Artwork Narration을 시작합니다.
+       */
+      const started =
+        await playCurrentArtworkNarration();
 
-    timer = setInterval(nextImage, slideSeconds * 1000);
+      if (!started) {
+
+        /*
+         * Artwork Narration이 없으면
+         * 기존 자동 슬라이드로 진행합니다.
+         */
+        nextImage();
+
+        timer =
+          setInterval(
+            nextImage,
+            slideSeconds * 1000
+          );
+
+      }
+
+      return;
+    }
+
+    /*
+     * Curation이 없는 경우
+     * 현재 작품의 Artwork Narration을 시도합니다.
+     */
+    const started =
+      await playCurrentArtworkNarration();
+
+    if (!started) {
+
+      nextImage();
+
+      timer =
+        setInterval(
+          nextImage,
+          slideSeconds * 1000
+        );
+
+    }
 
   }, 6000);
 
@@ -354,6 +402,91 @@ function showImage(index) {
   }
 }
 
+/* -----------------------------------------------------
+   Artwork Narration
+----------------------------------------------------- */
+
+function getArtworkNarrationSrc() {
+
+  if (!images.length) return null;
+
+  const imagePath = images[currentIndex];
+
+  if (!imagePath) return null;
+
+  const fileName =
+    imagePath.split("/").pop();
+
+  if (!fileName) return null;
+
+  const baseName =
+    fileName.replace(/\.[^/.]+$/, "");
+
+  return BASE_PATH
+    + "/assets/exhibitions/"
+    + exhibitionId
+    + "/"
+    + baseName
+    + ".mp3";
+}
+
+
+function stopArtworkNarration() {
+
+  if (artworkNarrationTimer) {
+
+    clearTimeout(
+      artworkNarrationTimer
+    );
+
+    artworkNarrationTimer = null;
+  }
+
+  if (
+    AudioManager.isArtworkNarrationPlaying()
+  ) {
+
+    AudioManager.stopArtworkNarration();
+  }
+
+}
+
+
+async function playCurrentArtworkNarration() {
+
+  stopArtworkNarration();
+
+  const narrationSrc =
+    getArtworkNarrationSrc();
+
+  if (!narrationSrc) {
+    return false;
+  }
+
+  const started =
+    await AudioManager.playArtworkNarration(
+      narrationSrc,
+      () => {
+
+        AudioManager.playMusic();
+
+        artworkNarrationTimer =
+          setTimeout(() => {
+
+            artworkNarrationTimer = null;
+
+            if (autoMode) {
+              nextImage();
+            }
+
+          }, artworkNarrationDelay);
+
+      }
+    );
+
+  return started;
+}
+
 function preloadInitialImages() {
   for (let i = 1; i < Math.min(3, images.length); i++) {
     new Image().src = images[i];
@@ -362,8 +495,9 @@ function preloadInitialImages() {
 
 function nextImage() {
 
-  // Curation 또는 음성 재생 중이면 즉시 중단
+  // Curation 또는 Artwork Narration 중이면 즉시 중단
   stopCurationIfPlaying();
+  stopArtworkNarration();
 
   if(currentIndex >= images.length-1){
 
