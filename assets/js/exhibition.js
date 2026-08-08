@@ -258,6 +258,24 @@ function stopAuto() {
 }
 
 /* -----------------------------------------------------
+   Stop Curation
+----------------------------------------------------- */
+
+function stopCurationIfPlaying() {
+
+  if (
+    AudioManager.hasNarration() &&
+    AudioManager.isNarrationPlaying()
+  ) {
+
+    AudioManager.stopNarration();
+    AudioManager.playMusic();
+
+  }
+
+}
+
+/* -----------------------------------------------------
    Image Display
 ----------------------------------------------------- */
 
@@ -343,18 +361,29 @@ function preloadInitialImages() {
 }
 
 function nextImage() {
+
+  // Curation 또는 음성 재생 중이면 즉시 중단
+  stopCurationIfPlaying();
+
   if(currentIndex >= images.length-1){
+
       stopAuto();
+
       document
         .getElementById("endScreen")
         ?.classList.add("active");
 
       return;
   }
+
   showImage(currentIndex + 1);
 }
 
 function prevImage() {
+
+  // Curation 또는 음성 재생 중이면 즉시 중단
+  stopCurationIfPlaying();
+
   showImage(currentIndex - 1);
 }
 
@@ -424,13 +453,6 @@ function setupControls() {
   });
 
 /* 작품 이동 버튼 */
-
-  if (AudioManager.hasNarration()
-      && AudioManager.isNarrationPlaying()) {
-
-      AudioManager.stopNarration();
-      AudioManager.playMusic();
-  }
 
   document.getElementById("nextArtwork")
   ?.addEventListener("click", () => {
