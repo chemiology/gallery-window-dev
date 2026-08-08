@@ -289,7 +289,7 @@ function startAuto() {
 
     }
 
-  }, 6000);
+  });
 
 }
 
@@ -468,18 +468,25 @@ async function playCurrentArtworkNarration() {
       narrationSrc,
       () => {
 
-        AudioManager.playMusic();
+          AudioManager.playMusic();
 
-        artworkNarrationTimer =
-          setTimeout(() => {
+          artworkNarrationTimer =
+            setTimeout(() => {
 
-            artworkNarrationTimer = null;
+              artworkNarrationTimer = null;
 
-            if (autoMode) {
-              nextImage();
-            }
+              if (autoMode) {
 
-          }, artworkNarrationDelay);
+                nextImage();
+
+                /*
+                * 다음 작품의 narration을 시작한다.
+                */
+                startAuto();
+
+              }
+
+            }, artworkNarrationDelay);
 
       }
     );
