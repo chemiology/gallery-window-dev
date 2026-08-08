@@ -257,15 +257,14 @@ function startAuto() {
          * Artwork Narration이 없으면
          * 기존 자동 슬라이드로 진행합니다.
          */
-        nextImage();
+        timer = setTimeout(() => {
 
-        timer =
-          setInterval(
-            nextImage,
-            slideSeconds * 1000
-          );
+            nextImage();
+            startAuto();
 
-      }
+        }, slideSeconds * 1000);
+
+    }
 
       return;
     }
@@ -279,13 +278,12 @@ function startAuto() {
 
     if (!started) {
 
-      nextImage();
+        timer = setTimeout(() => {
 
-      timer =
-        setInterval(
-          nextImage,
-          slideSeconds * 1000
-        );
+            nextImage();
+            startAuto();
+
+        }, slideSeconds * 1000);
 
     }
 
