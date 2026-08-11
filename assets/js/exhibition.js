@@ -466,8 +466,6 @@ async function playCurrentArtworkNarration() {
       narrationSrc,
       () => {
 
-          AudioManager.playMusic();
-
           artworkNarrationTimer =
             setTimeout(() => {
 
