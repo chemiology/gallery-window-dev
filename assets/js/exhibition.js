@@ -262,7 +262,7 @@ function startAuto() {
             nextImage();
             startAuto();
 
-        }, slideSeconds * 1000);
+        }, artworkNarrationDelay);
 
     }
 
