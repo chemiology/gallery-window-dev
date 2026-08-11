@@ -340,6 +340,8 @@ window.AudioManager = (()=>{
                 src
             );
 
+            fadeMusic(audioVolume);
+
             stopArtworkNarration();
 
             return false;
