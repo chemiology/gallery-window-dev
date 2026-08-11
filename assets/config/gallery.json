@@ -175,7 +175,6 @@
       "order": 80,
       "type": "photo",
       "status": "current",
-      "hidden": true,
       "artist": "김경수",
       "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg","014.jpg","015.jpg","016.jpg","017.jpg","018.jpg","019.jpg","020.jpg","021.jpg","022.jpg","023.jpg","024.jpg","025.jpg","026.jpg","027.jpg"],
       "captions": [
@@ -212,8 +211,8 @@
       "slideSeconds": 10,
       "music": "M02",
       "volume": 0.5,
-      "startDate": "2026-04-01",
-      "endDate": "2026-12-31"
+      "startDate": "2026-09-01",
+      "endDate": "2026-11-30"
     },
 
     {
@@ -321,7 +320,7 @@
       "hallTitle": "2관 초대전",
       "order": 24,
       "type": "photo",
-      "status": "hidden",
+      "status": "current",
       "artist": "이춘희",
       "images": ["002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg","014.jpg","015.jpg","016.jpg","017.jpg","018.jpg","019.jpg","020.jpg","021.jpg","022.jpg","023.jpg","024.jpg","025.jpg"],
       "captions": [
@@ -355,8 +354,8 @@
       "slideSeconds": 10,
       "music": "M07",
       "volume": 0.45,
-      "startDate": "2026-05-01",
-      "endDate": "2026-11-30"
+      "startDate": "2026-09-20",
+      "endDate": "2026-12-19"
     },
 
     {
