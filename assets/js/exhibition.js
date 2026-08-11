@@ -36,6 +36,7 @@ let autoMode = true;
 
 let artworkNarrationTimer = null;
 let artworkNarrationDelay = 2000;
+let curationJustEnded = false;
 
 function getDeviceType() {
   return window.matchMedia("(pointer: coarse)").matches
@@ -193,7 +194,7 @@ async function loadExhibition(id) {
       narrationFile,
       exhibition.volume,
       exhibition.curationVolume ?? 1.0,
-      startAuto,
+      handleCurationEnd,
       exhibition.fadeDuration ?? 500
   );
 
@@ -218,6 +219,14 @@ window.addEventListener("load", () => {
   }, 5000);
 
 });
+
+function handleCurationEnd() {
+
+  curationJustEnded = true;
+
+  startAuto();
+
+}
 
 /* -----------------------------------------------------
    Auto Slide
@@ -278,12 +287,19 @@ function startAuto() {
 
     if (!started) {
 
+        const delay =
+          curationJustEnded
+            ? artworkNarrationDelay
+            : slideSeconds * 1000;
+
+        curationJustEnded = false;
+
         timer = setTimeout(() => {
 
             nextImage();
             startAuto();
 
-        }, slideSeconds * 1000);
+        }, delay);
 
     }
 
