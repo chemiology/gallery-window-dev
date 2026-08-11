@@ -309,7 +309,19 @@ window.AudioManager = (()=>{
 
             applyArtworkNarrationVolume();
 
+            /*
+            * Artwork Narration 시작
+            * → 배경음악을 10%로 낮춘다.
+            */
+            fadeMusic(audioVolume * 0.1);
+
             artworkNarration.onended = ()=>{
+
+                /*
+                * Artwork Narration 종료
+                * → 배경음악을 원래 음량으로 복원한다.
+                */
+                fadeMusic(audioVolume);
 
                 if(onEnded){
                     onEnded();
