@@ -74,45 +74,6 @@
       "endDate": "2026-11-30"
     },
 
-    {
-      "id": "E0006",
-      "title": "Fragments of Memory",
-      "hall": "hall05",
-      "hallTitle": "5관",
-      "order": 5,
-      "type": "photo",
-      "status": "hidden",
-      "artist": "백경희",
-      "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg","014.jpg","015.jpg","016.jpg","017.jpg","018.jpg"],
-      "captions": [
-        "기억의 편린",
-        "기억의 편린 #01",
-        "기억의 편린 #02",
-        "기억의 편린 #03",
-        "기억의 편린",
-        "기억의 편린 #04",
-        "기억의 편린 #05",
-        "기억의 편린 #06",
-        "기억의 편린 #07",
-        "기억의 편린 #08",
-        "기억의 편린",
-        "기억의 편린 #09",
-        "기억의 편린 #10",
-        "기억의 편린 #11",
-        "기억의 편린",
-        "기억의 편린 #12",
-        "기억의 편린 #13",
-        "기억의 편린"
-      ],
-      "themeColor": "#b0b0b2",
-      "themeMode": "warm",
-      "slideSeconds": 10,
-      "music": "M04",
-      "volume": 0.4,
-      "startDate": "2026-05-20",
-      "endDate": "2026-09-19"
-    },
-
 
     {
       "id": "E0012",
@@ -214,7 +175,7 @@
       "hallTitle": "80관",
       "order": 80,
       "type": "photo",
-      "status": "hidden",
+      "status": "current",
       "artist": "김경수",
       "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg","014.jpg","015.jpg","016.jpg","017.jpg","018.jpg","019.jpg","020.jpg","021.jpg","022.jpg","023.jpg","024.jpg","025.jpg","026.jpg","027.jpg"],
       "captions": [
@@ -252,7 +213,7 @@
       "music": "M02",
       "volume": 0.5,
       "startDate": "2026-08-01",
-      "endDate": "2026-11-30"
+      "endDate": "2026-12-30"
     },
 
     {
