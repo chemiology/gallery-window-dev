@@ -533,6 +533,49 @@
 
 
     {
+      "id": "E0032",
+      "title": "Memory of Flowers",
+      "hall": "hall7",
+      "hallTitle": "7관",
+      "order": 7,
+      "type": "photo",
+      "status": "current",
+      "artist": "박찬애",
+      "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg","014.jpg","015.jpg","016.jpg","017.jpg","018.jpg","019.jpg"],
+      "captions": [
+        "꽃의 기억 #01",
+        "꽃의 기억 #02",
+        "꽃의 기억 #03",
+        "꽃의 기억 #04",
+        "꽃의 기억 #05",
+        "꽃의 기억 #06",
+        "꽃의 기억 #07",
+        "꽃의 기억 #08",
+        "꽃의 기억 #09",
+        "꽃의 기억 #10",
+        "꽃의 기억 #11",
+        "꽃의 기억 #12",
+        "꽃의 기억 #13",
+        "꽃의 기억 #14",
+        "꽃의 기억 #15",
+        "꽃의 기억 #16",
+        "꽃의 기억 #17",
+        "꽃의 기억 #18",
+        "꽃의 기억 #19"
+      ],
+      "themeColor": "#c6b6c9",
+      "themeMode": "warm",
+      "slideSeconds": 10,
+      "music": "M18",
+      "volume": 0.4,
+      "curationVolume":1.0,
+      "fadeDuration":800,
+      "startDate": "2026-09-01",
+      "endDate": "2027-02-09"
+    },
+
+
+    {
       "id": "E0029",
       "title": "White Memory",
       "hall": "hall29",
