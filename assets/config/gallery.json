@@ -580,6 +580,31 @@
       "endDate": "2027-02-09"
     },
 
+    {
+      "id": "E0033",
+      "title": "Memory of Flowers",
+      "hall": "hall33",
+      "hallTitle": "33관",
+      "order": 33,
+      "type": "photo",
+      "status": "current",
+      "artist": "황말남",
+      "images": ["001.jpg","002.jpg","003.jpg"],
+      "captions": [
+        "꽃의 기억 #01",
+        "꽃의 기억 #02",
+        "꽃의 기억 #03",
+      ],
+      "themeColor": "#c6b6c9",
+      "themeMode": "warm",
+      "slideSeconds": 10,
+      "music": "M40",
+      "volume": 0.4,
+      "curationVolume":1.0,
+      "fadeDuration":800,
+      "startDate": "2026-09-01",
+      "endDate": "2027-02-09"
+    },
 
     {
       "id": "E0029",
