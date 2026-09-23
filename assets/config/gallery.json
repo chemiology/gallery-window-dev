@@ -407,7 +407,7 @@
       "curationVolume":1.0,
       "fadeDuration":800,
       "startDate": "2026-09-01",
-      "endDate": "2027-02-09"
+      "endDate": "2027-01-09"
     },
 
     {
@@ -442,12 +442,12 @@
       "curationVolume":1.0,
       "fadeDuration":800,
       "startDate": "2026-09-01",
-      "endDate": "2027-02-09"
+      "endDate": "2027-05-31"
     },
 
     {
       "id": "E0036",
-      "title": "Beyond Hwatu",
+      "title": "The Garden of Hwatu",
       "hall": "hall76",
       "hallTitle": "36관",
       "order": 36,
@@ -477,7 +477,7 @@
       "curationVolume":1.0,
       "fadeDuration":800,
       "startDate": "2026-09-01",
-      "endDate": "2027-02-09"
+      "endDate": "2027-08-31"
     },
 
     {
@@ -518,7 +518,7 @@
       "curationVolume":1.0,
       "fadeDuration":800,
       "startDate": "2026-09-01",
-      "endDate": "2027-12-14"
+      "endDate": "2027-12-09"
     },
 
 
