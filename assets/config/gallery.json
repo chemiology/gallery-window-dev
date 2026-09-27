@@ -350,7 +350,7 @@
       "type": "photo",
       "status": "current",
       "artist": "황말남",
-      "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg"],
+      "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg"],
       "captions": [
         "Test #01",
         "Test #02",
