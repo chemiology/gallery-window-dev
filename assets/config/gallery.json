@@ -452,6 +452,44 @@
       "endDate": "2027-12-09"
     },
 
+    {
+      "id": "E0038",
+      "title": "The Beauty of Drifting Ice",
+      "hall": "hall78",
+      "hallTitle": "38관",
+      "order": 38,
+      "type": "photo",
+      "status": "current",
+      "artist": "배정옥",
+      "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg","014.jpg","015.jpg"],
+      "captions": [
+        "유빙의 조형미 #01",
+        "유빙의 조형미 #02",
+        "유빙의 조형미 #03",
+        "유빙의 조형미 #04",
+        "유빙의 조형미 #05",
+        "유빙의 조형미 #06",
+        "유빙의 조형미 #07",
+        "유빙의 조형미 #08",
+        "유빙의 조형미 #09",
+        "유빙의 조형미 #10",
+        "유빙의 조형미 #11",
+        "유빙의 조형미 #12",
+        "유빙의 조형미 #13",
+        "유빙의 조형미 #14",
+        "유빙의 조형미 #15"
+      ],
+      "themeColor": "#c8c8c8",
+      "themeMode": "cool",
+      "slideSeconds": 10,
+      "music": "M40",
+      "volume": 0.4,
+      "curationVolume":1.0,
+      "fadeDuration":800,
+      "startDate": "2026-10-01",
+      "endDate": "2027-05-19"
+    },
+
 
     {
       "id": "E0029",
