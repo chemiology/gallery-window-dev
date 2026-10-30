@@ -411,7 +411,7 @@
       "hallTitle": "38관",
       "order": 38,
       "type": "photo",
-      "status": "current",
+      "status": "hidden",
       "artist": "배정옥",
       "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg","014.jpg","015.jpg"],
       "captions": [
@@ -449,7 +449,7 @@
       "hallTitle": "47관",
       "order": 47,
       "type": "video",
-      "status": "current",
+      "status": "hidden",
       "artist": "김경수",
       "themeColor": "#c6d4e1",
       "themeMode": "cool",
