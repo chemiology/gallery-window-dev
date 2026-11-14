@@ -370,7 +370,7 @@
       "hallTitle": "37관",
       "order": 37,
       "type": "photo",
-      "status": "current",
+      "status": "hidden",
       "artist": "배정옥",
       "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg","014.jpg","015.jpg","016.jpg","017.jpg","018.jpg"],
       "captions": [
@@ -411,7 +411,7 @@
       "hallTitle": "38관",
       "order": 38,
       "type": "photo",
-      "status": "current",
+      "status": "hidden",
       "artist": "배정옥",
       "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg","014.jpg","015.jpg"],
       "captions": [
@@ -441,6 +441,49 @@
       "startDate": "2026-10-01",
       "endDate": "2027-05-19"
     },
+
+    {
+      "id": "E0039",
+      "title": "Two Moons",
+      "hall": "hall6",
+      "hallTitle": "6관",
+      "order": 6,
+      "type": "photo",
+      "status": "current",
+      "artist": "박경순",
+      "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg","014.jpg","015.jpg","016.jpg","017.jpg","018.jpg","019.jpg"],
+      "captions": [
+        "두 개의 달 #01",
+        "두 개의 달 #02",
+        "두 개의 달 #03",
+        "두 개의 달 #04",
+        "두 개의 달 #05",
+        "두 개의 달 #06",
+        "두 개의 달 #07",
+        "두 개의 달 #08",
+        "두 개의 달 #09",
+        "두 개의 달 #10",
+        "두 개의 달 #11",
+        "두 개의 달 #12",
+        "두 개의 달 #13",
+        "두 개의 달 #14",
+        "두 개의 달 #15",
+        "두 개의 달 #16",
+        "두 개의 달 #17",
+        "두 개의 달 #18",
+        "두 개의 달 #19"
+      ],
+      "themeColor": "#87899c",
+      "themeMode": "warm",
+      "slideSeconds": 10,
+      "music": "M40",
+      "volume": 0.4,
+      "curationVolume":1.0,
+      "fadeDuration":800,
+      "startDate": "2026-11-10",
+      "endDate": "2027-03-09"
+    },
+
 
     {
       "id": "E0008",
