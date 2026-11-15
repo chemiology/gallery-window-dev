@@ -451,7 +451,7 @@
       "type": "photo",
       "status": "current",
       "artist": "박경순",
-      "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg","014.jpg","015.jpg","016.jpg","017.jpg","018.jpg","019.jpg"],
+      "images": ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg","011.jpg","012.jpg","013.jpg","014.jpg","015.jpg","016.jpg","017.jpg"],
       "captions": [
         "두 개의 달 #01",
         "두 개의 달 #02",
@@ -477,7 +477,7 @@
       "music": "M40",
       "volume": 0.4,
       "curationVolume":1.0,
-      "fadeDuration":800,
+      "fadeDuration":1200,
       "startDate": "2026-11-10",
       "endDate": "2027-03-09"
     },
